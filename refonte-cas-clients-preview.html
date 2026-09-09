@@ -42,10 +42,8 @@
   :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
 
   .nav{background:var(--white);padding:13px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:40}
-  .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;cursor:pointer}
-  .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--black);display:grid;place-items:center}
-  .brand .dot::after{content:"";width:11px;height:11px;border-radius:3px;background:conic-gradient(var(--yellow) 0 25%,var(--pink) 0 50%,var(--green) 0 75%,var(--blue) 0)}
-  .brand i{font-style:italic;font-weight:700}
+  .brand{display:flex;align-items:center;cursor:pointer}
+  .brand img{height:26px;width:auto;display:block;mix-blend-mode:multiply}
   .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:500;font-size:14px;text-decoration:none;border:none;cursor:pointer;border-radius:3000px;padding:10px 18px;transition:transform .22s cubic-bezier(.19,1,.22,1),opacity .22s}
   .btn:hover{transform:translateY(-1px)}
   .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
@@ -115,6 +113,17 @@
   .verify{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
   .verify .hint{font-size:12px;color:var(--ink-3)}
 
+  /* ===== marquee marques ===== */
+  .marquee-zone{padding:clamp(28px,4vw,44px) 0 0;text-align:center}
+  .marquee-zone .kicker{margin-bottom:14px}
+  .marquee{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .mtrack{display:flex;align-items:center;gap:clamp(34px,5vw,64px);width:max-content;animation:mscroll 36s linear infinite;padding:6px 0}
+  .marquee:hover .mtrack{animation-play-state:paused}
+  @keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .mlogo{display:flex;align-items:center;flex:none}
+  .mlogo img{height:22px;max-width:130px;width:auto;object-fit:contain;display:block;opacity:.5;filter:grayscale(1);transition:opacity .25s,filter .25s,transform .25s}
+  .mlogo:hover img{opacity:1;filter:none;transform:translateY(-2px)}
+
   /* ===== sections découverte ===== */
   section.disc{padding:clamp(40px,6vw,72px) 0 0}
   .sec-head{margin-bottom:clamp(18px,2.6vw,28px)}
@@ -133,8 +142,8 @@
   .tile .go{font-size:13px;font-weight:500;color:var(--ink);margin-top:6px;display:inline-flex;align-items:center;gap:6px}
   .tile:hover .go .arr{transform:translateX(3px)}
 
-  /* ===== bandeau rapidité ===== */
-  .speed{margin-top:clamp(44px,6vw,72px);background:var(--black);color:#fff8f0;border-radius:var(--r-lg);padding:clamp(26px,3.8vw,46px);position:relative;overflow:hidden}
+  /* ===== bandeau rapidité (pleine largeur) ===== */
+  .speed{margin-top:clamp(44px,6vw,72px);background:var(--black);color:#fff8f0;padding:clamp(40px,5.5vw,72px) 0;position:relative;overflow:hidden}
   .speed::after{content:"";position:absolute;right:-18%;bottom:-55%;width:70%;height:110%;pointer-events:none;filter:blur(48px);opacity:.5;background:
     radial-gradient(50% 50% at 30% 60%,var(--pink) 0%,transparent 65%),
     radial-gradient(50% 50% at 70% 55%,var(--blue) 0%,transparent 65%)}
@@ -156,6 +165,25 @@
   .fcount{font-size:13px;color:var(--ink-3);margin-left:auto}
   .fcount b{color:var(--ink);font-weight:500}
   .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(10px,1.5vw,16px)}
+  /* rangées pleine largeur, couleur de marque */
+  .clist{display:flex;flex-direction:column;gap:10px}
+  .crow{--col:#8b7bf0;display:grid;grid-template-columns:auto 1fr auto;gap:clamp(14px,2.4vw,28px);align-items:center;background:color-mix(in srgb,var(--col) 7%,var(--white));border-left:5px solid var(--col);border-radius:var(--r-md);padding:clamp(14px,2vw,20px) clamp(16px,2.4vw,28px);text-decoration:none;transition:transform .22s cubic-bezier(.19,1,.22,1),background .25s;position:relative}
+  .crow:hover{transform:translateX(4px);background:color-mix(in srgb,var(--col) 14%,var(--white))}
+  .crow .rini{width:46px;height:46px;border-radius:12px;background:var(--col);color:#fff;display:grid;place-items:center;font-weight:500;font-size:15px}
+  .crow .rini.dark-txt{color:var(--ink)}
+  .crow .rmeta{font-size:11.5px;font-weight:500;color:var(--ink-3);letter-spacing:.01em;margin-bottom:2px}
+  .crow .rmeta .cd{color:var(--success)}
+  .crow .rwho{font-weight:500;font-size:16.5px;letter-spacing:-.015em}
+  .crow .rdid{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+  .crow .rmetric{text-align:right}
+  .crow .rm{font-weight:500;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.02em;color:var(--ink)}
+  .crow .rml{font-size:12px;color:var(--ink-3);max-width:24ch}
+  .crow.enriched::before{content:"gabarit enrichi → cliquer";position:absolute;top:-9px;right:14px;font-size:10.5px;font-weight:500;background:var(--yellow);color:var(--ink);border-radius:3000px;padding:3px 10px}
+  @media(max-width:720px){
+    .crow{grid-template-columns:auto 1fr}
+    .crow .rmetric{grid-column:2;text-align:left}
+    .crow .rml{max-width:none}
+  }
   .ccard{background:var(--white);border-radius:var(--r-md);padding:clamp(16px,2vw,20px);display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .22s cubic-bezier(.19,1,.22,1),box-shadow .22s;position:relative}
   .ccard:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(30,26,40,.25)}
   .ccard .cmeta{font-size:11.5px;font-weight:500;color:var(--ink-3);letter-spacing:.01em}
@@ -243,7 +271,7 @@
 </head>
 <body>
 <nav class="nav">
-  <div class="brand" onclick="goHub()"><span class="dot"></span>Nocode<i>Factory</i></div>
+  <div class="brand" onclick="goHub()"><img alt="Nocode Factory" src="data:image/png;base64,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"></div>
   <a class="btn btn-black" href="#" onclick="return false">Estimer mon projet <span class="arr">→</span></a>
 </nav>
 
@@ -314,6 +342,12 @@
   </section>
 </div>
 
+<!-- marquee des marques (cliquable → cas respectif) -->
+<div class="marquee-zone">
+  <div class="kicker">Ils nous ont confié leurs projets</div>
+  <div class="marquee"><div class="mtrack" id="mtrack"></div></div>
+</div>
+
 <!-- découverte par outil -->
 <section class="disc wrap" id="outils">
   <div class="sec-head">
@@ -334,9 +368,9 @@
   <div class="tiles" id="tiles-sectors"></div>
 </section>
 
-<!-- bandeau rapidité -->
-<div class="wrap">
-  <div class="speed">
+<!-- bandeau rapidité (pleine largeur) -->
+<div class="speed">
+  <div class="wrap">
     <div class="lab">La rapidité d'exécution, mesurée</div>
     <h2 class="h2k">Livré <span class="key">en temps record</span> — et c'est vérifiable</h2>
     <div class="speedgrid">
@@ -356,7 +390,7 @@
     <p class="sec-sub">46 études de cas publiées, chacune avec son résultat mesuré.</p>
   </div>
   <div class="filterbar" id="filterbar"></div>
-  <div class="cgrid" id="cgrid"></div>
+  <div class="clist" id="cgrid"></div>
 </section>
 
 <div class="cta-final wrap">
@@ -373,6 +407,7 @@
     <li><b>Trois portes d'entrée, une seule page</b> : configurateur (je sais ce que je veux), tuiles outils/secteurs (je browse), dé (je joue). Tout route vers la même grille filtrée — zéro nouvelle URL, zéro cannibalisation.</li>
     <li><b>Mapping outil × secteur des 46 cas déduit des accroches publiques — à valider avec Valentin.</b> Les cas au secteur incertain (XOS, Joli Rouge, Atelier Libon) restent sans chip secteur plutôt que mal classés. Métriques et durées : uniquement celles publiées, jamais inventées.</li>
     <li><b>Rapidité</b> : la durée n'apparaît que là où elle est publiée (Insify 20 j, Trophée des Champions 10 j, Tekabois 6 sem). Recommandation : publier la durée sur chaque nouvelle étude de cas — c'est l'argument n°1 du bandeau.</li>
+    <li><b>Couleurs de marque des rangées : approximations maquette</b>, à remplacer par la charte réelle de chaque client (champ CMS « couleur » sur l'étude de cas). Logos du marquee : servis par le CDN NCF, clic → cas respectif.</li>
     <li><b>Cliquer sur la carte Tekabois</b> ouvre la vue 2 : le gabarit d'étude de cas enrichie (bloc problématique citable, chips, pont vers les articles intentionnels). Les autres cartes pointent vers les vraies pages publiées.</li>
     <li>Les tuiles secteur réutilisent les douleurs sectorielles du configurateur ; à terme, chaque douleur devient un lien vers sa page problème (backlog V1/V2) <b>quand elle existe</b> — la grille montre l'état (« page publiée » / « guide à venir »).</li>
   </ul>
@@ -580,6 +615,41 @@ const CASES = [
 ];
 const URL_CASE = s => 'https://www.nocodefactory.fr/nos-realisations/' + s;
 
+// Couleurs de marque par cas — APPROXIMATIONS pour la maquette, à remplacer par les chartes réelles.
+const BRAND = {
+  'tekabois':'#8a5a2b','insify':'#6b4eff','trophee-des-champions':'#0f1f4b','ligue-1':'#091c3e',
+  'bpi-france-simulateur-flash':'#ffcd00','mylight-calculateur':'#fdb913','orus':'#4b39ef',
+  'blablacar':'#00aff5','good-motors':'#1f2937','xtensio':'#2e7d5b','the-host':'#b98e4a',
+  'clickandrent':'#e94f37','malakoff-humanis':'#ff4b34','ornikar':'#116dee','lelivrescolaire-fr':'#0080c9',
+  'rabah-aliouane':'#7c3aed','brut':'#111111','lequipe':'#e42829','neoness':'#e4003a','sofive':'#0a7a3c',
+  'mylight150':'#fdb913','via-sana':'#14b8a6','innerskin':'#c98a7d','cad':'#3b6fe0','karos':'#00c48c',
+  'losanje':'#6a7f3f','la-batisse':'#b5542d','learning-robots':'#f97316','altaroc':'#0e2a47',
+  'blast-club':'#ffd600','amenitiz':'#1a6ee8','obat-qr-code':'#2264e5','askmee':'#4f46e5','huppii':'#8b5cf6',
+  'cci-network':'#1d4ed8','la-growth-machine':'#6b46ff','sunday':'#171717','apiday':'#10b981',
+  'echoline':'#16a34a','alowa':'#7c5cff','bonitasoft':'#0ea5e9','talkspirit':'#4f35dc','teamhouse':'#0891b2',
+  'xos':'#64748b','atelier-libon':'#8d6e63','joli-rouge':'#c1121f'
+};
+const DARK_TXT = new Set(['bpi-france-simulateur-flash','mylight-calculateur','mylight150','blast-club']);
+
+// Marquee : les marques qui claquent, logos servis par le CDN NCF, clic → cas respectif
+const CDN='https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8ce13/';
+const MARQUEE=[
+  {slug:'blablacar', alt:'Blablacar', img:CDN+'6814e61852909a9de0d7afbf_BlaBlaCar.svg'},
+  {slug:'lequipe', alt:'L\'Équipe', img:CDN+'6814e4483d6dff85b2d361b6_lequipe.svg'},
+  {slug:'bpi-france-simulateur-flash', alt:'Bpifrance', img:CDN+'6814e6f0458c6d54abd6d4cb_bpi.svg'},
+  {slug:'malakoff-humanis', alt:'Malakoff Humanis', img:CDN+'6814d67b0d40e355cc1f4ef3_malakoffhumanis.svg'},
+  {slug:'ornikar', alt:'Ornikar', img:CDN+'6814f38d859199e57ed16b3f_Ornikar.svg'},
+  {slug:'insify', alt:'Insify', img:CDN+'6814e4a9709faf9547070fb2_Insify.svg'},
+  {slug:'karos', alt:'Karos', img:CDN+'6814d77e7ed3db71cca328d2_Karos.svg'},
+  {slug:'sunday', alt:'Sunday', img:CDN+'6814e648cf05bde57b9807e1_Sunday.svg'},
+  {slug:'blast-club', alt:'Blast Club', img:CDN+'688792159e82539b8a94be98_Blast-black.svg'},
+  {slug:'altaroc', alt:'Altaroc', img:CDN+'6814e2d6b49a5dd1e8f3b218_Altaroc.svg'},
+  {slug:'talkspirit', alt:'Talkspirit', img:CDN+'6814f3c75bf526ca9ce35470_Talkspirit.svg'},
+  {slug:'lelivrescolaire-fr', alt:'Lelivrescolaire.fr', img:CDN+'680f994078d78ea3840c0162_lls%20log%20b.svg'},
+];
+document.getElementById('mtrack').innerHTML=[...MARQUEE,...MARQUEE].map(m=>
+  `<a class="mlogo" href="${URL_CASE(m.slug)}" target="_blank" rel="noopener" aria-label="Voir le cas ${m.alt}"><img src="${m.img}" alt="${m.alt}"></a>`).join('');
+
 // ================= Configurateur =================
 const selT=document.getElementById('sel-type'), selS=document.getElementById('sel-sector');
 TYPES.forEach(t=>selT.add(new Option(t.lab,t.id)));
@@ -671,9 +741,19 @@ function cardHTML(c){
   if(c.enriched) return `<a class="ccard enriched" onclick="goCase();return false" href="#etude-tekabois">${inner}</a>`;
   return `<a class="ccard" href="${URL_CASE(c.slug)}" target="_blank" rel="noopener">${inner}</a>`;
 }
+function rowHTML(c){
+  const t=TYPES.find(x=>x.id===c.t), s=SECTORS.find(x=>x.id===c.s);
+  const meta = [t&&t.tile, s&&s.tile, c.dur&&`<span class="cd">⚡ ${c.dur}</span>`].filter(Boolean).join(' · ');
+  const col = BRAND[c.slug]||'#8b7bf0';
+  const ini = `<span class="rini ${DARK_TXT.has(c.slug)?'dark-txt':''}">${INITIALS(c.who)}</span>`;
+  const inner = `${ini}<span><span class="rmeta">${meta}</span><span class="rwho" style="display:block">${c.who}</span><span class="rdid" style="display:block">${c.did}</span></span>
+    <span class="rmetric"><span class="rm" style="display:block">${c.m}</span><span class="rml" style="display:block">${c.ml}</span></span>`;
+  if(c.enriched) return `<a class="crow enriched" style="--col:${col}" onclick="goCase();return false" href="#etude-tekabois">${inner}</a>`;
+  return `<a class="crow" style="--col:${col}" href="${URL_CASE(c.slug)}" target="_blank" rel="noopener">${inner}</a>`;
+}
 function renderGrid(){
   const list=CASES.filter(c=>(!filter.type||c.t===filter.type)&&(!filter.sector||c.s===filter.sector));
-  document.getElementById('cgrid').innerHTML=list.map(cardHTML).join('');
+  document.getElementById('cgrid').innerHTML=list.map(rowHTML).join('');
   renderFilterbar(list.length);
 }
 function renderFilterbar(n){
