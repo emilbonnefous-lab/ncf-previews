@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backlog pages SEO — source de vérité | Nocode Factory</title>
+<!--
+  Vue HTML du backlog (source : backlog-pages-seo.csv, réunion 09/09).
+  Destinée à la lecture / validation ; la version de travail = le GSheet à créer.
+-->
+<style>
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  :root{
+    --beige:#f9f8f6;--white:#fff;--ink:#060110;--ink-2:#494949;--ink-3:#606060;
+    --black:#1e1a28;--yellow:#ffca64;--pink:#f99bfb;
+    --pastel-yellow:#fef1e6;--pastel-pink:#f9eef1;--pastel-blue:#eafafc;--pastel-green:#f1fbed;
+    --success:#027a48;
+    --grad-key:linear-gradient(93deg,#8b7bf0 0%,var(--pink) 55%,#ff8fae 100%);
+    --font:"Fff Acidgrotesk",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--beige);color:var(--ink);font-size:15px;line-height:1.5}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,3vw,40px)}
+  header{padding:clamp(28px,4vw,48px) 0 clamp(18px,2.6vw,28px)}
+  .kicker{font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:8px}
+  h1{font-weight:500;font-size:clamp(26px,3.6vw,42px);letter-spacing:-.028em;line-height:1.1}
+  h1 .key{background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink-2);font-size:14.5px;margin-top:10px;font-weight:300;max-width:76ch}
+
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+  .stat{background:var(--white);border-radius:12px;padding:10px 18px}
+  .stat b{font-size:20px;font-weight:500;display:block;letter-spacing:-.02em}
+  .stat span{font-size:12px;color:var(--ink-3)}
+
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0}
+  .fchip{font-family:var(--font);font-size:13px;font-weight:500;border:1.5px solid #e2ded8;background:var(--white);color:var(--ink-2);border-radius:3000px;padding:7px 15px;cursor:pointer;transition:all .18s}
+  .fchip:hover{border-color:var(--ink);color:var(--ink)}
+  .fchip.on{background:var(--black);border-color:var(--black);color:#fff8f0}
+  .fcount{font-size:13px;color:var(--ink-3);margin-left:auto}
+  .fcount b{color:var(--ink);font-weight:500}
+
+  .tablewrap{background:var(--white);border-radius:16px;overflow:auto;margin-bottom:40px;box-shadow:0 10px 40px -24px rgba(30,26,40,.25)}
+  table{width:100%;border-collapse:collapse;min-width:980px}
+  th{position:sticky;top:0;background:var(--black);color:#fff8f0;text-align:left;font-weight:500;font-size:12px;letter-spacing:.02em;padding:12px 16px;white-space:nowrap}
+  td{padding:11px 16px;border-top:1px solid #f1eee9;font-size:13.5px;vertical-align:top}
+  tr:hover td{background:#faf9f7}
+  td.title{font-weight:500;min-width:230px}
+  .b{display:inline-block;font-size:11.5px;font-weight:500;border-radius:3000px;padding:3px 11px;white-space:nowrap}
+  .lvl-pa{background:var(--pastel-pink);color:#b5379b}
+  .lvl-sa{background:var(--pastel-blue);color:#17689a}
+  .lvl-ea{background:var(--pastel-yellow);color:#a05a00}
+  .lvl-hub{background:var(--pastel-green);color:var(--success)}
+  .lvl-tr{background:#efedea;color:var(--ink-2)}
+  .p1{background:var(--black);color:var(--yellow)}
+  .p2{background:#efedea;color:var(--ink)}
+  .p3{background:#f6f4f1;color:var(--ink-3)}
+  .pb{background:var(--pastel-pink);color:#b5379b}
+  .st-done{background:var(--pastel-green);color:var(--success)}
+  .st-todo{background:#f6f4f1;color:var(--ink-2)}
+  .st-live{background:var(--pastel-blue);color:#17689a}
+  .st-frame{background:var(--pastel-yellow);color:#a05a00}
+  td .tags{font-size:12px;color:var(--ink-3)}
+  td a{color:#17689a;font-weight:500;text-decoration:none;font-size:12.5px}
+  td a:hover{text-decoration:underline}
+  footer{padding:0 0 40px;color:var(--ink-3);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Réunion du 09/09 · source : backlog-pages-seo.csv · version de travail = GSheet à créer</div>
+  <h1>Backlog pages — <span class="key">source de vérité</span></h1>
+  <p class="sub">Toutes les pages à produire ou maintenir, sur les 3 niveaux d'intention décidés en réunion (expertise / solution / problème) + hubs « Vous êtes… » et composants transverses. Les priorités et responsables restent à valider avec Valentin.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="filterbar" id="filterbar"></div>
+<div class="tablewrap">
+<table>
+  <thead><tr>
+    <th>Page / Titre</th><th>Intention</th><th>Format</th><th>Priorité</th><th>Statut</th><th>Responsable</th><th>Liens</th><th>Tags</th>
+  </tr></thead>
+  <tbody id="tbody"></tbody>
+</table>
+</div>
+<footer>Nocode Factory — backlog consolidé (tri backlog ChatGPT × grille interne × décisions réunion 09/09)</footer>
+</div>
+
+<script>
+// [titre, niveau, format, priorité, statut, responsable, staging, prod, tags]
+// niveaux : pa / sa / ea / hub / tr — priorités : P1 / P2 / P3 / PB (basse)
+const ROWS=[
+["Remplacer Excel par une application","pa","Article de blog","P1","À rédiger","","","","transverse · pilier PA"],
+["Génération PDF automatique","pa","Article de blog","P1","À rédiger","","","","transverse"],
+["Génération automatique de devis","pa","Article de blog","P1","À rédiger","","","","commercial · lien cas Tekabois"],
+["Reporting automatique","pa","Article de blog","P1","À rédiger","","","","direction · finance"],
+["Génération automatique de contrats","pa","Article de blog","P2","À rédiger","","","","juridique"],
+["Extraction de données PDF","pa","Article de blog","P2","À rédiger","","","","documentaire"],
+["Traitement automatique des emails","pa","Article de blog","P2","À rédiger","","","","opérations"],
+["Automatisation saisie commandes","pa","Article de blog","P2","À rédiger","","","","ADV"],
+["Rapprochement comptable automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
+["Contrôle automatique des factures","pa","Article de blog","P2","À rédiger","","","","finance · achats"],
+["Calcul prix automatique","pa","Article de blog","P2","À rédiger","","","","commercial"],
+["Relance factures automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
+["Réapprovisionnement automatique","pa","Article de blog","P2","À rédiger","","","","supply"],
+["Optimisation tournées","pa","Article de blog","P2","À rédiger","","","","logistique"],
+["Génération bail automatique","pa","Article de blog","P2","À rédiger","","","","immobilier"],
+["Recherche IA documents (RAG)","pa","Article de blog","P2","À rédiger","","","","IA · différenciant"],
+["Synchronisation logiciels","pa","Article de blog","P2","À rédiger","","","","connecteurs"],
+["Prévision trésorerie automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
+["ERP sur mesure","sa","Page template","P2","Rédigée (validée 19/20)","","","","pilier · matrice de référence"],
+["Calcul des besoins nets (CBN / MRP)","sa","Page template","P2","Rédigée","","","","industrie · lien cas Tekabois"],
+["CRM sur mesure","sa","Page template","P2","À rédiger","","","","pilier"],
+["Logiciel métier sur mesure","sa","Page template","P2","À rédiger","","","","PILIER récit unifié"],
+["Portail client / extranet","sa","Page template","P2","À rédiger","","","","PILIER portails"],
+["GED sur mesure","sa","Page template","P2","À rédiger","","","","documentaire"],
+["Agent IA sur mesure","sa","Page template","P2","À rédiger","","","","IA · entrée par process"],
+["Agence Webflow","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-webflow","outil"],
+["Agence Xano","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-xano","outil"],
+["Agence WeWeb","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-weweb","outil"],
+["Agence Make","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-make","outil"],
+["Agence N8N","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-n8n","outil"],
+["Agence Sanity","ea","Page","P2","À créer","","","","outil · migration Sanity"],
+["Agence No Code","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-nocode","pilier expertise"],
+["« Vous êtes… » Finance & assurance","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
+["« Vous êtes… » Immobilier","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
+["« Vous êtes… » Industrie & construction","hub","Page hub","P3","À cadrer","","","","cible internal tools T4"],
+["« Vous êtes… » Mobilité","hub","Page hub","P3","À cadrer","","","","3 cas publiés"],
+["« Vous êtes… » Sport & média","hub","Page hub","P3","À cadrer","","","","7 cas publiés"],
+["« Vous êtes… » Éducation","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
+["« Vous êtes… » Santé","hub","Page hub","P3","À cadrer","","","","3 cas publiés"],
+["« Vous êtes… » Énergie","hub","Page hub","P3","À cadrer","","","","2 cas publiés"],
+["« Vous êtes… » SaaS B2B","hub","Page hub","P3","À cadrer","","","","12 cas publiés"],
+["« Vous êtes… » Marketing","hub","Page hub","P3","À cadrer","","","","métier"],
+["« Vous êtes… » Produit","hub","Page hub","P3","À cadrer","","","","métier"],
+["« Vous êtes… » Opérations","hub","Page hub","P3","À cadrer","","","","métier"],
+["« Vous êtes… » Finance / DAF","hub","Page hub","P3","À cadrer","","","","métier"],
+["« Vous êtes… » RH","hub","Page hub","P3","À cadrer","","","","métier"],
+["Refonte page cas clients (hub de vente)","tr","Page","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html","https://www.nocodefactory.fr/nos-realisations","maillage · outils × secteurs"],
+["Gabarit étude de cas enrichie","tr","Template CMS","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html#etude-tekabois","","3 champs CMS à ajouter"],
+["Configurateur de projet","tr","Composant","PB","En pause (décision 09/09)","","https://emilbonnefous-lab.github.io/ncf-previews/maquette-configurateur-preview.html","","ni calendrier ni responsable"],
+["Widget d'engagement bas de page","tr","Composant","P3","À cadrer","","","","pas en homepage"],
+];
+const LVL={pa:['lvl-pa','Problem-aware'],sa:['lvl-sa','Solution-aware'],ea:['lvl-ea','Expertise-aware'],hub:['lvl-hub','Hub « Vous êtes… »'],tr:['lvl-tr','Transverse']};
+const PCLS={P1:'p1',P2:'p2',P3:'p3',PB:'pb'};
+const PLAB={P1:'P1 — maintenant',P2:'P2',P3:'P3',PB:'Priorité basse'};
+function stCls(s){ if(/Rédigée|Maquette/.test(s)) return 'st-done'; if(/Existante/.test(s)) return 'st-live'; if(/pause|cadrer/.test(s)) return 'st-frame'; return 'st-todo'; }
+let filter=null;
+function links(stg,prod){
+  const a=[]; if(stg)a.push(`<a href="${stg}" target="_blank" rel="noopener">staging ↗</a>`);
+  if(prod)a.push(`<a href="${prod}" target="_blank" rel="noopener">prod ↗</a>`);
+  return a.join('<br>')||'—';
+}
+function render(){
+  const list=ROWS.filter(r=>!filter||r[1]===filter);
+  document.getElementById('tbody').innerHTML=list.map(r=>`<tr>
+    <td class="title">${r[0]}</td>
+    <td><span class="b ${LVL[r[1]][0]}">${LVL[r[1]][1]}</span></td>
+    <td>${r[2]}</td>
+    <td><span class="b ${PCLS[r[3]]}">${PLAB[r[3]]}</span></td>
+    <td><span class="b ${stCls(r[4])}">${r[4]}</span></td>
+    <td>${r[5]||'—'}</td>
+    <td>${links(r[6],r[7])}</td>
+    <td><span class="tags">${r[8]}</span></td>
+  </tr>`).join('');
+  const fb=document.getElementById('filterbar');
+  fb.innerHTML=Object.keys(LVL).map(k=>{
+    const n=ROWS.filter(r=>r[1]===k).length;
+    return `<button class="fchip ${filter===k?'on':''}" data-k="${k}">${LVL[k][1]} · ${n}</button>`;
+  }).join('')+(filter?`<button class="fchip" data-k="">✕ Tout afficher</button>`:'')
+  +`<span class="fcount"><b>${list.length}</b> page${list.length>1?'s':''}</span>`;
+  fb.querySelectorAll('.fchip').forEach(el=>el.onclick=()=>{filter=el.dataset.k||null;render();});
+}
+document.getElementById('stats').innerHTML=[
+  ['4','articles P1 à rédiger maintenant'],
+  ['18','articles problem-aware au total'],
+  ['7','pages solution (2 déjà rédigées)'],
+  ['14','hubs « Vous êtes… » à cadrer'],
+  [ROWS.length,'lignes au backlog'],
+].map(s=>`<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
+render();
+</script>
+</body>
+</html>
