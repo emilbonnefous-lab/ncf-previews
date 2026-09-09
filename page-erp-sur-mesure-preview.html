@@ -219,6 +219,18 @@
   .why b{display:block;font-family:var(--disp);font-weight:600;font-size:17.5px;margin-bottom:6px;line-height:1.3}
   .why p{font-size:14.5px;color:var(--ink-2)}
   .h3-mid{font-family:var(--disp);font-weight:600;font-size:clamp(21px,2.6vw,27px);letter-spacing:-.01em;text-align:center;margin-bottom:8px}
+
+  /* ===== preuve par cas réels ===== */
+  th .reco{display:block;margin-top:7px;font-size:10px;letter-spacing:.09em;background:var(--yel);color:var(--ink);border-radius:999px;padding:3px 9px;font-weight:700;text-transform:uppercase;width:max-content}
+  .proofs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1060px;margin:22px auto 0}
+  @media(max-width:960px){.proofs{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.proofs{grid-template-columns:1fr}}
+  .proof-case{display:block;background:var(--card);border:1.5px solid var(--hair-2);border-radius:var(--r-md);padding:20px 18px;text-decoration:none;transition:transform .25s cubic-bezier(.19,1,.22,1),box-shadow .25s cubic-bezier(.19,1,.22,1),border-color .25s}
+  .proof-case:hover{transform:translateY(-3px);border-color:var(--org);box-shadow:0 14px 30px -16px oklch(0.4 0.08 290/.35)}
+  .proof-case .pm{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3vw,34px);color:var(--org-deep);display:block;line-height:1}
+  .proof-case b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:8px 0 6px}
+  .proof-case p{font-size:14px;line-height:1.5;color:var(--ink-2)}
+  .proof-note{text-align:center;font-size:13.5px;color:var(--ink-3);max-width:62ch;margin:16px auto clamp(30px,4vw,52px)}
   .lede-mid{font-size:16px;color:var(--ink-2);text-align:center;max-width:58ch;margin:0 auto clamp(24px,3vw,36px)}
 
   /* coût marché */
@@ -327,10 +339,10 @@
       <div>
         <span class="kicker">■&nbsp; Logiciel métier · PME &amp; ETI</span>
         <h1>ERP sur mesure&nbsp;: un logiciel qui <span class="hl">épouse vos process</span>, pas l'inverse</h1>
-        <p class="sub">Un ERP du marché vous force à changer vos méthodes, ou vous jonglez entre cinq outils et des Excel qui font le lien entre eux. Voici vos 4 options réelles, ce qu'elles coûtent, et comment choisir, même si vous ne travaillez pas avec nous.</p>
+        <p class="sub">Un ERP du marché vous force à changer vos méthodes, ou vous jonglez entre cinq outils et des Excel qui font le lien entre eux. Il existe une quatrième option&nbsp;: <b style="color:var(--ink)">l'application construite sur vos process</b>. C'est ce qu'on fait, et la comparaison ci-dessous montre pourquoi elle gagne dès que vos règles métier comptent.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-dark" href="#cta">J'ai un projet ERP <span class="arr">→</span></a>
-          <a class="btn btn-line" href="#options">Voir les 4 options</a>
+          <a class="btn btn-line" href="#options">Voir pourquoi elle gagne</a>
         </div>
         <p class="meta">Aussi appelé <b>PGI</b> (progiciel de gestion intégré) · une base unique pour vos <b>ventes, achats, stocks, production</b> et <b>gestion</b></p>
       </div>
@@ -381,7 +393,7 @@
       <p class="big">L'ERP est le logiciel le plus structurant d'une PME. Et le plus souvent subi.</p>
       <p>Chez les dirigeants qui nous consultent, on retrouve presque toujours l'un de ces deux montages&nbsp;: un ERP du marché trop lourd, dont on n'active qu'une fraction et qu'on contourne avec des Excel, ou une constellation d'outils spécialisés reliés à la main, avec de la ressaisie partout.</p>
       <p>Ça tient… jusqu'au jour où ça ne tient plus&nbsp;: un chiffre faux parce que l'info existe en trois versions, une commande perdue entre deux outils, ou une croissance bloquée par la tuyauterie.</p>
-      <p>ERP éditeur, ERP open-source, assemblage de SaaS&nbsp;: trois options qui vous demandent de rentrer dans leurs cases. <strong>Nous construisons la quatrième&nbsp;: celle qui suit vos process.</strong> Le diagnostic ci-dessous vous dit où vous en êtes, et par quoi commencer.</p>
+      <p>ERP éditeur, ERP open-source, assemblage de SaaS&nbsp;: trois options qui vous demandent de rentrer dans leurs cases. <strong>Nous construisons la quatrième&nbsp;: celle qui suit vos process.</strong> Le diagnostic ci-dessous vous dit où vous en êtes. Dans la grande majorité des situations qu'on reçoit, la conclusion est la même&nbsp;: arrêter de tordre vos process, construire l'outil qui les suit.</p>
     </div>
   </div>
 </section>
@@ -404,10 +416,10 @@
         <button class="role" data-v="daf">DAF / DSI<small>finance, systèmes</small></button>
         <button class="role" data-v="sachant">Le «&nbsp;sachant&nbsp;» Excel<small>c'est vous qui reliez les outils</small></button>
       </div>
-      <div class="verdict" id="v-dg"><b>Votre risque n'est pas l'outil, c'est la donnée en triple.</b> Quand la même information vit dans le CRM, dans un Excel et dans la compta, personne ne sait laquelle est vraie, et vous pilotez au ressenti. La bonne question du matin&nbsp;: «&nbsp;combien de fois saisit-on la même donnée chez nous&nbsp;?&nbsp;». La réponse décide de la suite.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
-      <div class="verdict" id="v-ops"><b>Votre douleur, c'est la ressaisie et les trous entre outils.</b> Une commande qui se ressaisit du devis à la production, puis à la facturation&nbsp;: à chaque copie, une erreur possible et du temps perdu. La bonne question n'est pas «&nbsp;quel ERP&nbsp;» mais «&nbsp;qui s'adapte à qui&nbsp;»&nbsp;: vos process, ou ceux de l'éditeur.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
-      <div class="verdict" id="v-daf"><b>Regardez deux lignes&nbsp;: les licences par utilisateur et les modules jamais activés.</b> Un ERP dont vous payez la suite entière pour n'en ouvrir qu'une partie est un coût mort qui grossit avec l'équipe. Avant de renouveler, faites le calcul d'amortissement face à un outil que vous possédez et qui ne facture pas au siège.<br><a class="go" href="#cta">Estimer mon projet →</a></div>
-      <div class="verdict" id="v-sachant"><b>Vous êtes la colonne vertébrale invisible du SI, et vous le savez.</b> Ce sont vos macros et vos exports qui font tenir l'ensemble&nbsp;; vos congés fragilisent toute la chaîne. Automatiser ne vous remplace pas&nbsp;: ça transforme votre tuyauterie en un vrai système, documenté, que l'entreprise ne peut plus perdre.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+      <div class="verdict" id="v-dg"><b>Votre risque n'est pas l'outil, c'est la donnée en triple.</b> Quand la même information vit dans le CRM, dans un Excel et dans la compta, personne ne sait laquelle est vraie, et vous pilotez au ressenti. La bonne question du matin&nbsp;: «&nbsp;combien de fois saisit-on la même donnée chez nous&nbsp;?&nbsp;». Si la réponse dépasse «&nbsp;une fois&nbsp;», une application construite sur vos process supprime le problème à la racine, et c'est exactement ce qu'on livre&nbsp;: premier module en production en 6 à 10 semaines.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+      <div class="verdict" id="v-ops"><b>Votre douleur, c'est la ressaisie et les trous entre outils.</b> Une commande qui se ressaisit du devis à la production, puis à la facturation&nbsp;: à chaque copie, une erreur possible et du temps perdu. La bonne question n'est pas «&nbsp;quel ERP&nbsp;» mais «&nbsp;qui s'adapte à qui&nbsp;». Notre réponse est assumée&nbsp;: c'est l'outil qui doit s'adapter. On construit votre chaîne devis → production → facturation dans une seule base, sans ressaisie.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+      <div class="verdict" id="v-daf"><b>Regardez deux lignes&nbsp;: les licences par utilisateur et les modules jamais activés.</b> Un ERP dont vous payez la suite entière pour n'en ouvrir qu'une partie est un coût mort qui grossit avec l'équipe. Avant de renouveler, faites le calcul d'amortissement face à un outil que vous possédez et qui ne facture pas au siège&nbsp;: c'est ce calcul, devis en main, qui fait basculer les DAF vers le sur-mesure.<br><a class="go" href="#cta">Estimer mon projet →</a></div>
+      <div class="verdict" id="v-sachant"><b>Vous êtes la colonne vertébrale invisible du SI, et vous le savez.</b> Ce sont vos macros et vos exports qui font tenir l'ensemble&nbsp;; vos congés fragilisent toute la chaîne. Automatiser ne vous remplace pas&nbsp;: ça transforme votre tuyauterie en un vrai système, documenté, que l'entreprise ne peut plus perdre. C'est ce qu'on a construit chez <a href="https://www.nocodefactory.fr/nos-realisations/tekabois" style="font-weight:600">Tekabois</a>&nbsp;: équipe commerciale 100&nbsp;% autonome sur devis et SAV, en 6 semaines.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
     </div>
 
     <div class="split" style="max-width:900px;margin:0 auto">
@@ -424,7 +436,7 @@
         <a class="btn btn-dark" href="#cta" style="margin-top:20px">Réserver un audit (30 min) <span class="arr">→</span></a>
       </div>
       <div class="card rv">
-        <h3 style="color:var(--red)">✕&nbsp; Gardez un ERP standard si…</h3>
+        <h3 style="color:var(--red)">✕&nbsp; Les seuls cas où on vous dira «&nbsp;pas de sur-mesure&nbsp;»</h3>
         <ul class="tick no">
           <li><span class="ico">✕</span><span>Vos process sont <b>standards</b> (négoce classique, gestion simple)&nbsp;: un ERP du marché fait le travail.</span></li>
           <li><span class="ico">✕</span><span>Vous voulez un outil <b>éprouvé</b>, avec des intégrateurs partout&nbsp;: un ERP open-source comme Odoo peut suffire.</span></li>
@@ -465,13 +477,13 @@
     <div class="sec-head rv">
       <span class="k">Comparatif</span>
       <h2>Les 4 options pour <span class="hl">équiper votre gestion</span>, comparées honnêtement</h2>
-      <div class="short"><span class="tag">La réponse courte</span><b>ERP éditeur</b> si vos process sont standards et votre budget SI conséquent. <b>ERP open-source</b> (Odoo, Dolibarr) si vous acceptez son cadre en échange d'un écosystème large. <b>Assemblage de SaaS</b> pour démarrer vite. <b>Sur-mesure</b> si vos règles ne rentrent dans aucune case&nbsp;: c'est notre métier, et c'est loin d'être toujours la bonne réponse.</div>
+      <div class="short"><span class="tag">La réponse courte</span><b>ERP éditeur</b> si vos process sont standards et votre budget SI conséquent. <b>ERP open-source</b> (Odoo, Dolibarr) si vous acceptez son cadre en échange d'un écosystème large. <b>Assemblage de SaaS</b> pour démarrer vite. <b>Sur-mesure</b> si vos règles ne rentrent dans aucune case&nbsp;: c'est notre métier, et si vous vous êtes reconnu dans le diagnostic plus haut, c'est votre situation.</div>
     </div>
 
     <div class="tblcard rv">
       <div class="tblscroll">
         <table>
-          <thead><tr><th></th><th>ERP éditeur généraliste</th><th>ERP open-source (Odoo…)</th><th>Assemblage SaaS + automatisation</th><th>Application sur-mesure</th></tr></thead>
+          <thead><tr><th></th><th>ERP éditeur généraliste</th><th>ERP open-source (Odoo…)</th><th>Assemblage SaaS + automatisation</th><th>Application sur-mesure<span class="reco">Notre recommandation</span></th></tr></thead>
           <tbody>
             <tr><td>Coût d'entrée</td><td>Licences + intégration (devis obligatoire, très variable selon éditeur et périmètre)</td><td>Faible à modéré, mais l'adaptation à vos règles se paie en jours d'intégrateur</td><td>Faible&nbsp;: abonnements cumulés des outils</td><td>Sur mesure, lui aussi&nbsp;: il suit vos process et votre périmètre, pas une grille</td></tr>
             <tr><td>Coût récurrent</td><td>Licence par utilisateur + maintenance éditeur</td><td>Hébergement + maintenance + modules payants</td><td>Somme des abonnements par outil et par siège, qui grimpe avec l'équipe</td><td>Run mensuel (hébergement + support), sans licence par utilisateur</td></tr>
@@ -485,7 +497,7 @@
       </div>
     </div>
 
-    <p class="pull rv">Le vrai critère n'est pas le prix, c'est <mark>qui s'adapte à qui</mark>. Si vos règles ne rentrent pas dans leurs cases, vous re-bricolerez des Excel <em>autour</em> de l'outil payé&nbsp;: le pire des deux mondes.</p>
+    <p class="pull rv">Le vrai critère n'est pas le prix, c'est <mark>qui s'adapte à qui</mark>. Une seule colonne répond «&nbsp;oui&nbsp;» sur toute la ligne&nbsp;: l'application construite sur vos process. Les trois autres vous ramènent tôt ou tard aux Excel bricolés <em>autour</em> de l'outil payé.</p>
     <div class="rv" style="text-align:center;margin-top:28px"><a class="btn btn-dark" href="#cta">Estimer mon projet <span class="arr">→</span></a></div>
   </div>
 </section>
@@ -505,6 +517,15 @@
       <div><b>En production module après module</b><p>On démarre par le point le plus douloureux, en production vite, puis on étend&nbsp;: pas de bascule «&nbsp;big bang&nbsp;».</p></div>
       <div><b>Connecté à l'existant</b><p>Compta, banque, e-commerce, ancien ERP conservé le temps de la bascule&nbsp;: on se branche sur ce qui tourne déjà.</p></div>
     </div>
+    <p class="h3-mid rv">La preuve, pas la promesse</p>
+    <p class="lede-mid rv">170+ projets livrés. Les briques d'un ERP (devis, process de gestion, multi-rôles) tournent déjà chez nos clients&nbsp;: tout est publié dans <a href="https://www.nocodefactory.fr/nos-realisations" style="font-weight:600">nos cas clients</a>.</p>
+    <div class="proofs rv">
+      <a class="proof-case" href="https://www.nocodefactory.fr/nos-realisations/tekabois" target="_blank" rel="noopener"><span class="pm">100&nbsp;%</span><b>Tekabois</b><p>d'autonomie de l'équipe commerciale sur devis et SAV&nbsp;: simulateur de devis et automatisations sur mesure, livrés en 6 semaines.</p></a>
+      <a class="proof-case" href="https://www.nocodefactory.fr/nos-realisations/brut" target="_blank" rel="noopener"><span class="pm">100&nbsp;%</span><b>Brut</b><p>du process publicitaire digitalisé&nbsp;: la chaîne complète de création et gestion de campagnes dans un seul outil.</p></a>
+      <a class="proof-case" href="https://www.nocodefactory.fr/nos-realisations/the-host" target="_blank" rel="noopener"><span class="pm">100&nbsp;%</span><b>The Host</b><p>d'autonomie des équipes internes sur leur plateforme de gestion, construite sur leurs règles à eux.</p></a>
+      <a class="proof-case" href="https://www.nocodefactory.fr/nos-realisations/trophee-des-champions" target="_blank" rel="noopener"><span class="pm">10&nbsp;j</span><b>Trophée des Champions</b><p>pour livrer une WebApp de gestion multi-rôles&nbsp;: chaque service voit ce qui le concerne, comme dans un ERP.</p></a>
+    </div>
+    <p class="proof-note rv">Pas encore d'ERP complet publié en cas client&nbsp;: le premier sortira chiffré, quand il sera en production. Ces projets réels couvrent déjà, un par un, les modules qui composent le vôtre.</p>
     <p class="h3-mid rv">Ce qu'on construit, concrètement</p>
     <p class="lede-mid rv">Stack type&nbsp;: <a href="https://www.nocodefactory.fr/outils-nocode/supabase" style="font-weight:600">Supabase</a> + interface web. Une base unique, vos règles, connectée à vos outils actuels.</p>
     <div class="spec-grid rv">
