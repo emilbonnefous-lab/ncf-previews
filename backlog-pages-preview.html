@@ -70,9 +70,9 @@
 <body>
 <div class="wrap">
 <header>
-  <div class="kicker">Réunion du 09/09 · source : backlog-pages-seo.csv · version de travail = GSheet à créer</div>
+  <div class="kicker">Structure du doc Valentin (09/09) · version de travail = GSheet partagé · export Notion : import du CSV</div>
   <h1>Backlog pages — <span class="key">source de vérité</span></h1>
-  <p class="sub">Toutes les pages à produire ou maintenir, sur les 3 niveaux d'intention décidés en réunion (expertise / solution / problème) + hubs « Vous êtes… » et composants transverses. Les priorités et responsables restent à valider avec Valentin.</p>
+  <p class="sub">Alignée sur la vision de Valentin : /agence-* (expertise) · /solutions/* (solution) · /blog/* (problème) · later : /industries/*, /metiers/*, /outils/* + menu « Vous êtes… ». Production d'articles resserrée : 2 actés, le reste en candidats à valider.</p>
   <div class="stats" id="stats"></div>
 </header>
 
@@ -92,60 +92,49 @@
 // [titre, niveau, format, priorité, statut, responsable, staging, prod, tags]
 // niveaux : pa / sa / ea / hub / tr — priorités : P1 / P2 / P3 / PB (basse)
 const ROWS=[
-["Remplacer Excel par une application","pa","Article de blog","P1","À rédiger","","","","transverse · pilier PA"],
-["Génération PDF automatique","pa","Article de blog","P1","À rédiger","","","","transverse"],
-["Génération automatique de devis","pa","Article de blog","P1","À rédiger","","","","commercial · lien cas Tekabois"],
-["Reporting automatique","pa","Article de blog","P1","À rédiger","","","","direction · finance"],
-["Génération automatique de contrats","pa","Article de blog","P2","À rédiger","","","","juridique"],
-["Extraction de données PDF","pa","Article de blog","P2","À rédiger","","","","documentaire"],
-["Traitement automatique des emails","pa","Article de blog","P2","À rédiger","","","","opérations"],
-["Automatisation saisie commandes","pa","Article de blog","P2","À rédiger","","","","ADV"],
-["Rapprochement comptable automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
-["Contrôle automatique des factures","pa","Article de blog","P2","À rédiger","","","","finance · achats"],
-["Calcul prix automatique","pa","Article de blog","P2","À rédiger","","","","commercial"],
-["Relance factures automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
-["Réapprovisionnement automatique","pa","Article de blog","P2","À rédiger","","","","supply"],
-["Optimisation tournées","pa","Article de blog","P2","À rédiger","","","","logistique"],
-["Génération bail automatique","pa","Article de blog","P2","À rédiger","","","","immobilier"],
-["Recherche IA documents (RAG)","pa","Article de blog","P2","À rédiger","","","","IA · différenciant"],
-["Synchronisation logiciels","pa","Article de blog","P2","À rédiger","","","","connecteurs"],
-["Prévision trésorerie automatique","pa","Article de blog","P2","À rédiger","","","","finance"],
-["ERP sur mesure","sa","Page template","P2","Rédigée (validée 19/20)","","","","pilier · matrice de référence"],
-["Calcul des besoins nets (CBN / MRP)","sa","Page template","P2","Rédigée","","","","industrie · lien cas Tekabois"],
-["CRM sur mesure","sa","Page template","P2","À rédiger","","","","pilier"],
-["Logiciel métier sur mesure","sa","Page template","P2","À rédiger","","","","PILIER récit unifié"],
-["Portail client / extranet","sa","Page template","P2","À rédiger","","","","PILIER portails"],
-["GED sur mesure","sa","Page template","P2","À rédiger","","","","documentaire"],
-["Agent IA sur mesure","sa","Page template","P2","À rédiger","","","","IA · entrée par process"],
-["Agence Webflow","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-webflow","outil"],
-["Agence Xano","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-xano","outil"],
-["Agence WeWeb","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-weweb","outil"],
-["Agence Make","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-make","outil"],
-["Agence N8N","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-n8n","outil"],
-["Agence Sanity","ea","Page","P2","À créer","","","","outil · migration Sanity"],
-["Agence No Code","ea","Page","P2","Existante","","","https://www.nocodefactory.fr/agence-nocode","pilier expertise"],
-["« Vous êtes… » Finance & assurance","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
-["« Vous êtes… » Immobilier","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
-["« Vous êtes… » Industrie & construction","hub","Page hub","P3","À cadrer","","","","cible internal tools T4"],
-["« Vous êtes… » Mobilité","hub","Page hub","P3","À cadrer","","","","3 cas publiés"],
-["« Vous êtes… » Sport & média","hub","Page hub","P3","À cadrer","","","","7 cas publiés"],
-["« Vous êtes… » Éducation","hub","Page hub","P3","À cadrer","","","","4 cas publiés"],
-["« Vous êtes… » Santé","hub","Page hub","P3","À cadrer","","","","3 cas publiés"],
-["« Vous êtes… » Énergie","hub","Page hub","P3","À cadrer","","","","2 cas publiés"],
-["« Vous êtes… » SaaS B2B","hub","Page hub","P3","À cadrer","","","","12 cas publiés"],
-["« Vous êtes… » Marketing","hub","Page hub","P3","À cadrer","","","","métier"],
-["« Vous êtes… » Produit","hub","Page hub","P3","À cadrer","","","","métier"],
-["« Vous êtes… » Opérations","hub","Page hub","P3","À cadrer","","","","métier"],
-["« Vous êtes… » Finance / DAF","hub","Page hub","P3","À cadrer","","","","métier"],
-["« Vous êtes… » RH","hub","Page hub","P3","À cadrer","","","","métier"],
-["Refonte page cas clients (hub de vente)","tr","Page","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html","https://www.nocodefactory.fr/nos-realisations","maillage · outils × secteurs"],
-["Gabarit étude de cas enrichie","tr","Template CMS","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html#etude-tekabois","","3 champs CMS à ajouter"],
-["Configurateur de projet","tr","Composant","PB","En pause (décision 09/09)","","https://emilbonnefous-lab.github.io/ncf-previews/maquette-configurateur-preview.html","","ni calendrier ni responsable"],
-["Widget d'engagement bas de page","tr","Composant","P3","À cadrer","","","","pas en homepage"],
+["/blog/automatiser-remplissage-pdf","Automatiser le remplissage de PDF","pa","Article de blog","P1","À rédiger","","","","doc Valentin · absorbe « génération PDF »"],
+["/blog/migration-webflow-sanity","Migration Webflow → Sanity","pa","Article de blog","P1","À rédiger","","","","doc Valentin · aligné migration NCF"],
+["/agence-sanity","Agence Sanity","ea","Page agence","P1","À créer","","","","doc Valentin"],
+["/agence-claude-code","Agence Claude Code","ea","Page agence","P1","À créer","","","","doc Valentin · positionnement dev IA"],
+["/agence-webflow","Agence Webflow","ea","Page agence","P2","Existante","","","https://www.nocodefactory.fr/agence-webflow",""],
+["/agence-xano","Agence Xano","ea","Page agence","P2","Existante","","","https://www.nocodefactory.fr/agence-xano","le « etc » du doc"],
+["/agence-weweb","Agence WeWeb","ea","Page agence","P2","Existante","","","https://www.nocodefactory.fr/agence-weweb",""],
+["/agence-make","Agence Make","ea","Page agence","P2","Existante","","","https://www.nocodefactory.fr/agence-make",""],
+["/agence-n8n","Agence N8N","ea","Page agence","P2","Existante","","","https://www.nocodefactory.fr/agence-n8n",""],
+["/solutions/developpement-site-internet","Développement site internet","sa","Page solution","P2","À rédiger","","","","doc Valentin · attend nouveau site"],
+["/solutions/erp-sur-mesure","ERP sur mesure","sa","Page solution","P2","Rédigée (validée 19/20)","","","","doc Valentin · matrice de référence"],
+["/solutions/crm-sur-mesure","CRM sur mesure","sa","Page solution","P2","À rédiger","","","","doc Valentin"],
+["/solutions/dam-sur-mesure","DAM sur mesure","sa","Page solution","P2","À rédiger","","","","doc Valentin"],
+["/solutions/sirh-sur-mesure","SIRH sur mesure","sa","Page solution","P2","À rédiger","","","","doc Valentin"],
+["/solutions/cbn-mrp","Calcul des besoins nets (CBN / MRP)","sa","Page solution","CAND","Rédigée","","","","hors doc mais déjà rédigée · cas Tekabois"],
+["/blog/remplacer-excel-par-une-application","Remplacer Excel par une application","pa","Article de blog","CAND","À rédiger","","","","réserve (pas trop d'articles)"],
+["/blog/generation-automatique-devis","Génération automatique de devis","pa","Article de blog","CAND","À rédiger","","","","réserve · cas Tekabois"],
+["/blog/reporting-automatique","Reporting automatique","pa","Article de blog","CAND","À rédiger","","","","réserve"],
+["/blog/relance-factures-automatique","Relance factures automatique","pa","Article de blog","CAND","À rédiger","","","","réserve"],
+["/blog/recherche-ia-documents","Recherche IA documents (RAG)","pa","Article de blog","CAND","À rédiger","","","","réserve · angle IA"],
+["/industries/finance","Comment NCF aide les boîtes de finance","hub","Page hub","P3","À cadrer","","","","exemple du doc"],
+["/industries/immo","Immobilier","hub","Page hub","P3","À cadrer","","","",""],
+["/industries/food-travel","Food & travel","hub","Page hub","P3","À cadrer","","","","liste doc"],
+["/industries/mobilites","Mobilités","hub","Page hub","P3","À cadrer","","","",""],
+["/industries/industrie-btp","Industrie & BTP","hub","Page hub","P3","À cadrer","","","","cible internal tools T4"],
+["/industries/saas-tech","SaaS & tech","hub","Page hub","P3","À cadrer","","","",""],
+["/industries/media-sports","Média & sports","hub","Page hub","P3","À cadrer","","","","7 cas publiés"],
+["/industries/education","Éducation","hub","Page hub","P3","À cadrer","","","",""],
+["/industries/gouvernements","Gouvernements","hub","Page hub","P3","À cadrer","","","","liste doc"],
+["/metiers/marketing","Comment on aide les marketeux","hub","Page hub","P3","À cadrer","","","","exemple du doc"],
+["/metiers/produit-tech","Produit / tech","hub","Page hub","P3","À cadrer","","","",""],
+["/metiers/operations","Opérations","hub","Page hub","P3","À cadrer","","","",""],
+["/metiers/direction","Direction","hub","Page hub","P3","À cadrer","","","",""],
+["/outils/supabase","Supabase","hub","Page outil","P3","À cadrer","","","","CTA agence Supabase x expert"],
+["(navigation)","Menu « Vous êtes… »","tr","Navigation","P3","À cadrer","","","","maillage home/footer · zéro orpheline"],
+["/nos-realisations","Refonte page cas clients","tr","Page","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html","https://www.nocodefactory.fr/nos-realisations","industries à réaligner sur la liste doc"],
+["/nos-realisations/[slug]","Gabarit étude de cas enrichie","tr","Template CMS","P3","Maquette faite","Emilien","https://emilbonnefous-lab.github.io/ncf-previews/refonte-cas-clients-preview.html#etude-tekabois","","3 champs CMS"],
+["(composant)","Configurateur de projet","tr","Composant","PB","En pause (décision 09/09)","","https://emilbonnefous-lab.github.io/ncf-previews/maquette-configurateur-preview.html","","ni calendrier ni responsable"],
+["(composant)","Widget d engagement bas de page","tr","Composant","P3","À cadrer","","","","pas en homepage"],
 ];
 const LVL={pa:['lvl-pa','Problem-aware'],sa:['lvl-sa','Solution-aware'],ea:['lvl-ea','Expertise-aware'],hub:['lvl-hub','Hub « Vous êtes… »'],tr:['lvl-tr','Transverse']};
-const PCLS={P1:'p1',P2:'p2',P3:'p3',PB:'pb'};
-const PLAB={P1:'P1 — maintenant',P2:'P2',P3:'P3',PB:'Priorité basse'};
+const PCLS={P1:'p1',P2:'p2',P3:'p3',PB:'pb',CAND:'p3'};
+const PLAB={P1:'P1 — now',P2:'P2',P3:'P3 — later',PB:'Priorité basse',CAND:'Candidat — à valider'};
 function stCls(s){ if(/Rédigée|Maquette/.test(s)) return 'st-done'; if(/Existante/.test(s)) return 'st-live'; if(/pause|cadrer/.test(s)) return 'st-frame'; return 'st-todo'; }
 let filter=null;
 function links(stg,prod){
@@ -154,30 +143,30 @@ function links(stg,prod){
   return a.join('<br>')||'—';
 }
 function render(){
-  const list=ROWS.filter(r=>!filter||r[1]===filter);
+  const list=ROWS.filter(r=>!filter||r[2]===filter);
   document.getElementById('tbody').innerHTML=list.map(r=>`<tr>
-    <td class="title">${r[0]}</td>
-    <td><span class="b ${LVL[r[1]][0]}">${LVL[r[1]][1]}</span></td>
-    <td>${r[2]}</td>
-    <td><span class="b ${PCLS[r[3]]}">${PLAB[r[3]]}</span></td>
-    <td><span class="b ${stCls(r[4])}">${r[4]}</span></td>
-    <td>${r[5]||'—'}</td>
-    <td>${links(r[6],r[7])}</td>
-    <td><span class="tags">${r[8]}</span></td>
+    <td class="title">${r[1]}<div class="tags" style="font-weight:400">${r[0]}</div></td>
+    <td><span class="b ${LVL[r[2]][0]}">${LVL[r[2]][1]}</span></td>
+    <td>${r[3]}</td>
+    <td><span class="b ${PCLS[r[4]]}">${PLAB[r[4]]}</span></td>
+    <td><span class="b ${stCls(r[5])}">${r[5]}</span></td>
+    <td>${r[6]||'—'}</td>
+    <td>${links(r[7],r[8])}</td>
+    <td><span class="tags">${r[9]}</span></td>
   </tr>`).join('');
   const fb=document.getElementById('filterbar');
   fb.innerHTML=Object.keys(LVL).map(k=>{
-    const n=ROWS.filter(r=>r[1]===k).length;
+    const n=ROWS.filter(r=>r[2]===k).length;
     return `<button class="fchip ${filter===k?'on':''}" data-k="${k}">${LVL[k][1]} · ${n}</button>`;
   }).join('')+(filter?`<button class="fchip" data-k="">✕ Tout afficher</button>`:'')
   +`<span class="fcount"><b>${list.length}</b> page${list.length>1?'s':''}</span>`;
   fb.querySelectorAll('.fchip').forEach(el=>el.onclick=()=>{filter=el.dataset.k||null;render();});
 }
 document.getElementById('stats').innerHTML=[
-  ['4','articles P1 à rédiger maintenant'],
-  ['18','articles problem-aware au total'],
-  ['7','pages solution (2 déjà rédigées)'],
-  ['14','hubs « Vous êtes… » à cadrer'],
+  ['4','pages P1 — now (2 articles + 2 pages agence)'],
+  ['6','pages /solutions/ (2 déjà rédigées)'],
+  ['6','candidats en réserve, à valider'],
+  ['14','pages later (industries, métiers, outils)'],
   [ROWS.length,'lignes au backlog'],
 ].map(s=>`<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('');
 render();
