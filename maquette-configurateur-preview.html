@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurateur d'offre — je cherche un [TYPE] pour [SECTEUR] | Nocode Factory · ÉPREUVE</title>
+<!--
+  ============================================================================
+  MAQUETTE — Configurateur d'offre gamifié (Piste B : grille TYPE × SECTEUR)
+  V2 — DA recalée sur le site réel nocodefactory.fr (relevés Playwright 09/09) :
+    - Fontes : FFF Acid Grotesk chargée depuis LEUR CDN Webflow (maquette interne pour NCF)
+    - Titres weight 500, letter-spacing -0.028em (mesuré : 36px/-1px)
+    - Hero sombre #1e1a28 + nappe aurora multicolore (leur signature)
+    - Mots-clés de titre en dégradé violet→rose (pattern "projets digitaux")
+    - Cartes : aplats pastel SANS bordure, radius 12-16px, chips flottantes
+    - Boutons pill noirs, texte 500, compacts
+  Données : 17 cas clients réels + slugs vérifiés (nocodefactory.fr/nos-realisations).
+  Doctrine : outil de FRONT (conversion + GEO), pas 150 pages indexées.
+  ============================================================================
+-->
+<style>
+  /* Fontes officielles NCF — servies par leur propre CDN Webflow */
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
+
+  :root{
+    /* Tokens NCF (extraits du CSS Webflow du site) */
+    --beige:#f9f8f6;
+    --white:#ffffff;
+    --ink:#060110;            /* neutral-black */
+    --ink-2:#494949;
+    --ink-3:#606060;
+    --black:#1e1a28;          /* brand black */
+    --black-2:#251f34;        /* carte sur fond sombre (mesuré) */
+    --black-border:#302842;   /* bordure carte sombre (mesuré) */
+    --yellow:#ffca64;
+    --pink:#f99bfb;
+    --green:#38ef7d;
+    --blue:#5ac0ff;
+    --pastel-yellow:#fef1e6;
+    --pastel-pink:#f9eef1;
+    --pastel-blue:#eafafc;
+    --pastel-green:#f1fbed;
+    --success:#027a48;
+    --grad-key:linear-gradient(93deg,#8b7bf0 0%,var(--pink) 55%,#ff8fae 100%);
+    --font:"Fff Acidgrotesk",Arial,sans-serif;
+    --r:12px;--r-md:16px;--r-lg:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.5;font-weight:400}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+
+  /* bandeau épreuve interne */
+  .proof{background:var(--black);color:#b3aec1;font-size:12px;font-weight:400;padding:6px 18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .proof b{color:var(--yellow);font-weight:500}
+
+  /* nav — pattern site : blanc, logo Factory italique, pill noire compacte */
+  .nav{background:var(--white);padding:13px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--black);display:grid;place-items:center}
+  .brand .dot::after{content:"";width:11px;height:11px;border-radius:3px;background:conic-gradient(var(--yellow) 0 25%,var(--pink) 0 50%,var(--green) 0 75%,var(--blue) 0)}
+  .brand i{font-style:italic;font-weight:700}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:500;font-size:14px;text-decoration:none;border:none;cursor:pointer;border-radius:3000px;padding:10px 18px;transition:transform .22s cubic-bezier(.19,1,.22,1),opacity .22s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .btn-black{background:var(--black);color:#fff8f0}
+  .btn-yellow{background:var(--yellow);color:var(--ink)}
+  .btn-white{background:var(--white);color:var(--ink)}
+  .btn-ghost{background:transparent;border:1.5px solid #d8d3d3;color:var(--ink-2)}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .arr{transition:transform .22s cubic-bezier(.19,1,.22,1)}
+  .btn:hover .arr{transform:translateX(3px)}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+
+  /* ===== hero sombre + aurora (pattern home NCF) ===== */
+  .hero{background:var(--black);color:#fff8f0;position:relative;overflow:hidden;padding:clamp(48px,7vw,84px) 0 clamp(150px,17vw,220px);text-align:center}
+  .hero .aurora{position:absolute;left:-10%;right:-10%;bottom:-42%;height:75%;pointer-events:none;filter:blur(52px);opacity:.85;background:
+    radial-gradient(42% 58% at 12% 78%,var(--pink) 0%,transparent 62%),
+    radial-gradient(38% 55% at 38% 88%,var(--yellow) 0%,transparent 60%),
+    radial-gradient(40% 55% at 64% 85%,var(--green) 0%,transparent 60%),
+    radial-gradient(45% 60% at 90% 76%,var(--blue) 0%,transparent 62%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .toprow{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:#b3aec1;background:#ffffff12;border:1px solid #ffffff1f;border-radius:3000px;padding:7px 16px;margin-bottom:26px}
+  .hero .toprow b{color:#fff8f0;font-weight:500}
+  h1{font-weight:500;font-size:clamp(30px,4.6vw,54px);line-height:1.12;letter-spacing:-.028em;text-wrap:balance}
+  h1 .key{background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{font-size:clamp(15px,1.6vw,17px);color:#c9c4d4;margin:18px auto 0;max-width:56ch;font-weight:300}
+
+  /* builder posé à cheval sur l'aurora */
+  .builder-zone{margin-top:clamp(-120px,-13vw,-90px);position:relative;z-index:2;padding-bottom:clamp(30px,4vw,44px)}
+  .builder{max-width:860px;margin:0 auto;background:var(--white);border-radius:var(--r-lg);padding:clamp(26px,4vw,44px);box-shadow:0 24px 70px -30px rgba(30,26,40,.35)}
+  .phrase{font-weight:500;font-size:clamp(20px,2.8vw,30px);line-height:1.55;letter-spacing:-.02em;text-align:center;text-wrap:balance}
+  .slot{position:relative;display:inline-block;margin:4px 2px}
+  .slot select{appearance:none;font:inherit;font-weight:500;color:var(--ink);background:var(--pastel-yellow);border:none;border-bottom:2px dashed var(--ink);border-radius:10px 10px 0 0;padding:4px 38px 4px 14px;cursor:pointer;transition:all .2s;max-width:88vw}
+  .slot select:hover{background:#fce4cd}
+  .slot select.filled{border-bottom-color:transparent;border-radius:3000px;background:var(--black);color:#fff8f0}
+  .slot::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:currentColor;font-size:13px}
+  .slot.filled::after{color:var(--yellow)}
+  .controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:clamp(22px,3vw,30px)}
+  .loader{display:none;text-align:center;margin-top:24px;color:var(--ink-3);font-size:13.5px}
+  .loader.on{display:block}
+  .loader .bar{width:200px;height:4px;background:#eeebe6;border-radius:3000px;margin:10px auto 0;overflow:hidden}
+  .loader .bar i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--yellow),var(--pink),var(--green),var(--blue));border-radius:3000px;animation:slide 1s infinite cubic-bezier(.4,0,.2,1)}
+  @keyframes slide{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+
+  /* ===== réponse composée ===== */
+  .answer{display:none;max-width:1000px;margin:clamp(10px,2vw,20px) auto clamp(40px,6vw,72px)}
+  .answer.show{display:block;animation:pop .5s cubic-bezier(.19,1,.22,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .a-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:clamp(16px,2.2vw,24px)}
+  .a-head h2{font-weight:500;font-size:clamp(24px,3.2vw,38px);letter-spacing:-.028em;line-height:1.1;text-wrap:balance}
+  .a-head h2 .key{background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;white-space:nowrap}
+  .badge.real{background:var(--pastel-green);color:var(--success)}
+  .badge.near{background:var(--pastel-blue);color:#17689a}
+  .badge.new{background:var(--pastel-pink);color:#b5379b}
+  .lab{font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:12px}
+
+  /* cas client : aplat pastel sans bordure (pattern cartes services NCF) */
+  .case-hero{background:var(--pastel-yellow);border-radius:var(--r-md);padding:clamp(22px,3vw,32px);display:grid;grid-template-columns:1fr auto;gap:clamp(18px,3vw,36px);align-items:center}
+  @media(max-width:760px){.case-hero{grid-template-columns:1fr}}
+  .case{display:flex;gap:16px;align-items:flex-start}
+  .case .logo{flex:0 0 54px;height:54px;border-radius:14px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-weight:500;font-size:18px}
+  .case .who{font-weight:500;font-size:clamp(19px,2.2vw,24px);margin-bottom:4px;letter-spacing:-.02em}
+  .case .did{color:var(--ink-2);font-size:15px;max-width:48ch}
+  .case .res{display:inline-block;margin-top:10px;background:var(--white);color:var(--ink);font-weight:500;font-size:13px;padding:5px 13px;border-radius:3000px}
+  .verify{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .verify .hint{font-size:12px;color:var(--ink-3)}
+
+  /* problèmes : aplats pastel, chips flottantes (pattern tags NCF) */
+  .probgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,16px)}
+  @media(max-width:820px){.probgrid{grid-template-columns:1fr}}
+  .prob{border-radius:var(--r-md);padding:clamp(18px,2.4vw,24px);transition:transform .22s cubic-bezier(.19,1,.22,1)}
+  .prob:hover{transform:translateY(-3px)}
+  .prob:nth-child(1){background:var(--pastel-pink)}
+  .prob:nth-child(2){background:var(--pastel-blue)}
+  .prob:nth-child(3){background:var(--pastel-green)}
+  .prob .chip{display:inline-block;font-size:11.5px;font-weight:500;border-radius:3000px;padding:4px 12px;background:var(--white);color:var(--ink-2);margin-bottom:12px}
+  .prob .t{font-weight:500;font-size:16px;line-height:1.35;letter-spacing:-.01em}
+  .prob .fix{margin-top:10px;font-size:13px;color:var(--success);font-weight:500}
+
+  /* solution : bandeau sombre, cartes internes mesurées sur le site */
+  .solution-band{background:var(--black);color:#fff8f0;border-radius:var(--r-lg);padding:clamp(26px,3.6vw,42px);display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(22px,4vw,52px);align-items:center;position:relative;overflow:hidden}
+  @media(max-width:860px){.solution-band{grid-template-columns:1fr}}
+  .solution-band::after{content:"";position:absolute;right:-18%;bottom:-55%;width:70%;height:110%;pointer-events:none;filter:blur(48px);opacity:.5;background:
+    radial-gradient(50% 50% at 30% 60%,var(--pink) 0%,transparent 65%),
+    radial-gradient(50% 50% at 70% 55%,var(--blue) 0%,transparent 65%)}
+  .solution-band>*{position:relative;z-index:1}
+  .solution-band .lab{color:#9b95a8}
+  .solution-band .pitch{font-weight:500;font-size:clamp(19px,2.4vw,26px);line-height:1.35;letter-spacing:-.02em}
+  .solution-band .pitch mark{background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sol-points{list-style:none;margin-top:16px}
+  .sol-points li{padding:9px 12px;margin-bottom:7px;font-size:14.5px;font-weight:400;color:#e6e2ee;background:var(--black-2);border:2px solid var(--black-border);border-radius:var(--r)}
+  .solution-band .box{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .solution-band .after{font-size:12.5px;color:#9b95a8;font-weight:300}
+  .sec-gap{margin-top:clamp(20px,2.8vw,30px)}
+
+  /* note concept (interne) */
+  .concept{max-width:1000px;margin:0 auto clamp(36px,5vw,60px);background:var(--white);border-radius:var(--r-md);padding:clamp(22px,3vw,32px);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+  .concept h3{font-weight:500;font-size:16px;color:var(--ink);margin-bottom:10px}
+  .concept b{color:var(--ink);font-weight:500}
+  .concept ul{margin:8px 0 0 18px}.concept li{margin-bottom:6px}
+  footer{padding:26px 0 40px;color:var(--ink-3);font-size:13px;text-align:center}
+  footer i{font-style:italic;font-weight:700}
+</style>
+</head>
+<body>
+<div class="proof"><span>Épreuve locale, non publiée</span><span>Configurateur d'offre · grille TYPE × SECTEUR · <b>concept à valider Emilien / Valentin</b></span></div>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span>Nocode<i>Factory</i></div>
+  <a class="btn btn-black" href="#answer">Estimer mon projet <span class="arr">→</span></a>
+</nav>
+
+<header class="hero">
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="toprow"><b>350+</b> projets livrés · <b>47</b> études de cas publiques</div>
+    <h1>Dites-nous ce que vous cherchez.<br>On vous montre <span class="key">ce qu'on a déjà fait</span>.</h1>
+    <p class="sub">Choisissez le type d'outil et votre secteur. On compose la réponse à partir de nos projets réels : cas clients, problèmes qu'on connaît, et ce qu'on vous proposerait.</p>
+  </div>
+</header>
+
+<div class="builder-zone wrap">
+  <div class="builder">
+    <div class="phrase">
+      Je cherche
+      <span class="slot" id="slot-type">
+        <select id="sel-type" aria-label="Type d'outil">
+          <option value="" selected disabled>un type d'outil…</option>
+        </select>
+      </span>
+      pour
+      <span class="slot" id="slot-sector">
+        <select id="sel-sector" aria-label="Secteur">
+          <option value="" selected disabled>mon secteur…</option>
+        </select>
+      </span>
+    </div>
+    <div class="controls">
+      <button class="btn btn-ghost" id="dice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5"/><circle cx="8.2" cy="8.2" r="1.35" fill="currentColor" stroke="none"/><circle cx="15.8" cy="8.2" r="1.35" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.35" fill="currentColor" stroke="none"/><circle cx="8.2" cy="15.8" r="1.35" fill="currentColor" stroke="none"/><circle cx="15.8" cy="15.8" r="1.35" fill="currentColor" stroke="none"/></svg>Surprenez-moi</button>
+      <button class="btn btn-black" id="go" disabled>Voir ce qu'on a fait <span class="arr">→</span></button>
+    </div>
+    <div class="loader" id="loader">On fouille nos 350 projets…<div class="bar"><i></i></div></div>
+  </div>
+</div>
+
+<section class="answer wrap" id="answer">
+  <div class="a-head">
+    <h2 id="a-title">—</h2>
+    <span class="badge" id="a-badge">—</span>
+  </div>
+
+  <div class="lab" id="a-caselab">Ce qu'on a déjà fait</div>
+  <div class="case-hero">
+    <div class="case">
+      <div class="logo" id="a-logo">·</div>
+      <div>
+        <div class="who" id="a-who">—</div>
+        <div class="did" id="a-did">—</div>
+        <span class="res" id="a-res" style="display:none"></span>
+      </div>
+    </div>
+    <div class="verify" id="a-verify">
+      <a class="btn btn-black" id="a-link" href="#" target="_blank" rel="noopener">Vérifier l'étude de cas <span class="arr">→</span></a>
+      <span class="hint">Publiée sur nocodefactory.fr — jugez sur pièces.</span>
+    </div>
+  </div>
+
+  <div class="sec-gap">
+    <div class="lab">Les problèmes qu'on voit dans ce secteur</div>
+    <div class="probgrid" id="a-probs"></div>
+  </div>
+
+  <div class="solution-band sec-gap">
+    <div>
+      <div class="lab">Ce qu'on vous proposerait</div>
+      <p class="pitch" id="a-prop">—</p>
+      <ul class="sol-points" id="a-points"></ul>
+    </div>
+    <div class="box">
+      <a class="btn btn-yellow" href="#">Réserver un échange (30 min) <span class="arr">→</span></a>
+      <span class="after">Gratuit, sans engagement. On vous dit honnêtement si c'est un projet pour nous.</span>
+    </div>
+  </div>
+</section>
+
+<div class="concept wrap" style="padding-left:clamp(22px,3vw,32px);padding-right:clamp(22px,3vw,32px)">
+  <h3>Note de concept (interne, ne sort pas)</h3>
+  Cet écran est un <b>outil de front</b> : conversion + qualification + réponses citables par les IA (GEO). Ce n'est <b>pas</b> 150 pages indexées.
+  <ul>
+    <li><b>Cellule pleine</b> (cas réel dans le secteur) → badge vert. <b>Cas proche</b> (même type ou même secteur) → badge bleu. <b>Sur mesure</b> (pas encore de cas) → badge rose + on capte le lead.</li>
+    <li>Une <b>vraie page SEO</b> « {type} pour {secteur} » n'est créée que quand la cellule a de la donnée réelle (règle anti-cannibalisation Zapier). Le configurateur route vers elle si elle existe.</li>
+    <li>On remplit la grille <b>au fil des projets réels</b> : chaque nouveau cas client débloque une cellule, puis une page.</li>
+    <li>DA : fontes Acid Grotesk chargées depuis le CDN NCF (fichiers TRIAL du site) ; tokens et patterns relevés sur nocodefactory.fr le 09/09.</li>
+  </ul>
+</div>
+
+<footer>Nocode<i>Factory</i> — maquette configurateur · données : nocodefactory.fr/nos-realisations (cas réels, zéro invention)</footer>
+
+<script>
+// ---- Données (types × secteurs) ----
+const TYPES = [
+  {id:'app',      lab:'une application / plateforme'},
+  {id:'interne',  lab:'un outil interne / back-office'},
+  {id:'auto',     lab:'une automatisation'},
+  {id:'ia',       lab:'un assistant / agent IA'},
+  {id:'calc',     lab:'un calculateur / simulateur'},
+  {id:'portail',  lab:'un portail / espace client'},
+  {id:'site',     lab:'un site / une refonte SEO'},
+];
+const SECTORS = [
+  {id:'immo',      lab:"l'immobilier"},
+  {id:'finance',   lab:'la finance & assurance'},
+  {id:'mobilite',  lab:'la mobilité'},
+  {id:'sport',     lab:'le sport & média'},
+  {id:'energie',   lab:"l'énergie"},
+  {id:'education', lab:"l'éducation"},
+  {id:'sante',     lab:'la santé'},
+  {id:'industrie', lab:'l\'industrie & la construction'},
+  {id:'saas',      lab:'le SaaS B2B'},
+];
+// Cas réels vérifiés — clé "type|secteur" ; slug = étude de cas publiée sur nocodefactory.fr/nos-realisations/
+const CASES = {
+  'app|mobilite':  {who:'Good Motors', ini:'GM', did:'Plateforme de location de véhicules avec base de données sur mesure.', slug:'good-motors'},
+  'site|mobilite': {who:'Karos',       ini:'K',  did:'Refonte Webflow + UX/UI + SEO.', res:'Taux de conversion doublé', slug:'karos'},
+  'app|finance':   {who:'Insify',      ini:'I',  did:'MVP nocode de souscription d\'assurance pour indépendants.', res:'4646 leads générés', slug:'insify'},
+  'calc|finance':  {who:'BPI France',  ini:'BPI',did:'Simulateur d\'éligibilité aux prêts.', slug:'bpi-france-simulateur-flash'},
+  'auto|finance':  {who:'Orus',        ini:'O',  did:'Automatisation de la redistribution des leads.', slug:'orus'},
+  'ia|industrie':  {who:'Tekabois',    ini:'T',  did:'Assistant IA + simulateur de devis pour un industriel du bois.', slug:'tekabois'},
+  'portail|sport': {who:'Ligue 1',     ini:'L1', did:'Portail « guide des diffuseurs » en temps réel + webapp de gestion des parties prenantes.', slug:'ligue-1'},
+  'calc|energie':  {who:'Mylight',     ini:'ML', did:'Calculateur d\'économies solaires.', slug:'mylight-calculateur'},
+  'app|immo':      {who:'The Host',    ini:'TH', did:'Plateforme de location de biens de luxe.', slug:'the-host'},
+  'calc|immo':     {who:'Xtensio',     ini:'X',  did:'Plateforme d\'analyse de PLU (urbanisme).', slug:'xtensio'},
+  'site|immo':     {who:'Clickandrent',ini:'CR', did:'Refonte de site orientée acquisition de leads.', slug:'clickandrent'},
+  'interne|sport': {who:'Rabah Aliouane',ini:'RA',did:'Plateforme de casting + back-office de gestion.', slug:'rabah-aliouane'},
+  'site|education':{who:'Le livre scolaire',ini:'LS',did:'Refonte + migration + SEO d\'une plateforme d\'édition scolaire.', slug:'lelivrescolaire-fr'},
+  'site|sante':    {who:'Via Sana',    ini:'VS', did:'Digitalisation du parcours patient.', slug:'via-sana'},
+  'interne|saas':  {who:'Obat',        ini:'OB', did:'Outil de génération de QR codes (back-office produit).', slug:'obat-qr-code'},
+  'auto|saas':     {who:'Sunday',      ini:'S',  did:'Refonte + SEO + automatisation.', slug:'sunday'},
+  'app|sante':     {who:'Innerskin',   ini:'IN', did:'Site vitrine + parcours produit (beauté/santé).', slug:'innerskin'},
+};
+// Problèmes par secteur (douleurs sectorielles, formulées sans citer de client)
+const PROBLEMS = {
+  immo:      ['Mandats, lots et pièces gérés sur Excel et par email','Pas de portail locataire ou propriétaire en libre-service','Ressaisie entre logiciel de transaction, compta et syndic'],
+  finance:   ['Souscription lente, encore semi-papier','Leads redistribués et relancés à la main','Conformité (KYC, pièces justificatives) chronophage'],
+  mobilite:  ['Plateforme de réservation difficile à faire scaler','Matching offre / demande à automatiser','Base de données véhicules ou trajets éclatée'],
+  sport:     ['Pics de trafic lors des événements','Parties prenantes (diffuseurs, clubs) à coordonner en temps réel','Contenus interactifs lourds à produire'],
+  energie:   ['Devis et simulations techniques complexes','Suivi d\'installations dispersé','Génération de leads qualifiés difficile'],
+  education: ['Catalogues de contenus et plateformes collaboratives','Migrations de milliers de pages','Parcours apprenant à digitaliser'],
+  sante:     ['Parcours patient éclaté entre plusieurs outils','Prise de rendez-vous et suivi manuels','Données sensibles à héberger conformément'],
+  industrie: ['Devis techniques longs à produire','ERP du marché inadapté aux règles métier','Suivi de production et de stock encore sur tableur'],
+  saas:      ['Time-to-market d\'un MVP trop long','Site qui ne convertit pas assez','Growth et onboarding à automatiser'],
+};
+// Proposition par type : pitch (mot-clé en dégradé) + 3 points concrets
+const PROPOSALS = {
+  app:     {pitch:'Une application sur mesure, construite autour de <mark>votre usage réel</mark>, en production en quelques semaines.',
+            points:['Stack nocode éprouvée : WeWeb, Xano, Bubble','Un MVP en ligne vite, qu\'on fait grandir ensuite','Le code et les données vous appartiennent']},
+  interne: {pitch:'Un outil interne qui remplace vos Excel et centralise vos process, <mark>selon vos règles</mark>.',
+            points:['Vos process réels, pas un modèle imposé','Multi-utilisateurs, droits par rôle','Connecté à vos outils existants']},
+  auto:    {pitch:'Des automatisations qui suppriment <mark>la ressaisie</mark> et le travail répétitif entre vos outils.',
+            points:['Make / n8n branchés sur votre stack actuelle','Fin des copier-coller entre logiciels','Supervision : vous voyez ce qui tourne']},
+  ia:      {pitch:'Un assistant IA branché sur <mark>vos données</mark>, avec vos règles, sous contrôle.',
+            points:['Répond depuis vos documents, pas de boîte noire','Vos règles métier encodées','Hébergement et sécurité maîtrisés']},
+  calc:    {pitch:'Un calculateur qui <mark>qualifie vos leads</mark> et incarne votre expertise dès la première visite.',
+            points:['Vos règles de calcul, votre crédibilité','Des leads qualifiés avant le premier appel','Intégrable à votre site actuel']},
+  portail: {pitch:'Un portail en temps réel pour vos clients ou partenaires, <mark>connecté à vos outils</mark>.',
+            points:['Chacun voit ce qui le concerne (droits fins)','Temps réel, multi-utilisateurs','Branché sur votre CRM / ERP / compta']},
+  site:    {pitch:'Un site pensé <mark>SEO et conversion</mark> dès la maquette, livré vite en Webflow.',
+            points:['Votre équipe reste autonome après livraison','Des migrations éprouvées (jusqu\'à 4 000 pages)','Le design au service de la conversion']},
+};
+
+// ---- Remplir les selects ----
+const selT=document.getElementById('sel-type'), selS=document.getElementById('sel-sector');
+TYPES.forEach(t=>selT.add(new Option(t.lab,t.id)));
+SECTORS.forEach(s=>selS.add(new Option(s.lab,s.id)));
+const go=document.getElementById('go');
+function refresh(){
+  selT.classList.toggle('filled',!!selT.value); selT.parentElement.classList.toggle('filled',!!selT.value);
+  selS.classList.toggle('filled',!!selS.value); selS.parentElement.classList.toggle('filled',!!selS.value);
+  go.disabled=!(selT.value&&selS.value);
+}
+selT.onchange=selS.onchange=refresh;
+
+// ---- Résolution cellule (exact → même type → même secteur → générique) ----
+function resolve(tid,sid){
+  if(CASES[tid+'|'+sid]) return {kind:'real', c:CASES[tid+'|'+sid]};
+  const sameType=Object.keys(CASES).find(k=>k.startsWith(tid+'|'));
+  if(sameType) return {kind:'near', c:CASES[sameType], why:'même type d\'outil, autre secteur'};
+  const sameSec=Object.keys(CASES).find(k=>k.endsWith('|'+sid));
+  if(sameSec) return {kind:'near', c:CASES[sameSec], why:'même secteur, autre type d\'outil'};
+  return {kind:'new'};
+}
+const BADGE={real:['badge real','✓ Cas réel dans ce secteur'],near:['badge near','≈ Cas proche'],new:['badge new','○ Projet sur mesure']};
+
+function render(){
+  const t=TYPES.find(x=>x.id===selT.value), s=SECTORS.find(x=>x.id===selS.value);
+  const r=resolve(t.id,s.id);
+  const titleEl=document.getElementById('a-title');
+  titleEl.innerHTML='';
+  const lead=document.createTextNode(t.lab.charAt(0).toUpperCase()+t.lab.slice(1)+' pour ');
+  const key=document.createElement('span'); key.className='key'; key.textContent=s.lab;
+  titleEl.appendChild(lead); titleEl.appendChild(key);
+  const b=document.getElementById('a-badge'); b.className=BADGE[r.kind][0]; b.textContent=BADGE[r.kind][1];
+  const lab=document.getElementById('a-caselab'), who=document.getElementById('a-who'), did=document.getElementById('a-did'), res=document.getElementById('a-res'), logo=document.getElementById('a-logo');
+  const verify=document.getElementById('a-verify'), link=document.getElementById('a-link');
+  if(r.kind==='new'){
+    lab.textContent='Pas encore de cas publié ici — voici comment on l\'aborderait';
+    logo.textContent='NCF'; who.textContent='Un projet à construire avec vous';
+    did.textContent='On n\'a pas encore publié de cas '+t.lab+' pour '+s.lab+'. On partirait de vos process réels, avec un cadrage court avant de chiffrer.';
+    res.style.display='none'; verify.style.display='none';
+  }else{
+    lab.textContent = r.kind==='real' ? 'Ce qu\'on a déjà fait dans ce secteur' : 'Un cas proche qu\'on a livré ('+r.why+')';
+    logo.textContent=r.c.ini; who.textContent=r.c.who; did.textContent=r.c.did;
+    if(r.c.res){res.style.display='inline-block';res.textContent=r.c.res;}else{res.style.display='none';}
+    if(r.c.slug){verify.style.display='flex';link.href='https://www.nocodefactory.fr/nos-realisations/'+r.c.slug;}
+    else{verify.style.display='none';}
+  }
+  const grid=document.getElementById('a-probs'); grid.innerHTML='';
+  (PROBLEMS[s.id]||[]).forEach(p=>{
+    const d=document.createElement('div'); d.className='prob';
+    d.innerHTML='<span class="chip">✕ on le voit souvent</span><div class="t"></div><div class="fix">→ ça se résout</div>';
+    d.querySelector('.t').textContent=p;
+    grid.appendChild(d);
+  });
+  const prop=PROPOSALS[t.id];
+  document.getElementById('a-prop').innerHTML=prop.pitch;
+  const pts=document.getElementById('a-points'); pts.innerHTML='';
+  prop.points.forEach(p=>{const li=document.createElement('li');li.textContent=p;pts.appendChild(li);});
+}
+
+// ---- Interactions ----
+const loader=document.getElementById('loader'), answer=document.getElementById('answer');
+go.onclick=()=>{
+  answer.classList.remove('show'); loader.classList.add('on');
+  setTimeout(()=>{ loader.classList.remove('on'); render(); answer.classList.add('show'); answer.scrollIntoView({behavior:'smooth',block:'start'}); },700);
+};
+document.getElementById('dice').onclick=()=>{
+  // tirage réel, en évitant de retomber sur la combinaison affichée
+  let t,s;
+  do{ t=TYPES[Math.floor(Math.random()*TYPES.length)].id; s=SECTORS[Math.floor(Math.random()*SECTORS.length)].id; }
+  while(t===selT.value && s===selS.value);
+  selT.value=t; selS.value=s;
+  refresh(); go.click();
+};
+refresh();
+</script>
+</body>
+</html>
