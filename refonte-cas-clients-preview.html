@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refonte cas clients — hub de vente outils × secteurs × problématiques | Nocode Factory · ÉPREUVE</title>
+<!--
+  ============================================================================
+  MAQUETTE — Refonte de la page /nos-realisations en page de vente
+  Suite de maquette-configurateur-preview.html (même DA, relevés 09/09).
+  Deux vues dans un seul fichier :
+    VUE 1 — hub cas clients refondu : configurateur en hero + « Découvrir les
+            outils / secteurs » (tuiles avec aperçu) + grille 46 cas filtrable
+    VUE 2 — gabarit d'étude de cas ENRICHIE (exemple : Tekabois, contenu réel
+            extrait de la page publiée le 09/09) : bloc problématique citable,
+            chips outil/secteur, pont vers les articles intentionnels, cas liés
+  Doctrine : zéro nouvelle URL — on améliore l'existant. Zéro métrique inventée.
+  Mapping outil × secteur des 46 cas : déduit des accroches publiques, À VALIDER.
+  ============================================================================
+-->
+<style>
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
+
+  :root{
+    --beige:#f9f8f6;--white:#ffffff;--ink:#060110;--ink-2:#494949;--ink-3:#606060;
+    --black:#1e1a28;--black-2:#251f34;--black-border:#302842;
+    --yellow:#ffca64;--pink:#f99bfb;--green:#38ef7d;--blue:#5ac0ff;
+    --pastel-yellow:#fef1e6;--pastel-pink:#f9eef1;--pastel-blue:#eafafc;--pastel-green:#f1fbed;
+    --success:#027a48;
+    --grad-key:linear-gradient(93deg,#8b7bf0 0%,var(--pink) 55%,#ff8fae 100%);
+    --font:"Fff Acidgrotesk",Arial,sans-serif;
+    --r:12px;--r-md:16px;--r-lg:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.5;font-weight:400}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+
+  .proof{background:var(--black);color:#b3aec1;font-size:12px;padding:6px 18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .proof b{color:var(--yellow);font-weight:500}
+
+  .nav{background:var(--white);padding:13px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:40}
+  .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;cursor:pointer}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--black);display:grid;place-items:center}
+  .brand .dot::after{content:"";width:11px;height:11px;border-radius:3px;background:conic-gradient(var(--yellow) 0 25%,var(--pink) 0 50%,var(--green) 0 75%,var(--blue) 0)}
+  .brand i{font-style:italic;font-weight:700}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:500;font-size:14px;text-decoration:none;border:none;cursor:pointer;border-radius:3000px;padding:10px 18px;transition:transform .22s cubic-bezier(.19,1,.22,1),opacity .22s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .btn-black{background:var(--black);color:#fff8f0}
+  .btn-yellow{background:var(--yellow);color:var(--ink)}
+  .btn-white{background:var(--white);color:var(--ink)}
+  .btn-ghost{background:transparent;border:1.5px solid #d8d3d3;color:var(--ink-2)}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .arr{transition:transform .22s cubic-bezier(.19,1,.22,1)}
+  .btn:hover .arr{transform:translateX(3px)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+
+  /* ===== hero + configurateur ===== */
+  .hero{background:var(--black);color:#fff8f0;position:relative;overflow:hidden;padding:clamp(44px,6vw,72px) 0 clamp(150px,17vw,210px);text-align:center}
+  .hero .aurora{position:absolute;left:-10%;right:-10%;bottom:-42%;height:75%;pointer-events:none;filter:blur(52px);opacity:.85;background:
+    radial-gradient(42% 58% at 12% 78%,var(--pink) 0%,transparent 62%),
+    radial-gradient(38% 55% at 38% 88%,var(--yellow) 0%,transparent 60%),
+    radial-gradient(40% 55% at 64% 85%,var(--green) 0%,transparent 60%),
+    radial-gradient(45% 60% at 90% 76%,var(--blue) 0%,transparent 62%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .toprow{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:#b3aec1;background:#ffffff12;border:1px solid #ffffff1f;border-radius:3000px;padding:7px 16px;margin-bottom:24px}
+  .hero .toprow b{color:#fff8f0;font-weight:500}
+  h1{font-weight:500;font-size:clamp(29px,4.4vw,52px);line-height:1.12;letter-spacing:-.028em;text-wrap:balance}
+  h1 .key,.h2k .key{background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{font-size:clamp(15px,1.6vw,17px);color:#c9c4d4;margin:16px auto 0;max-width:58ch;font-weight:300}
+
+  .builder-zone{margin-top:clamp(-118px,-13vw,-88px);position:relative;z-index:2}
+  .builder{max-width:860px;margin:0 auto;background:var(--white);border-radius:var(--r-lg);padding:clamp(24px,3.6vw,40px);box-shadow:0 24px 70px -30px rgba(30,26,40,.35)}
+  .phrase{font-weight:500;font-size:clamp(19px,2.7vw,29px);line-height:1.55;letter-spacing:-.02em;text-align:center;text-wrap:balance}
+  .slot{position:relative;display:inline-block;margin:4px 2px}
+  .slot select{appearance:none;font:inherit;font-weight:500;color:var(--ink);background:var(--pastel-yellow);border:none;border-bottom:2px dashed var(--ink);border-radius:10px 10px 0 0;padding:4px 38px 4px 14px;cursor:pointer;transition:all .2s;max-width:88vw}
+  .slot select:hover{background:#fce4cd}
+  .slot select.filled{border-bottom-color:transparent;border-radius:3000px;background:var(--black);color:#fff8f0}
+  .slot::after{content:"▾";position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:currentColor;font-size:13px}
+  .slot.filled::after{color:var(--yellow)}
+  .controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:clamp(20px,2.6vw,26px)}
+  /* les 2 portes de découverte, sous la barre */
+  .discover-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid #efece7}
+  .discover-row a{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--ink-2);text-decoration:none;transition:color .2s}
+  .discover-row a:hover{color:var(--ink)}
+  .discover-row a .dn{font-size:11px;transition:transform .22s}
+  .discover-row a:hover .dn{transform:translateY(2px)}
+  .loader{display:none;text-align:center;margin-top:22px;color:var(--ink-3);font-size:13.5px}
+  .loader.on{display:block}
+  .loader .bar{width:200px;height:4px;background:#eeebe6;border-radius:3000px;margin:10px auto 0;overflow:hidden}
+  .loader .bar i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--yellow),var(--pink),var(--green),var(--blue));border-radius:3000px;animation:slide 1s infinite cubic-bezier(.4,0,.2,1)}
+  @keyframes slide{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+
+  /* ===== réponse composée ===== */
+  .answer{display:none;max-width:1040px;margin:clamp(18px,2.6vw,28px) auto 0}
+  .answer.show{display:block;animation:pop .5s cubic-bezier(.19,1,.22,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .a-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:clamp(14px,2vw,20px)}
+  .a-head h2{font-weight:500;font-size:clamp(22px,3vw,34px);letter-spacing:-.028em;line-height:1.1;text-wrap:balance}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;white-space:nowrap}
+  .badge.real{background:var(--pastel-green);color:var(--success)}
+  .badge.near{background:var(--pastel-blue);color:#17689a}
+  .badge.new{background:var(--pastel-pink);color:#b5379b}
+  .lab{font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:12px}
+  .case-hero{background:var(--pastel-yellow);border-radius:var(--r-md);padding:clamp(20px,2.8vw,30px);display:grid;grid-template-columns:1fr auto;gap:clamp(18px,3vw,36px);align-items:center}
+  @media(max-width:760px){.case-hero{grid-template-columns:1fr}}
+  .case{display:flex;gap:16px;align-items:flex-start}
+  .case .logo{flex:0 0 54px;height:54px;border-radius:14px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-weight:500;font-size:17px}
+  .case .who{font-weight:500;font-size:clamp(18px,2.1vw,23px);margin-bottom:4px;letter-spacing:-.02em}
+  .case .did{color:var(--ink-2);font-size:15px;max-width:52ch}
+  .case .res{display:inline-block;margin-top:10px;background:var(--white);color:var(--ink);font-weight:500;font-size:13px;padding:5px 13px;border-radius:3000px}
+  .verify{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .verify .hint{font-size:12px;color:var(--ink-3)}
+
+  /* ===== sections découverte ===== */
+  section.disc{padding:clamp(40px,6vw,72px) 0 0}
+  .sec-head{margin-bottom:clamp(18px,2.6vw,28px)}
+  .kicker{font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:8px}
+  .h2k{font-weight:500;font-size:clamp(24px,3.4vw,40px);letter-spacing:-.028em;line-height:1.12;text-wrap:balance}
+  .sec-sub{color:var(--ink-2);font-size:15px;margin-top:8px;max-width:64ch;font-weight:300}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(10px,1.5vw,16px)}
+  .tile{text-align:left;font-family:var(--font);border:none;cursor:pointer;border-radius:var(--r-md);padding:clamp(16px,2vw,22px);transition:transform .22s cubic-bezier(.19,1,.22,1),box-shadow .22s;display:flex;flex-direction:column;gap:10px}
+  .tile:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(30,26,40,.28)}
+  .tile.c0{background:var(--pastel-yellow)}.tile.c1{background:var(--pastel-pink)}
+  .tile.c2{background:var(--pastel-blue)}.tile.c3{background:var(--pastel-green)}
+  .tile .trow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .tile .tname{font-weight:500;font-size:16.5px;letter-spacing:-.015em;line-height:1.25}
+  .tile .count{flex:none;font-size:12px;font-weight:500;background:var(--white);border-radius:3000px;padding:4px 11px;color:var(--ink-2);white-space:nowrap}
+  .tile .star{font-size:13px;color:var(--ink-2);line-height:1.45}
+  .tile .star b{color:var(--ink);font-weight:500}
+  .tile .pchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .tile .pchip{font-size:11.5px;font-weight:500;background:var(--white);color:var(--ink-2);border-radius:3000px;padding:4px 11px}
+  .tile .go{font-size:13px;font-weight:500;color:var(--ink);margin-top:2px}
+
+  /* ===== bandeau rapidité ===== */
+  .speed{margin-top:clamp(44px,6vw,72px);background:var(--black);color:#fff8f0;border-radius:var(--r-lg);padding:clamp(26px,3.8vw,46px);position:relative;overflow:hidden}
+  .speed::after{content:"";position:absolute;right:-18%;bottom:-55%;width:70%;height:110%;pointer-events:none;filter:blur(48px);opacity:.5;background:
+    radial-gradient(50% 50% at 30% 60%,var(--pink) 0%,transparent 65%),
+    radial-gradient(50% 50% at 70% 55%,var(--blue) 0%,transparent 65%)}
+  .speed>*{position:relative;z-index:1}
+  .speed .lab{color:#9b95a8}
+  .speed .h2k{color:#fff8f0}
+  .speedgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(10px,1.6vw,16px);margin-top:clamp(18px,2.6vw,26px)}
+  .sp{background:var(--black-2);border:2px solid var(--black-border);border-radius:var(--r);padding:16px 18px}
+  .sp .n{font-weight:500;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sp .d{font-size:13px;color:#c9c4d4;margin-top:4px;font-weight:300}
+  .sp .w{font-size:12px;color:#9b95a8;margin-top:8px}
+
+  /* ===== grille des cas ===== */
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:clamp(16px,2.2vw,22px)}
+  .fchip{font-family:var(--font);font-size:13px;font-weight:500;border:1.5px solid #e2ded8;background:var(--white);color:var(--ink-2);border-radius:3000px;padding:7px 15px;cursor:pointer;transition:all .18s}
+  .fchip:hover{border-color:var(--ink);color:var(--ink)}
+  .fchip.on{background:var(--black);border-color:var(--black);color:#fff8f0}
+  .fsep{width:1px;height:22px;background:#e2ded8;margin:0 4px}
+  .fcount{font-size:13px;color:var(--ink-3);margin-left:auto}
+  .fcount b{color:var(--ink);font-weight:500}
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(10px,1.5vw,16px)}
+  .ccard{background:var(--white);border-radius:var(--r-md);padding:clamp(16px,2vw,20px);display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .22s cubic-bezier(.19,1,.22,1),box-shadow .22s;position:relative}
+  .ccard:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(30,26,40,.25)}
+  .ccard .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip-t,.chip-s,.chip-d{font-size:11px;font-weight:500;border-radius:3000px;padding:3px 10px}
+  .chip-t{background:var(--pastel-blue);color:#17689a}
+  .chip-s{background:var(--pastel-pink);color:#b5379b}
+  .chip-d{background:var(--pastel-green);color:var(--success)}
+  .ccard .cwho{font-weight:500;font-size:16.5px;letter-spacing:-.015em}
+  .ccard .cdid{font-size:13.5px;color:var(--ink-2);line-height:1.45;flex:1}
+  .ccard .cmetric{display:flex;align-items:baseline;gap:8px;border-top:1px solid #f1eee9;padding-top:10px}
+  .ccard .cm{font-weight:500;font-size:21px;letter-spacing:-.02em;background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+  .ccard .cml{font-size:12px;color:var(--ink-3);line-height:1.35}
+  .ccard.enriched::before{content:"gabarit enrichi → cliquer";position:absolute;top:-9px;right:12px;font-size:10.5px;font-weight:500;background:var(--yellow);color:var(--ink);border-radius:3000px;padding:3px 10px}
+
+  /* ===== CTA final ===== */
+  .cta-final{margin:clamp(44px,6vw,72px) auto;text-align:center;max-width:640px}
+  .cta-final .h2k{margin-bottom:10px}
+  .cta-final p{color:var(--ink-2);font-size:15px;margin-bottom:20px;font-weight:300}
+
+  /* ===== VUE 2 — étude de cas enrichie ===== */
+  #view-case{display:none}
+  body.case-mode #view-hub{display:none}
+  body.case-mode #view-case{display:block}
+  .crumb{padding:18px 0 0;font-size:13px;color:var(--ink-3)}
+  .crumb a{cursor:pointer;font-weight:500;color:var(--ink-2);text-decoration:none}
+  .crumb a:hover{color:var(--ink)}
+  .cs-hero{padding:clamp(20px,3vw,34px) 0 clamp(26px,3.6vw,44px)}
+  .cs-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .cs-chips button{font-family:var(--font);cursor:pointer;border:none;font-size:12.5px;font-weight:500;border-radius:3000px;padding:6px 14px;transition:transform .18s}
+  .cs-chips button:hover{transform:translateY(-1px)}
+  .cs-chips .t{background:var(--pastel-blue);color:#17689a}
+  .cs-chips .s{background:var(--pastel-pink);color:#b5379b}
+  .cs-chips .d{background:var(--pastel-green);color:var(--success);cursor:default}
+  .cs-hero h1{font-size:clamp(27px,3.8vw,44px);max-width:22ch}
+  .cs-hero .chapo{color:var(--ink-2);font-size:clamp(14.5px,1.5vw,16.5px);max-width:70ch;margin-top:14px;font-weight:300}
+  .cs-meta{display:flex;flex-wrap:wrap;gap:clamp(14px,2.4vw,32px);margin-top:20px;padding:14px 20px;background:var(--white);border-radius:var(--r-md);width:fit-content}
+  .cs-meta div{font-size:13px;color:var(--ink-3)}
+  .cs-meta b{display:block;font-size:14.5px;font-weight:500;color:var(--ink);margin-top:2px}
+
+  .problem-block{background:var(--pastel-pink);border-radius:var(--r-md);padding:clamp(22px,3vw,32px);margin-bottom:clamp(26px,3.6vw,40px)}
+  .problem-block .lab{color:#b5379b}
+  .aeo{font-weight:500;font-size:clamp(17px,2.2vw,22px);line-height:1.4;letter-spacing:-.015em;max-width:64ch}
+  .plist{list-style:none;margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+  .plist li{background:var(--white);border-radius:var(--r);padding:13px 16px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+  .plist li::before{content:"✕ ";color:#b5379b;font-weight:500}
+
+  .built{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(26px,3.6vw,40px)}
+  .bcard{border-radius:var(--r-md);padding:clamp(18px,2.4vw,24px)}
+  .bcard:nth-child(1){background:var(--pastel-yellow)}
+  .bcard:nth-child(2){background:var(--pastel-blue)}
+  .bcard:nth-child(3){background:var(--pastel-green)}
+  .bcard .bt{font-weight:500;font-size:15.5px;letter-spacing:-.01em;line-height:1.3;margin-bottom:8px}
+  .bcard p{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+
+  .result-band{background:var(--black);color:#fff8f0;border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px);display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,4vw,52px);align-items:center;margin-bottom:clamp(26px,3.6vw,40px);position:relative;overflow:hidden}
+  @media(max-width:760px){.result-band{grid-template-columns:1fr}}
+  .result-band::after{content:"";position:absolute;right:-18%;bottom:-55%;width:70%;height:110%;pointer-events:none;filter:blur(48px);opacity:.5;background:
+    radial-gradient(50% 50% at 30% 60%,var(--green) 0%,transparent 65%),
+    radial-gradient(50% 50% at 70% 55%,var(--blue) 0%,transparent 65%)}
+  .result-band>*{position:relative;z-index:1}
+  .result-band .big{font-weight:500;font-size:clamp(44px,6vw,72px);letter-spacing:-.03em;background:var(--grad-key);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .result-band .bigl{font-size:14px;color:#c9c4d4;max-width:26ch;margin-top:6px;font-weight:300}
+  .result-band blockquote{font-size:clamp(14.5px,1.6vw,16.5px);font-weight:300;color:#e6e2ee;line-height:1.55;border-left:3px solid var(--yellow);padding-left:18px}
+  .result-band cite{display:block;font-style:normal;font-size:12.5px;color:#9b95a8;margin-top:10px}
+
+  .bridge{margin-bottom:clamp(26px,3.6vw,40px)}
+  .bridge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(10px,1.5vw,16px)}
+  .art{background:var(--white);border-radius:var(--r-md);padding:clamp(16px,2.2vw,22px);display:flex;flex-direction:column;gap:9px;text-decoration:none;transition:transform .22s,box-shadow .22s}
+  .art:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(30,26,40,.25)}
+  .art .astate{font-size:11px;font-weight:500;border-radius:3000px;padding:3px 10px;width:fit-content}
+  .art .astate.live{background:var(--pastel-green);color:var(--success)}
+  .art .astate.soon{background:#f1efeb;color:var(--ink-3)}
+  .art .at{font-weight:500;font-size:15.5px;letter-spacing:-.01em;line-height:1.3}
+  .art p{font-size:13px;color:var(--ink-2);line-height:1.45;flex:1}
+  .art .ago{font-size:13px;font-weight:500}
+  .art.dis{opacity:.75;cursor:default}
+  .art.dis:hover{transform:none;box-shadow:none}
+
+  .related{margin-bottom:clamp(30px,4vw,50px)}
+
+  .concept{max-width:1040px;margin:0 auto clamp(36px,5vw,60px);background:var(--white);border-radius:var(--r-md);padding:clamp(22px,3vw,32px);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+  .concept h3{font-weight:500;font-size:16px;color:var(--ink);margin-bottom:10px}
+  .concept b{color:var(--ink);font-weight:500}
+  .concept ul{margin:8px 0 0 18px}.concept li{margin-bottom:6px}
+  footer{padding:26px 0 40px;color:var(--ink-3);font-size:13px;text-align:center}
+  footer i{font-style:italic;font-weight:700}
+</style>
+</head>
+<body>
+<div class="proof"><span>Épreuve locale, non publiée</span><span>Refonte page cas clients · hub de vente outils × secteurs × problématiques · <b>concept à valider Emilien / Valentin</b></span></div>
+
+<nav class="nav">
+  <div class="brand" onclick="goHub()"><span class="dot"></span>Nocode<i>Factory</i></div>
+  <a class="btn btn-black" href="#" onclick="return false">Estimer mon projet <span class="arr">→</span></a>
+</nav>
+
+<!-- ================================================================ -->
+<!-- VUE 1 — HUB CAS CLIENTS REFONDU                                  -->
+<!-- ================================================================ -->
+<div id="view-hub">
+
+<header class="hero">
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="toprow"><b>350+</b> projets livrés · <b>46</b> études de cas publiques · <b>98%</b> NPS moyen</div>
+    <h1>Déjà +350 projets livrés.<br>Trouvez <span class="key">celui qui ressemble au vôtre</span>.</h1>
+    <p class="sub">Par type d'outil, par secteur, ou au hasard : chaque réponse est un projet réel, avec son résultat mesuré et son étude de cas publiée.</p>
+  </div>
+</header>
+
+<div class="builder-zone wrap">
+  <div class="builder">
+    <div class="phrase">
+      Je cherche
+      <span class="slot" id="slot-type">
+        <select id="sel-type" aria-label="Type d'outil">
+          <option value="" selected disabled>un type d'outil…</option>
+        </select>
+      </span>
+      pour
+      <span class="slot" id="slot-sector">
+        <select id="sel-sector" aria-label="Secteur">
+          <option value="" selected disabled>mon secteur…</option>
+        </select>
+      </span>
+    </div>
+    <div class="controls">
+      <button class="btn btn-ghost" id="dice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5"/><circle cx="8.2" cy="8.2" r="1.35" fill="currentColor" stroke="none"/><circle cx="15.8" cy="8.2" r="1.35" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.35" fill="currentColor" stroke="none"/><circle cx="8.2" cy="15.8" r="1.35" fill="currentColor" stroke="none"/><circle cx="15.8" cy="15.8" r="1.35" fill="currentColor" stroke="none"/></svg>Surprenez-moi</button>
+      <button class="btn btn-black" id="go" disabled>Voir ce qu'on a fait <span class="arr">→</span></button>
+    </div>
+    <div class="loader" id="loader">On fouille nos 350 projets…<div class="bar"><i></i></div></div>
+    <div class="discover-row">
+      <a href="#outils">Découvrir les outils <span class="dn">↓</span></a>
+      <a href="#secteurs">Découvrir les secteurs <span class="dn">↓</span></a>
+      <a href="#tous-les-cas">Tous les cas clients <span class="dn">↓</span></a>
+    </div>
+  </div>
+
+  <!-- réponse composée du configurateur -->
+  <section class="answer" id="answer">
+    <div class="a-head">
+      <h2 id="a-title">—</h2>
+      <span class="badge" id="a-badge">—</span>
+    </div>
+    <div class="lab" id="a-caselab">Ce qu'on a déjà fait</div>
+    <div class="case-hero">
+      <div class="case">
+        <div class="logo" id="a-logo">·</div>
+        <div>
+          <div class="who" id="a-who">—</div>
+          <div class="did" id="a-did">—</div>
+          <span class="res" id="a-res" style="display:none"></span>
+        </div>
+      </div>
+      <div class="verify" id="a-verify">
+        <a class="btn btn-black" id="a-link" href="#" target="_blank" rel="noopener">Vérifier l'étude de cas <span class="arr">→</span></a>
+        <button class="btn btn-ghost" id="a-more">Voir tous les cas de ce type</button>
+        <span class="hint">Publiée sur nocodefactory.fr — jugez sur pièces.</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- découverte par outil -->
+<section class="disc wrap" id="outils">
+  <div class="sec-head">
+    <div class="kicker">Découvrir les outils</div>
+    <h2 class="h2k">Ce qu'on construit, <span class="key">preuve à l'appui</span></h2>
+    <p class="sec-sub">Sept familles d'outils, un même métier. Chaque tuile montre combien de cas publiés, un projet vedette, et les problèmes qu'on y résout le plus souvent. Cliquez : la liste se filtre, rien ne se recharge.</p>
+  </div>
+  <div class="tiles" id="tiles-types"></div>
+</section>
+
+<!-- découverte par secteur -->
+<section class="disc wrap" id="secteurs">
+  <div class="sec-head">
+    <div class="kicker">Découvrir les secteurs</div>
+    <h2 class="h2k">Vos problèmes de secteur, <span class="key">on les connaît déjà</span></h2>
+    <p class="sec-sub">Les douleurs ne sont pas les mêmes dans l'immobilier et dans l'industrie. Chaque tuile liste les problèmes qu'on voit le plus dans le secteur — et les cas qui prouvent qu'ils se résolvent.</p>
+  </div>
+  <div class="tiles" id="tiles-sectors"></div>
+</section>
+
+<!-- bandeau rapidité -->
+<div class="wrap">
+  <div class="speed">
+    <div class="lab">La rapidité d'exécution, mesurée</div>
+    <h2 class="h2k">Livré <span class="key">en temps record</span> — et c'est vérifiable</h2>
+    <div class="speedgrid">
+      <div class="sp"><div class="n">20 jours</div><div class="d">pour développer un MVP d'assurance</div><div class="w">Insify — +4646 leads générés</div></div>
+      <div class="sp"><div class="n">10 jours</div><div class="d">pour livrer une WebApp complète multi-rôles</div><div class="w">Trophée des Champions</div></div>
+      <div class="sp"><div class="n">6 semaines</div><div class="d">pour un écosystème IA + simulateur + automatisations</div><div class="w">Tekabois — 100% d'autonomie</div></div>
+      <div class="sp"><div class="n">+4000 pages</div><div class="d">migrées sans perdre le référencement</div><div class="w">Ornikar — n°1 sur « permis en ligne »</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- grille complète filtrable -->
+<section class="disc wrap" id="tous-les-cas">
+  <div class="sec-head">
+    <div class="kicker">Tous les cas clients</div>
+    <h2 class="h2k">46 études de cas, <span class="key">zéro storytelling inventé</span></h2>
+    <p class="sec-sub">Chaque carte relie un outil, un secteur et un résultat mesuré. Les filtres se combinent.</p>
+  </div>
+  <div class="filterbar" id="filterbar"></div>
+  <div class="cgrid" id="cgrid"></div>
+</section>
+
+<div class="cta-final wrap">
+  <h2 class="h2k">Votre projet ressemble à l'un d'eux ?</h2>
+  <p>30 minutes, gratuit, sans engagement. On vous dit honnêtement si c'est un projet pour nous — et lequel de nos cas s'en rapproche le plus.</p>
+  <a class="btn btn-yellow" href="#" onclick="return false">Réserver un échange (30 min) <span class="arr">→</span></a>
+</div>
+
+<div class="concept wrap" style="padding-left:clamp(22px,3vw,32px);padding-right:clamp(22px,3vw,32px)">
+  <h3>Note de concept (interne, ne sort pas)</h3>
+  Refonte de <b>/nos-realisations</b> en page de vente : le corpus de cas clients devient la matière qui relie
+  <b>outils × secteurs × problématiques × rapidité × articles intentionnels</b> — sans créer de nouvelles pages.
+  <ul>
+    <li><b>Trois portes d'entrée, une seule page</b> : configurateur (je sais ce que je veux), tuiles outils/secteurs (je browse), dé (je joue). Tout route vers la même grille filtrée — zéro nouvelle URL, zéro cannibalisation.</li>
+    <li><b>Mapping outil × secteur des 46 cas déduit des accroches publiques — à valider avec Valentin.</b> Les cas au secteur incertain (XOS, Joli Rouge, Atelier Libon) restent sans chip secteur plutôt que mal classés. Métriques et durées : uniquement celles publiées, jamais inventées.</li>
+    <li><b>Rapidité</b> : la durée n'apparaît que là où elle est publiée (Insify 20 j, Trophée des Champions 10 j, Tekabois 6 sem). Recommandation : publier la durée sur chaque nouvelle étude de cas — c'est l'argument n°1 du bandeau.</li>
+    <li><b>Cliquer sur la carte Tekabois</b> ouvre la vue 2 : le gabarit d'étude de cas enrichie (bloc problématique citable, chips, pont vers les articles intentionnels). Les autres cartes pointent vers les vraies pages publiées.</li>
+    <li>Les tuiles secteur réutilisent les douleurs sectorielles du configurateur ; à terme, chaque douleur devient un lien vers sa page problème (backlog V1/V2) <b>quand elle existe</b> — la grille montre l'état (« page publiée » / « guide à venir »).</li>
+  </ul>
+</div>
+
+</div><!-- /view-hub -->
+
+<!-- ================================================================ -->
+<!-- VUE 2 — GABARIT ÉTUDE DE CAS ENRICHIE (exemple réel : Tekabois)  -->
+<!-- ================================================================ -->
+<div id="view-case">
+<div class="wrap">
+  <div class="crumb"><a onclick="goHub()">← Tous les cas clients</a> &nbsp;/&nbsp; Tekabois</div>
+
+  <header class="cs-hero">
+    <div class="cs-chips">
+      <button class="t" onclick="goHub({type:'ia'})">Assistant / agent IA</button>
+      <button class="t" onclick="goHub({type:'calc'})">Calculateur / simulateur</button>
+      <button class="s" onclick="goHub({sector:'industrie'})">Industrie & construction</button>
+      <button class="d">⚡ Livré en 6 semaines</button>
+    </div>
+    <h1>Intégrer l'IA et l'automatisation au cœur du site <span class="key">Tekabois</span></h1>
+    <p class="chapo">Tekabois est un spécialiste du bois exotique basé à La Rochelle, livrant dans toute la France. Terrasses, bardages, parquets, clôtures, margelles : l'enseigne accompagne particuliers et professionnels dans tous leurs projets d'aménagement. Avec un catalogue dense et une clientèle qui a besoin de conseils avant d'acheter, l'enjeu digital était clair : réduire la friction entre la question et la décision.</p>
+    <div class="cs-meta">
+      <div>Durée<b>6 semaines</b></div>
+      <div>Stack<b>WeWeb · Airtable · N8N · Botpress · Posthog</b></div>
+      <div>Étude publiée<b><a href="https://www.nocodefactory.fr/nos-realisations/tekabois" target="_blank" rel="noopener" style="text-decoration:underline">nocodefactory.fr ↗</a></b></div>
+    </div>
+  </header>
+
+  <!-- NOUVEAU : bloc problématique, formulé en langage problème (citable) -->
+  <div class="problem-block">
+    <div class="lab">Le problème de départ — vous vous y reconnaissez peut-être</div>
+    <p class="aeo">Des devis techniques longs à produire, un SAV traité à la main, et un formulaire générique qui ne guide personne : chaque demande mobilisait l'équipe commerciale.</p>
+    <ul class="plist">
+      <li>L'ancien simulateur de devis ne permettait aucun affichage conditionnel : formulaire générique, sans guidage ni logique adaptative</li>
+      <li>Aucun assistant conversationnel : chaque question technique passait par l'équipe</li>
+      <li>Chaque devis ou demande SAV nécessitait une intervention manuelle</li>
+    </ul>
+  </div>
+
+  <div class="lab">Ce qu'on a construit</div>
+  <div class="built">
+    <div class="bcard"><div class="bt">Remplacer un simulateur statique par un outil intelligent</div><p>Refonte avec WeWeb et Airtable pour un parcours conditionnel complet : chaque étape s'adapte aux réponses précédentes, avec un volet IA qui accompagne l'utilisateur à chaque choix.</p></div>
+    <div class="bcard"><div class="bt">Déployer un assistant IA expert produit et SAV</div><p>Agent IA via Botpress, connecté à une base de connaissances produits complète. Il conseille les essences, oriente vers les guides, remonte les demandes SAV via API — sans jamais inventer d'information ni de prix.</p></div>
+    <div class="bcard"><div class="bt">Automatiser les flux et piloter l'abandon</div><p>Chaque soumission alimente Airtable en temps réel. N8N orchestre emails, notifications et routage ; Posthog tracke précisément où les utilisateurs abandonnent le formulaire.</p></div>
+  </div>
+
+  <div class="result-band">
+    <div>
+      <div class="big">100%</div>
+      <div class="bigl">d'autonomie pour l'équipe commerciale sur la gestion des devis et du SAV</div>
+    </div>
+    <blockquote>« Excellente collaboration avec Nocode Factory ! L'équipe est super réactive et leur process de travail évite toutes les frictions lors du projet. Vous pouvez y aller les yeux fermés pour un projet digital. »
+      <cite>Témoignage client publié sur l'étude de cas</cite>
+    </blockquote>
+  </div>
+
+  <!-- NOUVEAU : pont vers les articles intentionnels -->
+  <div class="bridge">
+    <div class="lab">Ce problème vous parle ? On l'a documenté</div>
+    <div class="bridge-grid">
+      <a class="art" href="#" onclick="return false">
+        <span class="astate live">Page publiée</span>
+        <span class="at">Calcul des besoins nets (CBN / MRP) pour l'industrie</span>
+        <p>Quand l'ERP du marché ne suit pas vos règles métier : comment un outil sur mesure calcule vos besoins réels.</p>
+        <span class="ago">Lire le guide →</span>
+      </a>
+      <a class="art dis" href="#" onclick="return false">
+        <span class="astate soon">Guide à venir</span>
+        <span class="at">Générer ses devis automatiquement</span>
+        <p>Devis techniques, prix conditionnels, options : les 3 niveaux de solution, du publipostage au simulateur connecté.</p>
+        <span class="ago">En rédaction</span>
+      </a>
+      <a class="art dis" href="#" onclick="return false">
+        <span class="astate soon">Guide à venir</span>
+        <span class="at">Un assistant IA branché sur vos données</span>
+        <p>Répondre aux questions techniques sans mobiliser un expert — avec vos règles, sans boîte noire.</p>
+        <span class="ago">En rédaction</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- cas liés -->
+  <div class="related">
+    <div class="lab">Ces projets pourraient aussi vous intéresser</div>
+    <div class="cgrid" id="related-grid"></div>
+  </div>
+
+  <div class="cta-final" style="margin-top:0">
+    <h2 class="h2k">Le même problème, dans votre entreprise ?</h2>
+    <p>30 minutes, gratuit, sans engagement. On vous dit honnêtement si c'est un projet pour nous.</p>
+    <a class="btn btn-yellow" href="#" onclick="return false">Réserver un échange (30 min) <span class="arr">→</span></a>
+  </div>
+
+  <div class="concept" style="margin-top:clamp(30px,4vw,50px)">
+    <h3>Note de gabarit (interne, ne sort pas)</h3>
+    Ce que cette vue <b>ajoute</b> à la page étude de cas existante (tout le reste est le contenu réel publié) :
+    <ul>
+      <li><b>Bloc problématique en tête</b>, formulé en langage problème (phrase courte citable par les IA + liste des douleurs réelles). C'est ce qui rend le cas trouvable sur la requête problème, sans écrire de nouvelle page.</li>
+      <li><b>Chips outil / secteur cliquables</b> → retour au hub filtré. Le maillage outils × secteurs × cas se fait dans les deux sens.</li>
+      <li><b>Durée mise en avant</b> (⚡) quand elle est publiée — argument rapidité.</li>
+      <li><b>« Ce problème vous parle ? »</b> : le pont vers les articles intentionnels du backlog. Lien actif si la page existe (ex. CBN, rédigée), « guide à venir » sinon — le gabarit matérialise le backlog sans attendre.</li>
+      <li>Généralisation : chaque étude de cas reçoit dans le CMS 3 champs nouveaux — <b>type d'outil</b> (multi), <b>secteur</b>, <b>problématiques</b> (2-3 tags reliés au backlog). Le reste est automatique.</li>
+    </ul>
+  </div>
+</div>
+</div><!-- /view-case -->
+
+<footer>Nocode<i>Factory</i> — maquette refonte cas clients · données : nocodefactory.fr/nos-realisations (46 cas réels, métriques publiées, zéro invention)</footer>
+
+<script>
+// ================= Référentiels =================
+const TYPES = [
+  {id:'app',     lab:'une application / plateforme', tile:'Applications & plateformes', probs:['Lancer un MVP sans 6 mois de dev','Une plateforme qui scale sans recoder']},
+  {id:'interne', lab:'un outil interne / back-office', tile:'Outils internes & back-offices', probs:['Remplacer les Excel qui craquent','Centraliser des process éclatés']},
+  {id:'auto',    lab:'une automatisation', tile:'Automatisations', probs:['Fin de la ressaisie entre outils','Relances et routage faits à la main']},
+  {id:'ia',      lab:'un assistant / agent IA', tile:'IA & agents', probs:['Répondre vite sans mobiliser un expert','Exploiter vos données sans boîte noire']},
+  {id:'calc',    lab:'un calculateur / simulateur', tile:'Calculateurs & simulateurs', probs:['Qualifier les leads avant le 1er appel','Montrer votre expertise dès la 1re visite']},
+  {id:'portail', lab:'un portail / espace client', tile:'Portails & espaces clients', probs:['Vos clients vous appellent pour tout','Partenaires à coordonner en temps réel']},
+  {id:'site',    lab:'un site / une refonte SEO', tile:'Sites & refontes SEO', probs:['Un site qui ne convertit pas','Migrer sans perdre le SEO']},
+];
+const SECTORS = [
+  {id:'immo',      lab:"l'immobilier", tile:'Immobilier'},
+  {id:'finance',   lab:'la finance & assurance', tile:'Finance & assurance'},
+  {id:'mobilite',  lab:'la mobilité', tile:'Mobilité'},
+  {id:'sport',     lab:'le sport & média', tile:'Sport & média'},
+  {id:'energie',   lab:"l'énergie", tile:'Énergie'},
+  {id:'education', lab:"l'éducation", tile:'Éducation'},
+  {id:'sante',     lab:'la santé', tile:'Santé'},
+  {id:'industrie', lab:"l'industrie & la construction", tile:'Industrie & construction'},
+  {id:'saas',      lab:'le SaaS B2B', tile:'SaaS B2B'},
+];
+const PROBLEMS = {
+  immo:      ['Mandats, lots et pièces gérés sur Excel et par email','Pas de portail locataire ou propriétaire en libre-service','Ressaisie entre logiciel de transaction, compta et syndic'],
+  finance:   ['Souscription lente, encore semi-papier','Leads redistribués et relancés à la main','Conformité (KYC, pièces justificatives) chronophage'],
+  mobilite:  ['Plateforme de réservation difficile à faire scaler','Matching offre / demande à automatiser','Base de données véhicules ou trajets éclatée'],
+  sport:     ['Pics de trafic lors des événements','Parties prenantes (diffuseurs, clubs) à coordonner en temps réel','Contenus interactifs lourds à produire'],
+  energie:   ['Devis et simulations techniques complexes','Suivi d\'installations dispersé','Génération de leads qualifiés difficile'],
+  education: ['Catalogues de contenus et plateformes collaboratives','Migrations de milliers de pages','Parcours apprenant à digitaliser'],
+  sante:     ['Parcours patient éclaté entre plusieurs outils','Prise de rendez-vous et suivi manuels','Données sensibles à héberger conformément'],
+  industrie: ['Devis techniques longs à produire','ERP du marché inadapté aux règles métier','Suivi de production et de stock encore sur tableur'],
+  saas:      ['Time-to-market d\'un MVP trop long','Site qui ne convertit pas assez','Growth et onboarding à automatiser'],
+};
+const PROPOSALS = {
+  app:     {pitch:'Une application sur mesure, construite autour de <mark>votre usage réel</mark>, en production en quelques semaines.'},
+  interne: {pitch:'Un outil interne qui remplace vos Excel et centralise vos process, <mark>selon vos règles</mark>.'},
+  auto:    {pitch:'Des automatisations qui suppriment <mark>la ressaisie</mark> et le travail répétitif entre vos outils.'},
+  ia:      {pitch:'Un assistant IA branché sur <mark>vos données</mark>, avec vos règles, sous contrôle.'},
+  calc:    {pitch:'Un calculateur qui <mark>qualifie vos leads</mark> et incarne votre expertise dès la première visite.'},
+  portail: {pitch:'Un portail en temps réel pour vos clients ou partenaires, <mark>connecté à vos outils</mark>.'},
+  site:    {pitch:'Un site pensé <mark>SEO et conversion</mark> dès la maquette, livré vite en Webflow.'},
+};
+
+// ============ Corpus : 46 cas réels (accroches + métriques publiées) ============
+// t/s : mapping déduit des accroches publiques — À VALIDER. s:null = secteur incertain, pas de chip.
+// dur : uniquement si la durée est publiée. slug : vérifié sur nocodefactory.fr le 09/09.
+const CASES = [
+  {who:'Tekabois', t:'ia', s:'industrie', did:'Assistant IA, simulateur de devis et automatisation sur mesure', m:'100%', ml:'d\'autonomie équipe commerciale sur devis et SAV', dur:'6 semaines', slug:'tekabois', enriched:true},
+  {who:'Insify', t:'app', s:'finance', did:'Développement d\'un MVP de souscription d\'assurance en 20 jours', m:'+4646', ml:'leads générés en un temps record', dur:'20 jours', slug:'insify'},
+  {who:'Trophée des Champions', t:'app', s:'sport', did:'WebApp de gestion des parties prenantes, multi-rôles, prête pour le jour J', m:'10 jours', ml:'pour livrer une WebApp complète', dur:'10 jours', slug:'trophee-des-champions'},
+  {who:'Ligue 1', t:'portail', s:'sport', did:'Guide complet pour les diffuseurs mondiaux du football français', m:'100%', ml:'des informations broadcasters accessibles en temps réel', slug:'ligue-1'},
+  {who:'Bpifrance — Simulateur Flash', t:'calc', s:'finance', did:'Simulateur d\'éligibilité aux prêts Bpifrance', m:'+2400', ml:'simulations qualifiées dès le premier mois', slug:'bpi-france-simulateur-flash'},
+  {who:'Mylight — Calculateur', t:'calc', s:'energie', did:'Calculateur d\'économies solaires interactif', m:'+7000', ml:'leads qualifiés générés par an', slug:'mylight-calculateur'},
+  {who:'Orus', t:'auto', s:'finance', did:'Automatisation de la redistribution de leads pour un courtier d\'assurance', m:'+5000', ml:'leads mensuels sauvés et redistribués', slug:'orus'},
+  {who:'Blablacar', t:'app', s:'mobilite', did:'Développement d\'un MVP pour Blablacar', m:'x20', ml:'sur les demandes passagers', slug:'blablacar'},
+  {who:'Good Motors', t:'app', s:'mobilite', did:'Plateforme de location de motos en libre-service', m:'x3', ml:'sur le chiffre d\'affaires après la sortie', slug:'good-motors'},
+  {who:'Xtensio', t:'calc', s:'immo', did:'Plateforme SaaS d\'analyse de PLU pour extensions immobilières', m:'10x', ml:'plus rapide sur l\'ajout d\'une nouvelle commune', slug:'xtensio'},
+  {who:'The Host', t:'app', s:'immo', did:'Plateforme de location de biens de luxe', m:'100%', ml:'d\'autonomie pour les équipes internes', slug:'the-host'},
+  {who:'Clickandrent', t:'site', s:'immo', did:'Refonte d\'un site immobilier orientée acquisition', m:'x4', ml:'sur les leads entrants', slug:'clickandrent'},
+  {who:'Malakoff Humanis', t:'app', s:'finance', did:'Repenser l\'assurance santé comme un produit tech', m:'100%', ml:'d\'autonomie pour l\'utilisateur', slug:'malakoff-humanis'},
+  {who:'Ornikar', t:'site', s:'education', did:'Refonte et migration du site marketing (+4000 pages migrées)', m:'n°1', ml:'sur le « permis en ligne »', slug:'ornikar'},
+  {who:'Lelivrescolaire.fr', t:'site', s:'education', did:'Refondre et migrer un site à plusieurs millions de visites par an', m:'100%', ml:'d\'autonomie pour les équipes marketing', slug:'lelivrescolaire-fr'},
+  {who:'Rabah Aliouane', t:'interne', s:'sport', did:'Plateforme casting & back-office sur mesure', m:'+1200', ml:'profils d\'artistes en base un mois après le lancement', slug:'rabah-aliouane'},
+  {who:'Brut', t:'app', s:'sport', did:'Plateforme de création et gestion de campagnes publicitaires', m:'100%', ml:'du process publicitaire digitalisé', slug:'brut'},
+  {who:'L\'Équipe', t:'site', s:'sport', did:'Intégration rapide d\'un article interactif', m:'+18', ml:'effets visuels sur mesure', slug:'lequipe'},
+  {who:'Neoness', t:'site', s:'sport', did:'Refonte Webflow, SEO local et automatisation', m:'x2', ml:'leads générés depuis la refonte', slug:'neoness'},
+  {who:'Sofive', t:'site', s:'sport', did:'Refonte globale du site vitrine', m:'x2', ml:'sur le trafic', slug:'sofive'},
+  {who:'MYLIGHT150', t:'site', s:'energie', did:'Refonte d\'un site pour booster la génération de leads', m:'7000+', ml:'leads générés', slug:'mylight150'},
+  {who:'Via Sana', t:'site', s:'sante', did:'Digitaliser l\'accueil et la gestion des patients en centre de santé', m:'x2', ml:'sur le trafic', slug:'via-sana'},
+  {who:'Innerskin', t:'site', s:'sante', did:'Refonte du site vitrine', m:'x3', ml:'sur le taux de conversion', slug:'innerskin'},
+  {who:'GenomeCAD', t:'site', s:'sante', did:'Site vitrine institutionnel avec CMS sur mesure', m:'100%', ml:'du contenu pilotable en autonomie', slug:'cad'},
+  {who:'Karos', t:'site', s:'mobilite', did:'Migration stratégique et refonte Webflow', m:'x2', ml:'sur le taux de conversion après la refonte', slug:'karos'},
+  {who:'Losanje', t:'site', s:'industrie', did:'Refonte UX/UI et migration WordPress vers Webflow', m:'100%', ml:'du trafic organique préservé', slug:'losanje'},
+  {who:'La Bâtisse', t:'site', s:'education', did:'Création express d\'un site vitrine impactant', m:'x2', ml:'sur le trafic', slug:'la-batisse'},
+  {who:'Learning Robots', t:'site', s:'education', did:'Refonte complète d\'un site e-commerce éducatif', m:'x2', ml:'du chiffre d\'affaires après refonte', slug:'learning-robots'},
+  {who:'Altaroc', t:'site', s:'finance', did:'Refonte immersive et multilingue sur Webflow', m:'+350%', ml:'de trafic organique', slug:'altaroc'},
+  {who:'Blast Club', t:'site', s:'finance', did:'Refonte de site sur Webflow pour booster les conversions', m:'+1000', ml:'leads entrants', slug:'blast-club'},
+  {who:'Amenitiz — Calculateur', t:'calc', s:'saas', did:'Comparateur de visibilité en ligne pour hôtels', m:'+1000', ml:'hôtels audités grâce au simulateur', slug:'amenitiz'},
+  {who:'Obat — QR Code', t:'interne', s:'saas', did:'Outil de génération de QR Codes personnalisés', m:'x2', ml:'sur le volume d\'avis clients', slug:'obat-qr-code'},
+  {who:'Askmee', t:'app', s:'saas', did:'Plateforme de mise en relation professionnelle', m:'+150', ml:'talents inscrits dès la première semaine', slug:'askmee'},
+  {who:'Huppii', t:'app', s:'saas', did:'Développement d\'un MVP', m:'x2', ml:'sur le volume de leads', slug:'huppii'},
+  {who:'CCI Network', t:'portail', s:'saas', did:'Refonte stratégique d\'une plateforme communautaire B2B', m:'x2', ml:'du taux de conversion visiteurs → membres', slug:'cci-network'},
+  {who:'La Growth Machine', t:'site', s:'saas', did:'Migration technique de WordPress vers Webflow', m:'+40%', ml:'de performances', slug:'la-growth-machine'},
+  {who:'Sunday', t:'site', s:'saas', did:'Refonte du site pour le rendre administrable par les équipes marketing', m:'100%', ml:'d\'autonomie équipe marketing', slug:'sunday'},
+  {who:'Apiday', t:'site', s:'saas', did:'Refonte d\'un site SaaS à impact', m:'x2', ml:'sur les performances en ligne', slug:'apiday'},
+  {who:'Echoline', t:'site', s:'saas', did:'Refonte SEO et UX d\'un site SaaS', m:'+600', ml:'pages indexées après la refonte', slug:'echoline'},
+  {who:'Alowa', t:'site', s:'saas', did:'Refonte stratégique d\'un site SaaS RGPD', m:'x3', ml:'sur les leads générés', slug:'alowa'},
+  {who:'Bonitasoft', t:'site', s:'saas', did:'Refonte complète d\'un site multilingue sous Webflow', m:'+2300', ml:'pages migrées sans perte de jus SEO', slug:'bonitasoft'},
+  {who:'Talkspirit', t:'site', s:'saas', did:'Refonte stratégique sur Webflow pour changer de dimension', m:'x2', ml:'du trafic SEO', slug:'talkspirit'},
+  {who:'TeamHouse', t:'app', s:'immo', did:'Refonte d\'un site sur Webflow + Webapp de réservation', m:'100%', ml:'d\'autonomie utilisateurs', slug:'teamhouse'},
+  {who:'XOS', t:'site', s:null, did:'Refonte du site vitrine sur Webflow', m:'x2', ml:'sur le trafic dès les premières semaines', slug:'xos'},
+  {who:'Atelier Libon', t:'site', s:null, did:'Intégration avancée d\'un site vitrine multilingue sous Webflow', m:'+120%', ml:'sur le trafic', slug:'atelier-libon'},
+  {who:'Joli Rouge', t:'site', s:null, did:'Refonte stratégique du site', m:'x2', ml:'sur les prises de contact', slug:'joli-rouge'},
+];
+const URL_CASE = s => 'https://www.nocodefactory.fr/nos-realisations/' + s;
+
+// ================= Configurateur =================
+const selT=document.getElementById('sel-type'), selS=document.getElementById('sel-sector');
+TYPES.forEach(t=>selT.add(new Option(t.lab,t.id)));
+SECTORS.forEach(s=>selS.add(new Option(s.lab,s.id)));
+const go=document.getElementById('go');
+function refresh(){
+  selT.classList.toggle('filled',!!selT.value); selT.parentElement.classList.toggle('filled',!!selT.value);
+  selS.classList.toggle('filled',!!selS.value); selS.parentElement.classList.toggle('filled',!!selS.value);
+  go.disabled=!(selT.value&&selS.value);
+}
+selT.onchange=selS.onchange=refresh;
+
+function resolve(tid,sid){
+  const exact=CASES.find(c=>c.t===tid&&c.s===sid);
+  if(exact) return {kind:'real', c:exact};
+  const sameType=CASES.find(c=>c.t===tid);
+  if(sameType) return {kind:'near', c:sameType, why:'même type d\'outil, autre secteur'};
+  const sameSec=CASES.find(c=>c.s===sid);
+  if(sameSec) return {kind:'near', c:sameSec, why:'même secteur, autre type d\'outil'};
+  return {kind:'new'};
+}
+const BADGE={real:['badge real','✓ Cas réel dans ce secteur'],near:['badge near','≈ Cas proche'],new:['badge new','○ Projet sur mesure']};
+const INITIALS = w => w.split(/[\s—-]+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+
+function renderAnswer(){
+  const t=TYPES.find(x=>x.id===selT.value), s=SECTORS.find(x=>x.id===selS.value);
+  const r=resolve(t.id,s.id);
+  const titleEl=document.getElementById('a-title');
+  titleEl.innerHTML='';
+  titleEl.appendChild(document.createTextNode(t.lab.charAt(0).toUpperCase()+t.lab.slice(1)+' pour '));
+  const key=document.createElement('span'); key.className='key'; key.textContent=s.lab;
+  titleEl.appendChild(key);
+  const b=document.getElementById('a-badge'); b.className=BADGE[r.kind][0]; b.textContent=BADGE[r.kind][1];
+  const lab=document.getElementById('a-caselab'), who=document.getElementById('a-who'), did=document.getElementById('a-did'), res=document.getElementById('a-res'), logo=document.getElementById('a-logo');
+  const verify=document.getElementById('a-verify'), link=document.getElementById('a-link');
+  if(r.kind==='new'){
+    lab.textContent='Pas encore de cas publié ici — voici comment on l\'aborderait';
+    logo.textContent='NCF'; who.textContent='Un projet à construire avec vous';
+    did.textContent='On n\'a pas encore publié de cas '+t.lab+' pour '+s.lab+'. On partirait de vos process réels, avec un cadrage court avant de chiffrer.';
+    res.style.display='none'; verify.style.display='none';
+  }else{
+    lab.textContent = r.kind==='real' ? 'Ce qu\'on a déjà fait dans ce secteur' : 'Un cas proche qu\'on a livré ('+r.why+')';
+    logo.textContent=INITIALS(r.c.who); who.textContent=r.c.who; did.textContent=r.c.did;
+    res.style.display='inline-block'; res.textContent=r.c.m+' '+r.c.ml;
+    verify.style.display='flex'; link.href=URL_CASE(r.c.slug);
+  }
+  document.getElementById('a-more').onclick=()=>setFilter({type:t.id});
+}
+const loader=document.getElementById('loader'), answer=document.getElementById('answer');
+go.onclick=()=>{
+  answer.classList.remove('show'); loader.classList.add('on');
+  setTimeout(()=>{ loader.classList.remove('on'); renderAnswer(); answer.classList.add('show'); answer.scrollIntoView({behavior:'smooth',block:'start'}); },700);
+};
+document.getElementById('dice').onclick=()=>{
+  let t,s;
+  do{ t=TYPES[Math.floor(Math.random()*TYPES.length)].id; s=SECTORS[Math.floor(Math.random()*SECTORS.length)].id; }
+  while(t===selT.value && s===selS.value);
+  selT.value=t; selS.value=s;
+  refresh(); go.click();
+};
+refresh();
+
+// ================= Tuiles découverte =================
+const byType = id => CASES.filter(c=>c.t===id);
+const bySector = id => CASES.filter(c=>c.s===id);
+
+function tileHTML(kind, item, cases, i){
+  const star = cases[0];
+  const starTxt = star ? `<div class="star">Projet vedette : <b>${star.who}</b> — ${star.m} ${star.ml}</div>` : '<div class="star">Pas encore de cas publié — soyez le premier.</div>';
+  const probs = kind==='type' ? item.probs : (PROBLEMS[item.id]||[]).slice(0,3);
+  return `<button class="tile c${i%4}" data-kind="${kind}" data-id="${item.id}">
+    <div class="trow"><span class="tname">${item.tile}</span><span class="count">${cases.length} cas</span></div>
+    ${starTxt}
+    <div class="pchips">${probs.map(p=>`<span class="pchip">✕ ${p}</span>`).join('')}</div>
+    <span class="go">Voir les cas →</span>
+  </button>`;
+}
+document.getElementById('tiles-types').innerHTML = TYPES.map((t,i)=>tileHTML('type',t,byType(t.id),i)).join('');
+document.getElementById('tiles-sectors').innerHTML = SECTORS.map((s,i)=>tileHTML('sector',s,bySector(s.id),i)).join('');
+document.querySelectorAll('.tile').forEach(el=>{
+  el.onclick=()=> setFilter(el.dataset.kind==='type' ? {type:el.dataset.id} : {sector:el.dataset.id});
+});
+
+// ================= Grille filtrable =================
+let filter={type:null,sector:null};
+function cardHTML(c){
+  const t=TYPES.find(x=>x.id===c.t), s=SECTORS.find(x=>x.id===c.s);
+  const chips = `<div class="chips">
+    ${t?`<span class="chip-t">${t.tile}</span>`:''}
+    ${s?`<span class="chip-s">${s.tile}</span>`:''}
+    ${c.dur?`<span class="chip-d">⚡ ${c.dur}</span>`:''}
+  </div>`;
+  const inner = `${chips}<div class="cwho">${c.who}</div><div class="cdid">${c.did}</div>
+    <div class="cmetric"><span class="cm">${c.m}</span><span class="cml">${c.ml}</span></div>`;
+  if(c.enriched) return `<a class="ccard enriched" onclick="goCase();return false" href="#etude-tekabois">${inner}</a>`;
+  return `<a class="ccard" href="${URL_CASE(c.slug)}" target="_blank" rel="noopener">${inner}</a>`;
+}
+function renderGrid(){
+  const list=CASES.filter(c=>(!filter.type||c.t===filter.type)&&(!filter.sector||c.s===filter.sector));
+  document.getElementById('cgrid').innerHTML=list.map(cardHTML).join('');
+  renderFilterbar(list.length);
+}
+function renderFilterbar(n){
+  const fb=document.getElementById('filterbar');
+  const tchips=TYPES.map(t=>`<button class="fchip ${filter.type===t.id?'on':''}" data-k="type" data-id="${t.id}">${t.tile}</button>`).join('');
+  const schips=SECTORS.map(s=>`<button class="fchip ${filter.sector===s.id?'on':''}" data-k="sector" data-id="${s.id}">${s.tile}</button>`).join('');
+  const reset=(filter.type||filter.sector)?`<button class="fchip" data-k="reset">✕ Réinitialiser</button>`:'';
+  fb.innerHTML=tchips+'<span class="fsep"></span>'+schips+reset+`<span class="fcount"><b>${n}</b> cas affiché${n>1?'s':''}</span>`;
+  fb.querySelectorAll('.fchip').forEach(el=>{
+    el.onclick=()=>{
+      if(el.dataset.k==='reset'){filter={type:null,sector:null};}
+      else if(el.dataset.k==='type'){filter.type=filter.type===el.dataset.id?null:el.dataset.id;}
+      else{filter.sector=filter.sector===el.dataset.id?null:el.dataset.id;}
+      renderGrid();
+    };
+  });
+}
+function setFilter(f){
+  filter={type:f.type||null,sector:f.sector||null};
+  renderGrid();
+  document.getElementById('tous-les-cas').scrollIntoView({behavior:'smooth',block:'start'});
+}
+renderGrid();
+
+// ================= Navigation vues =================
+function goCase(){
+  document.body.classList.add('case-mode');
+  history.replaceState(null,'','#etude-tekabois');
+  window.scrollTo({top:0});
+  const rel=CASES.filter(c=>!c.enriched&&(c.s==='industrie'||c.t==='ia'||c.t==='auto')).slice(0,3);
+  document.getElementById('related-grid').innerHTML=rel.map(cardHTML).join('');
+}
+function goHub(f){
+  document.body.classList.remove('case-mode');
+  history.replaceState(null,'','#');
+  if(f){ setFilter(f); } else { window.scrollTo({top:0}); }
+}
+function syncHash(){ if(location.hash==='#etude-tekabois') goCase(); else if(document.body.classList.contains('case-mode')) goHub(); }
+window.addEventListener('hashchange',syncHash);
+syncHash();
+</script>
+</body>
+</html>
