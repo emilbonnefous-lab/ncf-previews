@@ -41,9 +41,6 @@
   a{color:inherit}
   :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
 
-  .proof{background:var(--black);color:#b3aec1;font-size:12px;padding:6px 18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-  .proof b{color:var(--yellow);font-weight:500}
-
   .nav{background:var(--white);padding:13px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:40}
   .brand{font-size:18px;font-weight:500;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;cursor:pointer}
   .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--black);display:grid;place-items:center}
@@ -130,13 +127,11 @@
   .tile.c0{background:var(--pastel-yellow)}.tile.c1{background:var(--pastel-pink)}
   .tile.c2{background:var(--pastel-blue)}.tile.c3{background:var(--pastel-green)}
   .tile .trow{display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .tile .tname{font-weight:500;font-size:16.5px;letter-spacing:-.015em;line-height:1.25}
-  .tile .count{flex:none;font-size:12px;font-weight:500;background:var(--white);border-radius:3000px;padding:4px 11px;color:var(--ink-2);white-space:nowrap}
-  .tile .star{font-size:13px;color:var(--ink-2);line-height:1.45}
-  .tile .star b{color:var(--ink);font-weight:500}
-  .tile .pchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-  .tile .pchip{font-size:11.5px;font-weight:500;background:var(--white);color:var(--ink-2);border-radius:3000px;padding:4px 11px}
-  .tile .go{font-size:13px;font-weight:500;color:var(--ink);margin-top:2px}
+  .tile .tname{font-weight:500;font-size:17px;letter-spacing:-.015em;line-height:1.25}
+  .tile .count{flex:none;font-size:12px;font-weight:500;background:var(--white);border-radius:3000px;min-width:26px;height:26px;display:grid;place-items:center;padding:0 8px;color:var(--ink-2)}
+  .tile .tnames{font-size:13px;color:var(--ink-3);line-height:1.5;font-weight:300;flex:1}
+  .tile .go{font-size:13px;font-weight:500;color:var(--ink);margin-top:6px;display:inline-flex;align-items:center;gap:6px}
+  .tile:hover .go .arr{transform:translateX(3px)}
 
   /* ===== bandeau rapidité ===== */
   .speed{margin-top:clamp(44px,6vw,72px);background:var(--black);color:#fff8f0;border-radius:var(--r-lg);padding:clamp(26px,3.8vw,46px);position:relative;overflow:hidden}
@@ -163,11 +158,8 @@
   .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(10px,1.5vw,16px)}
   .ccard{background:var(--white);border-radius:var(--r-md);padding:clamp(16px,2vw,20px);display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .22s cubic-bezier(.19,1,.22,1),box-shadow .22s;position:relative}
   .ccard:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(30,26,40,.25)}
-  .ccard .chips{display:flex;flex-wrap:wrap;gap:6px}
-  .chip-t,.chip-s,.chip-d{font-size:11px;font-weight:500;border-radius:3000px;padding:3px 10px}
-  .chip-t{background:var(--pastel-blue);color:#17689a}
-  .chip-s{background:var(--pastel-pink);color:#b5379b}
-  .chip-d{background:var(--pastel-green);color:var(--success)}
+  .ccard .cmeta{font-size:11.5px;font-weight:500;color:var(--ink-3);letter-spacing:.01em}
+  .ccard .cmeta .cd{color:var(--success)}
   .ccard .cwho{font-weight:500;font-size:16.5px;letter-spacing:-.015em}
   .ccard .cdid{font-size:13.5px;color:var(--ink-2);line-height:1.45;flex:1}
   .ccard .cmetric{display:flex;align-items:baseline;gap:8px;border-top:1px solid #f1eee9;padding-top:10px}
@@ -250,8 +242,6 @@
 </style>
 </head>
 <body>
-<div class="proof"><span>Épreuve locale, non publiée</span><span>Refonte page cas clients · hub de vente outils × secteurs × problématiques · <b>concept à valider Emilien / Valentin</b></span></div>
-
 <nav class="nav">
   <div class="brand" onclick="goHub()"><span class="dot"></span>Nocode<i>Factory</i></div>
   <a class="btn btn-black" href="#" onclick="return false">Estimer mon projet <span class="arr">→</span></a>
@@ -328,8 +318,8 @@
 <section class="disc wrap" id="outils">
   <div class="sec-head">
     <div class="kicker">Découvrir les outils</div>
-    <h2 class="h2k">Ce qu'on construit, <span class="key">preuve à l'appui</span></h2>
-    <p class="sec-sub">Sept familles d'outils, un même métier. Chaque tuile montre combien de cas publiés, un projet vedette, et les problèmes qu'on y résout le plus souvent. Cliquez : la liste se filtre, rien ne se recharge.</p>
+    <h2 class="h2k">Ce qu'on <span class="key">construit</span></h2>
+    <p class="sec-sub">Sept familles d'outils. Cliquez sur l'une d'elles pour voir les cas correspondants.</p>
   </div>
   <div class="tiles" id="tiles-types"></div>
 </section>
@@ -338,8 +328,8 @@
 <section class="disc wrap" id="secteurs">
   <div class="sec-head">
     <div class="kicker">Découvrir les secteurs</div>
-    <h2 class="h2k">Vos problèmes de secteur, <span class="key">on les connaît déjà</span></h2>
-    <p class="sec-sub">Les douleurs ne sont pas les mêmes dans l'immobilier et dans l'industrie. Chaque tuile liste les problèmes qu'on voit le plus dans le secteur — et les cas qui prouvent qu'ils se résolvent.</p>
+    <h2 class="h2k">Là où on a <span class="key">déjà livré</span></h2>
+    <p class="sec-sub">Neuf secteurs, des références dans chacun.</p>
   </div>
   <div class="tiles" id="tiles-sectors"></div>
 </section>
@@ -361,9 +351,9 @@
 <!-- grille complète filtrable -->
 <section class="disc wrap" id="tous-les-cas">
   <div class="sec-head">
-    <div class="kicker">Tous les cas clients</div>
-    <h2 class="h2k">46 études de cas, <span class="key">zéro storytelling inventé</span></h2>
-    <p class="sec-sub">Chaque carte relie un outil, un secteur et un résultat mesuré. Les filtres se combinent.</p>
+    <div class="kicker">Nos réalisations</div>
+    <h2 class="h2k">Tous les <span class="key">cas clients</span></h2>
+    <p class="sec-sub">46 études de cas publiées, chacune avec son résultat mesuré.</p>
   </div>
   <div class="filterbar" id="filterbar"></div>
   <div class="cgrid" id="cgrid"></div>
@@ -657,14 +647,12 @@ const byType = id => CASES.filter(c=>c.t===id);
 const bySector = id => CASES.filter(c=>c.s===id);
 
 function tileHTML(kind, item, cases, i){
-  const star = cases[0];
-  const starTxt = star ? `<div class="star">Projet vedette : <b>${star.who}</b> — ${star.m} ${star.ml}</div>` : '<div class="star">Pas encore de cas publié — soyez le premier.</div>';
-  const probs = kind==='type' ? item.probs : (PROBLEMS[item.id]||[]).slice(0,3);
+  const names = cases.slice(0,4).map(c=>c.who.split(' — ')[0]).join(' · ') + (cases.length>4 ? ' …' : '');
+  const sub = cases.length ? `<div class="tnames">${names}</div>` : '<div class="tnames">Bientôt</div>';
   return `<button class="tile c${i%4}" data-kind="${kind}" data-id="${item.id}">
-    <div class="trow"><span class="tname">${item.tile}</span><span class="count">${cases.length} cas</span></div>
-    ${starTxt}
-    <div class="pchips">${probs.map(p=>`<span class="pchip">✕ ${p}</span>`).join('')}</div>
-    <span class="go">Voir les cas →</span>
+    <div class="trow"><span class="tname">${item.tile}</span><span class="count">${cases.length}</span></div>
+    ${sub}
+    <span class="go">Voir les cas <span class="arr">→</span></span>
   </button>`;
 }
 document.getElementById('tiles-types').innerHTML = TYPES.map((t,i)=>tileHTML('type',t,byType(t.id),i)).join('');
@@ -677,12 +665,8 @@ document.querySelectorAll('.tile').forEach(el=>{
 let filter={type:null,sector:null};
 function cardHTML(c){
   const t=TYPES.find(x=>x.id===c.t), s=SECTORS.find(x=>x.id===c.s);
-  const chips = `<div class="chips">
-    ${t?`<span class="chip-t">${t.tile}</span>`:''}
-    ${s?`<span class="chip-s">${s.tile}</span>`:''}
-    ${c.dur?`<span class="chip-d">⚡ ${c.dur}</span>`:''}
-  </div>`;
-  const inner = `${chips}<div class="cwho">${c.who}</div><div class="cdid">${c.did}</div>
+  const meta = [t&&t.tile, s&&s.tile, c.dur&&`<span class="cd">⚡ ${c.dur}</span>`].filter(Boolean).join(' · ');
+  const inner = `<div class="cmeta">${meta}</div><div class="cwho">${c.who}</div><div class="cdid">${c.did}</div>
     <div class="cmetric"><span class="cm">${c.m}</span><span class="cml">${c.ml}</span></div>`;
   if(c.enriched) return `<a class="ccard enriched" onclick="goCase();return false" href="#etude-tekabois">${inner}</a>`;
   return `<a class="ccard" href="${URL_CASE(c.slug)}" target="_blank" rel="noopener">${inner}</a>`;
