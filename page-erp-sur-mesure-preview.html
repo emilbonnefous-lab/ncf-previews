@@ -23,33 +23,35 @@
     - Zéro tiret cadratin dans la copy (marqueur IA)
   ============================================================================
 -->
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
   :root{
-    --cream:oklch(0.968 0.006 90);
-    --cream-deep:oklch(0.945 0.009 90);
-    --card:oklch(0.995 0.003 95);
-    --ink:oklch(0.205 0.012 80);
-    --ink-2:oklch(0.44 0.015 75);
-    --ink-3:oklch(0.58 0.012 75);
-    --hair:oklch(0.905 0.008 85);
-    --hair-2:oklch(0.86 0.01 85);
-    --org:oklch(0.646 0.192 41);        /* accent thématique (variabilisable par catégorie) */
-    --org-deep:oklch(0.55 0.17 41);
-    --org-soft:oklch(0.94 0.04 55);
-    --yel:oklch(0.86 0.17 92);          /* jaune NCF */
-    --yel-deep:oklch(0.78 0.16 88);
-    --grn:oklch(0.62 0.13 155);
-    --grn-soft:oklch(0.94 0.05 155);
+    --cream:#f9f8f6;
+    --cream-deep:#f1efeb;
+    --card:#ffffff;
+    --ink:#060110;
+    --ink-2:#4b4658;
+    --ink-3:#6b6375;
+    --hair:#e9e6e1;
+    --hair-2:#d9d5cd;
+    --org:#8b7bf0;        /* accent thématique (variabilisable par catégorie) */
+    --org-deep:#6a55e0;
+    --org-soft:#efecfd;
+    --yel:#ffca64;          /* jaune NCF */
+    --yel-deep:#f5b83d;
+    --grn:#027a48;
+    --grn-soft:#f1fbed;
     --red:oklch(0.6 0.17 25);
     --red-soft:oklch(0.94 0.04 25);
     --amb:oklch(0.72 0.14 75);
-    --dark:oklch(0.185 0.012 80);
-    --dark-2:oklch(0.24 0.014 80);
-    --sans:"General Sans","Segoe UI",sans-serif;
-    --disp:"Clash Display",var(--sans);
-    --r-lg:26px; --r-md:18px; --r-sm:12px;
+    --dark:#1e1a28;
+    --dark-2:#302842;
+    --sans:"Fff Acidgrotesk",Arial,sans-serif;
+    --disp:var(--sans);
+    --r-lg:20px; --r-md:16px; --r-sm:12px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
@@ -61,6 +63,7 @@
   /* ===== rainbow + nav ===== */
   .rainbow{height:5px;background:linear-gradient(90deg,#e5484d,#f76b15,#ffd23f,#46a758,#0090ff,#8e4ec6,#e93d82)}
   .nav{background:var(--card);border-bottom:1px solid var(--hair);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand img{height:24px;width:auto;display:block}
   .brand{font-size:20px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
   .brand b{font-weight:700;font-style:italic}
   .nav .links{display:flex;gap:26px;font-size:15px;color:var(--ink-2)}
@@ -298,7 +301,7 @@
 <div class="rainbow"></div>
 
 <nav class="nav">
-  <div class="brand">Nocode<b>Factory</b></div>
+  <div class="brand"><img alt="Nocode Factory" src="data:image/png;base64,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"></div>
   <div class="links"><span>Services</span><span>Cas clients</span><span>L'agence</span><span>Ressources</span></div>
   <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="arr">→</span></a>
 </nav>
