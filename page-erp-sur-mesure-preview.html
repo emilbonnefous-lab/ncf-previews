@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP sur mesure : un logiciel qui épouse vos process (pas l'inverse) | Nocode Factory · ÉPREUVE</title>
+<meta name="description" content="Votre ERP standard vous force à changer vos méthodes, ou vous jonglez entre plusieurs outils et des Excel qui font le lien ? Comparatif des 4 options (ERP éditeur, open-source, assemblage SaaS, sur-mesure), les pièges à éviter, et la solution qui suit vos process.">
+<!--
+  ============================================================================
+  MATRICE — Page SOLUTION Nocode Factory (gabarit réutilisable, famille /solutions/)
+  Instance : ERP sur mesure · slug /solutions/erp-sur-mesure
+  Dérivée de page-cbn-preview.html (validée Vincent 19/20, 07/09/2026).
+  Variables à changer d'une page /solutions/ à l'autre :
+    {SOLUTION}   = nom du logiciel visé (ERP, CRM, facturation…)
+    {REQUÊTE}    = requête SEO cible ("erp sur mesure")
+    {DOULEUR}    = douleur centrale du buyer (jongler entre outils + Excel qui lient)
+    {4 OPTIONS}  = les 4 chemins comparés honnêtement (dont la 4e = sur-mesure NCF)
+    {MAILLAGE}   = 3-4 tuiles voisines de la même catégorie + Supabase
+    {--org}      = accent thématique (variabilisable par catégorie ; ici identique CBN)
+  Règles NCF encodées (NE PAS RETIRER) :
+    - AUCUN prix NCF chiffré publié (pricing à la tête du client) → "sur mesure, lui aussi"
+    - AUCUN cas client inventé (pas de preuve ERP à ce jour → 0 logo, 0 chiffre maquillé)
+    - Zéro tiret cadratin dans la copy (marqueur IA)
+  ============================================================================
+-->
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:oklch(0.968 0.006 90);
+    --cream-deep:oklch(0.945 0.009 90);
+    --card:oklch(0.995 0.003 95);
+    --ink:oklch(0.205 0.012 80);
+    --ink-2:oklch(0.44 0.015 75);
+    --ink-3:oklch(0.58 0.012 75);
+    --hair:oklch(0.905 0.008 85);
+    --hair-2:oklch(0.86 0.01 85);
+    --org:oklch(0.646 0.192 41);        /* accent thématique (variabilisable par catégorie) */
+    --org-deep:oklch(0.55 0.17 41);
+    --org-soft:oklch(0.94 0.04 55);
+    --yel:oklch(0.86 0.17 92);          /* jaune NCF */
+    --yel-deep:oklch(0.78 0.16 88);
+    --grn:oklch(0.62 0.13 155);
+    --grn-soft:oklch(0.94 0.05 155);
+    --red:oklch(0.6 0.17 25);
+    --red-soft:oklch(0.94 0.04 25);
+    --amb:oklch(0.72 0.14 75);
+    --dark:oklch(0.185 0.012 80);
+    --dark-2:oklch(0.24 0.014 80);
+    --sans:"General Sans","Segoe UI",sans-serif;
+    --disp:"Clash Display",var(--sans);
+    --r-lg:26px; --r-md:18px; --r-sm:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:120px}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:17px;line-height:1.65}
+  ::selection{background:var(--yel);color:var(--ink)}
+  img{max-width:100%}
+  a{color:inherit}
+
+  /* ===== bandeau épreuve interne ===== */
+  .proof{background:var(--dark);color:oklch(0.9 0.01 90);font-size:11px;letter-spacing:.1em;font-weight:600;text-transform:uppercase;padding:6px 18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .proof b{color:var(--yel)}
+
+  /* ===== rainbow + nav ===== */
+  .rainbow{height:5px;background:linear-gradient(90deg,#e5484d,#f76b15,#ffd23f,#46a758,#0090ff,#8e4ec6,#e93d82)}
+  .nav{background:var(--card);border-bottom:1px solid var(--hair);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand{font-size:20px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+  .brand b{font-weight:700;font-style:italic}
+  .nav .links{display:flex;gap:26px;font-size:15px;color:var(--ink-2)}
+  @media(max-width:860px){.nav .links{display:none}}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15.5px;text-decoration:none;border-radius:999px;padding:12px 22px;transition:transform .25s cubic-bezier(.19,1,.22,1),box-shadow .25s cubic-bezier(.19,1,.22,1)}
+  .btn-dark{background:var(--ink);color:var(--card)}
+  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px oklch(0.2 0.01 80/.55)}
+  .btn-line{border:1.5px solid var(--hair-2);background:var(--card)}
+  .btn-line:hover{border-color:var(--ink)}
+  .btn-yel{background:var(--yel);color:var(--ink);font-weight:700}
+  .btn-yel:hover{transform:translateY(-2px);box-shadow:0 12px 28px -12px oklch(0.75 0.15 90/.7)}
+  .btn .arr{transition:transform .25s cubic-bezier(.19,1,.22,1)}
+  .btn:hover .arr{transform:translateX(3px)}
+
+  /* ===== sub-nav ancres ===== */
+  .subnav{position:sticky;top:0;z-index:50;background:color-mix(in oklch,var(--card) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair);padding:10px clamp(18px,4vw,44px);display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav .pagename{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px;margin-right:10px;white-space:nowrap}
+  .subnav .pagename .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--yel);display:grid;place-items:center;font-size:13px;font-weight:700}
+  .subnav a{font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:7px 13px;border-radius:999px;white-space:nowrap;border:1px solid transparent;transition:all .2s}
+  .subnav a:hover{background:var(--cream-deep)}
+  .subnav a.on{background:var(--card);border-color:var(--hair-2);color:var(--ink);font-weight:600;box-shadow:0 1px 4px oklch(0.2 0.01 80/.06)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+  .narrow{max-width:780px;margin:0 auto}
+
+  /* ===== hero ===== */
+  .hero{padding:clamp(44px,7vw,88px) 0 clamp(40px,6vw,72px)}
+  .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+  @media(max-width:940px){.hero .grid{grid-template-columns:1fr}}
+  .hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--org-deep);background:var(--org-soft);border-radius:999px;padding:7px 14px;margin-bottom:26px}
+  h1{font-family:var(--disp);font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
+  h1 .hl{color:var(--org)}
+  .hero .sub{font-size:clamp(17px,1.9vw,19.5px);color:var(--ink-2);margin:24px 0 32px;max-width:54ch}
+  .hero .meta{margin-top:22px;font-size:14px;color:var(--ink-3)}
+  .hero .meta b{color:var(--ink)}
+
+  /* mockup navigateur */
+  .browser{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);box-shadow:0 30px 70px -30px oklch(0.25 0.02 60/.35);overflow:hidden}
+  .browser .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--hair)}
+  .browser .dot{width:10px;height:10px;border-radius:50%}
+  .browser .url{margin:0 auto;font-size:11.5px;color:var(--ink-3);background:var(--cream);border:1px solid var(--hair);border-radius:999px;padding:3px 14px}
+  .app{display:grid;grid-template-columns:46px 1fr;background:var(--cream)}
+  .app .side{background:var(--dark);display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0}
+  .app .side i{width:20px;height:20px;border-radius:6px;background:var(--dark-2);display:block}
+  .app .side i.on{background:var(--org)}
+  .app .main{padding:14px}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+  .kpi{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:9px 11px}
+  .kpi .v{font-family:var(--disp);font-weight:700;font-size:19px;line-height:1.1}
+  .kpi .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+  .kpi.warn .v{color:var(--org-deep)}
+  .alerts{background:var(--card);border:1px solid var(--hair);border-radius:10px;overflow:hidden;font-size:11px}
+  .alerts .h{display:grid;grid-template-columns:1.4fr .7fr .8fr .9fr;padding:7px 11px;background:var(--dark);color:oklch(0.85 0.01 90);font-weight:600;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+  .alerts .r{display:grid;grid-template-columns:1.4fr .7fr .8fr .9fr;padding:7px 11px;border-top:1px solid var(--hair);align-items:center}
+  .alerts .r b{font-weight:600}
+  .chip{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.05em;border-radius:999px;padding:2px 8px;width:max-content}
+  .chip.adv{background:var(--org-soft);color:var(--org-deep)}
+  .chip.cre{background:var(--red-soft);color:var(--red)}
+  .chip.rec{background:var(--grn-soft);color:var(--grn)}
+  .browser .cap{font-size:11.5px;color:var(--ink-3);text-align:center;padding:9px;border-top:1px solid var(--hair);background:var(--card)}
+
+  /* ===== sections ===== */
+  section{padding:clamp(48px,7vw,96px) 0}
+  .sec-head{text-align:center;max-width:820px;margin:0 auto clamp(30px,4vw,52px)}
+  .sec-head .k{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:16px}
+  h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.4vw,48px);line-height:1.08;letter-spacing:-.018em;text-wrap:balance}
+  h2 .hl{color:var(--org)}
+  .sec-head .lede{font-size:17.5px;color:var(--ink-2);margin-top:18px;max-width:58ch;margin-left:auto;margin-right:auto}
+
+  /* réponse courte (AEO) */
+  .short{position:relative;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:24px 28px;max-width:680px;margin:34px auto 0;font-size:16.5px;text-align:left}
+  .short .tag{position:absolute;top:-13px;left:22px;background:var(--yel);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--ink)}
+
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px)}
+  .card h3{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.01em;margin-bottom:6px}
+  .card .sub3{font-size:15px;color:var(--ink-3);margin-bottom:18px}
+
+  /* avis NCF */
+  .avis{border-left:4px solid var(--yel-deep);padding-left:clamp(20px,3vw,34px)}
+  .avis .who{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--org-deep);margin-bottom:16px}
+  .avis .big{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3vw,33px);line-height:1.22;letter-spacing:-.014em;margin-bottom:22px;text-wrap:balance}
+  .avis p{color:var(--ink-2);max-width:64ch;margin-bottom:14px}
+  .avis p strong{color:var(--ink);background:linear-gradient(transparent 62%,var(--yel) 62% 94%,transparent 94%)}
+
+  /* quiz */
+  .quiz .roles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+  @media(max-width:820px){.quiz .roles{grid-template-columns:repeat(2,1fr)}}
+  .role{background:var(--cream);border:1.5px solid var(--hair-2);border-radius:var(--r-sm);padding:16px 14px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;text-align:left;transition:all .2s;line-height:1.35}
+  .role small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:3px}
+  .role:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .role.sel{background:var(--ink);color:var(--card);border-color:var(--ink)}
+  .role.sel small{color:oklch(0.72 0.01 90)}
+  .verdict{display:none;margin-top:22px;background:var(--org-soft);border-radius:var(--r-md);padding:22px 26px;font-size:16px}
+  .verdict.show{display:block;animation:pop .45s cubic-bezier(.19,1,.22,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .verdict b{font-weight:700}
+  .verdict .go{display:inline-flex;margin-top:14px;font-size:14.5px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:1px}
+
+  /* diagnostic ✓ / ✕ */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px)}
+  @media(max-width:820px){.split{grid-template-columns:1fr}}
+  .tick{list-style:none}
+  .tick li{display:flex;gap:14px;padding:14px 0;border-bottom:1.5px dotted var(--hair-2);font-size:15.5px;color:var(--ink-2)}
+  .tick li:last-child{border-bottom:none}
+  .tick li b{color:var(--ink);font-weight:600}
+  .tick .ico{flex:0 0 24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:1px}
+  .tick.ok .ico{background:var(--grn-soft);color:var(--grn)}
+  .tick.no .ico{background:var(--red-soft);color:var(--red)}
+
+  /* flux C1→C4 */
+  .flux{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:940px){.flux{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.flux{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1.5px solid var(--hair);border-radius:var(--r-md);padding:20px;cursor:pointer;text-align:left;font:inherit;transition:all .22s cubic-bezier(.19,1,.22,1);position:relative}
+  .step:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 14px 30px -18px oklch(0.2 0.01 80/.4)}
+  .step .n{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--org-deep)}
+  .step .t{font-weight:700;font-size:16.5px;margin:7px 0 4px;line-height:1.25}
+  .step .s{font-size:13.5px;color:var(--ink-3);line-height:1.45}
+  .step .state{position:absolute;top:16px;right:16px}
+  .step.open{border-color:var(--ink);background:var(--cream)}
+  .flux-detail{display:none;margin-top:16px;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:24px 28px;font-size:16px;color:var(--ink-2)}
+  .flux-detail.show{display:block;animation:pop .4s cubic-bezier(.19,1,.22,1)}
+  .flux-detail b{color:var(--ink)}
+  .postit{display:inline-block;background:var(--yel);font-size:13.5px;font-weight:700;padding:3px 10px;transform:rotate(-1.2deg);box-shadow:2px 2px 0 oklch(0.2 0.01 80/.25)}
+
+  /* tableau options */
+  .tblcard{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(10px,2vw,22px);overflow:hidden}
+  .tblscroll{overflow-x:auto}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;min-width:860px}
+  thead th{background:var(--dark);color:var(--card);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:14px 16px}
+  thead th:first-child{border-radius:12px 0 0 12px}
+  thead th:last-child{border-radius:0 12px 12px 0;background:var(--org-deep)}
+  tbody td{padding:14px 16px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--ink-2)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;font-size:13.5px}
+  tbody td:last-child{background:var(--org-soft);color:var(--ink)}
+  .pull{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,26px);line-height:1.32;letter-spacing:-.012em;max-width:34ch;margin:clamp(28px,4vw,44px) auto 0;text-align:center;text-wrap:balance}
+  .pull mark{background:linear-gradient(transparent 58%,var(--yel) 58% 96%,transparent 96%);color:inherit;padding:0 2px}
+
+  /* spec sur-mesure */
+  .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px)}
+  @media(max-width:940px){.spec-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.spec-grid{grid-template-columns:1fr}}
+  .spec{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);padding:24px}
+  .spec .num{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--org-deep);letter-spacing:.06em}
+  .spec b{display:block;font-size:16.5px;font-weight:700;margin:8px 0 6px;line-height:1.3}
+  .spec p{font-size:14.5px;color:var(--ink-2)}
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px);margin-bottom:clamp(36px,5vw,60px)}
+  @media(max-width:940px){.why{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.why{grid-template-columns:1fr}}
+  .why div{border-top:3px solid var(--org);padding:16px 4px 0}
+  .why b{display:block;font-family:var(--disp);font-weight:600;font-size:17.5px;margin-bottom:6px;line-height:1.3}
+  .why p{font-size:14.5px;color:var(--ink-2)}
+  .h3-mid{font-family:var(--disp);font-weight:600;font-size:clamp(21px,2.6vw,27px);letter-spacing:-.01em;text-align:center;margin-bottom:8px}
+  .lede-mid{font-size:16px;color:var(--ink-2);text-align:center;max-width:58ch;margin:0 auto clamp(24px,3vw,36px)}
+
+  /* coût marché */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,20px);margin-top:clamp(16px,2vw,24px)}
+  @media(max-width:860px){.duo{grid-template-columns:1fr}}
+  .hazard{border:2px solid var(--ink);border-radius:var(--r-md);overflow:hidden;background:var(--card)}
+  .hazard .strip{height:12px;background:repeating-linear-gradient(-45deg,var(--yel) 0 14px,var(--ink) 14px 28px)}
+  .hazard .in{padding:22px 26px;font-size:15.5px;color:var(--ink-2)}
+  .hazard .in b{color:var(--ink)}
+
+  /* calculateur temps */
+  .calc{background:var(--dark);color:var(--card);border-radius:var(--r-lg);padding:clamp(26px,3.6vw,44px);margin-top:clamp(16px,2vw,24px)}
+  .calc .grid{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,4vw,56px);align-items:center}
+  @media(max-width:820px){.calc .grid{grid-template-columns:1fr}}
+  .calc h3{font-family:var(--disp);font-weight:600;font-size:22px;margin-bottom:6px}
+  .calc .note{font-size:13.5px;color:oklch(0.68 0.012 85);margin-top:14px;max-width:44ch}
+  .calc label{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.72 0.012 85);margin:22px 0 10px}
+  .calc input[type=range]{width:100%;max-width:380px;accent-color:var(--yel);cursor:pointer}
+  .calc output{font-weight:700;color:var(--yel);font-size:15px;margin-left:10px}
+  .calc .res{text-align:center;background:var(--dark-2);border-radius:var(--r-md);padding:28px 36px}
+  .calc .res .v{font-family:var(--disp);font-weight:700;font-size:clamp(40px,5vw,58px);color:var(--yel);line-height:1}
+  .calc .res .l{font-size:13.5px;color:oklch(0.72 0.012 85);margin-top:8px;max-width:22ch}
+
+  /* méthode */
+  .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px);counter-reset:m}
+  @media(max-width:940px){.steps4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.steps4{grid-template-columns:1fr}}
+  .m-step{counter-increment:m;background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);padding:26px 22px}
+  .m-step::before{content:"0" counter(m);font-family:var(--disp);font-weight:700;font-size:30px;color:var(--org);display:block;margin-bottom:12px}
+  .m-step b{display:block;font-size:16.5px;margin-bottom:6px}
+  .m-step small{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .m-step p{font-size:14.5px;color:var(--ink-2);margin-top:6px}
+
+  /* chatgpt */
+  .gpt{display:grid;gap:14px;max-width:780px;margin:0 auto}
+  .bubble-q{justify-self:end;background:var(--dark);color:var(--card);border-radius:18px 18px 4px 18px;padding:13px 20px;font-size:15px;max-width:80%}
+  .bubble-a{justify-self:start;background:var(--card);border:1px solid var(--hair);border-radius:18px 18px 18px 4px;padding:16px 22px;font-size:15px;color:var(--ink-2);max-width:88%}
+  .bubble-a b{color:var(--ink)}
+
+  /* expertise */
+  .exp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px)}
+  @media(max-width:820px){.exp{grid-template-columns:1fr}}
+  .exp .stamp{width:52px;height:52px;border-radius:14px;background:var(--yel);display:grid;place-items:center;font-weight:700;font-size:16px;transform:rotate(-3deg);margin-bottom:16px}
+  .exp ul{list-style:none;margin-top:10px}
+  .exp li{padding:9px 0 9px 24px;position:relative;font-size:15px;color:var(--ink-2);border-bottom:1.5px dotted var(--hair-2)}
+  .exp li:last-child{border-bottom:none}
+  .exp li::before{content:"→";position:absolute;left:0;color:var(--org-deep);font-weight:700}
+
+  /* FAQ */
+  .faq{max-width:780px;margin:0 auto}
+  .faq details{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden}
+  .faq summary{list-style:none;cursor:pointer;padding:19px 56px 19px 24px;font-weight:600;font-size:16.5px;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:22px;top:50%;translate:0 -50%;font-size:24px;font-weight:400;color:var(--org-deep);transition:transform .25s cubic-bezier(.19,1,.22,1)}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{padding:0 24px 20px;color:var(--ink-2);font-size:15.5px;max-width:66ch}
+
+  /* CTA final */
+  .final{background:var(--dark);border-radius:var(--r-lg);color:var(--card);padding:clamp(36px,5vw,64px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center}
+  @media(max-width:860px){.final{grid-template-columns:1fr}}
+  .final h2{color:var(--card);font-size:clamp(28px,3.8vw,42px)}
+  .final p{color:oklch(0.72 0.012 85);margin-top:16px;max-width:46ch;font-size:16.5px}
+  .final .hand{position:relative;white-space:nowrap}
+  .final .hand::after{content:"";position:absolute;left:-2%;right:-2%;bottom:1px;height:7px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 6 Q 30 1 60 5 T 118 3' fill='none' stroke='%23f2c11e' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%}
+  .final .box{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .final .after{font-size:13.5px;color:oklch(0.66 0.012 85)}
+  .final .alt{font-weight:600;font-size:15px;color:var(--card);text-decoration:none;border-bottom:2px solid var(--yel);padding-bottom:2px}
+
+  footer{padding:36px 0 44px;color:var(--ink-3);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* reveal on scroll */
+  @media(prefers-reduced-motion:no-preference){
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.19,1,.22,1),transform .7s cubic-bezier(.19,1,.22,1)}
+    .rv.in{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="proof"><span>Épreuve locale, non publiée</span><span>Matrice SOLUTION V1 · slug /solutions/erp-sur-mesure · <b>à faire valider Valentin</b></span></div>
+<div class="rainbow"></div>
+
+<nav class="nav">
+  <div class="brand">Nocode<b>Factory</b></div>
+  <div class="links"><span>Services</span><span>Cas clients</span><span>L'agence</span><span>Ressources</span></div>
+  <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="arr">→</span></a>
+</nav>
+
+<div class="subnav" id="subnav">
+  <span class="pagename"><span class="mark">▦</span>ERP sur mesure</span>
+  <a href="#definition" class="on">Définition</a>
+  <a href="#avis">L'avis NCF</a>
+  <a href="#pour-vous">Pour vous ?</a>
+  <a href="#mecanique">Pourquoi ça coince</a>
+  <a href="#options">Les 4 options</a>
+  <a href="#sur-mesure">Sur-mesure</a>
+  <a href="#cout">Coût</a>
+  <a href="#methode">Méthode</a>
+  <a href="#expertise">Expertise</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="kicker">■&nbsp; Logiciel métier · PME &amp; ETI</span>
+        <h1>ERP sur mesure&nbsp;: un logiciel qui <span class="hl">épouse vos process</span>, pas l'inverse</h1>
+        <p class="sub">Un ERP du marché vous force à changer vos méthodes, ou vous jonglez entre cinq outils et des Excel qui font le lien entre eux. Voici vos 4 options réelles, ce qu'elles coûtent, et comment choisir, même si vous ne travaillez pas avec nous.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-dark" href="#cta">J'ai un projet ERP <span class="arr">→</span></a>
+          <a class="btn btn-line" href="#options">Voir les 4 options</a>
+        </div>
+        <p class="meta">Aussi appelé <b>PGI</b> (progiciel de gestion intégré) · une base unique pour vos <b>ventes, achats, stocks, production</b> et <b>gestion</b></p>
+      </div>
+      <div class="browser rv">
+        <div class="bar">
+          <span class="dot" style="background:#e5484d"></span><span class="dot" style="background:#ffd23f"></span><span class="dot" style="background:#46a758"></span>
+          <span class="url">erp.votre-entreprise.fr</span>
+        </div>
+        <div class="app">
+          <div class="side"><i class="on"></i><i></i><i></i><i></i></div>
+          <div class="main">
+            <div class="kpis">
+              <div class="kpi"><div class="v">128</div><div class="l">Commandes en cours</div></div>
+              <div class="kpi warn"><div class="v">9</div><div class="l">À facturer en retard</div></div>
+              <div class="kpi"><div class="v">1</div><div class="l">Base, tous services</div></div>
+            </div>
+            <div class="alerts">
+              <div class="h"><span>Commande</span><span>Client</span><span>Étape</span><span>Statut</span></div>
+              <div class="r"><b>CMD-2041</b><span>Durand SA</span><span>Prod.</span><span class="chip adv">EN COURS</span></div>
+              <div class="r"><b>CMD-2038</b><span>Lemoine</span><span>Expédition</span><span class="chip rec">EXPÉDIÉ</span></div>
+              <div class="r"><b>CMD-2035</b><span>Ateliers B.</span><span>Facturation</span><span class="chip cre">À FACTURER</span></div>
+              <div class="r"><b>CMD-2033</b><span>Roy &amp; Fils</span><span>Achats</span><span class="chip adv">EN COURS</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="cap">Aperçu illustratif d'un ERP sur-mesure. Une seule donnée saisie, visible partout</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DÉFINITION (snippet-ready) ============ -->
+<section id="definition" style="padding-bottom:clamp(28px,4vw,48px)">
+  <div class="wrap narrow">
+    <span class="k" style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:14px">Définition</span>
+    <h2 style="font-size:clamp(24px,3vw,34px);margin-bottom:18px">Qu'est-ce qu'un ERP sur mesure&nbsp;?</h2>
+    <p style="color:var(--ink-2);max-width:66ch">Un ERP (<em>Enterprise Resource Planning</em>, ou progiciel de gestion intégré) est le logiciel central qui fait tenir ensemble vos <b style="color:var(--ink)">ventes, achats, stocks, production et gestion</b> dans une seule base de données&nbsp;: l'information saisie une fois circule dans tous les services, en temps réel. Un ERP <b style="color:var(--ink)">sur mesure</b> applique cette logique à vos process réels, au lieu de vous imposer le modèle d'un éditeur.</p>
+    <p style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,2vw,20px);line-height:1.5;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:20px 26px;margin-top:22px;max-width:none">Une base unique <span style="color:var(--org)">×</span> vos process <span style="color:var(--org)">×</span> tous vos services <span style="color:var(--org)">=</span> une donnée saisie une fois, visible partout</p>
+    <p style="font-size:14px;color:var(--ink-3);margin-top:12px">La différence avec un ERP standard tient en une phrase&nbsp;: c'est <a href="#mecanique" style="font-weight:600">l'outil qui s'adapte à vous</a>, pas vous qui rentrez dans ses cases.</p>
+  </div>
+</section>
+
+<!-- ============ AVIS NCF ============ -->
+<section id="avis" style="padding-top:clamp(20px,3vw,36px)">
+  <div class="wrap narrow">
+    <div class="avis rv">
+      <div class="who">★&nbsp; L'avis de Nocode Factory</div>
+      <p class="big">L'ERP est le logiciel le plus structurant d'une PME. Et le plus souvent subi.</p>
+      <p>Chez les dirigeants qui nous consultent, on retrouve presque toujours l'un de ces deux montages&nbsp;: un ERP du marché trop lourd, dont on n'active qu'une fraction et qu'on contourne avec des Excel, ou une constellation d'outils spécialisés reliés à la main, avec de la ressaisie partout.</p>
+      <p>Ça tient… jusqu'au jour où ça ne tient plus&nbsp;: un chiffre faux parce que l'info existe en trois versions, une commande perdue entre deux outils, ou une croissance bloquée par la tuyauterie.</p>
+      <p>ERP éditeur, ERP open-source, assemblage de SaaS&nbsp;: trois options qui vous demandent de rentrer dans leurs cases. <strong>Nous construisons la quatrième&nbsp;: celle qui suit vos process.</strong> Le diagnostic ci-dessous vous dit où vous en êtes, et par quoi commencer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POUR VOUS ? ============ -->
+<section id="pour-vous" style="background:var(--cream-deep)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Diagnostic</span>
+      <h2>Un ERP standard suffit-il <span class="hl">encore</span>&nbsp;?</h2>
+      <p class="lede">Répondez en 10 secondes&nbsp;: dites-nous qui vous êtes, on vous dit où regarder.</p>
+    </div>
+
+    <div class="card quiz rv" style="max-width:900px;margin:0 auto clamp(20px,3vw,32px)">
+      <h3>Quel est votre rôle&nbsp;?</h3>
+      <p class="sub3">Verdict immédiat, sans formulaire ni email.</p>
+      <div class="roles">
+        <button class="role" data-v="dg">Dirigeant<small>PME / ETI</small></button>
+        <button class="role" data-v="ops">Resp. opérations<small>ventes, achats, production</small></button>
+        <button class="role" data-v="daf">DAF / DSI<small>finance, systèmes</small></button>
+        <button class="role" data-v="sachant">Le «&nbsp;sachant&nbsp;» Excel<small>c'est vous qui reliez les outils</small></button>
+      </div>
+      <div class="verdict" id="v-dg"><b>Votre risque n'est pas l'outil, c'est la donnée en triple.</b> Quand la même information vit dans le CRM, dans un Excel et dans la compta, personne ne sait laquelle est vraie, et vous pilotez au ressenti. La bonne question du matin&nbsp;: «&nbsp;combien de fois saisit-on la même donnée chez nous&nbsp;?&nbsp;». La réponse décide de la suite.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+      <div class="verdict" id="v-ops"><b>Votre douleur, c'est la ressaisie et les trous entre outils.</b> Une commande qui se ressaisit du devis à la production, puis à la facturation&nbsp;: à chaque copie, une erreur possible et du temps perdu. La bonne question n'est pas «&nbsp;quel ERP&nbsp;» mais «&nbsp;qui s'adapte à qui&nbsp;»&nbsp;: vos process, ou ceux de l'éditeur.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+      <div class="verdict" id="v-daf"><b>Regardez deux lignes&nbsp;: les licences par utilisateur et les modules jamais activés.</b> Un ERP dont vous payez la suite entière pour n'en ouvrir qu'une partie est un coût mort qui grossit avec l'équipe. Avant de renouveler, faites le calcul d'amortissement face à un outil que vous possédez et qui ne facture pas au siège.<br><a class="go" href="#cta">Estimer mon projet →</a></div>
+      <div class="verdict" id="v-sachant"><b>Vous êtes la colonne vertébrale invisible du SI, et vous le savez.</b> Ce sont vos macros et vos exports qui font tenir l'ensemble&nbsp;; vos congés fragilisent toute la chaîne. Automatiser ne vous remplace pas&nbsp;: ça transforme votre tuyauterie en un vrai système, documenté, que l'entreprise ne peut plus perdre.<br><a class="go" href="#cta">Réserver un audit (30 min) →</a></div>
+    </div>
+
+    <div class="split" style="max-width:900px;margin:0 auto">
+      <div class="card rv">
+        <h3 style="color:var(--grn)">✓&nbsp; Faites du sur-mesure si…</h3>
+        <ul class="tick ok">
+          <li><span class="ico">✓</span><span>Vous jonglez entre <b>plusieurs logiciels</b> et des <b>Excel qui font le lien</b> entre eux.</span></li>
+          <li><span class="ico">✓</span><span>Vous <b>ressaisissez la même information</b> dans deux ou trois outils.</span></li>
+          <li><span class="ico">✓</span><span>Aucun ERP du marché ne colle&nbsp;: vous devez <b>tordre vos process</b> pour rentrer dedans.</span></li>
+          <li><span class="ico">✓</span><span>Votre métier a des <b>règles spécifiques</b> qui sont votre avantage, pas un détail à standardiser.</span></li>
+          <li><span class="ico">✓</span><span>Vos <b>licences par utilisateur</b> explosent à mesure que l'équipe grandit.</span></li>
+          <li><span class="ico">✓</span><span>Un ERP standard a <b>déjà été tenté puis abandonné</b>&nbsp;: trop lourd, jamais adopté.</span></li>
+        </ul>
+        <a class="btn btn-dark" href="#cta" style="margin-top:20px">Réserver un audit (30 min) <span class="arr">→</span></a>
+      </div>
+      <div class="card rv">
+        <h3 style="color:var(--red)">✕&nbsp; Gardez un ERP standard si…</h3>
+        <ul class="tick no">
+          <li><span class="ico">✕</span><span>Vos process sont <b>standards</b> (négoce classique, gestion simple)&nbsp;: un ERP du marché fait le travail.</span></li>
+          <li><span class="ico">✕</span><span>Vous voulez un outil <b>éprouvé</b>, avec des intégrateurs partout&nbsp;: un ERP open-source comme Odoo peut suffire.</span></li>
+          <li><span class="ico">✕</span><span>Vous <b>démarrez</b> et un SaaS tout-en-un couvre vos besoins pour deux ou trois ans.</span></li>
+          <li><span class="ico">✕</span><span>Vous n'avez <b>aucune règle métier</b> vraiment spécifique à préserver.</span></li>
+        </ul>
+        <p style="margin-top:20px;font-size:15px;color:var(--ink-2)">Vous vous reconnaissez ? Un ERP du marché bien choisi est le bon départ, et on vous le dira. <a href="#cta" style="font-weight:700">Parlons-en 30 minutes</a>, revenez le jour où il craque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉCANIQUE ============ -->
+<section id="mecanique">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Mécanique</span>
+      <h2>Pourquoi un ERP standard <span class="hl">ne rentre pas</span> dans vos process (ce n'est pas votre faute)</h2>
+      <p class="lede">Un progiciel généraliste bute presque toujours sur les mêmes quatre points. Cliquez sur chacun pour voir où ça coince.</p>
+    </div>
+
+    <div class="flux rv" role="tablist">
+      <button class="step" data-d="d1" role="tab"><span class="n">POINT 1</span><span class="state chip cre">ÇA COINCE</span><div class="t">Le paramétrage «&nbsp;infini&nbsp;»</div><div class="s">Promis illimité, jusqu'à vos vraies règles métier</div></button>
+      <button class="step" data-d="d2" role="tab"><span class="n">POINT 2</span><span class="state chip cre">COÛT MORT</span><div class="t">Les modules payés, pas utilisés</div><div class="s">Vous financez la suite entière, vous en ouvrez une partie</div></button>
+      <button class="step" data-d="d3" role="tab"><span class="n">POINT 3</span><span class="state chip adv">RESSAISIE</span><div class="t">Les Excel autour de l'outil</div><div class="s">Ce qui ne rentre pas déborde dans des tableurs</div></button>
+      <button class="step" data-d="d4" role="tab"><span class="n">POINT 4</span><span class="state chip adv">CAPTIF</span><div class="t">La dépendance à l'intégrateur</div><div class="s">La moindre évolution passe par un devis</div></button>
+    </div>
+    <div class="flux-detail" id="d1"><b>Le paramétrage a des limites, et elles tombent pile sur ce qui fait votre métier.</b> Tant que vos process ressemblent au modèle de l'éditeur, tout va bien. Le jour où votre règle de tarification, votre cycle de production ou votre logique de tournées sort du cadre prévu, on vous répond «&nbsp;développement spécifique&nbsp;»&nbsp;: cher, long, et fragile à chaque mise à jour.</div>
+    <div class="flux-detail" id="d2"><b>Vous payez la suite entière pour en utiliser une fraction.</b> Un ERP généraliste embarque des dizaines de modules pensés pour tous les secteurs. Vous en activez trois, vous financez les autres, à vie, via la licence. Et chaque siège supplémentaire ajoute au ticket, que l'utilisateur touche à trois écrans ou à trente.</div>
+    <div class="flux-detail" id="d3"><b>Ce que l'ERP ne sait pas faire finit toujours dans un tableur.</b> Un suivi que l'outil ne gère pas, un export retravaillé à la main, un fichier partagé «&nbsp;en attendant&nbsp;»&nbsp;: l'Excel repousse <em>autour</em> de l'ERP payé. Résultat, vous avez le coût d'un progiciel et les défauts d'un bricolage, avec un post-it <span class="postit">NE PAS MODIFIER L'ONGLET SYNTHÈSE</span></div>
+    <div class="flux-detail" id="d4"><b>Vous ne pouvez plus rien changer seul.</b> Ajouter un champ, un état, une règle&nbsp;: chaque évolution passe par l'intégrateur, avec son délai et son devis. L'outil censé vous rendre autonome vous rend dépendant, et votre roadmap avance au rythme de son planning, pas du vôtre.</div>
+  </div>
+</section>
+
+<!-- ============ OPTIONS ============ -->
+<section id="options" style="background:var(--cream-deep)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Comparatif</span>
+      <h2>Les 4 options pour <span class="hl">équiper votre gestion</span>, comparées honnêtement</h2>
+      <div class="short"><span class="tag">La réponse courte</span><b>ERP éditeur</b> si vos process sont standards et votre budget SI conséquent. <b>ERP open-source</b> (Odoo, Dolibarr) si vous acceptez son cadre en échange d'un écosystème large. <b>Assemblage de SaaS</b> pour démarrer vite. <b>Sur-mesure</b> si vos règles ne rentrent dans aucune case&nbsp;: c'est notre métier, et c'est loin d'être toujours la bonne réponse.</div>
+    </div>
+
+    <div class="tblcard rv">
+      <div class="tblscroll">
+        <table>
+          <thead><tr><th></th><th>ERP éditeur généraliste</th><th>ERP open-source (Odoo…)</th><th>Assemblage SaaS + automatisation</th><th>Application sur-mesure</th></tr></thead>
+          <tbody>
+            <tr><td>Coût d'entrée</td><td>Licences + intégration (devis obligatoire, très variable selon éditeur et périmètre)</td><td>Faible à modéré, mais l'adaptation à vos règles se paie en jours d'intégrateur</td><td>Faible&nbsp;: abonnements cumulés des outils</td><td>Sur mesure, lui aussi&nbsp;: il suit vos process et votre périmètre, pas une grille</td></tr>
+            <tr><td>Coût récurrent</td><td>Licence par utilisateur + maintenance éditeur</td><td>Hébergement + maintenance + modules payants</td><td>Somme des abonnements par outil et par siège, qui grimpe avec l'équipe</td><td>Run mensuel (hébergement + support), sans licence par utilisateur</td></tr>
+            <tr><td>Collé à vos process</td><td>Vous vous adaptez à lui</td><td>Partiellement, dans les limites de son modèle</td><td>Chaque outil impose le sien</td><td>Oui</td></tr>
+            <tr><td>Une seule base, pas de ressaisie</td><td>Oui, dans son périmètre</td><td>Oui, dans son périmètre</td><td>Non&nbsp;: liens et synchronisations à maintenir</td><td>Oui</td></tr>
+            <tr><td>Évolutif sans dépendre d'un tiers</td><td>Non (intégrateur pour tout)</td><td>Selon compétences internes</td><td>Fragile&nbsp;: chaque outil évolue de son côté</td><td>Oui (code documenté, réversible)</td></tr>
+            <tr><td>Délai de mise en route</td><td>Plusieurs mois à plus d'un an (projet SI)</td><td>Quelques mois</td><td>Quelques semaines</td><td>Premier module en production en 6-10 semaines</td></tr>
+            <tr><td>Bon choix quand…</td><td>Grosse PME/ETI, budget SI, process standardisables</td><td>Process proches du standard, équipe technique dispo</td><td>Démarrage, besoins simples, peu de volume</td><td>Règles métier spécifiques, plusieurs outils à unifier</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="pull rv">Le vrai critère n'est pas le prix, c'est <mark>qui s'adapte à qui</mark>. Si vos règles ne rentrent pas dans leurs cases, vous re-bricolerez des Excel <em>autour</em> de l'outil payé&nbsp;: le pire des deux mondes.</p>
+    <div class="rv" style="text-align:center;margin-top:28px"><a class="btn btn-dark" href="#cta">Estimer mon projet <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- ============ SUR-MESURE ============ -->
+<section id="sur-mesure">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Pourquoi sur-mesure</span>
+      <h2>La seule option qui <span class="hl">suit vos process</span></h2>
+    </div>
+    <div class="why rv">
+      <div><b>Le code vous appartient</b><p>Propriété totale, documentation, réversibilité écrites au contrat. Vous n'êtes jamais captifs d'un éditeur.</p></div>
+      <div><b>Pas de licence par siège</b><p>Ajoutez les ventes, les achats, la production, la direction&nbsp;: le coût ne dépend pas du nombre d'utilisateurs.</p></div>
+      <div><b>Vos process, pas ceux d'un éditeur</b><p>Vos règles de tarification, vos cycles, vos statuts&nbsp;: l'outil épouse votre organisation, pas l'inverse.</p></div>
+      <div><b>Vous ne payez que ce que vous utilisez</b><p>Les modules dont vous avez besoin, dans l'ordre de vos priorités. Zéro fonction payée et jamais ouverte.</p></div>
+      <div><b>En production module après module</b><p>On démarre par le point le plus douloureux, en production vite, puis on étend&nbsp;: pas de bascule «&nbsp;big bang&nbsp;».</p></div>
+      <div><b>Connecté à l'existant</b><p>Compta, banque, e-commerce, ancien ERP conservé le temps de la bascule&nbsp;: on se branche sur ce qui tourne déjà.</p></div>
+    </div>
+    <p class="h3-mid rv">Ce qu'on construit, concrètement</p>
+    <p class="lede-mid rv">Stack type&nbsp;: <a href="https://www.nocodefactory.fr/outils-nocode/supabase" style="font-weight:600">Supabase</a> + interface web. Une base unique, vos règles, connectée à vos outils actuels.</p>
+    <div class="spec-grid rv">
+      <div class="spec"><span class="num">01</span><b>On part de vos process réels</b><p>Pas d'un modèle imposé&nbsp;: on cartographie comment vous travaillez vraiment, puis l'outil se cale dessus.</p></div>
+      <div class="spec"><span class="num">02</span><b>Une base de données unique</b><p>La donnée saisie une fois (client, produit, commande) est visible partout, en temps réel. Fin de la ressaisie.</p></div>
+      <div class="spec"><span class="num">03</span><b>Les modules dans l'ordre de vos priorités</b><p>Ventes, stock, production, achats, facturation&nbsp;: on livre d'abord celui qui vous fait le plus mal.</p></div>
+      <div class="spec"><span class="num">04</span><b>Connecté à vos outils existants</b><p>Compta, banque, e-commerce, ERP legacy&nbsp;: on branche l'ensemble, sans tout remplacer d'un coup.</p></div>
+      <div class="spec"><span class="num">05</span><b>Multi-utilisateurs avec droits</b><p>Chaque service voit ce qui le concerne&nbsp;: les ventes leurs commandes, la prod ses ordres, la direction ses indicateurs.</p></div>
+      <div class="spec"><span class="num">06</span><b>Extensible sans limite</b><p>Un nouveau besoin (qualité, SAV, reporting) se construit sur la même base, sans reprendre à zéro.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COÛT ============ -->
+<section id="cout" style="background:var(--cream-deep)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Prix du marché</span>
+      <h2>Combien coûtent les solutions <span class="hl">du marché</span>&nbsp;?</h2>
+      <div class="short"><span class="tag">La réponse courte</span><b>ERP éditeur</b>&nbsp;: licences + intégration, devis obligatoire, très variable. <b>ERP open-source</b>&nbsp;: entrée basse, mais l'adaptation se paie en jours d'intégrateur. <b>Assemblage SaaS</b>&nbsp;: somme d'abonnements par siège qui grimpe avec l'équipe. <b>Sur-mesure</b>&nbsp;: ça dépend entièrement de vos process. Méfiez-vous de quiconque affiche un prix sans les avoir vus.</div>
+    </div>
+
+    <div class="duo">
+      <div class="card rv">
+        <h3>Le calcul d'amortissement à faire</h3>
+        <p style="color:var(--ink-2);font-size:15.5px">Des abonnements par utilisateur se paient tous les mois, pour toujours, sur des outils qui n'épousent pas vos règles, et le ticket grossit avec chaque embauche. Un sur-mesure s'amortit&nbsp;: vous investissez une fois, l'outil est à vous, le coût ne suit pas la taille de l'équipe. Comparez les deux sur 3 ans, devis en main&nbsp;: c'est exactement ce que le cadrage vous donne.</p>
+      </div>
+      <div class="hazard rv">
+        <div class="strip"></div>
+        <div class="in"><b>Méfiez-vous du «&nbsp;développement gratuit contre abonnement&nbsp;».</b> On rencontre régulièrement des dirigeants séduits par cette formule chez un indépendant… devenu injoignable six mois plus tard, code inaccessible, outil à l'abandon. Gratuit à l'entrée = captif à la sortie. Exigez toujours&nbsp;: <b>propriété du code, documentation, réversibilité.</b></div>
+      </div>
+    </div>
+
+    <div class="calc rv">
+      <div class="grid">
+        <div>
+          <h3>Et le temps de ressaisie que vous payez déjà&nbsp;?</h3>
+          <p style="color:oklch(0.72 0.012 85);font-size:15px">Réglez les curseurs sur votre situation réelle.</p>
+          <label>Heures de ressaisie et de rapprochement entre outils, par semaine<br>
+            <input type="range" id="c-h" min="1" max="20" step="1" value="8"><output id="o-h">8 h</output>
+          </label>
+          <label>Nombre de personnes concernées<br>
+            <input type="range" id="c-n" min="1" max="10" step="1" value="3"><output id="o-n">3</output>
+          </label>
+          <p class="note">Simple multiplication sur 47 semaines travaillées, aucune hypothèse cachée&nbsp;: refaites-la sur un coin de table.</p>
+        </div>
+        <div class="res">
+          <div class="v" id="c-res">161 j</div>
+          <div class="l">de travail rendus chaque année à vos équipes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section id="methode">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Méthode</span>
+      <h2>Comment on <span class="hl">travaille</span></h2>
+    </div>
+    <div class="steps4 rv">
+      <div class="m-step"><small>2-3 jours</small><b>Cadrage</b><p>Vos process réels, vos règles, vos priorités de modules, un chiffrage ferme.</p></div>
+      <div class="m-step"><small>6-10 semaines</small><b>Premier module</b><p>Le point le plus douloureux, en production, testé sur vos données live.</p></div>
+      <div class="m-step"><small>par lots</small><b>Extension</b><p>Les modules suivants s'ajoutent sur la même base, sans bascule brutale.</p></div>
+      <div class="m-step"><small>mensuel, résiliable</small><b>Run</b><p>Maintenance, évolutions, et vos prochains sujets sur la même fondation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CE QU'ON DEMANDE À CHATGPT (GEO) ============ -->
+<section style="background:var(--cream-deep)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">Les vraies questions</span>
+      <h2>Ce que vous demandez à <span class="hl">ChatGPT</span> à 22h47</h2>
+    </div>
+    <div class="gpt rv">
+      <div class="bubble-q">«&nbsp;alternative à SAP pour une PME&nbsp;»</div>
+      <div class="bubble-a"><b>SAP est rarement le bon outil pour une PME&nbsp;: trop lourd, trop cher, trop long.</b> Les vraies alternatives sont un ERP open-source comme Odoo si vos process sont proches du standard, ou une application sur-mesure si vos règles sont spécifiques. Le tri se fait sur une question&nbsp;: devez-vous vous adapter à l'outil, ou l'inverse&nbsp;? Voir <a href="#options" style="font-weight:600">le comparatif des 4 options</a>.</div>
+      <div class="bubble-q">«&nbsp;Odoo sur mesure ou développement spécifique&nbsp;»</div>
+      <div class="bubble-a"><b>Ce sont deux philosophies différentes.</b> Odoo part d'un socle riche que vous adaptez dans ses limites&nbsp;: excellent si vos besoins ressemblent au standard. Le développement sur-mesure part de vos process&nbsp;: pertinent quand vos règles sont votre avantage et sortent du cadre. La bascule se joue quand «&nbsp;l'adaptation d'Odoo&nbsp;» coûte plus que la valeur qu'elle vous rend. <a href="#sur-mesure" style="font-weight:600">Comment on tranche</a>.</div>
+      <div class="bubble-q">«&nbsp;combien coûte un ERP sur mesure&nbsp;»</div>
+      <div class="bubble-a"><b>Il n'y a pas de prix affichable sans avoir vu vos process.</b> Un ERP sur-mesure se chiffre par périmètre&nbsp;: le nombre de modules, vos règles, vos connexions à l'existant. Quiconque annonce un montant sans avoir cartographié votre organisation invente. <a href="#cout" style="font-weight:600">Voici comment on chiffre</a>, après un cadrage sur vos cas réels.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERTISE ============ -->
+<section id="expertise">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">D'où vient cette analyse</span>
+      <h2>L'expertise derrière <span class="hl">ce guide ERP</span></h2>
+    </div>
+    <div class="exp rv" style="max-width:900px;margin:0 auto">
+      <div class="card">
+        <div class="stamp">NCF</div>
+        <h3>L'équipe Nocode Factory</h3>
+        <p style="color:var(--ink-2);font-size:15px;margin-top:8px">170+ projets livrés, spécialistes des outils internes pour PME et ETI. Ce guide vient des SI qu'on a vus de près&nbsp;: les ERP jamais adoptés, les modules payés jamais ouverts, les constellations d'outils reliées à la main.</p>
+      </div>
+      <div class="card">
+        <h3>Notre méthodo</h3>
+        <ul>
+          <li>Le diagnostic «&nbsp;gardez un ERP standard&nbsp;» est publié aussi&nbsp;: un lecteur bien orienté aujourd'hui est un client dans 18 mois.</li>
+          <li>Aucun chiffre inventé&nbsp;: on ne donne un prix qu'après avoir vu vos process réels.</li>
+          <li>Pas de cas client ERP maquillé&nbsp;: on publiera le premier, chiffré, quand il sera en production.</li>
+          <li>Page mise à jour à chaque évolution de notre grille ou du marché.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="background:var(--cream-deep)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="k">FAQ</span>
+      <h2>Questions fréquentes sur <span class="hl">l'ERP sur mesure</span></h2>
+    </div>
+    <div class="faq rv">
+      <details><summary>ERP, PGI, CRM : quelle différence ?</summary><p>ERP (Enterprise Resource Planning) et PGI (progiciel de gestion intégré) désignent la même chose&nbsp;: le logiciel central qui unifie ventes, achats, stocks, production et gestion dans une seule base. Le CRM (gestion de la relation client) n'en couvre qu'une partie&nbsp;: la vente et le suivi commercial. Un CRM peut être un module de l'ERP, ou un outil à part qu'on y connecte.</p></details>
+      <details><summary>Faut-il tout remplacer d'un coup ?</summary><p>Non, et c'est même déconseillé. On démarre par le module le plus douloureux, en production en quelques semaines, puis on étend par lots. Votre ERP ou vos outils actuels restent en place le temps de la bascule&nbsp;: pas de «&nbsp;big bang&nbsp;» qui met l'entreprise à l'arrêt.</p></details>
+      <details><summary>Odoo ou Dolibarr, c'est déjà du sur-mesure, non ?</summary><p>Ce sont des ERP open-source&nbsp;: un socle riche que l'on adapte, dans les limites de son modèle. Tant que vos besoins ressemblent au standard, c'est souvent le bon choix, et on vous le dira. Le sur-mesure devient pertinent quand l'adaptation de ce socle coûte plus cher que la valeur qu'elle rend, ou quand vos règles sortent franchement du cadre prévu.</p></details>
+      <details><summary>En combien de temps a-t-on un premier module en production ?</summary><p>6 à 10 semaines pour un premier module utilisable sur un périmètre réduit. C'est un choix délibéré&nbsp;: un module utilisé à 80&nbsp;% en deux mois vaut mieux qu'un ERP complet parfait dans deux ans.</p></details>
+      <details><summary>Qui maintient l'ERP ensuite ?</summary><p>Nous, via un contrat de run mensuel résiliable, ou vous&nbsp;: le code est documenté, standard (Supabase / React), et récupérable par n'importe quel développeur. Vous n'êtes jamais captifs d'un prestataire unique.</p></details>
+      <details><summary>Notre prestataire actuel ne répond plus. Vous reprenez l'existant ?</summary><p>Oui, c'est même fréquent. On commence par un audit de reprise&nbsp;: accès, sauvegarde, état des lieux, puis décision reprise ou reconstruction selon l'état du code.</p></details>
+      <details><summary>Et la sécurité de nos données, la reprise de l'historique ?</summary><p>Hébergement européen, données chiffrées, accès par rôles, sauvegardes quotidiennes. On reprend votre historique depuis vos exports existants&nbsp;; vos données ne transitent par aucun service tiers non contractualisé.</p></details>
+      <details><summary>L'IA a-t-elle sa place dans un ERP sur mesure ?</summary><p>Oui, autour du cœur de gestion&nbsp;: recherche en langage naturel dans vos données, détection d'anomalies, aide à la saisie, résumé automatique. Le socle reste déterministe et vérifiable&nbsp;; l'IA accélère l'usage sans remplacer les règles de gestion.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="final rv">
+      <div>
+        <h2>On regarde vos process&nbsp;?</h2>
+        <p>Audit ERP de 30 minutes&nbsp;: on vous dit <span class="hand">honnêtement</span> laquelle des 4 options est la vôtre. Y compris si c'est «&nbsp;gardez un ERP standard&nbsp;».</p>
+      </div>
+      <div class="box">
+        <a class="btn btn-yel" href="#">Réserver un audit ERP (30 min) <span class="arr">→</span></a>
+        <a class="alt" href="#">Ou estimez votre projet →</a>
+        <span class="after">Gratuit, sans engagement. On répond sous 24 h.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Nocode<b style="font-style:italic">Factory</b> · outils internes pour PME &amp; ETI</span>
+  <span>Solutions liées&nbsp;: <a href="/solutions/crm-sur-mesure" style="font-weight:600">CRM sur mesure</a> · <a href="/solutions/logiciel-facturation-sur-mesure" style="font-weight:600">Facturation</a> · <a href="/solutions/logiciel-gestion-stock-sur-mesure" style="font-weight:600">Gestion de stock</a> · <a href="/solutions/logiciel-gestion-production-sur-mesure" style="font-weight:600">Production</a></span>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Qu'est-ce qu'un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Un ERP (Enterprise Resource Planning, ou progiciel de gestion intégré) est le logiciel central qui unifie ventes, achats, stocks, production et gestion dans une seule base de données. Un ERP sur mesure applique cette logique aux process réels de l'entreprise, au lieu d'imposer le modèle d'un éditeur : l'outil s'adapte à l'organisation, pas l'inverse."}},
+    {"@type":"Question","name":"ERP, PGI, CRM : quelle différence ?","acceptedAnswer":{"@type":"Answer","text":"ERP et PGI désignent la même chose : le logiciel central qui unifie ventes, achats, stocks, production et gestion. Le CRM ne couvre que la relation client et le suivi commercial : il peut être un module de l'ERP ou un outil connecté."}},
+    {"@type":"Question","name":"Faut-il tout remplacer d'un coup pour passer à un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Non. On démarre par le module le plus douloureux, en production en 6 à 10 semaines, puis on étend par lots. Les outils actuels restent en place le temps de la bascule, sans big bang."}},
+    {"@type":"Question","name":"Odoo est-il déjà du sur-mesure ?","acceptedAnswer":{"@type":"Answer","text":"Odoo est un ERP open-source : un socle que l'on adapte dans les limites de son modèle. Il convient quand les besoins sont proches du standard. Le développement sur-mesure devient pertinent quand l'adaptation du socle coûte plus que la valeur rendue, ou quand les règles métier sortent du cadre prévu."}},
+    {"@type":"Question","name":"Combien coûte un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Le prix dépend du périmètre : nombre de modules, règles métier, connexions à l'existant. Il se détermine après un cadrage sur les process réels. Un chiffre annoncé sans avoir vu l'organisation n'est pas fiable."}}
+  ]
+}
+</script>
+<script>
+  // quiz verdict
+  document.querySelectorAll('.role').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.role').forEach(x=>x.classList.remove('sel'));
+      document.querySelectorAll('.verdict').forEach(x=>x.classList.remove('show'));
+      b.classList.add('sel');
+      document.getElementById('v-'+b.dataset.v).classList.add('show');
+    });
+  });
+  // flux cliquable
+  document.querySelectorAll('.step').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const d=document.getElementById(b.dataset.d), was=d.classList.contains('show');
+      document.querySelectorAll('.step').forEach(x=>x.classList.remove('open'));
+      document.querySelectorAll('.flux-detail').forEach(x=>x.classList.remove('show'));
+      if(!was){b.classList.add('open');d.classList.add('show');}
+    });
+  });
+  // calculateur temps (47 semaines travaillées, journée de 7 h)
+  const h=document.getElementById('c-h'),n=document.getElementById('c-n');
+  function calc(){
+    document.getElementById('o-h').textContent=h.value+' h';
+    document.getElementById('o-n').textContent=n.value;
+    const days=Math.round(h.value*n.value*47/7);
+    document.getElementById('c-res').textContent=days+' j';
+  }
+  h.addEventListener('input',calc);n.addEventListener('input',calc);calc();
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  // scrollspy
+  const links=[...document.querySelectorAll('.subnav a')];
+  const spy=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));
+    }});
+  },{rootMargin:'-30% 0px -60% 0px'});
+  links.forEach(l=>{const t=document.querySelector(l.getAttribute('href'));if(t)spy.observe(t);});
+</script>
+</body>
+</html>
