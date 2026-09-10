@@ -18,6 +18,12 @@
   CTA final "Assez parlé" sur fond aurora.
   Retirés sur demande Emilien (10/09) : calculateur 3 ans, section cas
   clients (Pernod/Ligue 1) + stats.
+  v3.1 (10/09, post-veille) : auteur nommé Valentin Bert (⚠️ byline à
+  valider par Valentin avant publication), réponse directe en tête de
+  chaque H2 (AEO chunk-level), tableau TCO 3 ans à 4 scénarios (prix
+  publics Webflow uniquement, simple arithmétique), callout nuance
+  « Ce que le tableau ne dit pas », FAQ 6 → 11 questions, sommaire
+  répété en fin d'article.
   Règles NCF encodées (NE PAS RETIRER) :
     - AUCUN prix NCF chiffré publié (les seuls prix affichés = prix publics
       Webflow/Sanity, chacun sourcé ; source consultée le 09/09/2026)
@@ -190,6 +196,28 @@
   .genius{position:relative;background:var(--purple-pale);border:1px solid var(--purple-soft);border-radius:var(--r-sm);padding:24px 24px 20px;margin:34px 0 26px;font-size:15px;color:var(--grey)}
   .genius .sticker{position:absolute;top:-14px;left:18px;background:var(--purple-soft);color:var(--ink);font-weight:500;font-size:15px;padding:3px 12px;border-radius:4px;transform:rotate(-4deg)}
   .genius b{color:var(--ink)}
+  /* callout nuance (pattern "Sidenote" Ahrefs / "Attention" Yield) */
+  .warn{position:relative;background:#fff8ec;border:1px solid var(--yellow);border-radius:var(--r-sm);padding:24px 24px 20px;margin:34px 0 26px;font-size:15px;color:var(--grey)}
+  .warn .sticker{position:absolute;top:-14px;left:18px;background:var(--yellow);color:var(--ink);font-weight:500;font-size:15px;padding:3px 12px;border-radius:4px;transform:rotate(-4deg)}
+  .warn b{color:var(--ink)}
+
+  /* tableau TCO */
+  .tco{width:100%;border-collapse:collapse;font-size:14px;margin:22px 0 8px;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);overflow:hidden}
+  .tco th{background:var(--black);color:var(--ncf-beige);font-weight:500;text-align:left;padding:11px 14px;font-size:13px}
+  .tco td{padding:11px 14px;border-top:1px solid var(--hair);color:var(--grey);vertical-align:top}
+  .tco td:first-child{color:var(--ink);font-weight:500}
+  .tco td.num{white-space:nowrap;font-weight:500;color:var(--ink)}
+  .tco tr:nth-child(even) td{background:var(--beige)}
+  .tco tr.worst td{background:var(--pastel-pink)}
+  .tabcap{font-size:12.5px;color:var(--smoke);margin-bottom:16px}
+  @media(max-width:600px){.tco{display:block;overflow-x:auto}}
+
+  /* sommaire de fin (pattern Sanity) */
+  .endtoc{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);padding:20px 24px;margin:34px 0 10px}
+  .endtoc .t{font-weight:500;font-size:15px;margin-bottom:10px}
+  .endtoc a{display:block;font-size:14px;color:var(--grey);text-decoration:none;padding:5px 0}
+  .endtoc a:hover{color:var(--ink)}
+  .endtoc a::before{content:"↳ ";color:var(--smoke)}
 
   /* quiz (cartes pastel + glow) */
   .quizcard{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(20px,3vw,30px);margin:26px 0}
@@ -339,12 +367,13 @@
       </div>
     </div>
     <aside class="metacol">
-      <span class="m">⏱ <b>7 min</b> de lecture</span>
+      <span class="m">⏱ <b>8 min</b> de lecture</span>
       <span class="m">📅 Publié le <b>10 septembre 2026</b></span>
-      <span class="m">🔁 Mis à jour le <b>10 septembre 2026</b></span>
+      <span class="m">🔁 Mis à jour le <b>10 septembre 2026</b> · <i>revu à chaque annonce Webflow</i></span>
+      <!-- ⚠️ byline à valider par Valentin avant publication -->
       <div class="author">
-        <span class="av">NCF</span>
-        <span><b>L'équipe Nocode Factory</b><small>Agence no-code &amp; low-code</small></span>
+        <span class="av">VB</span>
+        <span><b>Valentin Bert</b><small>Fondateur, Nocode Factory</small></span>
       </div>
     </aside>
   </div>
@@ -383,9 +412,9 @@
           <a href="#reponse" class="on">La réponse courte</a>
           <a href="#cas">Votre site est-il concerné ?</a>
           <a href="#faits">Ce qui s'est réellement passé</a>
-          <a href="#cout">Ce que ça coûte vraiment</a>
+          <a href="#cout">Le vrai coût sur 3 ans</a>
           <a href="#appel">30 minutes pour situer votre cas</a>
-          <a href="#migrer">Migrer sans perdre le SEO</a>
+          <a href="#migrer">Quitter Webflow sans perdre le SEO</a>
           <a href="#methodo">D'où vient cette analyse</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -409,9 +438,9 @@
         <a href="#reponse">La réponse courte</a>
         <a href="#cas">Votre site est-il concerné ?</a>
         <a href="#faits">Ce qui s'est réellement passé</a>
-        <a href="#cout">Ce que ça coûte vraiment</a>
+        <a href="#cout">Le vrai coût sur 3 ans</a>
         <a href="#appel">30 minutes pour situer votre cas</a>
-        <a href="#migrer">Migrer sans perdre le SEO</a>
+        <a href="#migrer">Quitter Webflow sans perdre le SEO</a>
         <a href="#methodo">D'où vient cette analyse</a>
         <a href="#faq">FAQ</a>
       </details>
@@ -421,7 +450,7 @@
       <div class="short rv" id="reponse"><span class="tag">La réponse courte</span><b>Pourquoi des sites quittent Webflow&nbsp;?</b> Parce que la plateforme s'est restructurée deux fois en dix-huit mois (décembre 2024, mai 2026)&nbsp;: prix recomposés, fonctionnalités supprimées (Logic, User Accounts) et renvoyées vers des outils tiers payants, bande passante incluse réduite, montée en gamme assumée. Les sites à fort trafic, multilingues ou à comptes utilisateurs paient le plus&nbsp;; un CMS headless comme Sanity, dont le socle est gratuit, devient alors l'alternative naturelle.</div>
 
       <h2 id="cas" class="rv"><span class="lnk">🔗</span>Votre site est-il concerné&nbsp;?</h2>
-      <p class="rv">Avant les faits, le réflexe utile&nbsp;: situer votre cas. Cliquez sur ce qui vous décrit, le verdict s'affiche immédiatement, sans formulaire ni email.</p>
+      <p class="rv"><b>Pas forcément.</b> Le nouveau modèle tarifaire de mai 2026 fait des gagnants et des perdants, et les profils touchés sont identifiables&nbsp;: fort trafic, site multilingue, comptes utilisateurs ou automatisations, gros volumes CMS. Cliquez sur ce qui vous décrit, le verdict s'affiche immédiatement, sans formulaire ni email.</p>
 
       <div class="quizcard quiz rv">
         <h3>Qu'est-ce qui vous amène&nbsp;?</h3>
@@ -441,7 +470,7 @@
       </div>
 
       <h2 id="faits" class="rv"><span class="lnk">🔗</span>Où va Webflow&nbsp;? Ce qui s'est réellement passé</h2>
-      <p class="rv">Pas de procès d'intention&nbsp;: uniquement des annonces officielles et des prix publics, chacun avec sa source. À vous de juger la trajectoire.</p>
+      <p class="rv"><b>En deux ans, Webflow s'est repositionné en plateforme d'expérience marketing pour grandes équipes&nbsp;: deux refontes tarifaires, plusieurs fonctionnalités historiques supprimées, un investissement produit centré sur l'IA.</b> Pas de procès d'intention&nbsp;: uniquement des annonces officielles et des prix publics, chacun avec sa source. À vous de juger la trajectoire.</p>
 
       <div class="tl rv">
         <div class="tl-item">
@@ -476,9 +505,24 @@
         </div>
       </div>
 
-      <h2 id="cout" class="rv"><span class="lnk">🔗</span>Ce que ça coûte vraiment</h2>
-      <p class="rv">Le bon montant à regarder n'est pas l'abonnement Webflow seul. Un site Webflow d'entreprise cumule souvent le plan du site, le workspace, des add-ons (Localisation, Analyze, Optimize) et les outils tiers qui compensent les fonctionnalités supprimées&nbsp;: comptes utilisateurs, automatisations, traduction. Chacun a son abonnement, son paramétrage, son point de rupture.</p>
-      <p class="rv">Et ce loyer ne construit rien&nbsp;: au bout de trois ans, l'outil ne vous appartient toujours pas.</p>
+      <h2 id="cout" class="rv"><span class="lnk">🔗</span>Combien coûte vraiment un site Webflow sur 3 ans&nbsp;?</h2>
+      <p class="rv"><b>Bien plus que le prix affiché du plan.</b> Un site Webflow d'entreprise cumule le plan du site, le workspace, des add-ons (Localisation, Analyze, Optimize) et les outils tiers qui compensent les fonctionnalités supprimées&nbsp;: comptes utilisateurs, automatisations, traduction. Chacun a son abonnement, son paramétrage, son point de rupture. Quatre scénarios, calculés uniquement à partir des prix publics Webflow de mai 2026&nbsp;:</p>
+
+      <table class="tco rv">
+        <thead><tr><th>Profil de site</th><th>Composition (prix publics)</th><th>Par mois</th><th>Sur 3 ans</th></tr></thead>
+        <tbody>
+          <tr><td>Vitrine / blog, engagement annuel</td><td>Plan Premium 25&nbsp;$/mois</td><td class="num">25&nbsp;$</td><td class="num">900&nbsp;$</td></tr>
+          <tr><td>Vitrine / blog, facturation mensuelle</td><td>Plan Premium 39&nbsp;$/mois</td><td class="num">39&nbsp;$</td><td class="num">1&nbsp;404&nbsp;$</td></tr>
+          <tr><td>Site en 3 langues (2 langues ajoutées)</td><td>Premium 25&nbsp;$ + Localisation 9 à 29&nbsp;$/langue/mois</td><td class="num">43 à 83&nbsp;$</td><td class="num">1&nbsp;548 à 2&nbsp;988&nbsp;$</td></tr>
+          <tr class="worst"><td>Au-delà des plafonds Premium</td><td>Plan Team, contrat annuel</td><td class="num">2&nbsp;500&nbsp;$</td><td class="num">90&nbsp;000&nbsp;$</td></tr>
+        </tbody>
+      </table>
+      <p class="tabcap rv">Simple multiplication par 36 mois des prix publics Webflow (<a class="inl" href="https://webflow.com/blog/simplified-plans-and-updated-pricing-2026" target="_blank" rel="noopener">blog officiel, mai 2026</a>). Hors workspace, bande passante additionnelle et outils tiers&nbsp;: votre total réel est au-dessus.</p>
+
+      <div class="warn rv">
+        <span class="sticker">⚠️ Ce que le tableau ne dit pas</span>
+        Ce loyer n'achète rien&nbsp;: au bout de trois ans, l'outil ne vous appartient toujours pas. Mais soyons honnêtes dans l'autre sens aussi&nbsp;: <b>pour une partie des sites, le nouveau modèle est neutre, voire avantageux</b> (une agence citée par NoCode.Tech calcule que 9 de ses 14 sites clients y gagnent), et ce tableau n'inclut ni le coût d'une migration, ni le temps interne qu'elle demande. C'est exactement ce qu'on chiffre pendant l'appel.
+      </div>
 
       <div class="genius rv">
         <span class="sticker">L'idée de génie</span>
@@ -504,8 +548,8 @@
         </div>
       </div>
 
-      <h2 id="migrer" class="rv"><span class="lnk">🔗</span>Migrer sans perdre une ligne de SEO, c'est un métier</h2>
-      <p class="rv">Le jour où le calcul penche, la migration vers un CMS headless comme <b>Sanity</b> se fait sans sacrifier ce que votre site a construit&nbsp;: URLs conservées, redirections exhaustives, bascule progressive par reverse proxy, vérification page à page. Votre contenu devient accessible par API, votre site redevient du code qui vous appartient, et la traduction cesse d'être un abonnement par langue.</p>
+      <h2 id="migrer" class="rv"><span class="lnk">🔗</span>Peut-on quitter Webflow sans perdre son SEO&nbsp;?</h2>
+      <p class="rv"><b>Oui, à condition d'en faire un vrai projet&nbsp;: URLs conservées, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page.</b> Le jour où le calcul penche, la migration vers un CMS headless comme <b>Sanity</b> se fait sans sacrifier ce que votre site a construit. Votre contenu devient accessible par API, votre site redevient du code qui vous appartient, et la traduction cesse d'être un abonnement par langue.</p>
       <p class="rv"><a class="tlink" href="#" style="color:var(--pink-vif)">Voir comment on migre un site Webflow vers Sanity →</a></p>
 
       <div class="ctamobile sidecta rv">
@@ -536,6 +580,21 @@
         <details><summary>Pourquoi Sanity plutôt qu'un autre CMS ?</summary><p>Parce que c'est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées, prix publics sur sanity.io/pricing), que votre contenu y est accessible par API, et que le site devient du code sur-mesure qui vous appartient. Et parce que nous l'opérons déjà en production&nbsp;: on vous propose une stack qu'on pratique, pas une mode.</p></details>
         <details><summary>Combien de temps dure une migration, et combien ça coûte ?</summary><p>Ça dépend entièrement de votre site&nbsp;: nombre de pages et de collections, langues, intégrations, exigences SEO. C'est pour ça qu'on ne publie pas de prix ni de délai standard&nbsp;: le chiffrage se fait après avoir vu votre site, pas avant. Méfiez-vous de quiconque vous annonce un montant sans l'avoir regardé.</p></details>
         <details><summary>Qui gère le contenu après la migration ?</summary><p>Vos équipes, comme aujourd'hui. Sanity fournit une interface d'édition (le Studio) que l'on configure sur votre modèle de contenu, avec des rôles par profil. Les éditeurs qui utilisaient l'Editor Webflow retrouvent leurs marques rapidement, et l'interface s'adapte à vos usages puisqu'elle est configurable.</p></details>
+        <details><summary>Que se passe-t-il si je ne fais rien au renouvellement ?</summary><p>Votre site bascule automatiquement sur le plan Premium&nbsp;: Webflow a annoncé l'application du nouveau modèle aux sites existants à chaque renouvellement, à partir du 29 juin 2026 (blog officiel, mai 2026). Premier réflexe&nbsp;: retrouver votre date de renouvellement et vérifier si vous êtes en facturation mensuelle (39&nbsp;$/mois) ou annuelle (25&nbsp;$/mois), car l'écart sur trois ans dépasse 500&nbsp;$ pour un simple site vitrine.</p></details>
+        <details><summary>Puis-je rester sur Webflow et payer moins ?</summary><p>Souvent, oui. Trois pistes à vérifier avant toute migration&nbsp;: passer de la facturation mensuelle à l'annuelle (39 → 25&nbsp;$/mois sur Premium), faire l'inventaire des add-ons et outils tiers que vous payez sans les utiliser, et vérifier votre consommation réelle de bande passante. Rappel utile&nbsp;: une agence citée par NoCode.Tech calcule que 9 de ses 14 sites clients gagnent au nouveau modèle. Si c'est votre cas, restez.</p></details>
+        <details><summary>Webflow avait-il déjà changé ses prix avant mai 2026 ?</summary><p>Oui. En décembre 2024, Webflow avait déjà restructuré sa tarification autour de trois types de sièges, et annoncé au passage la fin de Logic et de User Accounts. La refonte de mai 2026 est donc la deuxième en dix-huit mois&nbsp;: c'est cette répétition, plus que chaque hausse prise isolément, qui pose la question de la prévisibilité de votre budget.</p></details>
+        <details><summary>Qu'est-ce qu'un CMS headless, concrètement ?</summary><p>Un CMS qui stocke et sert votre contenu par API, sans imposer la couche d'affichage. Vos équipes éditent dans une interface d'administration (le Studio chez Sanity), et le site qui affiche ce contenu est un code indépendant, développé sur mesure. Conséquence pratique&nbsp;: le contenu et le site ne sont plus prisonniers du même abonnement, et chaque brique peut évoluer ou être remplacée séparément.</p></details>
+        <details><summary>Mon site Webflow m'appartient-il vraiment ?</summary><p>En partie. Le design et le contenu sont à vous, et Webflow permet d'exporter le code des pages statiques ainsi que le contenu CMS (en CSV). Mais le site qui tourne, lui, dépend de la plateforme&nbsp;: CMS dynamique, formulaires, hébergement et fonctionnalités liées cessent de fonctionner hors abonnement. C'est toute la différence avec un site en code sur-mesure, où le livrable vous appartient et tourne où vous voulez.</p></details>
+      </div>
+
+      <div class="endtoc rv">
+        <div class="t">Relire une section</div>
+        <a href="#reponse">La réponse courte</a>
+        <a href="#cas">Votre site est-il concerné ?</a>
+        <a href="#faits">Ce qui s'est réellement passé (timeline sourcée)</a>
+        <a href="#cout">Le vrai coût sur 3 ans (tableau)</a>
+        <a href="#migrer">Quitter Webflow sans perdre le SEO</a>
+        <a href="#faq">FAQ</a>
       </div>
 
     </article>
@@ -615,7 +674,7 @@
       "datePublished":"2026-09-10",
       "dateModified":"2026-09-10",
       "inLanguage":"fr",
-      "author":{"@type":"Organization","name":"Nocode Factory","url":"https://www.nocodefactory.fr"}
+      "author":{"@type":"Person","name":"Valentin Bert","jobTitle":"Fondateur","worksFor":{"@type":"Organization","name":"Nocode Factory","url":"https://www.nocodefactory.fr"}}
     },
     {
       "@type":"FAQPage",
@@ -625,7 +684,12 @@
         {"@type":"Question","name":"Perd-on son référencement en migrant de Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Non, si la migration est menée correctement : conservation des URLs, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page des balises et données structurées. Un site bien migré continue sur son acquis SEO."}},
         {"@type":"Question","name":"Pourquoi migrer vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Sanity est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées). Le contenu est accessible par API et le site devient du code sur-mesure qui appartient au client, sans licence par siège ni add-on par langue."}},
         {"@type":"Question","name":"Combien coûte une migration Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Le coût dépend du site : nombre de pages et de collections, langues, intégrations, exigences SEO. Un chiffrage sérieux se fait après audit du site existant, pas avant."}},
-        {"@type":"Question","name":"Qui gère le contenu après une migration vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Les équipes du client, via le Studio Sanity : une interface d'édition configurée sur le modèle de contenu du site, avec des rôles par profil. Les éditeurs habitués à Webflow retrouvent leurs marques rapidement."}}
+        {"@type":"Question","name":"Qui gère le contenu après une migration vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Les équipes du client, via le Studio Sanity : une interface d'édition configurée sur le modèle de contenu du site, avec des rôles par profil. Les éditeurs habitués à Webflow retrouvent leurs marques rapidement."}},
+        {"@type":"Question","name":"Que se passe-t-il si je ne fais rien au renouvellement de mon site Webflow ?","acceptedAnswer":{"@type":"Answer","text":"Le site bascule automatiquement sur le plan Premium : Webflow applique le nouveau modèle de mai 2026 aux sites existants à chaque renouvellement, à partir du 29 juin 2026. Il faut vérifier sa date de renouvellement et son mode de facturation (39 $/mois en mensuel contre 25 $/mois en annuel)."}},
+        {"@type":"Question","name":"Peut-on rester sur Webflow et payer moins ?","acceptedAnswer":{"@type":"Answer","text":"Souvent, oui : passer de la facturation mensuelle à l'annuelle (39 vers 25 $/mois sur Premium), faire l'inventaire des add-ons et outils tiers inutilisés, vérifier la consommation réelle de bande passante. Une agence citée par NoCode.Tech calcule que 9 de ses 14 sites clients gagnent au nouveau modèle."}},
+        {"@type":"Question","name":"Webflow avait-il déjà changé ses prix avant mai 2026 ?","acceptedAnswer":{"@type":"Answer","text":"Oui : en décembre 2024, Webflow avait restructuré sa tarification autour de trois types de sièges et annoncé la fin de Logic et de User Accounts. La refonte de mai 2026 est la deuxième en dix-huit mois."}},
+        {"@type":"Question","name":"Qu'est-ce qu'un CMS headless ?","acceptedAnswer":{"@type":"Answer","text":"Un CMS qui stocke et sert le contenu par API, sans imposer la couche d'affichage. Les équipes éditent dans une interface d'administration et le site qui affiche ce contenu est un code indépendant : contenu et site ne dépendent plus du même abonnement."}},
+        {"@type":"Question","name":"Un site Webflow appartient-il vraiment à son propriétaire ?","acceptedAnswer":{"@type":"Answer","text":"En partie : le design et le contenu sont au client, et Webflow permet d'exporter le code des pages statiques et le contenu CMS en CSV. Mais le site en fonctionnement dépend de la plateforme : CMS dynamique, formulaires et hébergement cessent de fonctionner hors abonnement."}}
       ]
     }
   ]
