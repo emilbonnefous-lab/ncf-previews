@@ -10,8 +10,10 @@
   MATRICE — Page PROBLÉMATIQUE Nocode Factory (famille /problematiques/)
   Instance : Où va Webflow ? · slug /problematiques/ou-va-webflow-alternatives
   Spec : spec-page-webflow-probleme.md (validée Emilien 09/09/2026)
-  Dérivée du template problématique (page-problematique-preview.html),
-  rethèmée charte NCF réelle (page-erp-sur-mesure-preview.html).
+  Restylée 10/09/2026 sur la DA réelle de www.nocodefactory.fr :
+  tokens Webflow exacts (#1e1a28, #fff8f0, pastels), dégradé arc-en-ciel
+  animé (rainbowText), typed effect H1, marquee logos pause-on-hover,
+  hovers réels (underline-grow nav, tilt cartes, glow, barre rainbow).
   Règles NCF encodées (NE PAS RETIRER) :
     - AUCUN prix NCF chiffré publié (les seuls prix affichés = prix publics
       Webflow/Sanity, chacun sourcé ; source consultée le 09/09/2026)
@@ -19,6 +21,8 @@
     - Conversion = diagnostic → appel 30 min ; pas de capture email
     - Preuves Pernod + Ligue 1 : PUBLICATION BLOQUÉE tant que Valentin n'a
       pas validé les droits (Ligue 1 = "maintenance", jamais "création")
+    - Chiffres agence (+350 projets, 170+, 10+, 97 %) = ceux affichés sur
+      la home nocodefactory.fr, consultée le 10/09/2026
     - Zéro tiret cadratin dans la copy (marqueur IA)
   ============================================================================
 -->
@@ -28,229 +32,331 @@
   @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
   @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
   :root{
-    --cream:#f9f8f6;
-    --cream-deep:#f1efeb;
-    --card:#ffffff;
-    --ink:#060110;
-    --ink-2:#4b4658;
-    --ink-3:#6b6375;
+    /* tokens réels nocodefactory.fr (Webflow variables, relevés 10/09/2026) */
+    --beige:#f9f8f6;          /* bg-color-beige */
+    --ncf-beige:#fff8f0;      /* color-brand--beige : texte des boutons sombres */
+    --white:#fff;
+    --ink:#060110;            /* neutral-black */
+    --black:#1e1a28;          /* color-brand--black : boutons, sections sombres */
+    --grey:#606060;           /* text-tertiary */
+    --smoke:#a7a7a7;
+    --lightgrey:#ddd9d9;
     --hair:#e9e6e1;
-    --hair-2:#d9d5cd;
-    --org:#8b7bf0;
-    --org-deep:#6a55e0;
-    --org-soft:#efecfd;
-    --yel:#ffca64;
-    --yel-deep:#f5b83d;
-    --grn:#027a48;
-    --grn-soft:#f1fbed;
-    --red:oklch(0.6 0.17 25);
-    --red-soft:oklch(0.94 0.04 25);
-    --dark:#1e1a28;
-    --dark-2:#302842;
+    --pink:#f99bfb;
+    --pink-vif:#ff5777;
+    --yellow:#ffca64;
+    --green:#38ef7d;
+    --green-deep:#027a48;
+    --green-light:#ecfdf3;
+    --blue:#5ac0ff;
+    --purple:#906cf8;
+    --pastel-yellow:#fef1e6;
+    --pastel-pink:#f9eef1;
+    --pastel-blue:#eafafc;
+    --pastel-green:#f1fbed;
+    --red:#b42318;
+    --red-light:#fef3f2;
+    --dark-card:#2d273e;
     --sans:"Fff Acidgrotesk",Arial,sans-serif;
-    --disp:var(--sans);
-    --r-lg:20px; --r-md:16px; --r-sm:12px;
+    --r-lg:1.5rem; --r-md:1rem; --r-sm:.75rem;
+    --grad:linear-gradient(90deg,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:120px}
-  body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:17px;line-height:1.65}
-  ::selection{background:var(--yel);color:var(--ink)}
+  body{font-family:var(--sans);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.6}
+  ::selection{background:var(--yellow);color:var(--ink)}
   img{max-width:100%}
   a{color:inherit}
+  b,strong{font-weight:500}
 
-  /* ===== rainbow + nav ===== */
-  .rainbow{height:5px;background:linear-gradient(90deg,#e5484d,#f76b15,#ffd23f,#46a758,#0090ff,#8e4ec6,#e93d82)}
-  .nav{background:var(--card);border-bottom:1px solid var(--hair);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
-  .brand img{height:24px;width:auto;display:block}
-  .nav .links{display:flex;gap:26px;font-size:15px;color:var(--ink-2)}
+  /* ===== texte arc-en-ciel animé (rainbowText, comme la home NCF) ===== */
+  .grad{background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  @media(prefers-reduced-motion:no-preference){.grad{animation:rainbowText 14s linear infinite}}
+  @keyframes rainbowText{0%{background-position:0% 50%}100%{background-position:400% 50%}}
+
+  /* ===== barre rainbow qui grossit au survol (navbar_rainbow NCF) ===== */
+  .rainbow{height:5px;background:linear-gradient(90deg,#fa2217,#ff9323 14%,#cf7dc1 28%,#906cf8 41%,#19b5c0 57%,#198cc6 71%,#ffd361 85%,#fa2217);transition:height .3s;cursor:pointer}
+  .rainbow:hover{height:20px}
+
+  /* ===== nav ===== */
+  .nav{background:var(--beige);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand{display:flex;align-items:center;gap:9px;font-size:20px;letter-spacing:-.3px;text-decoration:none;color:var(--ink)}
+  .brand .mk{width:26px;height:26px;border-radius:7px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .brand b{font-weight:700;font-style:italic}
+  .nav .links{display:flex;gap:28px;font-size:15px;color:var(--ink)}
+  .nav .links a{text-decoration:none;position:relative;padding-bottom:3px}
+  .nav .links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--black);transition:width .3s}
+  .nav .links a:hover::after{width:100%}
   @media(max-width:860px){.nav .links{display:none}}
-  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15.5px;text-decoration:none;border-radius:999px;padding:12px 22px;transition:transform .25s cubic-bezier(.19,1,.22,1),box-shadow .25s cubic-bezier(.19,1,.22,1)}
-  .btn-dark{background:var(--ink);color:var(--card)}
-  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px oklch(0.2 0.01 80/.55)}
-  .btn-line{border:1.5px solid var(--hair-2);background:var(--card)}
-  .btn-line:hover{border-color:var(--ink)}
-  .btn-yel{background:var(--yel);color:var(--ink);font-weight:700}
-  .btn-yel:hover{transform:translateY(-2px);box-shadow:0 12px 28px -12px oklch(0.75 0.15 90/.7)}
-  .btn .arr{transition:transform .25s cubic-bezier(.19,1,.22,1)}
-  .btn:hover .arr{transform:translateX(3px)}
+
+  /* ===== boutons (button-ncf réels : pilule 3000px, beige sur noir) ===== */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;white-space:nowrap;text-decoration:none;border-radius:3000px;padding:.65rem 1.4rem;border:1px solid var(--black);transition:.375s cubic-bezier(.23,1,.32,1)}
+  @media(max-width:480px){.nav .btn{padding:.45rem .9rem;font-size:13px}.nav .btn .circ{width:22px;height:22px;font-size:12px}.brand{font-size:17px}}
+  .btn .circ{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ncf-beige);color:var(--black);font-size:13px;flex:0 0 auto;transition:transform .375s cubic-bezier(.23,1,.32,1)}
+  .btn:hover .circ{transform:translateX(4px)}
+  .btn-dark{background:var(--black);color:var(--ncf-beige)}
+  .btn-dark:hover{background:transparent;color:var(--ink);transform:scale(1.02)}
+  .btn-dark:hover .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white{background:var(--white);color:var(--black);border-color:var(--white)}
+  .btn-white .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white:hover{background:transparent;color:var(--ncf-beige);transform:scale(1.02)}
+  .btn-white:hover .circ{background:var(--white);color:var(--black)}
+  .btn-ghost{background:rgba(150,150,150,.2);color:var(--grey);border-color:transparent}
+  .btn-ghost:hover{color:var(--ink)}
+  .btn-line{background:transparent;color:var(--ncf-beige);border-color:var(--ncf-beige)}
+  .btn-line:hover{border-color:var(--white);transform:scale(1.02)}
+
+  /* lien tertiaire : underline qui pousse (navbar_link-underline NCF) */
+  .tlink{display:inline-block;font-size:15px;font-weight:500;text-decoration:none;position:relative;padding-bottom:3px}
+  .tlink::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:currentColor;transition:width .3s}
+  .tlink:hover::after{width:100%}
 
   /* ===== sub-nav ancres ===== */
-  .subnav{position:sticky;top:0;z-index:50;background:color-mix(in oklch,var(--card) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair);padding:10px clamp(18px,4vw,44px);display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .subnav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--beige) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair);padding:10px clamp(18px,4vw,44px);display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
   .subnav::-webkit-scrollbar{display:none}
-  .subnav .pagename{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px;margin-right:10px;white-space:nowrap}
-  .subnav .pagename .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--yel);display:grid;place-items:center;font-size:13px;font-weight:700}
-  .subnav a{font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:7px 13px;border-radius:999px;white-space:nowrap;border:1px solid transparent;transition:all .2s}
-  .subnav a:hover{background:var(--cream-deep)}
-  .subnav a.on{background:var(--card);border-color:var(--hair-2);color:var(--ink);font-weight:600;box-shadow:0 1px 4px oklch(0.2 0.01 80/.06)}
+  .subnav .pagename{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px;margin-right:10px;white-space:nowrap}
+  .subnav .pagename .mark{width:30px;height:30px;border-radius:8px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:13px}
+  .subnav a{font-size:13.5px;color:var(--grey);text-decoration:none;padding:7px 14px;border-radius:3000px;white-space:nowrap;transition:all .25s}
+  .subnav a:hover{background:rgba(150,150,150,.15);color:var(--ink)}
+  .subnav a.on{background:var(--black);color:var(--ncf-beige)}
 
-  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
   .narrow{max-width:780px;margin:0 auto}
 
-  /* ===== hero ===== */
-  .hero{padding:clamp(44px,7vw,88px) 0 clamp(40px,6vw,72px)}
-  .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
-  @media(max-width:940px){.hero .grid{grid-template-columns:1fr}}
-  .hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--org-deep);background:var(--org-soft);border-radius:999px;padding:7px 14px;margin-bottom:26px}
-  h1{font-family:var(--disp);font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
-  h1 .hl{color:var(--org)}
-  .hero .sub{font-size:clamp(17px,1.9vw,19.5px);color:var(--ink-2);margin:24px 0 32px;max-width:54ch}
-  .hero .meta{margin-top:22px;font-size:14px;color:var(--ink-3)}
-  .hero .meta b{color:var(--ink)}
+  /* ===== kicker italique NCF (subtitle-wrapper) ===== */
+  .kick{display:flex;align-items:center;gap:8px;font-size:15px;font-style:italic;font-weight:500;color:var(--grey);margin-bottom:18px}
+  .kick.center{justify-content:center}
 
-  /* mockup navigateur : l'abonnement qui bascule */
-  .browser{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);box-shadow:0 30px 70px -30px oklch(0.25 0.02 60/.35);overflow:hidden}
+  h1{font-weight:500;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.1;letter-spacing:-1px;text-wrap:balance}
+  h2{font-weight:500;font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;letter-spacing:-1px;text-wrap:balance}
+  .hl-pink{color:var(--pink-vif)}
+  .hl-dot{text-decoration:underline dotted var(--pink-vif) 2px;text-underline-offset:.35em}
+
+  /* ===== hero centré (déroulé home NCF) ===== */
+  .hero{position:relative;padding:clamp(40px,6vw,72px) 0 0;text-align:center;overflow:hidden}
+  .aurora{position:absolute;inset:auto -10% -35% -10%;height:75%;pointer-events:none;filter:blur(70px);opacity:.5;background:
+    radial-gradient(38% 55% at 18% 78%,#5ac0ff 0%,transparent 70%),
+    radial-gradient(42% 60% at 50% 92%,#f99bfb 0%,transparent 72%),
+    radial-gradient(36% 52% at 82% 76%,#ffd361 0%,transparent 70%),
+    radial-gradient(30% 45% at 65% 95%,#ff6161 0%,transparent 70%)}
+  .hero>.wrap{position:relative;z-index:1}
+  .laurel{display:inline-flex;align-items:center;gap:14px;font-size:14px;color:var(--grey);margin-bottom:26px;flex-wrap:wrap;justify-content:center}
+  .laurel .wreath{display:inline-flex;align-items:center;gap:6px}
+  .laurel .wreath .leaf{font-size:20px}
+  .laurel .wreath .leaf.flip{transform:scaleX(-1);display:inline-block}
+  .laurel .sep{width:1px;height:26px;background:var(--lightgrey)}
+  .laurel b{color:var(--ink);font-weight:500}
+  .laurel .star{color:var(--yellow)}
+  .hero .sub{font-size:clamp(16px,1.8vw,18px);color:var(--grey);margin:26px auto 30px;max-width:62ch}
+  .hero .sub b{color:var(--ink)}
+  .hero .ctas{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .caret{display:inline-block;width:3px;background:var(--ink);margin-left:2px;animation:typedjsBlink .7s infinite}
+  @keyframes typedjsBlink{50%{opacity:0}}
+
+  /* mockup facture flottant sous le hero */
+  .heromock{position:relative;max-width:660px;margin:clamp(36px,5vw,56px) auto 0}
+  .browser{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.35);overflow:hidden;text-align:left}
   .browser .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--hair)}
   .browser .dot{width:10px;height:10px;border-radius:50%}
-  .browser .url{margin:0 auto;font-size:11.5px;color:var(--ink-3);background:var(--cream);border:1px solid var(--hair);border-radius:999px;padding:3px 14px}
-  .bill{padding:18px;background:var(--cream)}
-  .bill .head{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
-  .bill .notice{background:var(--card);border:1.5px solid var(--yel-deep);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--ink-2);margin-bottom:12px}
+  .browser .url{margin:0 auto;font-size:11.5px;color:var(--grey);background:var(--beige);border:1px solid var(--hair);border-radius:3000px;padding:3px 14px}
+  .bill{padding:18px;background:var(--beige)}
+  .bill .head{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+  .bill .notice{background:var(--white);border:1.5px solid var(--yellow);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--grey);margin-bottom:12px}
   .bill .notice b{color:var(--ink)}
-  .bill .rows{background:var(--card);border:1px solid var(--hair);border-radius:10px;overflow:hidden;font-size:13px}
+  .bill .rows{background:var(--white);border:1px solid var(--hair);border-radius:10px;overflow:hidden;font-size:13px}
   .bill .r{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--hair);align-items:center}
   .bill .r:first-child{border-top:none}
-  .bill .r .lbl{color:var(--ink-2)}
-  .bill .r .lbl small{display:block;font-size:10.5px;color:var(--ink-3)}
-  .bill .r .amt{font-weight:700;white-space:nowrap}
-  .bill .r .old{color:var(--ink-3);text-decoration:line-through;font-weight:500;margin-right:7px}
-  .bill .r.total{background:var(--org-soft)}
-  .bill .r.total .amt{color:var(--org-deep)}
-  .badge-up{display:inline-block;font-size:10px;font-weight:700;background:var(--red-soft);color:var(--red);border-radius:999px;padding:2px 8px;margin-left:8px}
-  .browser .cap{font-size:11.5px;color:var(--ink-3);text-align:center;padding:9px 12px;border-top:1px solid var(--hair);background:var(--card)}
+  .bill .r .lbl{color:var(--grey)}
+  .bill .r .lbl small{display:block;font-size:10.5px;color:var(--smoke)}
+  .bill .r .amt{font-weight:500;white-space:nowrap}
+  .bill .r .old{color:var(--smoke);text-decoration:line-through;margin-right:7px}
+  .bill .r.total{background:var(--pastel-pink)}
+  .browser .cap{font-size:11.5px;color:var(--smoke);text-align:center;padding:9px 12px;border-top:1px solid var(--hair);background:var(--white)}
+  .chip{position:absolute;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;box-shadow:0 8px 24px -10px rgba(30,26,40,.35);white-space:nowrap}
+  .chip-up{top:-14px;right:clamp(-8px,2vw,-40px);background:var(--red-light);color:var(--red);border:1px solid #f6c6c2}
+  .chip-gone{bottom:32px;left:clamp(-8px,2vw,-52px);background:var(--white);color:var(--ink);border:1px solid var(--hair)}
+  @media(prefers-reduced-motion:no-preference){
+    .chip-up{animation:levitation 5s ease-in-out infinite}
+    .chip-gone{animation:levitation 6s ease-in-out infinite reverse}
+  }
+  @keyframes levitation{0%{transform:translateY(2px)}50%{transform:translateY(-8px)}100%{transform:translateY(2px)}}
+
+  /* ===== marquee logos clients (pause au survol, comme la home) ===== */
+  .marquee{overflow:hidden;padding:26px 0 34px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee .track{display:flex;align-items:center;gap:clamp(40px,6vw,72px);width:max-content}
+  @media(prefers-reduced-motion:no-preference){.marquee .track{animation:marquee 32s linear infinite}}
+  .marquee:hover .track{animation-play-state:paused}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .lg{font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--ink);opacity:.82;white-space:nowrap;letter-spacing:-.02em}
+  .lg.it{font-style:italic}
+  .lg.serif{font-family:Georgia,serif;font-weight:700}
+  .lg.lite{font-weight:400}
 
   /* ===== sections ===== */
-  section{padding:clamp(48px,7vw,96px) 0}
-  .sec-head{text-align:center;max-width:820px;margin:0 auto clamp(30px,4vw,52px)}
-  .sec-head .k{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:16px}
-  h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.4vw,48px);line-height:1.08;letter-spacing:-.018em;text-wrap:balance}
-  h2 .hl{color:var(--org)}
-  .sec-head .lede{font-size:17.5px;color:var(--ink-2);margin-top:18px;max-width:58ch;margin-left:auto;margin-right:auto}
+  section{padding:clamp(52px,7vw,100px) 0}
+  .sec-head{max-width:860px;margin:0 0 clamp(28px,4vw,48px)}
+  .sec-head.center{text-align:center;margin-left:auto;margin-right:auto}
+  .sec-head.center .kick{justify-content:center}
+  .sec-head .lede{font-size:16.5px;color:var(--grey);margin-top:16px;max-width:60ch}
+  .sec-head.center .lede{margin-left:auto;margin-right:auto}
 
   /* réponse courte (AEO) */
-  .short{position:relative;background:var(--card);border:1.5px solid var(--ink);border-radius:var(--r-md);padding:24px 28px;max-width:680px;margin:34px auto 0;font-size:16.5px;text-align:left}
-  .short .tag{position:absolute;top:-13px;left:22px;background:var(--yel);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--ink)}
+  .short{position:relative;background:var(--white);border:1.5px solid var(--black);border-radius:var(--r-md);padding:24px 28px;max-width:680px;margin:0 auto;font-size:16px;text-align:left}
+  .short .tag{position:absolute;top:-13px;left:22px;background:var(--yellow);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--black)}
+  .short b{font-weight:500}
 
-  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px)}
-  .card h3{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.01em;margin-bottom:6px}
-  .card .sub3{font-size:15px;color:var(--ink-3);margin-bottom:18px}
+  .card{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px)}
+  .card h3{font-weight:500;font-size:1.4rem;letter-spacing:-.2px;margin-bottom:6px}
+  .card .sub3{font-size:15px;color:var(--grey);margin-bottom:18px}
 
-  /* quiz */
-  .quiz .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+  /* ===== quiz : cartes pastel + glow au survol (business-card NCF) ===== */
+  .quiz .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
   @media(max-width:640px){.quiz .roles{grid-template-columns:1fr}}
-  .role{background:var(--cream);border:1.5px solid var(--hair-2);border-radius:var(--r-sm);padding:16px 14px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;text-align:left;transition:all .2s;line-height:1.35}
-  .role small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:3px}
-  .role:hover{border-color:var(--ink);transform:translateY(-2px)}
-  .role.sel{background:var(--ink);color:var(--card);border-color:var(--ink)}
-  .role.sel small{color:oklch(0.72 0.01 90)}
-  .role.full{grid-column:1/-1;text-align:center}
-  .verdict{display:none;margin-top:22px;background:var(--org-soft);border-radius:var(--r-md);padding:22px 26px;font-size:16px}
-  .verdict.show{display:block;animation:pop .45s cubic-bezier(.19,1,.22,1)}
-  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .verdict b{font-weight:700}
-  .verdict .go{display:inline-flex;margin-top:14px;font-size:14.5px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:1px}
+  .role{border:1px solid transparent;border-radius:var(--r-md);padding:18px 16px;font:inherit;font-weight:500;font-size:15px;cursor:pointer;text-align:left;transition:all .3s;line-height:1.35;color:var(--ink)}
+  .role small{display:block;font-weight:400;font-size:12.5px;color:var(--grey);margin-top:4px}
+  .role.p-yellow{background:var(--pastel-yellow)}
+  .role.p-pink{background:var(--pastel-pink)}
+  .role.p-blue{background:var(--pastel-blue)}
+  .role.p-green{background:var(--pastel-green)}
+  .role.p-yellow:hover{background:var(--white);box-shadow:0 0 40px rgba(255,202,100,.45)}
+  .role.p-pink:hover{background:var(--white);box-shadow:0 0 40px rgba(249,155,251,.45)}
+  .role.p-blue:hover{background:var(--white);box-shadow:0 0 40px rgba(90,192,255,.4)}
+  .role.p-green:hover{background:var(--white);box-shadow:0 0 40px rgba(56,239,125,.35)}
+  .role.full{grid-column:1/-1;text-align:center;background:var(--beige);border-color:var(--lightgrey)}
+  .role.full:hover{background:var(--white);box-shadow:0 0 40px rgba(30,26,40,.15)}
+  .role.sel{background:var(--black);color:var(--ncf-beige);box-shadow:none}
+  .role.sel small{color:var(--smoke)}
+  .verdict{display:none;margin-top:22px;background:var(--pastel-blue);border-radius:var(--r-md);padding:22px 26px;font-size:15.5px}
+  .verdict.show{display:block;animation:ncfp-rise .45s cubic-bezier(.23,1,.32,1)}
+  @keyframes ncfp-rise{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+  .verdict b{font-weight:500}
+  .verdict .go{margin-top:14px;font-size:14.5px}
 
-  /* timeline des faits */
-  .tl{max-width:820px;margin:0 auto;position:relative;padding-left:clamp(24px,4vw,40px)}
-  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:26px;width:2px;background:var(--hair-2)}
+  /* ===== timeline : pastilles aux couleurs de la marque ===== */
+  .tl{max-width:820px;position:relative;padding-left:clamp(24px,4vw,40px)}
+  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:26px;width:2px;background:var(--lightgrey)}
   .tl-item{position:relative;padding-bottom:clamp(26px,3.4vw,40px)}
   .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{content:"";position:absolute;left:calc(-1*clamp(24px,4vw,40px) + 1px);top:9px;width:14px;height:14px;border-radius:50%;background:var(--org);border:3px solid var(--cream)}
-  .tl-item .d{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--card);border:1px solid var(--hair-2);border-radius:999px;padding:4px 12px;margin-bottom:10px}
-  .tl-item h3{font-family:var(--disp);font-weight:600;font-size:clamp(18px,2.2vw,21px);letter-spacing:-.01em;margin-bottom:6px;line-height:1.3}
-  .tl-item p{font-size:15.5px;color:var(--ink-2);max-width:64ch}
+  .tl-item::before{content:"";position:absolute;left:calc(-1*clamp(24px,4vw,40px) + 1px);top:9px;width:14px;height:14px;border-radius:50%;background:var(--dot,var(--purple));border:3px solid var(--beige)}
+  .tl-item:nth-child(1){--dot:#1faaff}.tl-item:nth-child(2){--dot:#906cf8}.tl-item:nth-child(3){--dot:#f99bfb}.tl-item:nth-child(4){--dot:#ff6161}.tl-item:nth-child(5){--dot:#ffca64}
+  .tl-item .d{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-style:italic;background:var(--white);border:1px solid var(--lightgrey);border-radius:3000px;padding:4px 12px;margin-bottom:10px;color:var(--grey)}
+  .tl-item h3{font-weight:500;font-size:clamp(18px,2.2vw,21px);letter-spacing:-.2px;margin-bottom:6px;line-height:1.3}
+  .tl-item p{font-size:15px;color:var(--grey);max-width:64ch}
   .tl-item p b{color:var(--ink)}
-  .tl-item .src{display:inline-block;font-size:12.5px;color:var(--ink-3);margin-top:7px;text-decoration:none;border-bottom:1px dotted var(--hair-2)}
-  .tl-item .src:hover{color:var(--org-deep);border-color:var(--org-deep)}
+  .tl-item .src{display:inline-block;font-size:12.5px;color:var(--smoke);margin-top:7px;text-decoration:none;border-bottom:1px dotted var(--lightgrey);transition:all .25s}
+  .tl-item .src:hover{color:var(--pink-vif);border-color:var(--pink-vif)}
 
-  /* calculateur */
-  .calc{background:var(--dark);color:var(--card);border-radius:var(--r-lg);padding:clamp(26px,3.6vw,44px);margin-top:clamp(16px,2vw,24px)}
+  /* ===== calculateur (section sombre #1e1a28, comme la home) ===== */
+  .calc{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-lg);padding:clamp(26px,3.6vw,44px);margin-top:clamp(16px,2vw,24px)}
   .calc .grid{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,4vw,56px);align-items:center}
   @media(max-width:820px){.calc .grid{grid-template-columns:1fr}}
-  .calc h3{font-family:var(--disp);font-weight:600;font-size:22px;margin-bottom:6px}
-  .calc .note{font-size:13.5px;color:oklch(0.68 0.012 85);margin-top:14px;max-width:46ch}
-  .calc label{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:oklch(0.72 0.012 85);margin:22px 0 10px}
-  .calc input[type=range]{width:100%;max-width:380px;accent-color:var(--yel);cursor:pointer}
-  .calc output{font-weight:700;color:var(--yel);font-size:15px;margin-left:10px}
-  .calc .res{text-align:center;background:var(--dark-2);border-radius:var(--r-md);padding:28px 36px}
-  .calc .res .v{font-family:var(--disp);font-weight:700;font-size:clamp(38px,5vw,54px);color:var(--yel);line-height:1}
-  .calc .res .l{font-size:13.5px;color:oklch(0.72 0.012 85);margin-top:8px;max-width:22ch}
+  .calc h3{font-weight:500;font-size:1.4rem;margin-bottom:6px}
+  .calc .note{font-size:13.5px;color:var(--smoke);margin-top:14px;max-width:48ch}
+  .calc label{display:block;font-size:13px;font-weight:500;font-style:italic;color:var(--smoke);margin:22px 0 10px}
+  .calc input[type=range]{width:100%;max-width:380px;accent-color:var(--yellow);cursor:pointer}
+  .calc output{font-weight:500;color:var(--yellow);font-size:15px;margin-left:10px}
+  .calc .res{text-align:center;background:var(--dark-card);border-radius:var(--r-md);padding:28px 36px}
+  .calc .res .v{font-weight:500;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  @media(prefers-reduced-motion:no-preference){.calc .res .v{animation:rainbowText 14s linear infinite}}
+  .calc .res .l{font-size:13.5px;color:var(--smoke);margin-top:8px;max-width:22ch}
 
-  /* bloc appel */
-  .offer{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px);max-width:940px;margin:0 auto}
+  /* ===== bloc appel ===== */
+  .offer{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px);max-width:940px;margin:0 auto}
   @media(max-width:820px){.offer{grid-template-columns:1fr}}
-  .offer h3{font-family:var(--disp);font-weight:600;font-size:22px;margin-bottom:14px}
+  .offer h3{font-weight:500;font-size:1.4rem;margin-bottom:14px}
   .offer .pts{list-style:none}
-  .offer .pts li{display:flex;gap:12px;padding:10px 0;border-bottom:1.5px dotted var(--hair-2);font-size:15.5px;color:var(--ink-2)}
-  .offer .pts li:last-child{border-bottom:none}
-  .offer .pts .ic{flex:0 0 24px;height:24px;border-radius:50%;background:var(--grn-soft);color:var(--grn);display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:1px}
-  .offer .fine{font-size:14px;color:var(--ink-3);margin-top:14px;font-style:italic}
-  .offer-cta{background:var(--dark);color:var(--card);border-radius:var(--r-md);padding:28px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;justify-content:center}
-  .offer-cta .dur{font-family:var(--disp);font-weight:700;font-size:44px;line-height:1;color:var(--yel)}
+  .offer .pts li{display:flex;gap:12px;padding:10px 0;font-size:15px;color:var(--grey)}
+  .offer .pts .ic{flex:0 0 22px;height:22px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:2px}
+  .offer .fine{font-size:14px;color:var(--grey);margin-top:14px;font-style:italic}
+  .offer-cta{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-md);padding:28px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;justify-content:center}
+  .offer-cta .dur{font-weight:500;font-size:44px;line-height:1;color:var(--yellow)}
   .offer-cta .dur span{font-size:16px;margin-left:4px}
-  .offer-cta p{font-size:13.5px;color:oklch(0.72 0.012 85);max-width:30ch}
-  .offer-cta .after{font-size:12.5px;color:oklch(0.66 0.012 85)}
+  .offer-cta p{font-size:13.5px;color:var(--smoke);max-width:30ch}
+  .offer-cta .after{font-size:12.5px;color:var(--smoke)}
 
-  /* pont vers solution */
-  .bridge{max-width:780px;margin:0 auto;text-align:left}
-  .bridge p{color:var(--ink-2);margin-top:14px;max-width:64ch}
-  .bridge .go{display:inline-flex;margin-top:18px;font-size:15px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--yel-deep);padding-bottom:2px}
+  /* ===== pont vers solution ===== */
+  .bridge{max-width:820px}
+  .bridge p{color:var(--grey);margin-top:14px;max-width:64ch}
+  .bridge p b{color:var(--ink)}
 
-  /* preuves */
-  .proofs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:820px;margin:22px auto 0}
+  /* ===== preuves : section sombre pleine largeur (home NCF) ===== */
+  .darksec{background:var(--black);color:var(--ncf-beige)}
+  .darksec .kick{color:var(--smoke)}
+  .darksec h2{color:var(--white)}
+  .darksec .lede{color:var(--smoke)}
+  .stats{display:flex;gap:clamp(28px,6vw,80px);flex-wrap:wrap;margin:clamp(28px,4vw,44px) 0}
+  .stats .st .n{font-weight:500;font-size:clamp(2.4rem,4.6vw,3.4rem);line-height:1;color:var(--white)}
+  .stats .st .l{font-size:14px;color:var(--smoke);margin-top:8px}
+  .proofs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:880px}
   @media(max-width:640px){.proofs{grid-template-columns:1fr}}
-  .proof-case{display:block;background:var(--card);border:1.5px solid var(--hair-2);border-radius:var(--r-md);padding:22px 20px;text-decoration:none;transition:transform .25s cubic-bezier(.19,1,.22,1),box-shadow .25s cubic-bezier(.19,1,.22,1),border-color .25s}
-  .proof-case:hover{transform:translateY(-3px);border-color:var(--org);box-shadow:0 14px 30px -16px oklch(0.4 0.08 290/.35)}
-  .proof-case b{display:block;font-family:var(--disp);font-weight:700;font-size:19px;margin-bottom:6px}
-  .proof-case .tagline{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--org-deep);margin-bottom:8px;font-weight:700}
-  .proof-case p{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
-  .proof-note{text-align:center;font-size:13.5px;color:var(--ink-3);max-width:62ch;margin:16px auto 0}
+  .proof-case{display:block;background:var(--dark-card);border:1px solid rgba(255,255,255,.09);border-radius:var(--r-md);padding:24px 22px;transition:all .35s cubic-bezier(.23,1,.32,1)}
+  .proof-case:hover{background:#352e49;transform:scale(1.03) rotate(-1.2deg);box-shadow:0 0 50px rgba(144,108,248,.3)}
+  .proof-case b{display:block;font-weight:500;font-size:20px;margin-bottom:6px;color:var(--white)}
+  .proof-case .tagline{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-style:italic;color:var(--pink);margin-bottom:8px}
+  .proof-case p{font-size:14px;line-height:1.55;color:var(--smoke)}
+  .proof-note{font-size:13.5px;color:var(--smoke);max-width:64ch;margin-top:18px}
 
-  /* expertise */
+  /* ===== expertise ===== */
   .exp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px)}
   @media(max-width:820px){.exp{grid-template-columns:1fr}}
-  .exp .stamp{width:52px;height:52px;border-radius:14px;background:var(--yel);display:grid;place-items:center;font-weight:700;font-size:16px;transform:rotate(-3deg);margin-bottom:16px}
+  .exp .stamp{width:52px;height:52px;border-radius:14px;background:var(--yellow);display:grid;place-items:center;font-weight:700;font-size:16px;transform:rotate(-3deg);margin-bottom:16px;transition:transform .3s}
+  .exp .card:hover .stamp{transform:rotate(3deg) scale(1.08)}
   .exp ul{list-style:none;margin-top:10px}
-  .exp li{padding:9px 0 9px 24px;position:relative;font-size:15px;color:var(--ink-2);border-bottom:1.5px dotted var(--hair-2)}
-  .exp li:last-child{border-bottom:none}
-  .exp li::before{content:"→";position:absolute;left:0;color:var(--org-deep);font-weight:700}
+  .exp li{padding:9px 0 9px 26px;position:relative;font-size:15px;color:var(--grey)}
+  .exp li::before{content:"✓";position:absolute;left:0;top:9px;width:18px;height:18px;border-radius:50%;background:var(--green-light);color:var(--green-deep);display:grid;place-items:center;font-size:10px;font-weight:700}
 
-  /* FAQ */
+  /* ===== FAQ ===== */
   .faq{max-width:780px;margin:0 auto}
-  .faq details{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden}
-  .faq summary{list-style:none;cursor:pointer;padding:19px 56px 19px 24px;font-weight:600;font-size:16.5px;position:relative}
+  .faq details{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden;transition:border-color .25s}
+  .faq details:hover{border-color:var(--lightgrey)}
+  .faq details[open]{border-color:var(--black)}
+  .faq summary{list-style:none;cursor:pointer;padding:19px 56px 19px 24px;font-weight:500;font-size:16px;position:relative}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";position:absolute;right:22px;top:50%;translate:0 -50%;font-size:24px;font-weight:400;color:var(--org-deep);transition:transform .25s cubic-bezier(.19,1,.22,1)}
+  .faq summary::after{content:"+";position:absolute;right:22px;top:50%;translate:0 -50%;font-size:24px;font-weight:300;color:var(--pink-vif);transition:transform .3s cubic-bezier(.23,1,.32,1)}
   .faq details[open] summary::after{transform:rotate(45deg)}
-  .faq details p{padding:0 24px 20px;color:var(--ink-2);font-size:15.5px;max-width:66ch}
+  .faq details p{padding:0 24px 20px;color:var(--grey);font-size:15px;max-width:66ch}
 
-  /* CTA final */
-  .final{background:var(--dark);border-radius:var(--r-lg);color:var(--card);padding:clamp(36px,5vw,64px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center}
+  /* ===== CTA final sombre ===== */
+  .final{background:var(--black);border-radius:var(--r-lg);color:var(--ncf-beige);padding:clamp(36px,5vw,64px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center;position:relative;overflow:hidden}
   @media(max-width:860px){.final{grid-template-columns:1fr}}
-  .final h2{color:var(--card);font-size:clamp(28px,3.8vw,42px)}
-  .final p{color:oklch(0.72 0.012 85);margin-top:16px;max-width:46ch;font-size:16.5px}
-  .final .hand{position:relative;white-space:nowrap}
-  .final .hand::after{content:"";position:absolute;left:-2%;right:-2%;bottom:1px;height:7px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 6 Q 30 1 60 5 T 118 3' fill='none' stroke='%23f2c11e' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%}
-  .final .box{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-  .final .after{font-size:13.5px;color:oklch(0.66 0.012 85)}
-  .final .alt{font-weight:600;font-size:15px;color:var(--card);text-decoration:none;border-bottom:2px solid var(--yel);padding-bottom:2px}
+  .final h2{color:var(--white);font-size:clamp(1.8rem,3.6vw,2.6rem)}
+  .final p{color:var(--smoke);margin-top:16px;max-width:46ch;font-size:16px}
+  .final .box{display:flex;flex-direction:column;gap:14px;align-items:flex-start;position:relative;z-index:1}
+  .final .after{font-size:13.5px;color:var(--smoke)}
+  .final .alt{color:var(--ncf-beige)}
+  .final .glow{position:absolute;right:-15%;bottom:-45%;width:60%;height:120%;filter:blur(70px);opacity:.3;pointer-events:none;background:radial-gradient(closest-side,#906cf8 0%,transparent 70%),radial-gradient(closest-side at 70% 30%,#f99bfb 0%,transparent 70%)}
 
-  footer{padding:36px 0 44px;color:var(--ink-3);font-size:13.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  /* ===== footer sombre (home NCF) ===== */
+  footer{background:var(--black);color:var(--smoke);margin-top:clamp(52px,7vw,100px);padding:clamp(36px,5vw,56px) 0}
+  footer .cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer .flabel{font-size:12.5px;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  footer a{color:var(--ncf-beige);text-decoration:none;font-size:14px}
+  footer a:hover{color:var(--white)}
+  footer ul{list-style:none}
+  footer li{margin-bottom:9px}
+  footer .fbrand{font-size:16px;color:var(--ncf-beige)}
+  footer .note{margin-top:28px;font-size:12.5px;color:var(--grey)}
 
-  /* reveal on scroll */
+  /* ===== reveal on scroll (ncfp-rise) ===== */
   @media(prefers-reduced-motion:no-preference){
-    .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.19,1,.22,1),transform .7s cubic-bezier(.19,1,.22,1)}
+    .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
     .rv.in{opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
 
-<div class="rainbow"></div>
+<div class="rainbow" title="🌈"></div>
 
 <nav class="nav">
-  <div class="brand"><img alt="Nocode Factory" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAAgCAYAAACsGMKuAAAGZklEQVR4nO1czW4bNxDmFoXTHIr00h/00nv8AnVgrZLmECRnB+1jFPUpkgzXqOWcnPYxitbnJFLrxl0Jdl4gPvcUoO4pCFrZJxYje9TZ8QyX3F3Jcs0PICznksPh8OPPDGclJ8f/mM3ult3c7Jqq6HTaptNuJZUFRURMGe/SL71er7SgbrdrsmxgTLsOtSIiZkj8RqNRZba21dWJiJgN3vHNmGVZJHbE1SP+6VYmkj/i6s34ZjAYTFebiIh5I35EfXj/+qcWUrTpnDi3F4Gt7vaEAK32qupcD7N9mw0OTNpYMsvprRgyJTYpwqxstuXZl/OACyf+483tyee0sWS1DtrqPjGDbN+kvZ1ZqjfXuH9vxS9jZxWIP7O+fNRZNfOOCyc+J/fTGXTQ/w2NApvBjD/L2f4ywJv4aZpOvfNgRgcDllkmYdmHgbOcLnkt7ZAf/uJWoagMz++jI9XJt02+9VCi+crHrdEwOxiX8W033U7x/KgvBeTB51x2kTwuF9/R75psSSe1bXBlYW2tY5MksaPRyJRNzWbTQgJ5IWkh+cBC2u3/aulnnu9u84H4bn3tu0k5niQ5VBZPIEvKr9UBcqT8tC1SfvxeRS+qk9ZOH9kLDvlaGdpuTSaXDTqGtI++o+Xo5yK7aP0JaW6IT5WWCCURn+aXnkukQDm0DPzV6pbqcOWnpIc8WAY7kOom6UXL0Hp4J1ICFNmY1gnl7jI9uJ34wMX8nFRIZk5MmkLkafpSuZQzEk9oPS6b5Ijf6XRsv98vlaA8pCrE5wQoIr5rxpOIqZFIq8M1EDV5mv4uwobqxTsfnkuJk841SHeF/EUThzbYXWTU5En2kCY1TYeQ2f4c8etIVYmvbXk0UroaiGVcBJKIgAbFOnzzS+3Rykh6FZXRyOmzzaCD4cSxMhaRR1qxXCtsiDwsW7Saae99SQ8p59zeeLhubqysmzI42vjCHB/uja81pGlaOoYLzsijzqqF0FhdUR5wdkAuOM9Yh1b329Hrc+E5V364nIdy0alyhfOwDH2G5R/cW3FGRtAe1Dl0RXSowwtlx+g+sbROptekzSBXcpjhWatd2L4JiuRJQN00O7ba35j7xOZQZ+gZQo747928bcoCBs3xxp7JBsPKESBQfJgdWFeUByITRaE6iFyAjDOiWJ/QX9lolBTd8AEtx8noAyCBKyojnRA30ltjUoENaZ35aIh/CBT7wmVbTR6W5RGbEABHQs8QclcW3vy8IWb6/ENjfrxtzB8PTQJ/v17UBY7v5NcA6FAANEgyRkjHYMgMSeoL7EhXZ0irCO1MDi6Llns7ep240tPeTiKRRauLzoJAiGe9HYNyWu3VyQpYdTL4zwb5PvEhMdeBhzol0DZDfnoI6ruq5IgPWxUJSPSv9oz94dXpZxgAMCAQ1242xysGXGarA2dbnvwyTYBGkd4VbVW0DgGiwAzpexjDtzZYj2twSVcMigbY6XnAtsX3voTlhKB22GLnABwS6dA+kFCXsiudjw6uQY1tp20MOjHmzu0n3+7Zz36yuWStNV++yD/7/pW1B0f5Z9cX74xl/NJ/7u3kFjmDPPYrRTZcThN9JzmWrne+ZwtSVEeKBHGn1OUka3oVRVA022nh3gXFOfeNmLiiRpo8GqYNsZ+LFz4OLU3niA/k5cQHgnPiI/kh4XcYNCAjJJ4fEgXhHchJQGPLmvG4wfkBCTeglt8VtqT1c520OH5RjBzrCQnZcXLwgbAg2FUaFNogkfqH6xYqz7dt2iRSmviQOMGB9Hx2157XTXzXzOU6EXTNGNKpJJK0jvxah2N+rc3aaak2W/vYV9Jj9yy0qYUFtZPqkJNt1wrjM4iKiB8yAUgpkX5l4eP1F+M9u7TPxz0+cXoT2Pu//Csf1jwe/T3za6lFdzi0MtPOH6pTmXqmIW/oc+flguRhtAr2+uj0h0AkPjipH63/di4zkB/IDiR/eZRzeic4Ofzd/Llxx/R7zyCsOdd3siMuJ3j4ssylxqBryTDbI9mlFQCAK8Vm97HpT/lGZ8TVwDDbt9L/HpQlvUp82KrAzM23OxLRJZyGNeXQaEREKLQQcJX/8lJnfDjMurZ4GpsPBZ4HVL2+EBHhc02iVuKPHdTDPfPGyKe5Pqjj+kJExKX6lYX4O5oRV474kfQRV474kfQRl4b4aWO5FmGwn48/Ex5hLgH+Bf/JcA3ds+ofAAAAAElFTkSuQmCC"></div>
-  <div class="links"><span>Services</span><span>Cas clients</span><span>L'agence</span><span>Ressources</span></div>
-  <a class="btn btn-dark" href="#cta">Réserver un appel <span class="arr">→</span></a>
+  <a class="brand" href="https://www.nocodefactory.fr/"><span class="mk">▣</span>Nocode<b>Factory</b></a>
+  <div class="links">
+    <a href="https://www.nocodefactory.fr/">Services</a>
+    <a href="https://www.nocodefactory.fr/nos-realisations">Cas clients</a>
+    <a href="https://www.nocodefactory.fr/notre-aventure">L'agence</a>
+    <a href="https://www.nocodefactory.fr/le-blog">Ressources</a>
+  </div>
+  <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="circ">→</span></a>
 </nav>
 
 <div class="subnav" id="subnav">
@@ -263,21 +369,28 @@
   <a href="#faq">FAQ</a>
 </div>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (centré, aurora, typed, marquee : déroulé home NCF) ============ -->
 <header class="hero">
+  <div class="aurora"></div>
   <div class="wrap">
-    <div class="grid">
-      <div>
-        <span class="kicker">■&nbsp; Problématique · Web · Webflow</span>
-        <h1>Votre site tourne sur Webflow. Et <span class="hl">Webflow change</span>.</h1>
-        <p class="sub">Deux refontes tarifaires en dix-huit mois, des fonctionnalités supprimées et remplacées par des outils tiers payants, un nouveau plan à 2&nbsp;500&nbsp;$ par mois&nbsp;: Webflow monte en gamme, et tous ses clients ne sont pas logés à la même enseigne. <b style="color:var(--ink)">Voici les faits, ce qu'ils coûtent, et comment savoir si votre site est concerné.</b></p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn btn-dark" href="#cas">Mon site est-il concerné&nbsp;? <span class="arr">→</span></a>
-          <a class="btn btn-line" href="#faits">Voir les faits</a>
-        </div>
-        <p class="meta">Chaque fait de cette page est <b>daté et sourcé</b>&nbsp;: annonces officielles Webflow, prix publics, presse spécialisée</p>
-      </div>
-      <div class="browser rv">
+    <div class="laurel rv in">
+      <span class="wreath"><span class="leaf">🌿</span><span style="max-width:190px;text-align:center;line-height:1.3">Enquête problématique<br><b>Où va Webflow ?</b></span><span class="leaf flip">🌿</span></span>
+      <span class="sep"></span>
+      <span><b>2</b><br>refontes tarifaires<br>en 18 mois</span>
+      <span class="sep"></span>
+      <span><span class="star">★</span> <b>100 %</b><br>des faits sourcés</span>
+    </div>
+    <h1>Votre site tourne sur Webflow.<br>Et Webflow <span class="grad" id="typed">change ses prix</span><span class="caret">&nbsp;</span></h1>
+    <p class="sub">Deux refontes tarifaires en dix-huit mois, des fonctionnalités supprimées et remplacées par des outils tiers payants, un nouveau plan à 2&nbsp;500&nbsp;$ par mois. Webflow monte en gamme, et tous ses clients ne sont pas logés à la même enseigne. <b>Voici les faits, ce qu'ils coûtent, et comment savoir si votre site est concerné.</b></p>
+    <div class="ctas">
+      <a class="btn btn-dark" href="#cas">Mon site est-il concerné&nbsp;? <span class="circ">→</span></a>
+      <a class="tlink" href="#faits">Voir les faits</a>
+    </div>
+
+    <div class="heromock rv">
+      <span class="chip chip-up">+34&nbsp;% au renouvellement</span>
+      <span class="chip chip-gone">Plan CMS&nbsp;: supprimé ✂️</span>
+      <div class="browser">
         <div class="bar">
           <span class="dot" style="background:#e5484d"></span><span class="dot" style="background:#ffd23f"></span><span class="dot" style="background:#46a758"></span>
           <span class="url">webflow.com/dashboard/billing</span>
@@ -286,7 +399,7 @@
           <div class="head">Abonnement · votre-site.com</div>
           <div class="notice"><b>Votre plan évolue.</b> Le plan CMS n'existe plus&nbsp;: au prochain renouvellement, votre site passe automatiquement sur Premium.</div>
           <div class="rows">
-            <div class="r"><span class="lbl">Plan du site<small>CMS → Premium (mensuel)</small></span><span class="amt"><span class="old">29&nbsp;$</span>39&nbsp;$/mois<span class="badge-up">+34&nbsp;%</span></span></div>
+            <div class="r"><span class="lbl">Plan du site<small>CMS → Premium (mensuel)</small></span><span class="amt"><span class="old">29&nbsp;$</span>39&nbsp;$/mois</span></div>
             <div class="r"><span class="lbl">Localisation · 2 langues<small>add-on facturé par langue</small></span><span class="amt">9 à 29&nbsp;$/langue/mois</span></div>
             <div class="r"><span class="lbl">Bande passante incluse<small>ex-Business, plafond revu</small></span><span class="amt"><span class="old">100&nbsp;Go</span>50&nbsp;Go</span></div>
           </div>
@@ -295,49 +408,56 @@
       </div>
     </div>
   </div>
+
+  <div class="marquee" aria-label="Ils travaillent avec Nocode Factory">
+    <div class="track">
+      <span class="lg">BlaBlaCar</span><span class="lg it serif">L'ÉQUIPE</span><span class="lg lite">=ornikar</span><span class="lg it">insify</span><span class="lg">Obat</span><span class="lg lite">bouygues</span><span class="lg it">sunday</span><span class="lg serif">HomeServe</span><span class="lg lite">BIOGROUP</span><span class="lg">Karos</span>
+      <span class="lg">BlaBlaCar</span><span class="lg it serif">L'ÉQUIPE</span><span class="lg lite">=ornikar</span><span class="lg it">insify</span><span class="lg">Obat</span><span class="lg lite">bouygues</span><span class="lg it">sunday</span><span class="lg serif">HomeServe</span><span class="lg lite">BIOGROUP</span><span class="lg">Karos</span>
+    </div>
+  </div>
 </header>
 
 <!-- ============ RÉPONSE COURTE (AEO) ============ -->
-<section id="reponse" style="padding-top:0;padding-bottom:clamp(28px,4vw,48px)">
+<section id="reponse" style="padding-top:clamp(20px,3vw,36px);padding-bottom:clamp(28px,4vw,48px)">
   <div class="wrap">
     <div class="short rv"><span class="tag">La réponse courte</span><b>Pourquoi des sites quittent Webflow&nbsp;?</b> Parce que la plateforme s'est restructurée deux fois en dix-huit mois (décembre 2024, mai 2026)&nbsp;: prix recomposés, fonctionnalités supprimées (Logic, User Accounts) et renvoyées vers des outils tiers payants, bande passante incluse réduite, montée en gamme assumée. Les sites à fort trafic, multilingues ou à comptes utilisateurs paient le plus&nbsp;; un CMS headless comme Sanity, dont le socle est gratuit, devient alors l'alternative naturelle.</div>
   </div>
 </section>
 
 <!-- ============ QUIZ : EST-CE VOTRE CAS ? ============ -->
-<section id="cas" style="background:var(--cream-deep)">
+<section id="cas">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="k">Diagnostic</span>
-      <h2>Votre site est-il <span class="hl">concerné</span>&nbsp;?</h2>
+      <p class="kick">🩺 Diagnostic express</p>
+      <h2>Votre site est-il<br><span class="grad">vraiment concerné</span>&nbsp;?</h2>
       <p class="lede">Tous les sites Webflow ne sont pas touchés de la même façon. Cliquez sur ce qui vous décrit&nbsp;: verdict immédiat, sans formulaire ni email.</p>
     </div>
 
-    <div class="card quiz rv" style="max-width:900px;margin:0 auto">
+    <div class="card quiz rv" style="max-width:900px">
       <h3>Qu'est-ce qui vous amène&nbsp;?</h3>
       <p class="sub3">Choisissez la situation la plus proche de la vôtre.</p>
       <div class="roles">
-        <button class="role" data-v="prix">Ma facture Webflow a augmenté<small>ou va augmenter au renouvellement</small></button>
-        <button class="role" data-v="limites">Mon site atteint les limites du CMS<small>items, collections, bande passante</small></button>
-        <button class="role" data-v="addons">Je paye des outils tiers pour compenser<small>comptes utilisateurs, automatisations, membres</small></button>
-        <button class="role" data-v="besoins">J'ai besoin de choses que Webflow ne fait pas<small>multilingue avancé, app, recherche, IA</small></button>
+        <button class="role p-yellow" data-v="prix">Ma facture Webflow a augmenté<small>ou va augmenter au renouvellement</small></button>
+        <button class="role p-pink" data-v="limites">Mon site atteint les limites du CMS<small>items, collections, bande passante</small></button>
+        <button class="role p-blue" data-v="addons">Je paye des outils tiers pour compenser<small>comptes utilisateurs, automatisations, membres</small></button>
+        <button class="role p-green" data-v="besoins">J'ai besoin de choses que Webflow ne fait pas<small>multilingue avancé, app, recherche, IA</small></button>
         <button class="role full" data-v="autre">Rien de tout ça, ou autre chose</button>
       </div>
-      <div class="verdict" id="v-prix"><b>Vous n'êtes pas un cas isolé, et ce n'est pas fini.</b> En mai 2026, Webflow a fusionné ses plans CMS et Business en un plan Premium unique, appliqué automatiquement aux sites existants au renouvellement. Selon votre profil (trafic, facturation mensuelle, bande passante), la bascule est neutre… ou brutale&nbsp;: la communauté a rapporté des hausses allant jusqu'à +320&nbsp;% pour les sites à fort trafic. La bonne question n'est pas «&nbsp;combien je paye ce mois-ci&nbsp;» mais «&nbsp;combien sur 3 ans, et contre quoi&nbsp;». Faites le calcul plus bas, puis parlons de votre cas précis.<br><a class="go" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-limites"><b>Les plafonds ne se négocient pas, ils se contournent ou se quittent.</b> Le plan Premium plafonne à 20&nbsp;000 items CMS et 40 collections&nbsp;; au-delà, Webflow vous oriente vers le plan Team à 2&nbsp;500&nbsp;$ par mois, contrat annuel. Si votre site grandit (catalogue, contenus, trafic), vous connaissez déjà la suite&nbsp;: soit vous bridez le site, soit la facture change d'ordre de grandeur. Un CMS headless n'a pas cette marche d'escalier, et c'est exactement le sujet d'un appel de 30 minutes sur vos volumes réels.<br><a class="go" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-addons"><b>Cette stack d'add-ons n'est pas un choix, c'est un héritage.</b> Webflow a supprimé Logic (juin 2025) puis User Accounts (janvier 2026) en renvoyant ses clients vers Zapier, Make, Memberstack ou Outseta&nbsp;: des abonnements qui s'additionnent au plan du site, chacun avec son paramétrage et son point de rupture. Additionnez tout ce que votre site vous coûte réellement par mois, outils tiers compris&nbsp;: c'est ce total qu'il faut comparer à une alternative, pas le seul abonnement Webflow.<br><a class="go" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-besoins"><b>Le vrai plafond de Webflow n'est pas le prix, c'est le périmètre.</b> Un site multilingue se paie par langue et par mois (add-on Localisation, 9 à 29&nbsp;$ par langue). Une recherche avancée, un espace connecté, une brique IA&nbsp;: hors périmètre, ou via outils tiers. Avec un CMS headless, votre contenu est accessible par API et le site est du code sur-mesure&nbsp;: ce que vous pouvez construire n'est plus borné par l'éditeur. Décrivez-nous ce qui vous manque, on vous dit honnêtement si ça vaut une migration.<br><a class="go" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-autre"><b>Chaque site a son cas particulier, et c'est précisément pour ça que l'appel existe.</b> Contrat en cours, refonte prévue, doute sur la pérennité de l'outil, prestataire qui ne suit plus&nbsp;: décrivez votre situation en 30 minutes, on vous dit ce qu'on en pense, y compris si la bonne réponse est «&nbsp;ne changez rien&nbsp;».<br><a class="go" href="#appel">Réserver un appel (30 min) →</a></div>
+      <div class="verdict" id="v-prix"><b>Vous n'êtes pas un cas isolé, et ce n'est probablement pas fini.</b> En mai 2026, Webflow a fusionné ses plans CMS et Business en un plan Premium unique, appliqué automatiquement aux sites existants au renouvellement. Selon votre profil (trafic, facturation mensuelle, bande passante), la bascule reste neutre… ou fait très mal&nbsp;: la communauté a rapporté des hausses allant jusqu'à +320&nbsp;% pour les sites à fort trafic. Posez-vous la bonne question&nbsp;: pas «&nbsp;combien je paye ce mois-ci&nbsp;», mais «&nbsp;combien sur 3 ans, et contre quoi&nbsp;». Faites le calcul plus bas, puis parlons de votre cas précis.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+      <div class="verdict" id="v-limites"><b>Un plafond Webflow, ça ne se négocie pas.</b> Le plan Premium s'arrête à 20&nbsp;000 items CMS et 40 collections&nbsp;; au-delà, Webflow vous oriente vers le plan Team à 2&nbsp;500&nbsp;$ par mois, contrat annuel. Si votre site grandit (catalogue, contenus, trafic), vous voyez déjà venir la suite&nbsp;: brider le site, ou accepter une facture qui change d'ordre de grandeur. Un CMS headless n'a pas cette marche d'escalier. Trente minutes suffisent pour regarder vos volumes réels et trancher.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+      <div class="verdict" id="v-addons"><b>Cette pile d'abonnements, vous ne l'avez jamais choisie.</b> Webflow a supprimé Logic (juin 2025) puis User Accounts (janvier 2026) en renvoyant ses clients vers Zapier, Make, Memberstack ou Outseta&nbsp;: autant d'outils qui s'additionnent au plan du site, chacun avec son paramétrage et son point de rupture. Faites le total de ce que votre site vous coûte réellement chaque mois, outils tiers compris. C'est ce chiffre-là qu'il faut comparer à une alternative, pas le seul abonnement Webflow.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+      <div class="verdict" id="v-besoins"><b>Le vrai plafond de Webflow, c'est son périmètre.</b> Un site multilingue se paie par langue et par mois (add-on Localisation, 9 à 29&nbsp;$ par langue). Une recherche avancée, un espace connecté, une brique IA&nbsp;? Hors périmètre, ou via outils tiers. Avec un CMS headless, votre contenu est accessible par API et le site est du code sur-mesure&nbsp;: ce que vous pouvez construire ne dépend plus de l'éditeur. Décrivez-nous ce qui vous manque, on vous dit honnêtement si ça vaut une migration.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+      <div class="verdict" id="v-autre"><b>Chaque site a son cas particulier, et l'appel existe précisément pour ça.</b> Contrat en cours, refonte prévue, doute sur la pérennité de l'outil, prestataire qui ne suit plus&nbsp;: décrivez votre situation en 30 minutes, on vous dit ce qu'on en pense. Y compris si la bonne réponse est «&nbsp;ne changez rien&nbsp;».<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
     </div>
   </div>
 </section>
 
 <!-- ============ LES FAITS (timeline sourcée) ============ -->
-<section id="faits">
+<section id="faits" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="k">Les faits, datés et sourcés</span>
-      <h2>Où va Webflow&nbsp;? Ce qui s'est <span class="hl">réellement passé</span></h2>
+      <p class="kick">📅 Les faits, datés et sourcés</p>
+      <h2>Où va Webflow&nbsp;?<br>Ce qui s'est <span class="hl-pink hl-dot">réellement passé</span></h2>
       <p class="lede">Pas de procès d'intention&nbsp;: uniquement des annonces officielles et des prix publics, chacun avec sa source. À vous de juger la trajectoire.</p>
     </div>
 
@@ -377,11 +497,11 @@
 </section>
 
 <!-- ============ CE QUE ÇA COÛTE (calculateur) ============ -->
-<section id="cout" style="background:var(--cream-deep)">
+<section id="cout" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="k">Ce que ça vous coûte</span>
-      <h2>Faites le calcul sur <span class="hl">3 ans</span>, avec vos chiffres</h2>
+      <p class="kick">🧮 Ce que ça vous coûte</p>
+      <h2>Faites le calcul sur <span class="grad">3 ans</span>,<br>avec vos chiffres</h2>
       <p class="lede">Le bon montant à regarder n'est pas l'abonnement Webflow seul&nbsp;: c'est tout ce que votre site vous coûte chaque mois, outils tiers compris.</p>
     </div>
 
@@ -389,7 +509,7 @@
       <div class="grid">
         <div>
           <h3>Votre site, tout compris</h3>
-          <p style="color:oklch(0.72 0.012 85);font-size:15px">Réglez les curseurs sur votre situation réelle.</p>
+          <p style="color:var(--smoke);font-size:15px">Réglez les curseurs sur votre situation réelle.</p>
           <label>Abonnement Webflow mensuel (plan du site + workspace + add-ons)<br>
             <input type="range" id="c-wf" min="15" max="300" step="1" value="39"><output id="o-wf">39&nbsp;$</output>
           </label>
@@ -404,16 +524,16 @@
         </div>
       </div>
     </div>
-    <p class="proof-note rv" style="margin-top:18px">En face&nbsp;: le CMS Sanity a un plan gratuit (jusqu'à 20 utilisateurs, langues illimitées, source&nbsp;: <a href="https://www.sanity.io/pricing" target="_blank" rel="noopener" style="font-weight:600">sanity.io/pricing</a>, consulté en septembre 2026). Ce que vous payez alors, c'est la construction du site, une fois, et il est à vous.</p>
+    <p class="proof-note rv" style="color:var(--grey);margin:18px auto 0;text-align:center">En face&nbsp;: le CMS Sanity a un plan gratuit (jusqu'à 20 utilisateurs, langues illimitées, source&nbsp;: <a href="https://www.sanity.io/pricing" target="_blank" rel="noopener" style="font-weight:500">sanity.io/pricing</a>, consulté en septembre 2026). Ce que vous payez alors, c'est la construction du site, une fois, et il est à vous.</p>
   </div>
 </section>
 
 <!-- ============ L'APPEL ============ -->
-<section id="appel">
+<section id="appel" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="k">La prochaine étape</span>
-      <h2>30 minutes pour savoir <span class="hl">où vous en êtes</span></h2>
+    <div class="sec-head center rv">
+      <p class="kick center">📞 La prochaine étape</p>
+      <h2>30 minutes pour savoir<br><span class="grad">où vous en êtes</span></h2>
     </div>
     <div class="offer rv">
       <div>
@@ -428,7 +548,7 @@
       <div class="offer-cta">
         <div class="dur">30<span>min</span></div>
         <p>En visio, quand vous voulez. Vous repartez avec une lecture claire de votre situation, que vous travailliez avec nous ou non.</p>
-        <a class="btn btn-yel" href="#">Réserver un appel <span class="arr">→</span></a>
+        <a class="btn btn-white" href="#">Réserver un appel <span class="circ">→</span></a>
         <span class="after">Gratuit, sans engagement.</span>
       </div>
     </div>
@@ -436,24 +556,28 @@
 </section>
 
 <!-- ============ PONT VERS SOLUTION ============ -->
-<section id="migrer" style="background:var(--cream-deep)">
+<section id="migrer" style="padding-top:0">
   <div class="wrap">
     <div class="bridge rv">
-      <span class="k" style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:14px">Quand la migration se justifie</span>
-      <h2 style="font-size:clamp(26px,3.4vw,38px)">Migrer sans perdre une ligne de SEO, c'est un métier</h2>
+      <p class="kick">🧳 Quand la migration se justifie</p>
+      <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Migrer sans perdre une ligne de SEO,<br>c'est un métier</h2>
       <p>Le jour où le calcul penche, la migration vers un CMS headless comme <b>Sanity</b> se fait sans sacrifier ce que votre site a construit&nbsp;: URLs conservées, redirections exhaustives, bascule progressive par reverse proxy, vérification page à page. Votre contenu devient accessible par API, votre site redevient du code qui vous appartient, et la traduction cesse d'être un abonnement par langue.</p>
-      <a class="go" href="#">Voir comment on migre un site Webflow vers Sanity →</a>
+      <a class="tlink" href="#" style="margin-top:18px;color:var(--pink-vif)">Voir comment on migre un site Webflow vers Sanity →</a>
     </div>
   </div>
 </section>
 
-<!-- ============ PREUVES ============ -->
-<section id="preuves">
+<!-- ============ PREUVES (section sombre pleine largeur, comme la home) ============ -->
+<section id="preuves" class="darksec">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="k">La preuve, pas la promesse</span>
-      <h2>Sanity en production, <span class="hl">chez des grands comptes</span></h2>
-      <p class="lede">170+ projets livrés. Et sur ce sujet précis, deux références qui parlent d'elles-mêmes.</p>
+    <div class="sec-head rv" style="margin-left:0">
+      <p class="kick">🏆 La preuve par les clients</p>
+      <h2>Sanity en production,<br><span class="grad">chez des grands comptes</span></h2>
+    </div>
+    <div class="stats rv">
+      <div class="st"><div class="n">170+</div><div class="l">Startups accompagnées</div></div>
+      <div class="st"><div class="n">10+</div><div class="l">Industries</div></div>
+      <div class="st"><div class="n">97%</div><div class="l">NPS moyen</div></div>
     </div>
     <div class="proofs rv">
       <div class="proof-case">
@@ -467,22 +591,22 @@
         <p>Nous avons repris la maintenance d'un site stratégique construit par une autre agence&nbsp;: audit de l'existant, continuité de service, évolutions. Reprendre un site qu'on n'a pas construit, c'est notre quotidien.</p>
       </div>
     </div>
-    <p class="proof-note rv">Une équipe structurée, du code documenté, des accès qui vous appartiennent&nbsp;: ce qui vaut pour ces références vaut pour votre site.</p>
+    <p class="proof-note rv">Une équipe structurée, du code documenté, des accès qui vous appartiennent&nbsp;: ce qui vaut pour ces références vaut pour votre site. Chiffres&nbsp;: nocodefactory.fr, septembre 2026.</p>
   </div>
 </section>
 
 <!-- ============ EXPERTISE / MÉTHODO ============ -->
-<section id="expertise" style="background:var(--cream-deep)">
+<section id="expertise">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="k">D'où vient cette analyse</span>
-      <h2>L'expertise derrière <span class="hl">cette page</span></h2>
+      <p class="kick">🔍 D'où vient cette analyse</p>
+      <h2>L'expertise derrière<br><span class="hl-pink hl-dot">cette page</span></h2>
     </div>
-    <div class="exp rv" style="max-width:900px;margin:0 auto">
+    <div class="exp rv" style="max-width:900px">
       <div class="card">
         <div class="stamp">NCF</div>
         <h3>L'équipe Nocode Factory</h3>
-        <p style="color:var(--ink-2);font-size:15px;margin-top:8px">170+ projets livrés, dont des sites Webflow que nous construisons et maintenons depuis des années. Cette page vient de là&nbsp;: nous connaissons l'outil de l'intérieur, ses forces comme ses plafonds, et nous opérons aussi l'alternative.</p>
+        <p style="color:var(--grey);font-size:15px;margin-top:8px">Des sites Webflow, nous en construisons et nous en maintenons depuis des années. Cette page vient de là&nbsp;: nous connaissons l'outil de l'intérieur, ses forces comme ses plafonds, et nous opérons aussi l'alternative.</p>
       </div>
       <div class="card">
         <h3>Notre méthodo</h3>
@@ -498,11 +622,11 @@
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq">
+<section id="faq" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="k">FAQ</span>
-      <h2>Les questions qu'on nous pose <span class="hl">sur Webflow</span></h2>
+    <div class="sec-head center rv">
+      <p class="kick center">💬 FAQ</p>
+      <h2>Les questions qu'on nous pose<br><span class="grad">sur Webflow</span></h2>
     </div>
     <div class="faq rv">
       <details><summary>Webflow va-t-il disparaître ?</summary><p>Non, et personne de sérieux ne vous dira le contraire&nbsp;: aucune annonce de fin de vie n'existe. Ce qui est documenté, c'est autre chose&nbsp;: des fonctionnalités précises supprimées (Logic en juin 2025, User Accounts en janvier 2026), deux refontes tarifaires en dix-huit mois et un repositionnement assumé vers les grandes équipes marketing. Le risque pour vous n'est pas la disparition de l'outil, c'est l'évolution de sa facture et de son périmètre.</p></details>
@@ -519,22 +643,46 @@
 <section id="cta" style="padding-top:0">
   <div class="wrap">
     <div class="final rv">
+      <div class="glow"></div>
       <div>
         <h2>On regarde votre site&nbsp;?</h2>
-        <p>Appel de 30 minutes&nbsp;: on vous dit <span class="hand">honnêtement</span> si votre site fait partie des profils touchés. Y compris si la bonne réponse est «&nbsp;restez sur Webflow&nbsp;».</p>
+        <p>Appel de 30 minutes&nbsp;: on vous dit honnêtement si votre site fait partie des profils touchés. Y compris si la bonne réponse est «&nbsp;restez sur Webflow&nbsp;».</p>
       </div>
       <div class="box">
-        <a class="btn btn-yel" href="#">Réserver un appel (30 min) <span class="arr">→</span></a>
-        <a class="alt" href="#migrer">Ou voir comment on migre sans perdre le SEO →</a>
+        <a class="btn btn-white" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
+        <a class="tlink alt" href="#migrer">Ou voir comment on migre sans perdre le SEO →</a>
         <span class="after">Gratuit, sans engagement.</span>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="wrap">
-  <span>Nocode<b style="font-style:italic">Factory</b> · sites &amp; outils sur mesure</span>
-  <span>Pages liées&nbsp;: <a href="#" style="font-weight:600">Migration Webflow → Sanity</a> · <a href="https://www.nocodefactory.fr/nos-realisations" style="font-weight:600">Cas clients</a></span>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Nocode<b style="font-style:italic">Factory</b></div>
+        <p style="font-size:13px;margin-top:8px;max-width:28ch">Sites &amp; outils sur mesure, en no-code, low-code et code.</p>
+      </div>
+      <div>
+        <div class="flabel">Cette enquête</div>
+        <ul>
+          <li><a href="#faits">Les faits sourcés</a></li>
+          <li><a href="#cas">Le diagnostic</a></li>
+          <li><a href="#">Migration Webflow → Sanity</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="flabel">C'est ça que tu cherches ?</div>
+        <ul>
+          <li><a href="https://www.nocodefactory.fr/nos-realisations">Nos réalisations</a></li>
+          <li><a href="https://www.nocodefactory.fr/notre-aventure">Notre aventure</a></li>
+          <li><a href="https://www.nocodefactory.fr/le-blog">Le blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Chaque fait cité sur cette page est daté et sourcé. Dernière mise à jour&nbsp;: septembre 2026.</p>
+  </div>
 </footer>
 
 <script type="application/ld+json">
@@ -552,6 +700,20 @@
 }
 </script>
 <script>
+  // effet machine à écrire (typed.js-like, comme le H1 de la home NCF)
+  (function(){
+    const el=document.getElementById('typed');
+    if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const words=['change ses prix','supprime des features','monte en gamme','change'];
+    let w=0,i=words[0].length,del=true;
+    setTimeout(function tick(){
+      const word=words[w];
+      el.textContent=word.slice(0,i);
+      if(del){i--;if(i<0){del=false;w=(w+1)%words.length;i=0}}
+      else{i++;if(i>words[w].length){if(w===words.length-1)return;del=true;setTimeout(tick,1600);return}}
+      setTimeout(tick,del?45:80);
+    },1800);
+  })();
   // quiz verdict
   document.querySelectorAll('.role').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -564,10 +726,10 @@
   // calculateur coût 3 ans
   const wf=document.getElementById('c-wf'),tiers=document.getElementById('c-tiers');
   function calc(){
-    document.getElementById('o-wf').textContent=wf.value+' $';
-    document.getElementById('o-tiers').textContent=tiers.value+' $';
+    document.getElementById('o-wf').textContent=wf.value+' $';
+    document.getElementById('o-tiers').textContent=tiers.value+' $';
     const total=(parseInt(wf.value,10)+parseInt(tiers.value,10))*36;
-    document.getElementById('c-res').textContent=total.toLocaleString('fr-FR')+' $';
+    document.getElementById('c-res').textContent=total.toLocaleString('fr-FR')+' $';
   }
   wf.addEventListener('input',calc);tiers.addEventListener('input',calc);calc();
   // reveal
