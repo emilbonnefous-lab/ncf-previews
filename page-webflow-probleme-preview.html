@@ -10,19 +10,20 @@
   MATRICE — Page PROBLÉMATIQUE Nocode Factory (famille /problematiques/)
   Instance : Où va Webflow ? · slug /problematiques/ou-va-webflow-alternatives
   Spec : spec-page-webflow-probleme.md (validée Emilien 09/09/2026)
-  Restylée 10/09/2026 sur la DA réelle de www.nocodefactory.fr :
-  tokens Webflow exacts (#1e1a28, #fff8f0, pastels), dégradé arc-en-ciel
-  animé (rainbowText), typed effect H1, marquee logos pause-on-hover,
-  hovers réels (underline-grow nav, tilt cartes, glow, barre rainbow).
+  v3 10/09/2026 : format ARTICLE DE BLOG calqué sur
+  nocodefactory.fr/blog/formation-ia-entreprise (retour Emilien) :
+  breadcrumb + pill catégorie + H1 gauche + méta/auteur, carte "Résumez
+  avec une IA", sommaire sticky + carte CTA sombre "Oh yeah!", barre de
+  partage flottante, colonne article 640px, callout "L'idée de génie",
+  CTA final "Assez parlé" sur fond aurora.
+  Retirés sur demande Emilien (10/09) : calculateur 3 ans, section cas
+  clients (Pernod/Ligue 1) + stats.
   Règles NCF encodées (NE PAS RETIRER) :
     - AUCUN prix NCF chiffré publié (les seuls prix affichés = prix publics
       Webflow/Sanity, chacun sourcé ; source consultée le 09/09/2026)
     - AUCUN fait non sourcé : chaque item de la timeline lie sa source
     - Conversion = diagnostic → appel 30 min ; pas de capture email
-    - Preuves Pernod + Ligue 1 : PUBLICATION BLOQUÉE tant que Valentin n'a
-      pas validé les droits (Ligue 1 = "maintenance", jamais "création")
-    - Chiffres agence (+350 projets, 170+, 10+, 97 %) = ceux affichés sur
-      la home nocodefactory.fr, consultée le 10/09/2026
+    - "+350 projets réalisés" = claim affiché sur nocodefactory.fr (10/09/2026)
     - Zéro tiret cadratin dans la copy (marqueur IA)
   ============================================================================
 -->
@@ -32,54 +33,38 @@
   @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
   @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
   :root{
-    /* tokens réels nocodefactory.fr (Webflow variables, relevés 10/09/2026) */
-    --beige:#f9f8f6;          /* bg-color-beige */
-    --ncf-beige:#fff8f0;      /* color-brand--beige : texte des boutons sombres */
-    --white:#fff;
-    --ink:#060110;            /* neutral-black */
-    --black:#1e1a28;          /* color-brand--black : boutons, sections sombres */
-    --grey:#606060;           /* text-tertiary */
-    --smoke:#a7a7a7;
-    --lightgrey:#ddd9d9;
-    --hair:#e9e6e1;
-    --pink:#f99bfb;
-    --pink-vif:#ff5777;
-    --yellow:#ffca64;
-    --green:#38ef7d;
-    --green-deep:#027a48;
-    --green-light:#ecfdf3;
-    --blue:#5ac0ff;
-    --purple:#906cf8;
-    --pastel-yellow:#fef1e6;
-    --pastel-pink:#f9eef1;
-    --pastel-blue:#eafafc;
-    --pastel-green:#f1fbed;
-    --red:#b42318;
-    --red-light:#fef3f2;
-    --dark-card:#2d273e;
+    /* tokens réels nocodefactory.fr (relevés 10/09/2026) */
+    --beige:#f9f8f6; --ncf-beige:#fff8f0; --white:#fff;
+    --ink:#060110; --black:#1e1a28; --grey:#606060; --smoke:#a7a7a7; --toc-grey:#b1b1b1;
+    --lightgrey:#ddd9d9; --hair:#e9e6e1;
+    --pink:#f99bfb; --pink-vif:#ff5777; --yellow:#ffca64; --green:#38ef7d;
+    --green-deep:#027a48; --green-pill:#47c247;
+    --blue:#5ac0ff; --blue-link:#1faaff; --purple:#906cf8; --purple-soft:#a8a0f0; --purple-pale:#f3f1fd;
+    --pastel-yellow:#fef1e6; --pastel-pink:#f9eef1; --pastel-blue:#eafafc; --pastel-green:#f1fbed;
+    --red:#b42318; --red-light:#fef3f2;
     --sans:"Fff Acidgrotesk",Arial,sans-serif;
     --r-lg:1.5rem; --r-md:1rem; --r-sm:.75rem;
     --grad:linear-gradient(90deg,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:120px}
+  html{scroll-behavior:smooth;scroll-padding-top:100px}
   body{font-family:var(--sans);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.6}
   ::selection{background:var(--yellow);color:var(--ink)}
   img{max-width:100%}
   a{color:inherit}
-  b,strong{font-weight:500}
+  b,strong{font-weight:500;color:var(--ink)}
 
-  /* ===== texte arc-en-ciel animé (rainbowText, comme la home NCF) ===== */
   .grad{background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
   @media(prefers-reduced-motion:no-preference){.grad{animation:rainbowText 14s linear infinite}}
   @keyframes rainbowText{0%{background-position:0% 50%}100%{background-position:400% 50%}}
 
-  /* ===== barre rainbow qui grossit au survol (navbar_rainbow NCF) ===== */
+  /* barre rainbow qui grossit au survol (navbar_rainbow NCF) */
   .rainbow{height:5px;background:linear-gradient(90deg,#fa2217,#ff9323 14%,#cf7dc1 28%,#906cf8 41%,#19b5c0 57%,#198cc6 71%,#ffd361 85%,#fa2217);transition:height .3s;cursor:pointer}
   .rainbow:hover{height:20px}
 
   /* ===== nav ===== */
-  .nav{background:var(--beige);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .nav{background:var(--beige);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:60;border-bottom:1px solid transparent}
+  .nav.scrolled{background:color-mix(in srgb,var(--beige) 92%,transparent);backdrop-filter:blur(10px);border-bottom-color:var(--hair)}
   .brand{display:flex;align-items:center;gap:9px;font-size:20px;letter-spacing:-.3px;text-decoration:none;color:var(--ink)}
   .brand .mk{width:26px;height:26px;border-radius:7px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:12px;font-weight:700}
   .brand b{font-weight:700;font-style:italic}
@@ -89,8 +74,8 @@
   .nav .links a:hover::after{width:100%}
   @media(max-width:860px){.nav .links{display:none}}
 
-  /* ===== boutons (button-ncf réels : pilule 3000px, beige sur noir) ===== */
-  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;white-space:nowrap;text-decoration:none;border-radius:3000px;padding:.65rem 1.4rem;border:1px solid var(--black);transition:.375s cubic-bezier(.23,1,.32,1)}
+  /* ===== boutons (button-ncf) ===== */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;white-space:nowrap;text-decoration:none;border-radius:3000px;padding:.65rem 1.4rem;border:1px solid var(--black);transition:.375s cubic-bezier(.23,1,.32,1);cursor:pointer}
   @media(max-width:480px){.nav .btn{padding:.45rem .9rem;font-size:13px}.nav .btn .circ{width:22px;height:22px;font-size:12px}.brand{font-size:17px}}
   .btn .circ{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ncf-beige);color:var(--black);font-size:13px;flex:0 0 auto;transition:transform .375s cubic-bezier(.23,1,.32,1)}
   .btn:hover .circ{transform:translateX(4px)}
@@ -101,60 +86,43 @@
   .btn-white .circ{background:var(--black);color:var(--ncf-beige)}
   .btn-white:hover{background:transparent;color:var(--ncf-beige);transform:scale(1.02)}
   .btn-white:hover .circ{background:var(--white);color:var(--black)}
-  .btn-ghost{background:rgba(150,150,150,.2);color:var(--grey);border-color:transparent}
-  .btn-ghost:hover{color:var(--ink)}
-  .btn-line{background:transparent;color:var(--ncf-beige);border-color:var(--ncf-beige)}
-  .btn-line:hover{border-color:var(--white);transform:scale(1.02)}
 
-  /* lien tertiaire : underline qui pousse (navbar_link-underline NCF) */
   .tlink{display:inline-block;font-size:15px;font-weight:500;text-decoration:none;position:relative;padding-bottom:3px}
   .tlink::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:currentColor;transition:width .3s}
   .tlink:hover::after{width:100%}
 
-  /* ===== sub-nav ancres ===== */
-  .subnav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--beige) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair);padding:10px clamp(18px,4vw,44px);display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
-  .subnav::-webkit-scrollbar{display:none}
-  .subnav .pagename{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px;margin-right:10px;white-space:nowrap}
-  .subnav .pagename .mark{width:30px;height:30px;border-radius:8px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:13px}
-  .subnav a{font-size:13.5px;color:var(--grey);text-decoration:none;padding:7px 14px;border-radius:3000px;white-space:nowrap;transition:all .25s}
-  .subnav a:hover{background:rgba(150,150,150,.15);color:var(--ink)}
-  .subnav a.on{background:var(--black);color:var(--ncf-beige)}
-
   .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-  .narrow{max-width:780px;margin:0 auto}
 
-  /* ===== kicker italique NCF (subtitle-wrapper) ===== */
-  .kick{display:flex;align-items:center;gap:8px;font-size:15px;font-style:italic;font-weight:500;color:var(--grey);margin-bottom:18px}
-  .kick.center{justify-content:center}
+  /* ===== en-tête article (blog NCF) ===== */
+  .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13.5px;color:var(--grey);padding:clamp(24px,4vw,48px) 0 22px}
+  .crumbs a{text-decoration:none}
+  .crumbs a:hover{color:var(--ink)}
+  .crumbs .sep{color:var(--lightgrey)}
+  .crumbs .here{color:var(--purple)}
+  .arthead{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.7fr);gap:clamp(24px,5vw,80px);align-items:start;padding-bottom:clamp(24px,3vw,40px)}
+  @media(max-width:860px){.arthead{grid-template-columns:1fr}}
+  .catpill{display:inline-block;background:var(--green-pill);color:#fff;font-size:13px;font-weight:500;border-radius:8px;padding:4px 12px;margin-bottom:18px}
+  h1{font-weight:500;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1.15;letter-spacing:-1px;text-wrap:balance}
+  .standfirst{font-size:16.5px;color:var(--grey);margin-top:18px;max-width:58ch}
+  .metacol{border-left:1px solid var(--hair);padding-left:clamp(18px,2vw,32px);display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--grey)}
+  @media(max-width:860px){.metacol{border-left:none;padding-left:0;flex-direction:row;flex-wrap:wrap;gap:18px}}
+  .metacol .m b{color:var(--ink)}
+  .author{display:flex;gap:12px;align-items:center;margin-top:16px}
+  @media(max-width:860px){.author{margin-top:0}}
+  .author .av{width:46px;height:46px;border-radius:50%;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-weight:700;font-size:14px;flex:0 0 auto}
+  .author b{display:block;color:var(--ink);font-size:15px}
+  .author small{color:var(--grey);font-size:12.5px}
 
-  h1{font-weight:500;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.1;letter-spacing:-1px;text-wrap:balance}
-  h2{font-weight:500;font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;letter-spacing:-1px;text-wrap:balance}
-  .hl-pink{color:var(--pink-vif)}
-  .hl-dot{text-decoration:underline dotted var(--pink-vif) 2px;text-underline-offset:.35em}
+  /* carte "Résumez cet article avec une IA" */
+  .aicard{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:20px 24px;max-width:640px}
+  .aicard .t{font-weight:500;font-size:16.5px;margin-bottom:14px}
+  .aicard .row{display:flex;gap:10px;flex-wrap:wrap}
+  .aicard a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--hair);border-radius:3000px;padding:7px 14px;transition:all .25s}
+  .aicard a:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .aicard .d{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
 
-  /* ===== hero centré (déroulé home NCF) ===== */
-  .hero{position:relative;padding:clamp(40px,6vw,72px) 0 0;text-align:center;overflow:hidden}
-  .aurora{position:absolute;inset:auto -10% -35% -10%;height:75%;pointer-events:none;filter:blur(70px);opacity:.5;background:
-    radial-gradient(38% 55% at 18% 78%,#5ac0ff 0%,transparent 70%),
-    radial-gradient(42% 60% at 50% 92%,#f99bfb 0%,transparent 72%),
-    radial-gradient(36% 52% at 82% 76%,#ffd361 0%,transparent 70%),
-    radial-gradient(30% 45% at 65% 95%,#ff6161 0%,transparent 70%)}
-  .hero>.wrap{position:relative;z-index:1}
-  .laurel{display:inline-flex;align-items:center;gap:14px;font-size:14px;color:var(--grey);margin-bottom:26px;flex-wrap:wrap;justify-content:center}
-  .laurel .wreath{display:inline-flex;align-items:center;gap:6px}
-  .laurel .wreath .leaf{font-size:20px}
-  .laurel .wreath .leaf.flip{transform:scaleX(-1);display:inline-block}
-  .laurel .sep{width:1px;height:26px;background:var(--lightgrey)}
-  .laurel b{color:var(--ink);font-weight:500}
-  .laurel .star{color:var(--yellow)}
-  .hero .sub{font-size:clamp(16px,1.8vw,18px);color:var(--grey);margin:26px auto 30px;max-width:62ch}
-  .hero .sub b{color:var(--ink)}
-  .hero .ctas{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
-  .caret{display:inline-block;width:3px;background:var(--ink);margin-left:2px;animation:typedjsBlink .7s infinite}
-  @keyframes typedjsBlink{50%{opacity:0}}
-
-  /* mockup facture flottant sous le hero */
-  .heromock{position:relative;max-width:660px;margin:clamp(36px,5vw,56px) auto 0}
+  /* couverture : mockup facture */
+  .cover{position:relative;max-width:820px;margin:clamp(20px,3vw,36px) auto 0}
   .browser{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.35);overflow:hidden;text-align:left}
   .browser .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--hair)}
   .browser .dot{width:10px;height:10px;border-radius:50%}
@@ -162,172 +130,160 @@
   .bill{padding:18px;background:var(--beige)}
   .bill .head{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
   .bill .notice{background:var(--white);border:1.5px solid var(--yellow);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--grey);margin-bottom:12px}
-  .bill .notice b{color:var(--ink)}
   .bill .rows{background:var(--white);border:1px solid var(--hair);border-radius:10px;overflow:hidden;font-size:13px}
   .bill .r{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--hair);align-items:center}
   .bill .r:first-child{border-top:none}
   .bill .r .lbl{color:var(--grey)}
   .bill .r .lbl small{display:block;font-size:10.5px;color:var(--smoke)}
-  .bill .r .amt{font-weight:500;white-space:nowrap}
+  .bill .r .amt{font-weight:500;white-space:nowrap;color:var(--ink)}
   .bill .r .old{color:var(--smoke);text-decoration:line-through;margin-right:7px}
-  .bill .r.total{background:var(--pastel-pink)}
   .browser .cap{font-size:11.5px;color:var(--smoke);text-align:center;padding:9px 12px;border-top:1px solid var(--hair);background:var(--white)}
-  .chip{position:absolute;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;box-shadow:0 8px 24px -10px rgba(30,26,40,.35);white-space:nowrap}
-  .chip-up{top:-14px;right:clamp(-8px,2vw,-40px);background:var(--red-light);color:var(--red);border:1px solid #f6c6c2}
-  .chip-gone{bottom:32px;left:clamp(-8px,2vw,-52px);background:var(--white);color:var(--ink);border:1px solid var(--hair)}
+  .chip{position:absolute;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;box-shadow:0 8px 24px -10px rgba(30,26,40,.35);white-space:nowrap;z-index:2}
+  .chip-up{top:-14px;right:clamp(-6px,1vw,-30px);background:var(--red-light);color:var(--red);border:1px solid #f6c6c2}
+  .chip-gone{bottom:32px;left:clamp(-6px,1vw,-36px);background:var(--white);color:var(--ink);border:1px solid var(--hair)}
   @media(prefers-reduced-motion:no-preference){
     .chip-up{animation:levitation 5s ease-in-out infinite}
     .chip-gone{animation:levitation 6s ease-in-out infinite reverse}
   }
   @keyframes levitation{0%{transform:translateY(2px)}50%{transform:translateY(-8px)}100%{transform:translateY(2px)}}
 
-  /* ===== marquee logos clients (pause au survol, comme la home) ===== */
-  .marquee{overflow:hidden;padding:26px 0 34px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-  .marquee .track{display:flex;align-items:center;gap:clamp(40px,6vw,72px);width:max-content}
-  @media(prefers-reduced-motion:no-preference){.marquee .track{animation:marquee 32s linear infinite}}
-  .marquee:hover .track{animation-play-state:paused}
-  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .lg{font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--ink);opacity:.82;white-space:nowrap;letter-spacing:-.02em}
-  .lg.it{font-style:italic}
-  .lg.serif{font-family:Georgia,serif;font-weight:700}
-  .lg.lite{font-weight:400}
+  /* ===== corps : sommaire | article | partage (layout blog NCF) ===== */
+  .layout{display:grid;grid-template-columns:250px minmax(0,680px) 56px;gap:clamp(28px,4vw,72px);justify-content:center;padding:clamp(36px,5vw,64px) 0}
+  @media(max-width:1080px){.layout{grid-template-columns:minmax(0,680px);justify-content:center}.sidebar,.sharecol{display:none}}
+  .sidebar .stick{position:sticky;top:96px}
+  .toc .toctitle{font-size:13px;font-weight:700;margin-bottom:14px;line-height:1.35}
+  .toc a{display:block;font-size:12.5px;font-weight:500;color:var(--toc-grey);text-decoration:none;padding:6px 0;line-height:1.4;transition:color .25s;position:relative}
+  .toc a:hover{color:var(--ink)}
+  .toc a.on{color:var(--ink)}
+  .toc a.on::after{content:"";display:block;width:44px;height:2px;margin-top:4px;background-image:var(--grad);background-size:400% 100%}
 
-  /* ===== sections ===== */
-  section{padding:clamp(52px,7vw,100px) 0}
-  .sec-head{max-width:860px;margin:0 0 clamp(28px,4vw,48px)}
-  .sec-head.center{text-align:center;margin-left:auto;margin-right:auto}
-  .sec-head.center .kick{justify-content:center}
-  .sec-head .lede{font-size:16.5px;color:var(--grey);margin-top:16px;max-width:60ch}
-  .sec-head.center .lede{margin-left:auto;margin-right:auto}
+  /* carte CTA sidebar "Oh yeah!" (blog NCF) */
+  .sidecta{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-md);padding:24px 20px;margin-top:30px}
+  .sidecta .sticker{display:inline-block;background:var(--pink);color:var(--ink);font-weight:700;font-style:italic;font-size:22px;line-height:1;padding:8px 12px;border:3px solid var(--ink);box-shadow:5px 5px 0 rgba(255,255,255,.18);transform:rotate(-4deg);margin:2px 0 18px}
+  .sidecta .t{font-weight:500;font-size:17px;margin-bottom:14px}
+  .sidecta ul{list-style:none;margin-bottom:18px}
+  .sidecta li{display:flex;gap:9px;align-items:center;font-size:13.5px;color:var(--smoke);padding:5px 0}
+  .sidecta .ck{width:18px;height:18px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto}
+
+  /* barre de partage flottante */
+  .sharecol .stick{position:sticky;top:110px;display:flex;flex-direction:column;gap:12px;align-items:center}
+  .share{width:44px;height:44px;border-radius:50%;background:var(--white);border:1px solid var(--hair);display:grid;place-items:center;font-size:15px;font-weight:700;text-decoration:none;color:var(--ink);transition:all .25s;cursor:pointer}
+  .share:hover{transform:translateY(-3px);border-color:var(--ink)}
+  .sharecol .lbl{writing-mode:vertical-rl;font-size:12px;color:var(--grey);margin-top:6px}
+
+  /* ===== article ===== */
+  .article{min-width:0}
+  .article>p{font-size:15px;color:var(--grey);margin-bottom:16px;line-height:1.65}
+  .article h2{font-weight:500;font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-1px;margin:clamp(34px,4vw,48px) 0 16px;scroll-margin-top:100px}
+  .article h2 .lnk{color:var(--smoke);font-size:.6em;vertical-align:middle;margin-right:8px;opacity:.7}
+  .article h3{font-weight:500;font-size:21px;margin:26px 0 12px}
+  .article a.inl{color:var(--blue-link);text-decoration:underline;text-underline-offset:2px}
+  .article a.inl:hover{color:var(--purple)}
+  .article ul.plain{margin:0 0 16px 18px;font-size:15px;color:var(--grey)}
+  .article ul.plain li{margin-bottom:8px}
 
   /* réponse courte (AEO) */
-  .short{position:relative;background:var(--white);border:1.5px solid var(--black);border-radius:var(--r-md);padding:24px 28px;max-width:680px;margin:0 auto;font-size:16px;text-align:left}
+  .short{position:relative;background:var(--white);border:1.5px solid var(--black);border-radius:var(--r-md);padding:22px 26px;margin:26px 0;font-size:15.5px}
   .short .tag{position:absolute;top:-13px;left:22px;background:var(--yellow);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--black)}
-  .short b{font-weight:500}
 
-  .card{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px)}
-  .card h3{font-weight:500;font-size:1.4rem;letter-spacing:-.2px;margin-bottom:6px}
-  .card .sub3{font-size:15px;color:var(--grey);margin-bottom:18px}
+  /* callout "L'idée de génie" (blog NCF) */
+  .genius{position:relative;background:var(--purple-pale);border:1px solid var(--purple-soft);border-radius:var(--r-sm);padding:24px 24px 20px;margin:34px 0 26px;font-size:15px;color:var(--grey)}
+  .genius .sticker{position:absolute;top:-14px;left:18px;background:var(--purple-soft);color:var(--ink);font-weight:500;font-size:15px;padding:3px 12px;border-radius:4px;transform:rotate(-4deg)}
+  .genius b{color:var(--ink)}
 
-  /* ===== quiz : cartes pastel + glow au survol (business-card NCF) ===== */
-  .quiz .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
-  @media(max-width:640px){.quiz .roles{grid-template-columns:1fr}}
-  .role{border:1px solid transparent;border-radius:var(--r-md);padding:18px 16px;font:inherit;font-weight:500;font-size:15px;cursor:pointer;text-align:left;transition:all .3s;line-height:1.35;color:var(--ink)}
-  .role small{display:block;font-weight:400;font-size:12.5px;color:var(--grey);margin-top:4px}
+  /* quiz (cartes pastel + glow) */
+  .quizcard{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(20px,3vw,30px);margin:26px 0}
+  .quizcard h3{margin:0 0 4px}
+  .quizcard .sub3{font-size:14px;color:var(--grey);margin-bottom:16px}
+  .quiz .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:600px){.quiz .roles{grid-template-columns:1fr}}
+  .role{border:1px solid transparent;border-radius:var(--r-sm);padding:15px 14px;font:inherit;font-weight:500;font-size:14px;cursor:pointer;text-align:left;transition:all .3s;line-height:1.35;color:var(--ink)}
+  .role small{display:block;font-weight:400;font-size:12px;color:var(--grey);margin-top:3px}
   .role.p-yellow{background:var(--pastel-yellow)}
   .role.p-pink{background:var(--pastel-pink)}
   .role.p-blue{background:var(--pastel-blue)}
   .role.p-green{background:var(--pastel-green)}
-  .role.p-yellow:hover{background:var(--white);box-shadow:0 0 40px rgba(255,202,100,.45)}
-  .role.p-pink:hover{background:var(--white);box-shadow:0 0 40px rgba(249,155,251,.45)}
-  .role.p-blue:hover{background:var(--white);box-shadow:0 0 40px rgba(90,192,255,.4)}
-  .role.p-green:hover{background:var(--white);box-shadow:0 0 40px rgba(56,239,125,.35)}
+  .role.p-yellow:hover{background:var(--white);box-shadow:0 0 34px rgba(255,202,100,.5)}
+  .role.p-pink:hover{background:var(--white);box-shadow:0 0 34px rgba(249,155,251,.5)}
+  .role.p-blue:hover{background:var(--white);box-shadow:0 0 34px rgba(90,192,255,.45)}
+  .role.p-green:hover{background:var(--white);box-shadow:0 0 34px rgba(56,239,125,.4)}
   .role.full{grid-column:1/-1;text-align:center;background:var(--beige);border-color:var(--lightgrey)}
-  .role.full:hover{background:var(--white);box-shadow:0 0 40px rgba(30,26,40,.15)}
+  .role.full:hover{background:var(--white);box-shadow:0 0 34px rgba(30,26,40,.15)}
   .role.sel{background:var(--black);color:var(--ncf-beige);box-shadow:none}
   .role.sel small{color:var(--smoke)}
-  .verdict{display:none;margin-top:22px;background:var(--pastel-blue);border-radius:var(--r-md);padding:22px 26px;font-size:15.5px}
+  .verdict{display:none;margin-top:16px;background:var(--pastel-blue);border-radius:var(--r-sm);padding:18px 22px;font-size:14.5px;color:var(--grey)}
   .verdict.show{display:block;animation:ncfp-rise .45s cubic-bezier(.23,1,.32,1)}
   @keyframes ncfp-rise{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
-  .verdict b{font-weight:500}
-  .verdict .go{margin-top:14px;font-size:14.5px}
+  .verdict .go{margin-top:12px;font-size:14px;color:var(--ink)}
 
-  /* ===== timeline : pastilles aux couleurs de la marque ===== */
-  .tl{max-width:820px;position:relative;padding-left:clamp(24px,4vw,40px)}
-  .tl::before{content:"";position:absolute;left:7px;top:10px;bottom:26px;width:2px;background:var(--lightgrey)}
-  .tl-item{position:relative;padding-bottom:clamp(26px,3.4vw,40px)}
+  /* timeline */
+  .tl{position:relative;padding-left:30px;margin:26px 0}
+  .tl::before{content:"";position:absolute;left:6px;top:10px;bottom:26px;width:2px;background:var(--lightgrey)}
+  .tl-item{position:relative;padding-bottom:28px}
   .tl-item:last-child{padding-bottom:0}
-  .tl-item::before{content:"";position:absolute;left:calc(-1*clamp(24px,4vw,40px) + 1px);top:9px;width:14px;height:14px;border-radius:50%;background:var(--dot,var(--purple));border:3px solid var(--beige)}
+  .tl-item::before{content:"";position:absolute;left:-29px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--dot,var(--purple));border:3px solid var(--beige)}
   .tl-item:nth-child(1){--dot:#1faaff}.tl-item:nth-child(2){--dot:#906cf8}.tl-item:nth-child(3){--dot:#f99bfb}.tl-item:nth-child(4){--dot:#ff6161}.tl-item:nth-child(5){--dot:#ffca64}
-  .tl-item .d{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-style:italic;background:var(--white);border:1px solid var(--lightgrey);border-radius:3000px;padding:4px 12px;margin-bottom:10px;color:var(--grey)}
-  .tl-item h3{font-weight:500;font-size:clamp(18px,2.2vw,21px);letter-spacing:-.2px;margin-bottom:6px;line-height:1.3}
-  .tl-item p{font-size:15px;color:var(--grey);max-width:64ch}
-  .tl-item p b{color:var(--ink)}
-  .tl-item .src{display:inline-block;font-size:12.5px;color:var(--smoke);margin-top:7px;text-decoration:none;border-bottom:1px dotted var(--lightgrey);transition:all .25s}
+  .tl-item .d{display:inline-block;font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-style:italic;background:var(--white);border:1px solid var(--lightgrey);border-radius:3000px;padding:3px 11px;margin-bottom:8px;color:var(--grey)}
+  .tl-item h3{margin:0 0 5px !important;font-size:18px !important;line-height:1.35}
+  .tl-item p{font-size:14.5px;color:var(--grey)}
+  .tl-item .src{display:inline-block;font-size:12px;color:var(--smoke);margin-top:6px;text-decoration:none;border-bottom:1px dotted var(--lightgrey);transition:all .25s}
   .tl-item .src:hover{color:var(--pink-vif);border-color:var(--pink-vif)}
 
-  /* ===== calculateur (section sombre #1e1a28, comme la home) ===== */
-  .calc{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-lg);padding:clamp(26px,3.6vw,44px);margin-top:clamp(16px,2vw,24px)}
-  .calc .grid{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,4vw,56px);align-items:center}
-  @media(max-width:820px){.calc .grid{grid-template-columns:1fr}}
-  .calc h3{font-weight:500;font-size:1.4rem;margin-bottom:6px}
-  .calc .note{font-size:13.5px;color:var(--smoke);margin-top:14px;max-width:48ch}
-  .calc label{display:block;font-size:13px;font-weight:500;font-style:italic;color:var(--smoke);margin:22px 0 10px}
-  .calc input[type=range]{width:100%;max-width:380px;accent-color:var(--yellow);cursor:pointer}
-  .calc output{font-weight:500;color:var(--yellow);font-size:15px;margin-left:10px}
-  .calc .res{text-align:center;background:var(--dark-card);border-radius:var(--r-md);padding:28px 36px}
-  .calc .res .v{font-weight:500;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  @media(prefers-reduced-motion:no-preference){.calc .res .v{animation:rainbowText 14s linear infinite}}
-  .calc .res .l{font-size:13.5px;color:var(--smoke);margin-top:8px;max-width:22ch}
-
-  /* ===== bloc appel ===== */
-  .offer{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,40px);max-width:940px;margin:0 auto}
-  @media(max-width:820px){.offer{grid-template-columns:1fr}}
-  .offer h3{font-weight:500;font-size:1.4rem;margin-bottom:14px}
+  /* bloc appel */
+  .offer{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(20px,3vw,30px);margin:26px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,3vw,30px)}
+  @media(max-width:640px){.offer{grid-template-columns:1fr}}
+  .offer h3{margin:0 0 12px !important}
   .offer .pts{list-style:none}
-  .offer .pts li{display:flex;gap:12px;padding:10px 0;font-size:15px;color:var(--grey)}
-  .offer .pts .ic{flex:0 0 22px;height:22px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:2px}
-  .offer .fine{font-size:14px;color:var(--grey);margin-top:14px;font-style:italic}
-  .offer-cta{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-md);padding:28px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;justify-content:center}
-  .offer-cta .dur{font-weight:500;font-size:44px;line-height:1;color:var(--yellow)}
-  .offer-cta .dur span{font-size:16px;margin-left:4px}
-  .offer-cta p{font-size:13.5px;color:var(--smoke);max-width:30ch}
-  .offer-cta .after{font-size:12.5px;color:var(--smoke)}
+  .offer .pts li{display:flex;gap:10px;padding:8px 0;font-size:14.5px;color:var(--grey)}
+  .offer .pts .ic{flex:0 0 20px;height:20px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:10px;font-weight:700;margin-top:2px}
+  .offer .fine{font-size:13.5px;color:var(--grey);margin-top:12px;font-style:italic}
+  .offer-cta{background:var(--black);color:var(--ncf-beige);border-radius:var(--r-md);padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;justify-content:center}
+  .offer-cta .dur{font-weight:500;font-size:38px;line-height:1;color:var(--yellow)}
+  .offer-cta .dur span{font-size:15px;margin-left:4px}
+  .offer-cta p{font-size:13px;color:var(--smoke);max-width:28ch}
+  .offer-cta .after{font-size:12px;color:var(--smoke)}
 
-  /* ===== pont vers solution ===== */
-  .bridge{max-width:820px}
-  .bridge p{color:var(--grey);margin-top:14px;max-width:64ch}
-  .bridge p b{color:var(--ink)}
-
-  /* ===== preuves : section sombre pleine largeur (home NCF) ===== */
-  .darksec{background:var(--black);color:var(--ncf-beige)}
-  .darksec .kick{color:var(--smoke)}
-  .darksec h2{color:var(--white)}
-  .darksec .lede{color:var(--smoke)}
-  .stats{display:flex;gap:clamp(28px,6vw,80px);flex-wrap:wrap;margin:clamp(28px,4vw,44px) 0}
-  .stats .st .n{font-weight:500;font-size:clamp(2.4rem,4.6vw,3.4rem);line-height:1;color:var(--white)}
-  .stats .st .l{font-size:14px;color:var(--smoke);margin-top:8px}
-  .proofs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:880px}
-  @media(max-width:640px){.proofs{grid-template-columns:1fr}}
-  .proof-case{display:block;background:var(--dark-card);border:1px solid rgba(255,255,255,.09);border-radius:var(--r-md);padding:24px 22px;transition:all .35s cubic-bezier(.23,1,.32,1)}
-  .proof-case:hover{background:#352e49;transform:scale(1.03) rotate(-1.2deg);box-shadow:0 0 50px rgba(144,108,248,.3)}
-  .proof-case b{display:block;font-weight:500;font-size:20px;margin-bottom:6px;color:var(--white)}
-  .proof-case .tagline{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-style:italic;color:var(--pink);margin-bottom:8px}
-  .proof-case p{font-size:14px;line-height:1.55;color:var(--smoke)}
-  .proof-note{font-size:13.5px;color:var(--smoke);max-width:64ch;margin-top:18px}
-
-  /* ===== expertise ===== */
-  .exp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px)}
-  @media(max-width:820px){.exp{grid-template-columns:1fr}}
-  .exp .stamp{width:52px;height:52px;border-radius:14px;background:var(--yellow);display:grid;place-items:center;font-weight:700;font-size:16px;transform:rotate(-3deg);margin-bottom:16px;transition:transform .3s}
-  .exp .card:hover .stamp{transform:rotate(3deg) scale(1.08)}
-  .exp ul{list-style:none;margin-top:10px}
-  .exp li{padding:9px 0 9px 26px;position:relative;font-size:15px;color:var(--grey)}
-  .exp li::before{content:"✓";position:absolute;left:0;top:9px;width:18px;height:18px;border-radius:50%;background:var(--green-light);color:var(--green-deep);display:grid;place-items:center;font-size:10px;font-weight:700}
-
-  /* ===== FAQ ===== */
-  .faq{max-width:780px;margin:0 auto}
-  .faq details{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden;transition:border-color .25s}
+  /* FAQ */
+  .faq details{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden;transition:border-color .25s}
   .faq details:hover{border-color:var(--lightgrey)}
   .faq details[open]{border-color:var(--black)}
-  .faq summary{list-style:none;cursor:pointer;padding:19px 56px 19px 24px;font-weight:500;font-size:16px;position:relative}
+  .faq summary{list-style:none;cursor:pointer;padding:16px 52px 16px 20px;font-weight:500;font-size:15px;position:relative}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";position:absolute;right:22px;top:50%;translate:0 -50%;font-size:24px;font-weight:300;color:var(--pink-vif);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+  .faq summary::after{content:"+";position:absolute;right:20px;top:50%;translate:0 -50%;font-size:22px;font-weight:300;color:var(--pink-vif);transition:transform .3s cubic-bezier(.23,1,.32,1)}
   .faq details[open] summary::after{transform:rotate(45deg)}
-  .faq details p{padding:0 24px 20px;color:var(--grey);font-size:15px;max-width:66ch}
+  .faq details p{padding:0 20px 18px;color:var(--grey);font-size:14.5px}
 
-  /* ===== CTA final sombre ===== */
-  .final{background:var(--black);border-radius:var(--r-lg);color:var(--ncf-beige);padding:clamp(36px,5vw,64px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:center;position:relative;overflow:hidden}
-  @media(max-width:860px){.final{grid-template-columns:1fr}}
-  .final h2{color:var(--white);font-size:clamp(1.8rem,3.6vw,2.6rem)}
-  .final p{color:var(--smoke);margin-top:16px;max-width:46ch;font-size:16px}
-  .final .box{display:flex;flex-direction:column;gap:14px;align-items:flex-start;position:relative;z-index:1}
-  .final .after{font-size:13.5px;color:var(--smoke)}
-  .final .alt{color:var(--ncf-beige)}
-  .final .glow{position:absolute;right:-15%;bottom:-45%;width:60%;height:120%;filter:blur(70px);opacity:.3;pointer-events:none;background:radial-gradient(closest-side,#906cf8 0%,transparent 70%),radial-gradient(closest-side at 70% 30%,#f99bfb 0%,transparent 70%)}
+  /* sommaire mobile */
+  .tocmobile{display:none;margin:18px 0 6px;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm)}
+  @media(max-width:1080px){.tocmobile{display:block}}
+  .tocmobile summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:500;font-size:14.5px}
+  .tocmobile summary::-webkit-details-marker{display:none}
+  .tocmobile a{display:block;font-size:13.5px;color:var(--grey);text-decoration:none;padding:7px 18px}
+  .tocmobile a:last-child{padding-bottom:16px}
+  .ctamobile{display:none}
+  @media(max-width:1080px){.ctamobile{display:block;margin:30px 0}}
 
-  /* ===== footer sombre (home NCF) ===== */
-  footer{background:var(--black);color:var(--smoke);margin-top:clamp(52px,7vw,100px);padding:clamp(36px,5vw,56px) 0}
+  /* ===== CTA final "Assez parlé" sur aurora (blog NCF) ===== */
+  .final{position:relative;overflow:hidden;padding:clamp(52px,7vw,90px) 0;margin-top:clamp(36px,5vw,60px)}
+  .final .aurora{position:absolute;inset:-20% -10%;pointer-events:none;filter:blur(80px);opacity:.55;background:
+    radial-gradient(40% 55% at 15% 40%,#ffd361 0%,transparent 70%),
+    radial-gradient(45% 60% at 50% 70%,#f99bfb 0%,transparent 72%),
+    radial-gradient(38% 52% at 85% 35%,#5ac0ff 0%,transparent 70%),
+    radial-gradient(30% 45% at 70% 80%,#ff6161 0%,transparent 70%)}
+  .final .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+  @media(max-width:860px){.final .grid{grid-template-columns:1fr}}
+  .final .kick{display:flex;align-items:center;gap:8px;font-size:15px;font-style:italic;font-weight:500;color:var(--grey);margin-bottom:16px}
+  .final h2{font-weight:500;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08;letter-spacing:-1px}
+  .final h2 .it{font-style:italic}
+  .final .card{background:var(--white);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.3);padding:clamp(24px,3vw,36px)}
+  .final .card .t{font-weight:500;font-size:19px;margin-bottom:14px}
+  .final .card ul{list-style:none;margin-bottom:20px}
+  .final .card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--grey);padding:7px 0}
+  .final .card .ck{width:20px;height:20px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto;margin-top:2px}
+  .final .card .after{display:block;font-size:12.5px;color:var(--smoke);margin-top:12px}
+
+  /* ===== footer sombre ===== */
+  footer{background:var(--black);color:var(--smoke);padding:clamp(36px,5vw,56px) 0}
   footer .cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
   footer .flabel{font-size:12.5px;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
   footer a{color:var(--ncf-beige);text-decoration:none;font-size:14px}
@@ -337,7 +293,7 @@
   footer .fbrand{font-size:16px;color:var(--ncf-beige)}
   footer .note{margin-top:28px;font-size:12.5px;color:var(--grey)}
 
-  /* ===== reveal on scroll (ncfp-rise) ===== */
+  /* reveal on scroll */
   @media(prefers-reduced-motion:no-preference){
     .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
     .rv.in{opacity:1;transform:none}
@@ -348,7 +304,7 @@
 
 <div class="rainbow" title="🌈"></div>
 
-<nav class="nav">
+<nav class="nav" id="nav">
   <a class="brand" href="https://www.nocodefactory.fr/"><span class="mk">▣</span>Nocode<b>Factory</b></a>
   <div class="links">
     <a href="https://www.nocodefactory.fr/">Services</a>
@@ -359,299 +315,262 @@
   <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="circ">→</span></a>
 </nav>
 
-<div class="subnav" id="subnav">
-  <span class="pagename"><span class="mark">▦</span>Où va Webflow ?</span>
-  <a href="#cas" class="on">Est-ce votre cas ?</a>
-  <a href="#faits">Les faits</a>
-  <a href="#cout">Ce que ça coûte</a>
-  <a href="#appel">L'appel</a>
-  <a href="#migrer">Migrer</a>
-  <a href="#faq">FAQ</a>
+<!-- ============ EN-TÊTE ARTICLE ============ -->
+<div class="wrap">
+  <div class="crumbs rv in">
+    <a href="https://www.nocodefactory.fr/">Nocodefactory</a><span class="sep">›</span>
+    <a href="#">Problématiques</a><span class="sep">›</span>
+    <span class="here">Où va Webflow ? Hausses de prix, features supprimées : les faits</span>
+  </div>
+
+  <div class="arthead">
+    <div>
+      <span class="catpill">Web &amp; Webflow</span>
+      <h1>Où va Webflow&nbsp;? Hausses de prix, features supprimées&nbsp;: les faits, et vos options</h1>
+      <p class="standfirst">Deux refontes tarifaires en dix-huit mois, des fonctionnalités supprimées, un plan à 2&nbsp;500&nbsp;$ par mois&nbsp;: ce qui a changé chez Webflow, sources à l'appui, et un diagnostic pour savoir si votre site est concerné.</p>
+      <div class="aicard" style="margin-top:26px">
+        <div class="t">Résumez cet article avec une IA</div>
+        <div class="row">
+          <a href="https://chatgpt.com/?q=R%C3%A9sume%20cette%20page%20%3A%20https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener"><span class="d" style="background:#10a37f"></span>ChatGPT</a>
+          <a href="https://claude.ai/new?q=R%C3%A9sume%20cette%20page%20%3A%20https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener"><span class="d" style="background:#d97757"></span>Claude</a>
+          <a href="https://www.perplexity.ai/search?q=R%C3%A9sume%20cette%20page%20%3A%20https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener"><span class="d" style="background:#1faaff"></span>Perplexity</a>
+          <a href="https://www.google.com/search?udm=50&q=R%C3%A9sume%20cette%20page%20%3A%20https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener"><span class="d" style="background:linear-gradient(90deg,#4285f4,#ea4335,#fbbc05,#34a853)"></span>Google AI</a>
+        </div>
+      </div>
+    </div>
+    <aside class="metacol">
+      <span class="m">⏱ <b>7 min</b> de lecture</span>
+      <span class="m">📅 Publié le <b>10 septembre 2026</b></span>
+      <span class="m">🔁 Mis à jour le <b>10 septembre 2026</b></span>
+      <div class="author">
+        <span class="av">NCF</span>
+        <span><b>L'équipe Nocode Factory</b><small>Agence no-code &amp; low-code</small></span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- couverture : la facture qui bascule -->
+  <div class="cover rv">
+    <span class="chip chip-up">+34&nbsp;% au renouvellement</span>
+    <span class="chip chip-gone">Plan CMS&nbsp;: supprimé ✂️</span>
+    <div class="browser">
+      <div class="bar">
+        <span class="dot" style="background:#e5484d"></span><span class="dot" style="background:#ffd23f"></span><span class="dot" style="background:#46a758"></span>
+        <span class="url">webflow.com/dashboard/billing</span>
+      </div>
+      <div class="bill">
+        <div class="head">Abonnement · votre-site.com</div>
+        <div class="notice"><b>Votre plan évolue.</b> Le plan CMS n'existe plus&nbsp;: au prochain renouvellement, votre site passe automatiquement sur Premium.</div>
+        <div class="rows">
+          <div class="r"><span class="lbl">Plan du site<small>CMS → Premium (mensuel)</small></span><span class="amt"><span class="old">29&nbsp;$</span>39&nbsp;$/mois</span></div>
+          <div class="r"><span class="lbl">Localisation · 2 langues<small>add-on facturé par langue</small></span><span class="amt">9 à 29&nbsp;$/langue/mois</span></div>
+          <div class="r"><span class="lbl">Bande passante incluse<small>ex-Business, plafond revu</small></span><span class="amt"><span class="old">100&nbsp;Go</span>50&nbsp;Go</span></div>
+        </div>
+      </div>
+      <div class="cap">Aperçu illustratif. Prix publics Webflow (blog officiel, mai 2026)&nbsp;; ancien tarif mensuel CMS rapporté par NoCode.Tech</div>
+    </div>
+  </div>
 </div>
 
-<!-- ============ HERO (centré, aurora, typed, marquee : déroulé home NCF) ============ -->
-<header class="hero">
+<!-- ============ CORPS : SOMMAIRE | ARTICLE | PARTAGE ============ -->
+<div class="wrap">
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="stick">
+        <nav class="toc" id="toc">
+          <div class="toctitle">Où va Webflow ? Les faits, et vos options</div>
+          <a href="#reponse" class="on">La réponse courte</a>
+          <a href="#cas">Votre site est-il concerné ?</a>
+          <a href="#faits">Ce qui s'est réellement passé</a>
+          <a href="#cout">Ce que ça coûte vraiment</a>
+          <a href="#appel">30 minutes pour situer votre cas</a>
+          <a href="#migrer">Migrer sans perdre le SEO</a>
+          <a href="#methodo">D'où vient cette analyse</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div class="sidecta">
+          <span class="sticker">Oh yeah!</span>
+          <div class="t">Et si on regardait votre site ensemble&nbsp;?</div>
+          <ul>
+            <li><span class="ck">✓</span>+350 projets réalisés</li>
+            <li><span class="ck">✓</span>Webflow et Sanity en production</li>
+            <li><span class="ck">✓</span>Verdict honnête, même «&nbsp;restez&nbsp;»</li>
+          </ul>
+          <a class="btn btn-white" href="#cta">Appel gratuit <span class="circ">→</span></a>
+        </div>
+      </div>
+    </aside>
+
+    <article class="article">
+
+      <details class="tocmobile">
+        <summary>📑 Sommaire</summary>
+        <a href="#reponse">La réponse courte</a>
+        <a href="#cas">Votre site est-il concerné ?</a>
+        <a href="#faits">Ce qui s'est réellement passé</a>
+        <a href="#cout">Ce que ça coûte vraiment</a>
+        <a href="#appel">30 minutes pour situer votre cas</a>
+        <a href="#migrer">Migrer sans perdre le SEO</a>
+        <a href="#methodo">D'où vient cette analyse</a>
+        <a href="#faq">FAQ</a>
+      </details>
+
+      <p class="rv" style="margin-top:10px">Si vous possédez un site Webflow, vous avez peut-être reçu le mail&nbsp;: votre plan change, votre facture aussi. Vous n'êtes pas seul, et non, tout le monde n'est pas touché de la même façon. Cette page rassemble ce qui a réellement changé chez Webflow depuis 2024, avec les sources, pour que vous puissiez juger sur pièces.</p>
+
+      <div class="short rv" id="reponse"><span class="tag">La réponse courte</span><b>Pourquoi des sites quittent Webflow&nbsp;?</b> Parce que la plateforme s'est restructurée deux fois en dix-huit mois (décembre 2024, mai 2026)&nbsp;: prix recomposés, fonctionnalités supprimées (Logic, User Accounts) et renvoyées vers des outils tiers payants, bande passante incluse réduite, montée en gamme assumée. Les sites à fort trafic, multilingues ou à comptes utilisateurs paient le plus&nbsp;; un CMS headless comme Sanity, dont le socle est gratuit, devient alors l'alternative naturelle.</div>
+
+      <h2 id="cas" class="rv"><span class="lnk">🔗</span>Votre site est-il concerné&nbsp;?</h2>
+      <p class="rv">Avant les faits, le réflexe utile&nbsp;: situer votre cas. Cliquez sur ce qui vous décrit, le verdict s'affiche immédiatement, sans formulaire ni email.</p>
+
+      <div class="quizcard quiz rv">
+        <h3>Qu'est-ce qui vous amène&nbsp;?</h3>
+        <p class="sub3">Choisissez la situation la plus proche de la vôtre.</p>
+        <div class="roles">
+          <button class="role p-yellow" data-v="prix">Ma facture Webflow a augmenté<small>ou va augmenter au renouvellement</small></button>
+          <button class="role p-pink" data-v="limites">Mon site atteint les limites du CMS<small>items, collections, bande passante</small></button>
+          <button class="role p-blue" data-v="addons">Je paye des outils tiers pour compenser<small>comptes utilisateurs, automatisations, membres</small></button>
+          <button class="role p-green" data-v="besoins">J'ai besoin de choses que Webflow ne fait pas<small>multilingue avancé, app, recherche, IA</small></button>
+          <button class="role full" data-v="autre">Rien de tout ça, ou autre chose</button>
+        </div>
+        <div class="verdict" id="v-prix"><b>Vous n'êtes pas un cas isolé, et ce n'est probablement pas fini.</b> En mai 2026, Webflow a fusionné ses plans CMS et Business en un plan Premium unique, appliqué automatiquement aux sites existants au renouvellement. Selon votre profil (trafic, facturation mensuelle, bande passante), la bascule reste neutre… ou fait très mal&nbsp;: la communauté a rapporté des hausses allant jusqu'à +320&nbsp;% pour les sites à fort trafic. Posez-vous la bonne question&nbsp;: pas «&nbsp;combien je paye ce mois-ci&nbsp;», mais «&nbsp;combien sur 3 ans, et contre quoi&nbsp;».<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+        <div class="verdict" id="v-limites"><b>Un plafond Webflow, ça ne se négocie pas.</b> Le plan Premium s'arrête à 20&nbsp;000 items CMS et 40 collections&nbsp;; au-delà, Webflow vous oriente vers le plan Team à 2&nbsp;500&nbsp;$ par mois, contrat annuel. Si votre site grandit (catalogue, contenus, trafic), vous voyez déjà venir la suite&nbsp;: brider le site, ou accepter une facture qui change d'ordre de grandeur. Un CMS headless n'a pas cette marche d'escalier. Trente minutes suffisent pour regarder vos volumes réels et trancher.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+        <div class="verdict" id="v-addons"><b>Cette pile d'abonnements, vous ne l'avez jamais choisie.</b> Webflow a supprimé Logic (juin 2025) puis User Accounts (janvier 2026) en renvoyant ses clients vers Zapier, Make, Memberstack ou Outseta&nbsp;: autant d'outils qui s'additionnent au plan du site, chacun avec son paramétrage et son point de rupture. Faites le total de ce que votre site vous coûte réellement chaque mois, outils tiers compris. C'est ce chiffre-là qu'il faut comparer à une alternative, pas le seul abonnement Webflow.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+        <div class="verdict" id="v-besoins"><b>Le vrai plafond de Webflow, c'est son périmètre.</b> Un site multilingue se paie par langue et par mois (add-on Localisation, 9 à 29&nbsp;$ par langue). Une recherche avancée, un espace connecté, une brique IA&nbsp;? Hors périmètre, ou via outils tiers. Avec un CMS headless, votre contenu est accessible par API et le site est du code sur-mesure&nbsp;: ce que vous pouvez construire ne dépend plus de l'éditeur. Décrivez-nous ce qui vous manque, on vous dit honnêtement si ça vaut une migration.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+        <div class="verdict" id="v-autre"><b>Chaque site a son cas particulier, et l'appel existe précisément pour ça.</b> Contrat en cours, refonte prévue, doute sur la pérennité de l'outil, prestataire qui ne suit plus&nbsp;: décrivez votre situation en 30 minutes, on vous dit ce qu'on en pense. Y compris si la bonne réponse est «&nbsp;ne changez rien&nbsp;».<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
+      </div>
+
+      <h2 id="faits" class="rv"><span class="lnk">🔗</span>Où va Webflow&nbsp;? Ce qui s'est réellement passé</h2>
+      <p class="rv">Pas de procès d'intention&nbsp;: uniquement des annonces officielles et des prix publics, chacun avec sa source. À vous de juger la trajectoire.</p>
+
+      <div class="tl rv">
+        <div class="tl-item">
+          <span class="d">Avril 2024</span>
+          <h3>Webflow rachète Intellimize et change d'ambition</h3>
+          <p>Avec l'acquisition d'Intellimize (personnalisation et A/B testing par IA), Webflow annonce vouloir devenir une «&nbsp;Website Experience Platform&nbsp;», plutôt qu'un outil de création de sites. <b>La cible se déplace vers les grandes équipes marketing.</b></p>
+          <a class="src" href="https://webflow.com/blog/webflow-acquires-intellimize" target="_blank" rel="noopener">Source : blog Webflow, 19 avril 2024</a>
+        </div>
+        <div class="tl-item">
+          <span class="d">Décembre 2024</span>
+          <h3>Tarification par sièges, et deux fonctionnalités condamnées</h3>
+          <p>Webflow restructure ses prix autour de trois types de sièges et annonce la fin de <b>Logic</b> (supprimé le 27 juin 2025) et de <b>User Accounts</b> (supprimé le 29 janvier 2026). Les clients concernés sont renvoyés vers des outils tiers payants&nbsp;: Zapier, Make, Memberstack, Outseta.</p>
+          <a class="src" href="https://webflow.com/blog/pricing-and-product-updates-wxp-2024" target="_blank" rel="noopener">Source : blog Webflow, 11 décembre 2024</a>
+        </div>
+        <div class="tl-item">
+          <span class="d">Septembre 2025</span>
+          <h3>La keynote annuelle bascule sur l'IA</h3>
+          <p>Webflow Conf 2025 est centrée sur «&nbsp;AI prompt-to-production&nbsp;»&nbsp;: génération d'applications par prompt, assistant IA, optimisation pour les moteurs de réponse. <b>L'investissement produit suit le repositionnement</b>, pas les fonctionnalités historiques.</p>
+          <a class="src" href="https://www.prnewswire.com/news-releases/webflow-unveils-ai-prompt-to-production-a-new-way-to-build-with-ai-302558866.html" target="_blank" rel="noopener">Source : communiqué Webflow via PR Newswire, 17 septembre 2025</a>
+        </div>
+        <div class="tl-item">
+          <span class="d">Mai 2026</span>
+          <h3>Deuxième refonte tarifaire&nbsp;: les plans CMS et Business disparaissent</h3>
+          <p>Fusion en un plan <b>Premium à 25&nbsp;$/mois</b> (annuel) ou <b>39&nbsp;$/mois</b> (mensuel). La bande passante incluse des ex-clients Business passe de 100 à <b>50&nbsp;Go</b>. Au-dessus&nbsp;: un nouveau plan <b>Team à 2&nbsp;500&nbsp;$/mois</b>, contrat annuel. Application automatique aux sites existants au renouvellement, dès le 29 juin 2026.</p>
+          <a class="src" href="https://webflow.com/blog/simplified-plans-and-updated-pricing-2026" target="_blank" rel="noopener">Source : blog Webflow, 13 mai 2026</a>
+        </div>
+        <div class="tl-item">
+          <span class="d">Juin 2026</span>
+          <h3>À l'entrée en vigueur, la communauté fait ses comptes</h3>
+          <p>Des utilisateurs rapportent des écarts spectaculaires selon les profils&nbsp;: jusqu'à <b>+320&nbsp;%</b> pour un site à fort trafic (bande passante réduite), +70&nbsp;% pour un blog en facturation mensuelle. À l'inverse, une agence calcule que 9 de ses 14 sites clients y gagnent. <b>Le nouveau modèle fait des gagnants et des perdants&nbsp;: tout dépend du profil de votre site.</b></p>
+          <a class="src" href="https://www.nocode.tech/article/webflows-new-pricing-just-went-live-and-reddit-is-in-meltdown-heres-what-youll-actually-pay" target="_blank" rel="noopener">Source : NoCode.Tech, citant des utilisateurs sur Reddit, juin 2026</a>
+        </div>
+      </div>
+
+      <h2 id="cout" class="rv"><span class="lnk">🔗</span>Ce que ça coûte vraiment</h2>
+      <p class="rv">Le bon montant à regarder n'est pas l'abonnement Webflow seul. Un site Webflow d'entreprise cumule souvent le plan du site, le workspace, des add-ons (Localisation, Analyze, Optimize) et les outils tiers qui compensent les fonctionnalités supprimées&nbsp;: comptes utilisateurs, automatisations, traduction. Chacun a son abonnement, son paramétrage, son point de rupture.</p>
+      <p class="rv">Et ce loyer ne construit rien&nbsp;: au bout de trois ans, l'outil ne vous appartient toujours pas.</p>
+
+      <div class="genius rv">
+        <span class="sticker">L'idée de génie</span>
+        Prenez cinq minutes avec votre facture&nbsp;: additionnez <b>tout ce que votre site vous coûte par mois</b> (plan Webflow + workspace + add-ons + outils tiers), puis multipliez par 36. C'est ce total sur 3 ans, pas la mensualité, qu'il faut comparer à une alternative. En face&nbsp;: le CMS <b>Sanity</b> a un socle gratuit jusqu'à 20 utilisateurs, langues illimitées (source&nbsp;: <a class="inl" href="https://www.sanity.io/pricing" target="_blank" rel="noopener">sanity.io/pricing</a>, consulté en septembre 2026). Ce que vous payez alors, c'est la construction du site, une fois, et il est à vous.
+      </div>
+
+      <h2 id="appel" class="rv"><span class="lnk">🔗</span>30 minutes pour situer votre cas</h2>
+      <div class="offer rv">
+        <div>
+          <h3>Ce qu'on fait pendant l'appel</h3>
+          <ul class="pts">
+            <li><span class="ic">✓</span>Vous décrivez votre site et votre facture&nbsp;: on vous dit si vous faites partie des profils réellement touchés, ou pas</li>
+            <li><span class="ic">✓</span>On chiffre ensemble ce que votre site vous coûte vraiment, outils tiers compris</li>
+            <li><span class="ic">✓</span>Si une migration se justifie, on vous donne le chemin concret&nbsp;: quoi migrer, dans quel ordre, sans toucher à votre SEO</li>
+          </ul>
+          <p class="fine">Si rester sur Webflow est le bon choix pour votre site, on vous le dit, on ne vous vend rien.</p>
+        </div>
+        <div class="offer-cta">
+          <div class="dur">30<span>min</span></div>
+          <p>En visio, quand vous voulez. Vous repartez avec une lecture claire de votre situation.</p>
+          <a class="btn btn-white" href="#cta">Réserver un appel <span class="circ">→</span></a>
+          <span class="after">Gratuit, sans engagement.</span>
+        </div>
+      </div>
+
+      <h2 id="migrer" class="rv"><span class="lnk">🔗</span>Migrer sans perdre une ligne de SEO, c'est un métier</h2>
+      <p class="rv">Le jour où le calcul penche, la migration vers un CMS headless comme <b>Sanity</b> se fait sans sacrifier ce que votre site a construit&nbsp;: URLs conservées, redirections exhaustives, bascule progressive par reverse proxy, vérification page à page. Votre contenu devient accessible par API, votre site redevient du code qui vous appartient, et la traduction cesse d'être un abonnement par langue.</p>
+      <p class="rv"><a class="tlink" href="#" style="color:var(--pink-vif)">Voir comment on migre un site Webflow vers Sanity →</a></p>
+
+      <div class="ctamobile sidecta rv">
+        <span class="sticker">Oh yeah!</span>
+        <div class="t">Et si on regardait votre site ensemble&nbsp;?</div>
+        <ul>
+          <li><span class="ck">✓</span>+350 projets réalisés</li>
+          <li><span class="ck">✓</span>Webflow et Sanity en production</li>
+          <li><span class="ck">✓</span>Verdict honnête, même «&nbsp;restez&nbsp;»</li>
+        </ul>
+        <a class="btn btn-white" href="#cta">Appel gratuit <span class="circ">→</span></a>
+      </div>
+
+      <h2 id="methodo" class="rv"><span class="lnk">🔗</span>D'où vient cette analyse</h2>
+      <p class="rv">Des sites Webflow, nous en construisons et nous en maintenons depuis des années chez <b>Nocode Factory</b>. Cette page vient de là&nbsp;: nous connaissons l'outil de l'intérieur, ses forces comme ses plafonds, et nous opérons aussi l'alternative headless en production.</p>
+      <ul class="plain rv">
+        <li>Chaque fait de la timeline est daté et lie sa source&nbsp;: annonce officielle ou presse spécialisée.</li>
+        <li>On le dit quand c'est en votre faveur&nbsp;: pour une partie des sites, le nouveau pricing Webflow est neutre, voire avantageux.</li>
+        <li>Aucun chiffre inventé&nbsp;: les seuls prix affichés sont les prix publics de Webflow et de Sanity.</li>
+        <li>Page mise à jour à chaque annonce Webflow significative.</li>
+      </ul>
+
+      <h2 id="faq" class="rv"><span class="lnk">🔗</span>Les questions qu'on nous pose sur Webflow</h2>
+      <div class="faq rv">
+        <details><summary>Webflow va-t-il disparaître ?</summary><p>Non, et personne de sérieux ne vous dira le contraire&nbsp;: aucune annonce de fin de vie n'existe. Ce qui est documenté, c'est autre chose&nbsp;: des fonctionnalités précises supprimées (Logic en juin 2025, User Accounts en janvier 2026), deux refontes tarifaires en dix-huit mois et un repositionnement assumé vers les grandes équipes marketing. Le risque pour vous n'est pas la disparition de l'outil, c'est l'évolution de sa facture et de son périmètre.</p></details>
+        <details><summary>Suis-je obligé de migrer ?</summary><p>Non. Pour une partie des sites, le nouveau modèle tarifaire est neutre, voire avantageux&nbsp;: une agence citée par NoCode.Tech calcule que 9 de ses 14 sites clients y gagnent. Les profils qui trinquent sont identifiables&nbsp;: fort trafic (bande passante incluse réduite), multilingue (add-on par langue), comptes utilisateurs et automatisations (reportés sur des outils tiers), gros volumes CMS. Le diagnostic en haut de page et l'appel servent exactement à trancher votre cas.</p></details>
+        <details><summary>Si je migre, vais-je perdre mon référencement ?</summary><p>Pas si la migration est menée correctement, et c'est le cœur du travail&nbsp;: conservation des URLs, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page des balises et données structurées. Le SEO d'un site bien migré ne repart pas de zéro&nbsp;: il continue sur son acquis.</p></details>
+        <details><summary>Pourquoi Sanity plutôt qu'un autre CMS ?</summary><p>Parce que c'est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées, prix publics sur sanity.io/pricing), que votre contenu y est accessible par API, et que le site devient du code sur-mesure qui vous appartient. Et parce que nous l'opérons déjà en production&nbsp;: on vous propose une stack qu'on pratique, pas une mode.</p></details>
+        <details><summary>Combien de temps dure une migration, et combien ça coûte ?</summary><p>Ça dépend entièrement de votre site&nbsp;: nombre de pages et de collections, langues, intégrations, exigences SEO. C'est pour ça qu'on ne publie pas de prix ni de délai standard&nbsp;: le chiffrage se fait après avoir vu votre site, pas avant. Méfiez-vous de quiconque vous annonce un montant sans l'avoir regardé.</p></details>
+        <details><summary>Qui gère le contenu après la migration ?</summary><p>Vos équipes, comme aujourd'hui. Sanity fournit une interface d'édition (le Studio) que l'on configure sur votre modèle de contenu, avec des rôles par profil. Les éditeurs qui utilisaient l'Editor Webflow retrouvent leurs marques rapidement, et l'interface s'adapte à vos usages puisqu'elle est configurable.</p></details>
+      </div>
+
+    </article>
+
+    <aside class="sharecol">
+      <div class="stick">
+        <button class="share" id="copylink" title="Copier le lien">🔗</button>
+        <a class="share" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener" title="Partager sur LinkedIn">in</a>
+        <a class="share" href="https://x.com/intent/post?url=https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener" title="Partager sur X">𝕏</a>
+        <a class="share" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Femilbonnefous-lab.github.io%2Fncf-previews%2Fpage-webflow-probleme-preview.html" target="_blank" rel="noopener" title="Partager sur Facebook">f</a>
+        <span class="lbl">Partager sur</span>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ============ CTA FINAL "ASSEZ PARLÉ" ============ -->
+<section class="final" id="cta">
   <div class="aurora"></div>
   <div class="wrap">
-    <div class="laurel rv in">
-      <span class="wreath"><span class="leaf">🌿</span><span style="max-width:190px;text-align:center;line-height:1.3">Enquête problématique<br><b>Où va Webflow ?</b></span><span class="leaf flip">🌿</span></span>
-      <span class="sep"></span>
-      <span><b>2</b><br>refontes tarifaires<br>en 18 mois</span>
-      <span class="sep"></span>
-      <span><span class="star">★</span> <b>100 %</b><br>des faits sourcés</span>
-    </div>
-    <h1>Votre site tourne sur Webflow.<br>Et Webflow <span class="grad" id="typed">change ses prix</span><span class="caret">&nbsp;</span></h1>
-    <p class="sub">Deux refontes tarifaires en dix-huit mois, des fonctionnalités supprimées et remplacées par des outils tiers payants, un nouveau plan à 2&nbsp;500&nbsp;$ par mois. Webflow monte en gamme, et tous ses clients ne sont pas logés à la même enseigne. <b>Voici les faits, ce qu'ils coûtent, et comment savoir si votre site est concerné.</b></p>
-    <div class="ctas">
-      <a class="btn btn-dark" href="#cas">Mon site est-il concerné&nbsp;? <span class="circ">→</span></a>
-      <a class="tlink" href="#faits">Voir les faits</a>
-    </div>
-
-    <div class="heromock rv">
-      <span class="chip chip-up">+34&nbsp;% au renouvellement</span>
-      <span class="chip chip-gone">Plan CMS&nbsp;: supprimé ✂️</span>
-      <div class="browser">
-        <div class="bar">
-          <span class="dot" style="background:#e5484d"></span><span class="dot" style="background:#ffd23f"></span><span class="dot" style="background:#46a758"></span>
-          <span class="url">webflow.com/dashboard/billing</span>
-        </div>
-        <div class="bill">
-          <div class="head">Abonnement · votre-site.com</div>
-          <div class="notice"><b>Votre plan évolue.</b> Le plan CMS n'existe plus&nbsp;: au prochain renouvellement, votre site passe automatiquement sur Premium.</div>
-          <div class="rows">
-            <div class="r"><span class="lbl">Plan du site<small>CMS → Premium (mensuel)</small></span><span class="amt"><span class="old">29&nbsp;$</span>39&nbsp;$/mois</span></div>
-            <div class="r"><span class="lbl">Localisation · 2 langues<small>add-on facturé par langue</small></span><span class="amt">9 à 29&nbsp;$/langue/mois</span></div>
-            <div class="r"><span class="lbl">Bande passante incluse<small>ex-Business, plafond revu</small></span><span class="amt"><span class="old">100&nbsp;Go</span>50&nbsp;Go</span></div>
-          </div>
-        </div>
-        <div class="cap">Aperçu illustratif. Prix publics Webflow (blog officiel, mai 2026)&nbsp;; ancien tarif mensuel CMS rapporté par NoCode.Tech</div>
+    <div class="grid">
+      <div class="rv">
+        <p class="kick">💎 Contactez NocodeFactory</p>
+        <h2>Assez parlé,<br><span class="it grad">on regarde votre site&nbsp;?</span></h2>
       </div>
-    </div>
-  </div>
-
-  <div class="marquee" aria-label="Ils travaillent avec Nocode Factory">
-    <div class="track">
-      <span class="lg">BlaBlaCar</span><span class="lg it serif">L'ÉQUIPE</span><span class="lg lite">=ornikar</span><span class="lg it">insify</span><span class="lg">Obat</span><span class="lg lite">bouygues</span><span class="lg it">sunday</span><span class="lg serif">HomeServe</span><span class="lg lite">BIOGROUP</span><span class="lg">Karos</span>
-      <span class="lg">BlaBlaCar</span><span class="lg it serif">L'ÉQUIPE</span><span class="lg lite">=ornikar</span><span class="lg it">insify</span><span class="lg">Obat</span><span class="lg lite">bouygues</span><span class="lg it">sunday</span><span class="lg serif">HomeServe</span><span class="lg lite">BIOGROUP</span><span class="lg">Karos</span>
-    </div>
-  </div>
-</header>
-
-<!-- ============ RÉPONSE COURTE (AEO) ============ -->
-<section id="reponse" style="padding-top:clamp(20px,3vw,36px);padding-bottom:clamp(28px,4vw,48px)">
-  <div class="wrap">
-    <div class="short rv"><span class="tag">La réponse courte</span><b>Pourquoi des sites quittent Webflow&nbsp;?</b> Parce que la plateforme s'est restructurée deux fois en dix-huit mois (décembre 2024, mai 2026)&nbsp;: prix recomposés, fonctionnalités supprimées (Logic, User Accounts) et renvoyées vers des outils tiers payants, bande passante incluse réduite, montée en gamme assumée. Les sites à fort trafic, multilingues ou à comptes utilisateurs paient le plus&nbsp;; un CMS headless comme Sanity, dont le socle est gratuit, devient alors l'alternative naturelle.</div>
-  </div>
-</section>
-
-<!-- ============ QUIZ : EST-CE VOTRE CAS ? ============ -->
-<section id="cas">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="kick">🩺 Diagnostic express</p>
-      <h2>Votre site est-il<br><span class="grad">vraiment concerné</span>&nbsp;?</h2>
-      <p class="lede">Tous les sites Webflow ne sont pas touchés de la même façon. Cliquez sur ce qui vous décrit&nbsp;: verdict immédiat, sans formulaire ni email.</p>
-    </div>
-
-    <div class="card quiz rv" style="max-width:900px">
-      <h3>Qu'est-ce qui vous amène&nbsp;?</h3>
-      <p class="sub3">Choisissez la situation la plus proche de la vôtre.</p>
-      <div class="roles">
-        <button class="role p-yellow" data-v="prix">Ma facture Webflow a augmenté<small>ou va augmenter au renouvellement</small></button>
-        <button class="role p-pink" data-v="limites">Mon site atteint les limites du CMS<small>items, collections, bande passante</small></button>
-        <button class="role p-blue" data-v="addons">Je paye des outils tiers pour compenser<small>comptes utilisateurs, automatisations, membres</small></button>
-        <button class="role p-green" data-v="besoins">J'ai besoin de choses que Webflow ne fait pas<small>multilingue avancé, app, recherche, IA</small></button>
-        <button class="role full" data-v="autre">Rien de tout ça, ou autre chose</button>
-      </div>
-      <div class="verdict" id="v-prix"><b>Vous n'êtes pas un cas isolé, et ce n'est probablement pas fini.</b> En mai 2026, Webflow a fusionné ses plans CMS et Business en un plan Premium unique, appliqué automatiquement aux sites existants au renouvellement. Selon votre profil (trafic, facturation mensuelle, bande passante), la bascule reste neutre… ou fait très mal&nbsp;: la communauté a rapporté des hausses allant jusqu'à +320&nbsp;% pour les sites à fort trafic. Posez-vous la bonne question&nbsp;: pas «&nbsp;combien je paye ce mois-ci&nbsp;», mais «&nbsp;combien sur 3 ans, et contre quoi&nbsp;». Faites le calcul plus bas, puis parlons de votre cas précis.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-limites"><b>Un plafond Webflow, ça ne se négocie pas.</b> Le plan Premium s'arrête à 20&nbsp;000 items CMS et 40 collections&nbsp;; au-delà, Webflow vous oriente vers le plan Team à 2&nbsp;500&nbsp;$ par mois, contrat annuel. Si votre site grandit (catalogue, contenus, trafic), vous voyez déjà venir la suite&nbsp;: brider le site, ou accepter une facture qui change d'ordre de grandeur. Un CMS headless n'a pas cette marche d'escalier. Trente minutes suffisent pour regarder vos volumes réels et trancher.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-addons"><b>Cette pile d'abonnements, vous ne l'avez jamais choisie.</b> Webflow a supprimé Logic (juin 2025) puis User Accounts (janvier 2026) en renvoyant ses clients vers Zapier, Make, Memberstack ou Outseta&nbsp;: autant d'outils qui s'additionnent au plan du site, chacun avec son paramétrage et son point de rupture. Faites le total de ce que votre site vous coûte réellement chaque mois, outils tiers compris. C'est ce chiffre-là qu'il faut comparer à une alternative, pas le seul abonnement Webflow.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-besoins"><b>Le vrai plafond de Webflow, c'est son périmètre.</b> Un site multilingue se paie par langue et par mois (add-on Localisation, 9 à 29&nbsp;$ par langue). Une recherche avancée, un espace connecté, une brique IA&nbsp;? Hors périmètre, ou via outils tiers. Avec un CMS headless, votre contenu est accessible par API et le site est du code sur-mesure&nbsp;: ce que vous pouvez construire ne dépend plus de l'éditeur. Décrivez-nous ce qui vous manque, on vous dit honnêtement si ça vaut une migration.<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
-      <div class="verdict" id="v-autre"><b>Chaque site a son cas particulier, et l'appel existe précisément pour ça.</b> Contrat en cours, refonte prévue, doute sur la pérennité de l'outil, prestataire qui ne suit plus&nbsp;: décrivez votre situation en 30 minutes, on vous dit ce qu'on en pense. Y compris si la bonne réponse est «&nbsp;ne changez rien&nbsp;».<br><a class="go tlink" href="#appel">Réserver un appel (30 min) →</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LES FAITS (timeline sourcée) ============ -->
-<section id="faits" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="kick">📅 Les faits, datés et sourcés</p>
-      <h2>Où va Webflow&nbsp;?<br>Ce qui s'est <span class="hl-pink hl-dot">réellement passé</span></h2>
-      <p class="lede">Pas de procès d'intention&nbsp;: uniquement des annonces officielles et des prix publics, chacun avec sa source. À vous de juger la trajectoire.</p>
-    </div>
-
-    <div class="tl rv">
-      <div class="tl-item">
-        <span class="d">Avril 2024</span>
-        <h3>Webflow rachète Intellimize et change d'ambition</h3>
-        <p>Avec l'acquisition d'Intellimize (personnalisation et A/B testing par IA), Webflow annonce vouloir devenir une «&nbsp;Website Experience Platform&nbsp;», plutôt qu'un outil de création de sites. <b>La cible se déplace vers les grandes équipes marketing.</b></p>
-        <a class="src" href="https://webflow.com/blog/webflow-acquires-intellimize" target="_blank" rel="noopener">Source : blog Webflow, 19 avril 2024</a>
-      </div>
-      <div class="tl-item">
-        <span class="d">Décembre 2024</span>
-        <h3>Tarification par sièges, et deux fonctionnalités condamnées</h3>
-        <p>Webflow restructure ses prix autour de trois types de sièges et annonce la fin de <b>Logic</b> (supprimé le 27 juin 2025) et de <b>User Accounts</b> (supprimé le 29 janvier 2026). Les clients concernés sont renvoyés vers des outils tiers payants&nbsp;: Zapier, Make, Memberstack, Outseta.</p>
-        <a class="src" href="https://webflow.com/blog/pricing-and-product-updates-wxp-2024" target="_blank" rel="noopener">Source : blog Webflow, 11 décembre 2024</a>
-      </div>
-      <div class="tl-item">
-        <span class="d">Septembre 2025</span>
-        <h3>La keynote annuelle bascule sur l'IA</h3>
-        <p>Webflow Conf 2025 est centrée sur «&nbsp;AI prompt-to-production&nbsp;»&nbsp;: génération d'applications par prompt, assistant IA, optimisation pour les moteurs de réponse. <b>L'investissement produit suit le repositionnement</b>, pas les fonctionnalités historiques.</p>
-        <a class="src" href="https://www.prnewswire.com/news-releases/webflow-unveils-ai-prompt-to-production-a-new-way-to-build-with-ai-302558866.html" target="_blank" rel="noopener">Source : communiqué Webflow via PR Newswire, 17 septembre 2025</a>
-      </div>
-      <div class="tl-item">
-        <span class="d">Mai 2026</span>
-        <h3>Deuxième refonte tarifaire&nbsp;: les plans CMS et Business disparaissent</h3>
-        <p>Fusion en un plan <b>Premium à 25&nbsp;$/mois</b> (annuel) ou <b>39&nbsp;$/mois</b> (mensuel). La bande passante incluse des ex-clients Business passe de 100 à <b>50&nbsp;Go</b>. Au-dessus&nbsp;: un nouveau plan <b>Team à 2&nbsp;500&nbsp;$/mois</b>, contrat annuel. Application automatique aux sites existants au renouvellement, dès le 29 juin 2026.</p>
-        <a class="src" href="https://webflow.com/blog/simplified-plans-and-updated-pricing-2026" target="_blank" rel="noopener">Source : blog Webflow, 13 mai 2026</a>
-      </div>
-      <div class="tl-item">
-        <span class="d">Juin 2026</span>
-        <h3>À l'entrée en vigueur, la communauté fait ses comptes</h3>
-        <p>Des utilisateurs rapportent des écarts spectaculaires selon les profils&nbsp;: jusqu'à <b>+320&nbsp;%</b> pour un site à fort trafic (bande passante réduite), +70&nbsp;% pour un blog en facturation mensuelle. À l'inverse, une agence calcule que 9 de ses 14 sites clients y gagnent. <b>Le nouveau modèle fait des gagnants et des perdants&nbsp;: tout dépend du profil de votre site.</b></p>
-        <a class="src" href="https://www.nocode.tech/article/webflows-new-pricing-just-went-live-and-reddit-is-in-meltdown-heres-what-youll-actually-pay" target="_blank" rel="noopener">Source : NoCode.Tech, citant des utilisateurs sur Reddit, juin 2026</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CE QUE ÇA COÛTE (calculateur) ============ -->
-<section id="cout" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="kick">🧮 Ce que ça vous coûte</p>
-      <h2>Faites le calcul sur <span class="grad">3 ans</span>,<br>avec vos chiffres</h2>
-      <p class="lede">Le bon montant à regarder n'est pas l'abonnement Webflow seul&nbsp;: c'est tout ce que votre site vous coûte chaque mois, outils tiers compris.</p>
-    </div>
-
-    <div class="calc rv">
-      <div class="grid">
-        <div>
-          <h3>Votre site, tout compris</h3>
-          <p style="color:var(--smoke);font-size:15px">Réglez les curseurs sur votre situation réelle.</p>
-          <label>Abonnement Webflow mensuel (plan du site + workspace + add-ons)<br>
-            <input type="range" id="c-wf" min="15" max="300" step="1" value="39"><output id="o-wf">39&nbsp;$</output>
-          </label>
-          <label>Outils tiers qui gravitent autour (comptes, automatisations, traduction…)<br>
-            <input type="range" id="c-tiers" min="0" max="300" step="5" value="30"><output id="o-tiers">30&nbsp;$</output>
-          </label>
-          <p class="note">Simple multiplication par 36 mois, aucune hypothèse cachée&nbsp;: refaites-la sur un coin de table. Et souvenez-vous que ce loyer ne construit rien&nbsp;: à la fin, l'outil ne vous appartient toujours pas.</p>
-        </div>
-        <div class="res">
-          <div class="v" id="c-res">2&nbsp;484&nbsp;$</div>
-          <div class="l">de loyer sur 3 ans, sans posséder l'outil</div>
-        </div>
-      </div>
-    </div>
-    <p class="proof-note rv" style="color:var(--grey);margin:18px auto 0;text-align:center">En face&nbsp;: le CMS Sanity a un plan gratuit (jusqu'à 20 utilisateurs, langues illimitées, source&nbsp;: <a href="https://www.sanity.io/pricing" target="_blank" rel="noopener" style="font-weight:500">sanity.io/pricing</a>, consulté en septembre 2026). Ce que vous payez alors, c'est la construction du site, une fois, et il est à vous.</p>
-  </div>
-</section>
-
-<!-- ============ L'APPEL ============ -->
-<section id="appel" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <p class="kick center">📞 La prochaine étape</p>
-      <h2>30 minutes pour savoir<br><span class="grad">où vous en êtes</span></h2>
-    </div>
-    <div class="offer rv">
-      <div>
-        <h3>Ce qu'on fait pendant l'appel</h3>
-        <ul class="pts">
-          <li><span class="ic">✓</span>Vous décrivez votre site et votre facture&nbsp;: on vous dit si vous faites partie des profils réellement touchés, ou pas</li>
-          <li><span class="ic">✓</span>On chiffre ensemble ce que votre site vous coûte vraiment, outils tiers compris</li>
-          <li><span class="ic">✓</span>Si une migration se justifie, on vous donne le chemin concret&nbsp;: quoi migrer, dans quel ordre, sans toucher à votre SEO</li>
-        </ul>
-        <p class="fine">Si rester sur Webflow est le bon choix pour votre site, on vous le dit, on ne vous vend rien.</p>
-      </div>
-      <div class="offer-cta">
-        <div class="dur">30<span>min</span></div>
-        <p>En visio, quand vous voulez. Vous repartez avec une lecture claire de votre situation, que vous travailliez avec nous ou non.</p>
-        <a class="btn btn-white" href="#">Réserver un appel <span class="circ">→</span></a>
-        <span class="after">Gratuit, sans engagement.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PONT VERS SOLUTION ============ -->
-<section id="migrer" style="padding-top:0">
-  <div class="wrap">
-    <div class="bridge rv">
-      <p class="kick">🧳 Quand la migration se justifie</p>
-      <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Migrer sans perdre une ligne de SEO,<br>c'est un métier</h2>
-      <p>Le jour où le calcul penche, la migration vers un CMS headless comme <b>Sanity</b> se fait sans sacrifier ce que votre site a construit&nbsp;: URLs conservées, redirections exhaustives, bascule progressive par reverse proxy, vérification page à page. Votre contenu devient accessible par API, votre site redevient du code qui vous appartient, et la traduction cesse d'être un abonnement par langue.</p>
-      <a class="tlink" href="#" style="margin-top:18px;color:var(--pink-vif)">Voir comment on migre un site Webflow vers Sanity →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PREUVES (section sombre pleine largeur, comme la home) ============ -->
-<section id="preuves" class="darksec">
-  <div class="wrap">
-    <div class="sec-head rv" style="margin-left:0">
-      <p class="kick">🏆 La preuve par les clients</p>
-      <h2>Sanity en production,<br><span class="grad">chez des grands comptes</span></h2>
-    </div>
-    <div class="stats rv">
-      <div class="st"><div class="n">170+</div><div class="l">Startups accompagnées</div></div>
-      <div class="st"><div class="n">10+</div><div class="l">Industries</div></div>
-      <div class="st"><div class="n">97%</div><div class="l">NPS moyen</div></div>
-    </div>
-    <div class="proofs rv">
-      <div class="proof-case">
-        <span class="tagline">Sanity en production</span>
-        <b>Pernod</b>
-        <p>Le site actionnaires du groupe tourne sur Sanity&nbsp;: contenu structuré, éditeurs autonomes, exigences d'un grand compte coté. La stack qu'on vous propose est celle qu'on opère déjà à ce niveau d'enjeu.</p>
-      </div>
-      <div class="proof-case">
-        <span class="tagline">Reprise de maintenance</span>
-        <b>Ligue 1</b>
-        <p>Nous avons repris la maintenance d'un site stratégique construit par une autre agence&nbsp;: audit de l'existant, continuité de service, évolutions. Reprendre un site qu'on n'a pas construit, c'est notre quotidien.</p>
-      </div>
-    </div>
-    <p class="proof-note rv">Une équipe structurée, du code documenté, des accès qui vous appartiennent&nbsp;: ce qui vaut pour ces références vaut pour votre site. Chiffres&nbsp;: nocodefactory.fr, septembre 2026.</p>
-  </div>
-</section>
-
-<!-- ============ EXPERTISE / MÉTHODO ============ -->
-<section id="expertise">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="kick">🔍 D'où vient cette analyse</p>
-      <h2>L'expertise derrière<br><span class="hl-pink hl-dot">cette page</span></h2>
-    </div>
-    <div class="exp rv" style="max-width:900px">
-      <div class="card">
-        <div class="stamp">NCF</div>
-        <h3>L'équipe Nocode Factory</h3>
-        <p style="color:var(--grey);font-size:15px;margin-top:8px">Des sites Webflow, nous en construisons et nous en maintenons depuis des années. Cette page vient de là&nbsp;: nous connaissons l'outil de l'intérieur, ses forces comme ses plafonds, et nous opérons aussi l'alternative.</p>
-      </div>
-      <div class="card">
-        <h3>Notre méthodo</h3>
+      <div class="card rv">
+        <div class="t">🥳 Appel gratuit de 30 minutes</div>
         <ul>
-          <li>Chaque fait de la timeline est daté et lie sa source&nbsp;: annonce officielle ou presse spécialisée.</li>
-          <li>On le dit quand c'est en votre faveur&nbsp;: pour une partie des sites, le nouveau pricing Webflow est neutre, voire avantageux.</li>
-          <li>Aucun chiffre inventé&nbsp;: les seuls prix affichés sont les prix publics de Webflow et de Sanity.</li>
-          <li>Page mise à jour à chaque annonce Webflow significative.</li>
+          <li><span class="ck">✓</span>Verdict honnête sur votre profil&nbsp;: touché ou pas par le nouveau pricing</li>
+          <li><span class="ck">✓</span>Le vrai coût de votre site, outils tiers compris</li>
+          <li><span class="ck">✓</span>Si migration&nbsp;: le chemin concret, sans toucher au SEO</li>
         </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <p class="kick center">💬 FAQ</p>
-      <h2>Les questions qu'on nous pose<br><span class="grad">sur Webflow</span></h2>
-    </div>
-    <div class="faq rv">
-      <details><summary>Webflow va-t-il disparaître ?</summary><p>Non, et personne de sérieux ne vous dira le contraire&nbsp;: aucune annonce de fin de vie n'existe. Ce qui est documenté, c'est autre chose&nbsp;: des fonctionnalités précises supprimées (Logic en juin 2025, User Accounts en janvier 2026), deux refontes tarifaires en dix-huit mois et un repositionnement assumé vers les grandes équipes marketing. Le risque pour vous n'est pas la disparition de l'outil, c'est l'évolution de sa facture et de son périmètre.</p></details>
-      <details><summary>Suis-je obligé de migrer ?</summary><p>Non. Pour une partie des sites, le nouveau modèle tarifaire est neutre, voire avantageux&nbsp;: une agence citée par NoCode.Tech calcule que 9 de ses 14 sites clients y gagnent. Les profils qui trinquent sont identifiables&nbsp;: fort trafic (bande passante incluse réduite), multilingue (add-on par langue), comptes utilisateurs et automatisations (reportés sur des outils tiers), gros volumes CMS. Le diagnostic en haut de page et l'appel servent exactement à trancher votre cas.</p></details>
-      <details><summary>Si je migre, vais-je perdre mon référencement ?</summary><p>Pas si la migration est menée correctement, et c'est le cœur du travail&nbsp;: conservation des URLs, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page des balises et données structurées. Le SEO d'un site bien migré ne repart pas de zéro&nbsp;: il continue sur son acquis.</p></details>
-      <details><summary>Pourquoi Sanity plutôt qu'un autre CMS ?</summary><p>Parce que c'est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées, prix publics sur sanity.io/pricing), que votre contenu y est accessible par API, et que le site devient du code sur-mesure qui vous appartient. Et parce que nous l'opérons déjà en production, y compris pour des grands comptes&nbsp;: on vous propose une stack qu'on pratique, pas une mode.</p></details>
-      <details><summary>Combien de temps dure une migration, et combien ça coûte ?</summary><p>Ça dépend entièrement de votre site&nbsp;: nombre de pages et de collections, langues, intégrations, exigences SEO. C'est pour ça qu'on ne publie pas de prix ni de délai standard&nbsp;: le chiffrage se fait après avoir vu votre site, pas avant. Méfiez-vous de quiconque vous annonce un montant sans l'avoir regardé.</p></details>
-      <details><summary>Qui gère le contenu après la migration ?</summary><p>Vos équipes, comme aujourd'hui. Sanity fournit une interface d'édition (le Studio) que l'on configure sur votre modèle de contenu, avec des rôles par profil. Les éditeurs qui utilisaient l'Editor Webflow retrouvent leurs marques rapidement, et l'interface s'adapte à vos usages puisqu'elle est configurable.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA FINAL ============ -->
-<section id="cta" style="padding-top:0">
-  <div class="wrap">
-    <div class="final rv">
-      <div class="glow"></div>
-      <div>
-        <h2>On regarde votre site&nbsp;?</h2>
-        <p>Appel de 30 minutes&nbsp;: on vous dit honnêtement si votre site fait partie des profils touchés. Y compris si la bonne réponse est «&nbsp;restez sur Webflow&nbsp;».</p>
-      </div>
-      <div class="box">
-        <a class="btn btn-white" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
-        <a class="tlink alt" href="#migrer">Ou voir comment on migre sans perdre le SEO →</a>
-        <span class="after">Gratuit, sans engagement.</span>
+        <a class="btn btn-dark" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
+        <span class="after">Gratuit, sans engagement. Y compris si la bonne réponse est «&nbsp;restez sur Webflow&nbsp;».</span>
       </div>
     </div>
   </div>
@@ -688,32 +607,34 @@
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Webflow va-t-il disparaître ?","acceptedAnswer":{"@type":"Answer","text":"Non, aucune annonce de fin de vie n'existe. Ce qui est documenté : des fonctionnalités supprimées (Logic en juin 2025, User Accounts en janvier 2026), deux refontes tarifaires en dix-huit mois (décembre 2024, mai 2026) et un repositionnement vers les grandes équipes marketing. Le risque n'est pas la disparition de l'outil mais l'évolution de sa facture et de son périmètre."}},
-    {"@type":"Question","name":"Faut-il quitter Webflow ?","acceptedAnswer":{"@type":"Answer","text":"Pas forcément. Pour une partie des sites, le nouveau modèle tarifaire de mai 2026 est neutre voire avantageux. Les profils les plus touchés sont identifiables : fort trafic (bande passante incluse réduite à 50 Go sur Premium), sites multilingues (localisation facturée par langue), comptes utilisateurs et automatisations reportés sur des outils tiers, gros volumes CMS."}},
-    {"@type":"Question","name":"Perd-on son référencement en migrant de Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Non, si la migration est menée correctement : conservation des URLs, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page des balises et données structurées. Un site bien migré continue sur son acquis SEO."}},
-    {"@type":"Question","name":"Pourquoi migrer vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Sanity est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées). Le contenu est accessible par API et le site devient du code sur-mesure qui appartient au client, sans licence par siège ni add-on par langue."}},
-    {"@type":"Question","name":"Combien coûte une migration Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Le coût dépend du site : nombre de pages et de collections, langues, intégrations, exigences SEO. Un chiffrage sérieux se fait après audit du site existant, pas avant."}},
-    {"@type":"Question","name":"Qui gère le contenu après une migration vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Les équipes du client, via le Studio Sanity : une interface d'édition configurée sur le modèle de contenu du site, avec des rôles par profil. Les éditeurs habitués à Webflow retrouvent leurs marques rapidement."}}
+  "@graph":[
+    {
+      "@type":"BlogPosting",
+      "headline":"Où va Webflow ? Hausses de prix, features supprimées : les faits, et vos options",
+      "description":"Deux refontes tarifaires en 18 mois, des fonctionnalités supprimées, un plan Team à 2 500 $/mois : les faits sourcés sur l'évolution de Webflow, un diagnostic pour savoir si votre site est concerné, et vos options.",
+      "datePublished":"2026-09-10",
+      "dateModified":"2026-09-10",
+      "inLanguage":"fr",
+      "author":{"@type":"Organization","name":"Nocode Factory","url":"https://www.nocodefactory.fr"}
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Webflow va-t-il disparaître ?","acceptedAnswer":{"@type":"Answer","text":"Non, aucune annonce de fin de vie n'existe. Ce qui est documenté : des fonctionnalités supprimées (Logic en juin 2025, User Accounts en janvier 2026), deux refontes tarifaires en dix-huit mois (décembre 2024, mai 2026) et un repositionnement vers les grandes équipes marketing. Le risque n'est pas la disparition de l'outil mais l'évolution de sa facture et de son périmètre."}},
+        {"@type":"Question","name":"Faut-il quitter Webflow ?","acceptedAnswer":{"@type":"Answer","text":"Pas forcément. Pour une partie des sites, le nouveau modèle tarifaire de mai 2026 est neutre voire avantageux. Les profils les plus touchés sont identifiables : fort trafic (bande passante incluse réduite à 50 Go sur Premium), sites multilingues (localisation facturée par langue), comptes utilisateurs et automatisations reportés sur des outils tiers, gros volumes CMS."}},
+        {"@type":"Question","name":"Perd-on son référencement en migrant de Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Non, si la migration est menée correctement : conservation des URLs, plan de redirections exhaustif, bascule progressive par reverse proxy, vérification page à page des balises et données structurées. Un site bien migré continue sur son acquis SEO."}},
+        {"@type":"Question","name":"Pourquoi migrer vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Sanity est un CMS headless dont le socle est gratuit (jusqu'à 20 utilisateurs, langues illimitées). Le contenu est accessible par API et le site devient du code sur-mesure qui appartient au client, sans licence par siège ni add-on par langue."}},
+        {"@type":"Question","name":"Combien coûte une migration Webflow vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Le coût dépend du site : nombre de pages et de collections, langues, intégrations, exigences SEO. Un chiffrage sérieux se fait après audit du site existant, pas avant."}},
+        {"@type":"Question","name":"Qui gère le contenu après une migration vers Sanity ?","acceptedAnswer":{"@type":"Answer","text":"Les équipes du client, via le Studio Sanity : une interface d'édition configurée sur le modèle de contenu du site, avec des rôles par profil. Les éditeurs habitués à Webflow retrouvent leurs marques rapidement."}}
+      ]
+    }
   ]
 }
 </script>
 <script>
-  // effet machine à écrire (typed.js-like, comme le H1 de la home NCF)
-  (function(){
-    const el=document.getElementById('typed');
-    if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    const words=['change ses prix','supprime des features','monte en gamme','change'];
-    let w=0,i=words[0].length,del=true;
-    setTimeout(function tick(){
-      const word=words[w];
-      el.textContent=word.slice(0,i);
-      if(del){i--;if(i<0){del=false;w=(w+1)%words.length;i=0}}
-      else{i++;if(i>words[w].length){if(w===words.length-1)return;del=true;setTimeout(tick,1600);return}}
-      setTimeout(tick,del?45:80);
-    },1800);
-  })();
+  // nav : fond au scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
   // quiz verdict
   document.querySelectorAll('.role').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -723,25 +644,20 @@
       document.getElementById('v-'+b.dataset.v).classList.add('show');
     });
   });
-  // calculateur coût 3 ans
-  const wf=document.getElementById('c-wf'),tiers=document.getElementById('c-tiers');
-  function calc(){
-    document.getElementById('o-wf').textContent=wf.value+' $';
-    document.getElementById('o-tiers').textContent=tiers.value+' $';
-    const total=(parseInt(wf.value,10)+parseInt(tiers.value,10))*36;
-    document.getElementById('c-res').textContent=total.toLocaleString('fr-FR')+' $';
-  }
-  wf.addEventListener('input',calc);tiers.addEventListener('input',calc);calc();
+  // copier le lien
+  document.getElementById('copylink').addEventListener('click',function(){
+    navigator.clipboard.writeText(location.href).then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='🔗',1500);});
+  });
   // reveal
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-  // scrollspy
-  const links=[...document.querySelectorAll('.subnav a')];
+  // scrollspy sommaire
+  const links=[...document.querySelectorAll('.toc a')];
   const spy=new IntersectionObserver(es=>{
     es.forEach(e=>{ if(e.isIntersecting){
       links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));
     }});
-  },{rootMargin:'-30% 0px -60% 0px'});
+  },{rootMargin:'-15% 0px -70% 0px'});
   links.forEach(l=>{const t=document.querySelector(l.getAttribute('href'));if(t)spy.observe(t);});
 </script>
 </body>
