@@ -78,8 +78,8 @@
     radial-gradient(55% 65% at 14% 16%,#b5a3d6 0%,rgba(181,163,214,0) 62%),
     radial-gradient(70% 80% at 80% 26%,#e2483d 0%,rgba(226,72,61,0) 68%),
     radial-gradient(60% 66% at 28% 88%,#b9372c 0%,rgba(185,55,44,0) 62%),
-    radial-gradient(48% 58% at 92% 84%,#f2d8de 0%,rgba(242,216,222,0) 72%),
-    linear-gradient(160deg,#d97a8b,#cd5a55)}
+    radial-gradient(48% 58% at 92% 84%,#e5c3b4 0%,rgba(229,195,180,0) 72%),
+    linear-gradient(160deg,#c05f66,#b74a3e)}
 
   /* transition croisée entre les pages /solutions/ (View Transitions API) */
   @view-transition{navigation:auto}
@@ -93,15 +93,15 @@
   .art-sm{width:48px;height:48px;margin-bottom:12px}
   .art-band{width:100%;height:110px;margin-bottom:16px}
   .art-bloom::before{background:
-    radial-gradient(40% 45% at 30% 35%,#f4a988 0%,transparent 70%),
-    radial-gradient(35% 40% at 70% 60%,#d97a8b 0%,transparent 70%),
-    radial-gradient(50% 55% at 55% 25%,#f2d8de 0%,transparent 75%),
-    radial-gradient(45% 50% at 25% 75%,#c96a55 0%,transparent 70%),#e8b7c8;filter:blur(6px)}
-  .art-silk::before{background:repeating-linear-gradient(125deg,#f0b6c9 0 5px,#b5a3d6 5px 9px,#f7cf9f 9px 15px,#dd8ea4 15px 22px,#9d8bc4 22px 28px);filter:blur(4px)}
-  .art-wave::before{background:conic-gradient(from 210deg at 60% 40%,#f2d8de,#b5a3d6 25%,#8f77bd 40%,#f4a988 60%,#e8b7c8 80%,#f2d8de);filter:blur(9px)}
+    radial-gradient(40% 45% at 30% 35%,#c96a45 0%,transparent 70%),
+    radial-gradient(35% 40% at 70% 60%,#8e2a22 0%,transparent 70%),
+    radial-gradient(50% 55% at 55% 25%,#e5c3b4 0%,transparent 75%),
+    radial-gradient(45% 50% at 25% 75%,#5d4b85 0%,transparent 70%),#a6685f;filter:blur(6px)}
+  .art-silk::before{background:repeating-linear-gradient(125deg,#5d4b85 0 5px,#8e2a22 5px 9px,#b57a3a 9px 15px,#3a3342 15px 22px,#8f77bd 22px 28px);filter:blur(4px)}
+  .art-wave::before{background:conic-gradient(from 210deg at 60% 40%,#d9c6b2 ,#8f77bd 25%,#5d4b85 40%,#c96a45 60%,#a6685f 80%,#d9c6b2);filter:blur(9px)}
   .art-weave::before{background:
-    repeating-linear-gradient(0deg,rgba(142,42,34,.5) 0 8px,rgba(217,154,78,.45) 8px 14px,rgba(181,163,214,.4) 14px 20px),
-    repeating-linear-gradient(90deg,#c96a55 0 9px,#a24a3a 9px 15px,#d99a4e 15px 23px);background-blend-mode:multiply;filter:blur(1.5px)}
+    repeating-linear-gradient(0deg,rgba(142,42,34,.55) 0 8px,rgba(181,122,58,.5) 8px 14px,rgba(93,75,133,.45) 14px 20px),
+    repeating-linear-gradient(90deg,#a6564a 0 9px,#7e3a2e 9px 15px,#b57a3a 15px 23px);background-blend-mode:multiply;filter:blur(1.5px)}
   @media(prefers-reduced-motion:no-preference){
     .art-bloom::before{animation:artdrift 14s ease-in-out infinite alternate}
     .art-silk::before{animation:artpan 18s linear infinite alternate}
@@ -118,30 +118,31 @@
   .tint::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--grain);opacity:.09;mix-blend-mode:multiply}
   .tint>*{position:relative;z-index:1}
   /* nappes organiques asymétriques : chaque section a sa composition, aucune répétition */
-  .tint-rose{background:
-    radial-gradient(58% 72% at 10% 18%,#f2c9d4 0%,rgba(242,201,212,0) 66%),
-    radial-gradient(44% 58% at 90% 12%,#f0d9c2 0%,rgba(240,217,194,0) 62%),
-    radial-gradient(62% 78% at 78% 92%,#edc2ce 0%,rgba(237,194,206,0) 64%),
-    radial-gradient(40% 52% at 28% 84%,#e3d3ec 0%,rgba(227,211,236,0) 60%),
-    #f9efe9}
-  .tint-lilac{background:
-    radial-gradient(50% 66% at 86% 22%,#ddd0f0 0%,rgba(221,208,240,0) 64%),
-    radial-gradient(56% 70% at 14% 78%,#d8c9ea 0%,rgba(216,201,234,0) 62%),
-    radial-gradient(38% 52% at 70% 88%,#f0d3d9 0%,rgba(240,211,217,0) 58%),
-    radial-gradient(34% 46% at 30% 12%,#f2e2cf 0%,rgba(242,226,207,0) 56%),
-    #f6f0ec}
-  .tint-peach{background:
-    radial-gradient(54% 70% at 16% 80%,#f4d6b4 0%,rgba(244,214,180,0) 64%),
-    radial-gradient(46% 60% at 88% 76%,#eec4b2 0%,rgba(238,196,178,0) 60%),
-    radial-gradient(52% 64% at 74% 10%,#f2ddc6 0%,rgba(242,221,198,0) 62%),
-    radial-gradient(36% 48% at 8% 16%,#ecd0dc 0%,rgba(236,208,220,0) 56%),
-    #f8efe6}
+  /* nappes minérales désaturées (réf. = la section sombre, transposée en clair) */
+  .tint-stone{background:
+    radial-gradient(58% 72% at 10% 18%,#ded2d8 0%,rgba(222,210,216,0) 66%),
+    radial-gradient(44% 58% at 90% 12%,#ddd4c6 0%,rgba(221,212,198,0) 62%),
+    radial-gradient(62% 78% at 78% 92%,#d3a99f 0%,rgba(211,169,159,0) 58%),
+    radial-gradient(40% 52% at 28% 84%,#c8bed6 0%,rgba(200,190,214,0) 56%),
+    #f3efe9}
+  .tint-mauve{background:
+    radial-gradient(50% 66% at 86% 22%,#c9bcd8 0%,rgba(201,188,216,0) 62%),
+    radial-gradient(56% 70% at 14% 78%,#b8aac9 0%,rgba(184,170,201,0) 56%),
+    radial-gradient(38% 52% at 70% 88%,#d3a99f 0%,rgba(211,169,159,0) 54%),
+    radial-gradient(34% 46% at 30% 12%,#dcd3c4 0%,rgba(220,211,196,0) 56%),
+    #f1eef1}
+  .tint-sand{background:
+    radial-gradient(54% 70% at 16% 80%,#dbc4a4 0%,rgba(219,196,164,0) 62%),
+    radial-gradient(46% 60% at 88% 76%,#cfa590 0%,rgba(207,165,144,0) 56%),
+    radial-gradient(52% 64% at 74% 10%,#dfd5c2 0%,rgba(223,213,194,0) 62%),
+    radial-gradient(36% 48% at 8% 16%,#c5b8cd 0%,rgba(197,184,205,0) 54%),
+    #f4f0e9}
 
   /* blobs décoratifs flous, posés en coin de section */
   .blob{position:absolute;z-index:-1;pointer-events:none;width:clamp(260px,30vw,420px);aspect-ratio:1;border-radius:50%;filter:blur(70px);opacity:.5}
-  .blob-coral{background:radial-gradient(circle,#e8927f 0%,rgba(232,146,127,0) 70%)}
-  .blob-lilac{background:radial-gradient(circle,#b5a3d6 0%,rgba(181,163,214,0) 70%)}
-  .blob-peach{background:radial-gradient(circle,#ecc08e 0%,rgba(236,192,142,0) 70%)}
+  .blob-coral{background:radial-gradient(circle,#c47f6f 0%,rgba(196,127,111,0) 70%)}
+  .blob-lilac{background:radial-gradient(circle,#9d8cbd 0%,rgba(157,140,189,0) 70%)}
+  .blob-peach{background:radial-gradient(circle,#c8a276 0%,rgba(200,162,118,0) 70%)}
 
   /* ===== illustrations isométriques en fil pointillé (section sombre) ===== */
   .iso{display:block;margin:0 auto 16px;width:104px;height:104px}
@@ -478,7 +479,7 @@
      fait mal (les 5 signes), on explique le traitement et ses effets
      (fonctionnalités), on donne envie de réserver l'appel. AUCUN prix :
      le bloc « En bref » chiffré a été retiré sur décision Emilien. -->
-<section class="sec tint tint-rose" id="diagnostic">
+<section class="sec tint tint-stone" id="diagnostic">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le diagnostic</span>
@@ -510,7 +511,7 @@
 </section>
 
 <!-- ============ BLOC:comparatif + BLOC:adapte ============ -->
-<section class="sec tint tint-lilac" id="choisir">
+<section class="sec tint tint-mauve" id="choisir">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le choix</span>
@@ -578,7 +579,7 @@
 </section>
 
 <!-- ============ BLOC:fonctionnalites ============ -->
-<section class="sec tint tint-peach" id="fonctionnalites">
+<section class="sec tint tint-sand" id="fonctionnalites">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le périmètre</span>
@@ -708,7 +709,7 @@
 <!-- ============ BLOC:cout ============
      AUCUN prix (décision Emilien 11/09 soir, règle « aucun prix NCF ») :
      on explique COMMENT on chiffre, pas combien. -->
-<section class="sec tint tint-rose" id="budget">
+<section class="sec tint tint-stone" id="budget">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le budget</span>
@@ -741,7 +742,7 @@
 </section>
 
 <!-- ============ BLOC:lancement ============ -->
-<section class="sec tint tint-lilac" id="lancer">
+<section class="sec tint tint-mauve" id="lancer">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le lancement</span>
