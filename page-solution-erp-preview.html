@@ -240,22 +240,32 @@
   .fit.no .ck{background:var(--rose);color:var(--red-ko)}
   .fit .note{font-size:13.5px;color:var(--grey);margin-top:14px;font-style:italic}
 
-  /* ===== BLOC:comparatif — cartes à jauges ===== */
-  .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media(max-width:1020px){.opts{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.opts{grid-template-columns:1fr}}
-  .opt{background:var(--paper);border:1px solid var(--hair);border-radius:var(--r-md);padding:20px 18px;display:flex;flex-direction:column;transition:all .3s cubic-bezier(.23,1,.32,1)}
-  .opt:hover{transform:translateY(-4px);box-shadow:0 18px 44px -24px rgba(33,28,38,.35)}
-  .opt.reco{border:1.5px solid var(--ink);position:relative}
-  .opt.reco .rib{position:absolute;top:-13px;left:16px;background:var(--coral);color:var(--white);border:2px solid var(--ink);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;transform:rotate(-3deg)}
-  .opt h3{font-size:16px;margin-bottom:4px}
-  .opt .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);margin-bottom:14px}
-  .gauge{margin-bottom:10px}
-  .gauge .gl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--grey);margin-bottom:4px}
-  .gauge .bar{height:6px;border-radius:6px;background:var(--cream);border:1px solid var(--hair);overflow:hidden}
-  .gauge .fill{height:100%;border-radius:6px}
-  .opt .when{font-size:13px;color:var(--grey);border-top:1px solid var(--hair);padding-top:12px;margin-top:auto}
-  .opt .when b{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px}
+  /* ===== BLOC:comparatif — tableau éditorial print, colonne encre détachée ===== */
+  .cmpscroll{overflow-x:auto;padding-top:36px;-webkit-overflow-scrolling:touch}
+  .cmp{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr 1.2fr;min-width:880px;border-top:2px solid var(--ink)}
+  .cmp>div{padding:13px 16px 13px 0;border-bottom:1px solid var(--hair);font-size:13.5px;color:var(--grey);line-height:1.5}
+  .cmp .crit{font-weight:500;color:var(--ink);font-size:14px;padding-right:20px}
+  .cmp .head{border-bottom:1.5px solid var(--ink);padding-top:16px;padding-bottom:14px}
+  .cmp .head b{display:block;font-size:15px;color:var(--ink);line-height:1.25}
+  .cmp .head small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--smoke);margin-top:5px}
+  .cmp .last{border-bottom:none;padding-bottom:18px}
+  /* la colonne « sur mesure » : encre continue, grainée, détachée du cadre */
+  .cmp .reco{position:relative;background:var(--ink);color:rgba(250,246,240,.82);border-bottom:1px solid rgba(250,246,240,.12);padding-left:18px;padding-right:18px}
+  .cmp .reco b{color:var(--cream)}
+  .cmp .reco::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:var(--grain);opacity:.16;mix-blend-mode:screen}
+  .cmp .reco.head{border-bottom-color:rgba(250,246,240,.35);border-radius:14px 14px 0 0;margin-top:-22px;padding-top:24px;box-shadow:0 18px 44px -22px rgba(33,28,38,.55)}
+  .cmp .reco.head b{color:var(--white)}
+  .cmp .reco.head small{color:var(--rose)}
+  .cmp .reco.head .rib{position:absolute;top:-11px;left:14px;background:var(--coral);color:var(--white);border:1.5px solid var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;transform:rotate(-3deg);z-index:2}
+  .cmp .reco.last{border-bottom:none;border-radius:0 0 14px 14px;padding-bottom:22px;margin-bottom:-8px}
+  .cmp .ok{display:inline-flex;align-items:center;gap:7px;font-weight:500;color:var(--ink)}
+  .cmp .reco .ok{color:var(--cream)}
+  .cmp .ok i{width:8px;height:8px;border-radius:50%;background:var(--green-ok);flex:0 0 auto}
+  .cmp .ko{display:inline-flex;align-items:center;gap:7px}
+  .cmp .ko i{width:8px;height:8px;border-radius:50%;background:var(--coral);flex:0 0 auto}
+  .cmp .reco .tlink{color:var(--cream);font-size:13.5px;margin-top:6px}
+  .cmpcap{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--smoke);margin-top:10px;display:none}
+  @media(max-width:920px){.cmpcap{display:block}}
 
   /* ===== BLOC:secteurs ===== */
   .sects{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -521,40 +531,57 @@
       <h2>ERP éditeur, open-source, SaaS ou sur mesure&nbsp;?</h2>
       <p>Les 4 options pour équiper votre gestion, comparées honnêtement. Le vrai critère n'est pas le prix&nbsp;: c'est qui s'adapte à qui.</p>
     </div>
-    <div class="opts">
-      <div class="opt rv">
-        <h3>ERP éditeur généraliste</h3>
-        <p class="sub">SAP · Sage · Cegid</p>
-        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:30%;background:var(--lilac-deep)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:90%;background:var(--coral)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:20%;background:var(--ocre)"></div></div></div>
-        <p class="when"><b>Bon choix quand…</b>Grosse PME/ETI, budget SI, process standardisables. Licence par utilisateur, intégrateur pour toute évolution.</p>
+    <div class="cmpscroll rv">
+      <div class="cmp">
+        <div class="head"></div>
+        <div class="head"><b>ERP éditeur généraliste</b><small>SAP · Sage · Cegid</small></div>
+        <div class="head"><b>ERP open-source</b><small>Odoo · Dolibarr</small></div>
+        <div class="head"><b>Assemblage de SaaS</b><small>CRM + facturation + Zapier</small></div>
+        <div class="head reco"><span class="rib">Notre métier</span><b>Application sur mesure</b><small>Construite sur vos process</small></div>
+
+        <div class="crit">Collé à vos process</div>
+        <div>Vous vous adaptez à lui</div>
+        <div>Partiellement, dans les limites de son modèle</div>
+        <div>Chaque outil impose le sien</div>
+        <div class="reco"><span class="ok"><i></i>Oui&nbsp;: il suit vos règles</span></div>
+
+        <div class="crit">Coût d'entrée</div>
+        <div>Licences + intégration, devis obligatoire</div>
+        <div>Faible, mais l'adaptation se paie en jours d'intégrateur</div>
+        <div>Faible&nbsp;: abonnements cumulés</div>
+        <div class="reco">Selon votre périmètre, chiffré après cadrage</div>
+
+        <div class="crit">Coût récurrent</div>
+        <div>Licence par utilisateur + maintenance éditeur</div>
+        <div>Hébergement + maintenance + modules payants</div>
+        <div>Somme d'abonnements par siège, grimpe avec l'équipe</div>
+        <div class="reco">Run mensuel, <b>sans licence par siège</b></div>
+
+        <div class="crit">Une seule base, sans ressaisie</div>
+        <div>Oui, dans son périmètre</div>
+        <div>Oui, dans son périmètre</div>
+        <div><span class="ko"><i></i>Non&nbsp;: synchronisations à maintenir</span></div>
+        <div class="reco"><span class="ok"><i></i>Oui</span></div>
+
+        <div class="crit">Évolutif sans dépendre d'un tiers</div>
+        <div><span class="ko"><i></i>Non&nbsp;: intégrateur pour tout</span></div>
+        <div>Selon vos compétences internes</div>
+        <div><span class="ko"><i></i>Fragile&nbsp;: chaque outil évolue de son côté</span></div>
+        <div class="reco"><span class="ok"><i></i>Oui&nbsp;: code documenté, réversible</span></div>
+
+        <div class="crit">Délai de mise en route</div>
+        <div>Plusieurs mois à plus d'un an</div>
+        <div>Quelques mois</div>
+        <div>Quelques semaines</div>
+        <div class="reco"><b>Premier module en 6-10 semaines</b></div>
+
+        <div class="crit last">Bon choix quand…</div>
+        <div class="last">Grosse PME/ETI, budget SI, process standardisables</div>
+        <div class="last">Process proches du standard, équipe technique dispo</div>
+        <div class="last">Démarrage, besoins simples, peu de volume</div>
+        <div class="reco last">Règles métier spécifiques, plusieurs outils à unifier<br><a class="tlink" href="#cta">Réserver un audit →</a></div>
       </div>
-      <div class="opt rv">
-        <h3>ERP open-source</h3>
-        <p class="sub">Odoo · Dolibarr</p>
-        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:50%;background:var(--lilac-deep)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:55%;background:var(--coral)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:50%;background:var(--ocre)"></div></div></div>
-        <p class="when"><b>Bon choix quand…</b>Process proches du standard, équipe technique dispo. L'adaptation à vos règles se paie en jours d'intégrateur.</p>
-      </div>
-      <div class="opt rv">
-        <h3>Assemblage de SaaS</h3>
-        <p class="sub">CRM + facturation + stock + Zapier</p>
-        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:40%;background:var(--lilac-deep)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:70%;background:var(--coral)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:85%;background:var(--ocre)"></div></div></div>
-        <p class="when"><b>Bon choix quand…</b>Démarrage, besoins simples, peu de volume. Ressaisie et synchronisations à maintenir entre les outils.</p>
-      </div>
-      <div class="opt reco rv">
-        <span class="rib">Notre métier</span>
-        <h3>Application sur mesure</h3>
-        <p class="sub">Construite sur vos process</p>
-        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:100%;background:var(--lilac-deep)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:25%;background:var(--coral)"></div></div></div>
-        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:75%;background:var(--ocre)"></div></div></div>
-        <p class="when"><b>Bon choix quand…</b>Règles métier spécifiques, plusieurs outils à unifier. Premier module en 6-10 semaines, run mensuel sans licence par siège.</p>
-      </div>
+      <p class="cmpcap">Faites défiler horizontalement pour comparer les 4 options</p>
     </div>
     <div class="genius rv">
       <span class="sticker">Le vrai critère</span>
