@@ -74,11 +74,50 @@
     background-image:var(--grain);opacity:.14;mix-blend-mode:multiply}
   .organic>*{position:relative;z-index:2}
   .organic-warm{background:
+    repeating-linear-gradient(122deg,rgba(255,255,255,.09) 0 2px,rgba(255,255,255,0) 2px 10px,rgba(255,224,205,.13) 10px 13px,rgba(255,255,255,0) 13px 24px),
     radial-gradient(55% 65% at 14% 16%,#b5a3d6 0%,rgba(181,163,214,0) 62%),
     radial-gradient(70% 80% at 80% 26%,#e2483d 0%,rgba(226,72,61,0) 68%),
     radial-gradient(60% 66% at 28% 88%,#b9372c 0%,rgba(185,55,44,0) 62%),
     radial-gradient(48% 58% at 92% 84%,#f2d8de 0%,rgba(242,216,222,0) 72%),
     linear-gradient(160deg,#d97a8b,#cd5a55)}
+
+  /* transition croisée entre les pages /solutions/ (View Transitions API) */
+  @view-transition{navigation:auto}
+
+  /* ===== vignettes d'art génératif (réf. visuelles Emilien 11/09 16h) =====
+     100 % CSS : gradients + blur + grain. 4 matières déclinables. */
+  .art{position:relative;border-radius:12px;overflow:hidden;flex:0 0 auto;isolation:isolate}
+  .art::before{content:"";position:absolute;inset:-18%;z-index:0}
+  .art::after{content:"";position:absolute;inset:0;z-index:1;background-image:var(--grain);opacity:.3;mix-blend-mode:overlay;pointer-events:none}
+  .art-sq{width:56px;height:56px}
+  .art-sm{width:48px;height:48px;margin-bottom:12px}
+  .art-band{width:100%;height:110px;margin-bottom:16px}
+  .art-bloom::before{background:
+    radial-gradient(40% 45% at 30% 35%,#f4a988 0%,transparent 70%),
+    radial-gradient(35% 40% at 70% 60%,#d97a8b 0%,transparent 70%),
+    radial-gradient(50% 55% at 55% 25%,#f2d8de 0%,transparent 75%),
+    radial-gradient(45% 50% at 25% 75%,#c96a55 0%,transparent 70%),#e8b7c8;filter:blur(6px)}
+  .art-silk::before{background:repeating-linear-gradient(125deg,#f0b6c9 0 5px,#b5a3d6 5px 9px,#f7cf9f 9px 15px,#dd8ea4 15px 22px,#9d8bc4 22px 28px);filter:blur(4px)}
+  .art-wave::before{background:conic-gradient(from 210deg at 60% 40%,#f2d8de,#b5a3d6 25%,#8f77bd 40%,#f4a988 60%,#e8b7c8 80%,#f2d8de);filter:blur(9px)}
+  .art-weave::before{background:
+    repeating-linear-gradient(0deg,rgba(142,42,34,.5) 0 8px,rgba(217,154,78,.45) 8px 14px,rgba(181,163,214,.4) 14px 20px),
+    repeating-linear-gradient(90deg,#c96a55 0 9px,#a24a3a 9px 15px,#d99a4e 15px 23px);background-blend-mode:multiply;filter:blur(1.5px)}
+  @media(prefers-reduced-motion:no-preference){
+    .art-bloom::before{animation:artdrift 14s ease-in-out infinite alternate}
+    .art-silk::before{animation:artpan 18s linear infinite alternate}
+    .art-wave::before{animation:artdrift 16s ease-in-out infinite alternate-reverse}
+    .art:hover::before{animation-play-state:paused}
+  }
+  @keyframes artdrift{to{transform:scale(1.12) rotate(4deg)}}
+  @keyframes artpan{to{transform:translateX(-5%)}}
+
+  /* ===== illustrations isométriques en fil pointillé (section sombre) ===== */
+  .iso{display:block;margin:0 auto 16px;width:104px;height:104px}
+  .iso polygon,.iso path{fill:none;stroke:rgba(250,246,240,.72);stroke-width:1.2;stroke-dasharray:3 4;stroke-linejoin:round}
+  @media(prefers-reduced-motion:no-preference){
+    .iso polygon,.iso path{animation:isodash 60s linear infinite}
+  }
+  @keyframes isodash{to{stroke-dashoffset:-280}}
   .organic-dark{background:
     radial-gradient(55% 65% at 12% 18%,#5d4b85 0%,rgba(93,75,133,0) 64%),
     radial-gradient(65% 75% at 82% 24%,#8e2a22 0%,rgba(142,42,34,0) 66%),
@@ -431,9 +470,9 @@
     </div>
 
     <div class="feats rv" style="margin-top:26px">
-      <div class="feat"><span class="ic" style="background:var(--pastel-lilac)">🗂</span><span><b>Le modèle de données est le vôtre</b><p>Vos objets métier (affaires, chantiers, contrats, abonnements) sont modélisés comme vous les pensez, pas comme l'éditeur les a imaginés.</p></span></div>
-      <div class="feat"><span class="ic" style="background:var(--pastel-peach)">⚙️</span><span><b>Les règles de gestion sont codées, pas contournées</b><p>Une remise conditionnelle, un workflow d'approbation, une alerte sur un seuil&nbsp;: tout ça devient natif.</p></span></div>
-      <div class="feat"><span class="ic" style="background:var(--pastel-rose)">🖥</span><span><b>L'interface s'adapte aux utilisateurs</b><p>Un commercial terrain n'a pas besoin des mêmes vues qu'un directeur commercial ou qu'un ADV.</p></span></div>
+      <div class="feat"><span class="art art-sq art-bloom"></span><span><b>Le modèle de données est le vôtre</b><p>Vos objets métier (affaires, chantiers, contrats, abonnements) sont modélisés comme vous les pensez, pas comme l'éditeur les a imaginés.</p></span></div>
+      <div class="feat"><span class="art art-sq art-silk"></span><span><b>Les règles de gestion sont codées, pas contournées</b><p>Une remise conditionnelle, un workflow d'approbation, une alerte sur un seuil&nbsp;: tout ça devient natif.</p></span></div>
+      <div class="feat"><span class="art art-sq art-wave"></span><span><b>L'interface s'adapte aux utilisateurs</b><p>Un commercial terrain n'a pas besoin des mêmes vues qu'un directeur commercial ou qu'un ADV.</p></span></div>
     </div>
   </div>
 </section>
@@ -516,31 +555,35 @@
     </div>
 
     <div class="feats f4 rv">
-      <div class="feat"><span class="ic" style="background:var(--pastel-lilac)">📊</span><span><b>Pipeline commercial</b><p>Visualisation par étape, probabilité de closing, alertes sur les affaires qui stagnent.</p></span></div>
-      <div class="feat"><span class="ic" style="background:var(--pastel-peach)">🗃</span><span><b>Fiche client structurée</b><p>Vos objets métier propres&nbsp;: sites, contrats, interlocuteurs multiples, historique d'achat.</p></span></div>
-      <div class="feat"><span class="ic" style="background:var(--pastel-rose)">💬</span><span><b>Historique des interactions</b><p>Emails, appels, réunions&nbsp;: toutes les touches commerciales tracées sans effort.</p></span></div>
-      <div class="feat"><span class="ic" style="background:var(--pastel-cream)">✅</span><span><b>Tâches et relances</b><p>Assignation, priorité, rappels automatiques.</p></span></div>
+      <div class="feat"><span class="art art-sq art-silk"></span><span><b>Pipeline commercial</b><p>Visualisation par étape, probabilité de closing, alertes sur les affaires qui stagnent.</p></span></div>
+      <div class="feat"><span class="art art-sq art-bloom"></span><span><b>Fiche client structurée</b><p>Vos objets métier propres&nbsp;: sites, contrats, interlocuteurs multiples, historique d'achat.</p></span></div>
+      <div class="feat"><span class="art art-sq art-weave"></span><span><b>Historique des interactions</b><p>Emails, appels, réunions&nbsp;: toutes les touches commerciales tracées sans effort.</p></span></div>
+      <div class="feat"><span class="art art-sq art-wave"></span><span><b>Tâches et relances</b><p>Assignation, priorité, rappels automatiques.</p></span></div>
     </div>
 
     <h3 class="rv" style="text-align:center;margin:clamp(26px,3.5vw,38px) 0 18px">Les modules avancés selon votre métier</h3>
     <div class="costgrid rv">
       <div class="costcard">
-        <h3>🧮 CPQ et devis complexes</h3>
+        <div class="art art-band art-silk"></div>
+        <h3>CPQ et devis complexes</h3>
         <p>Le CPQ (Configure, Price, Quote) est souvent le premier module qui justifie à lui seul un CRM sur mesure. Si vos devis dépendent de règles conditionnelles (combinaisons de produits, remises par palier, options incompatibles entre elles), un outil générique vous forcera à faire la logique à la main, en dehors du CRM.</p>
         <p>Un module CPQ intégré permet de générer <b>un devis conforme en quelques clics</b>, directement depuis la fiche affaire.</p>
       </div>
       <div class="costcard">
-        <h3>💶 Commissions commerciales</h3>
+        <div class="art art-band art-bloom"></div>
+        <h3>Commissions commerciales</h3>
         <p>L'un des sujets les plus sensibles en PME. Les règles de commissionnement sont souvent complexes (base fixe + variable, seuils de déclenchement, règles différentes par produit ou par commercial) et rarement gérées correctement dans un CRM standard.</p>
         <p>Un CRM sur mesure peut intégrer votre barème, <b>calculer les commissions en temps réel</b> et produire un récapitulatif mensuel sans export Excel.</p>
       </div>
       <div class="costcard">
-        <h3>📈 Reporting et tableaux de bord métier</h3>
+        <div class="art art-band art-wave"></div>
+        <h3>Reporting et tableaux de bord métier</h3>
         <p>Le reporting générique vous donne des chiffres. <b>Le reporting métier vous donne des décisions.</b> La différence&nbsp;: des indicateurs construits sur vos données réelles. Taux de transformation par segment, durée moyenne par étape, performance par commercial et par région, prévision de chiffre d'affaires pondérée.</p>
         <p>Ces tableaux de bord ne s'improvisent pas&nbsp;: ils se conçoivent avec vous, en amont du développement.</p>
       </div>
       <div class="costcard">
-        <h3>🔑 Portail client</h3>
+        <div class="art art-band art-weave"></div>
+        <h3>Portail client</h3>
         <p>Pour certaines PME B2B, le CRM ne sert pas qu'en interne. Un portail client permet à vos clients d'accéder à leurs contrats, commandes en cours, factures et tickets de support, sans passer par votre équipe pour chaque demande.</p>
         <p>Un gain de temps pour vous, et <b>un vrai service différenciant</b> pour vos clients.</p>
       </div>
@@ -720,21 +763,49 @@
     </div>
     <div class="tstm">
       <div class="tcard rv">
+        <svg class="iso" viewBox="0 0 120 120" aria-hidden="true">
+          <polygon points="60,18 96,38 60,58 24,38"/>
+          <polygon points="24,38 60,58 60,100 24,80"/>
+          <polygon points="96,38 60,58 60,100 96,80"/>
+          <polygon points="60,42 78,52 60,62 42,52"/>
+        </svg>
         <div class="num">100&nbsp;%</div>
         <div class="cl">Tekabois</div>
         <p>d'autonomie de l'équipe commerciale sur devis et SAV&nbsp;: simulateur de devis et automatisations sur mesure, livrés en 6 semaines.</p>
       </div>
       <div class="tcard rv">
+        <svg class="iso" viewBox="0 0 120 120" aria-hidden="true">
+          <polygon points="45,14 75,30 45,46 15,30"/>
+          <polygon points="15,30 45,46 45,74 15,58"/>
+          <polygon points="75,30 45,46 45,74 75,58"/>
+          <polygon points="75,58 105,74 75,90 45,74"/>
+          <polygon points="45,74 75,90 75,110 45,94"/>
+          <polygon points="105,74 75,90 75,110 105,94"/>
+        </svg>
         <div class="num">100&nbsp;%</div>
         <div class="cl">Brut</div>
         <p>du process publicitaire digitalisé&nbsp;: la chaîne complète de création et de gestion de campagnes dans un seul outil.</p>
       </div>
       <div class="tcard rv">
+        <svg class="iso" viewBox="0 0 120 120" aria-hidden="true">
+          <polygon points="60,16 92,34 60,52 28,34"/>
+          <polygon points="28,34 60,52 60,72 28,54"/>
+          <polygon points="92,34 60,52 60,72 92,54"/>
+          <path d="M60,66 66,82 84,82 70,92 75,108 60,98 45,108 50,92 36,82 54,82 Z"/>
+        </svg>
         <div class="num">100&nbsp;%</div>
         <div class="cl">The Host</div>
         <p>d'autonomie des équipes internes sur leur plateforme de gestion, construite sur leurs règles à eux.</p>
       </div>
       <div class="tcard rv">
+        <svg class="iso" viewBox="0 0 120 120" aria-hidden="true">
+          <polygon points="42,22 72,38 42,54 12,38"/>
+          <polygon points="12,38 42,54 42,86 12,70"/>
+          <polygon points="72,38 42,54 42,86 72,70"/>
+          <polygon points="84,44 108,57 84,70 60,57"/>
+          <polygon points="60,57 84,70 84,100 60,87"/>
+          <polygon points="108,57 84,70 84,100 108,87"/>
+        </svg>
         <div class="num">10&nbsp;j</div>
         <div class="cl">Trophée des Champions</div>
         <p>pour livrer une WebApp de gestion multi-rôles&nbsp;: chaque service voit ce qui le concerne.</p>
@@ -791,10 +862,10 @@
       <h2>Le même socle, d'autres besoins</h2>
     </div>
     <div class="linked">
-      <a class="lcard p-lilac rv" href="page-solution-erp-preview.html"><h3>🏭 ERP sur mesure</h3><p>Ventes, achats, stocks, production&nbsp;: une seule base construite sur vos process.</p><span class="go tlink">Découvrir →</span></a>
-      <a class="lcard p-peach rv" href="#"><h3>🔑 Portail client</h3><p>Un espace où vos clients suivent contrats, commandes et documents en autonomie.</p><span class="go tlink">Découvrir →</span></a>
-      <a class="lcard p-rose rv" href="#"><h3>🧾 Facturation automatisée</h3><p>Devis, factures, relances&nbsp;: générés et envoyés depuis la même base.</p><span class="go tlink">Découvrir →</span></a>
-      <a class="lcard p-cream rv" href="#"><h3>⚡ Automatisations</h3><p>Vos outils connectés entre eux, sans ressaisie ni double saisie.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-lilac rv" href="page-solution-erp-preview.html"><span class="art art-sm art-weave"></span><h3>ERP sur mesure</h3><p>Ventes, achats, stocks, production&nbsp;: une seule base construite sur vos process.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-peach rv" href="#"><span class="art art-sm art-bloom"></span><h3>Portail client</h3><p>Un espace où vos clients suivent contrats, commandes et documents en autonomie.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-rose rv" href="#"><span class="art art-sm art-silk"></span><h3>Facturation automatisée</h3><p>Devis, factures, relances&nbsp;: générés et envoyés depuis la même base.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-cream rv" href="#"><span class="art art-sm art-wave"></span><h3>Automatisations</h3><p>Vos outils connectés entre eux, sans ressaisie ni double saisie.</p><span class="go tlink">Découvrir →</span></a>
     </div>
   </div>
 </section>

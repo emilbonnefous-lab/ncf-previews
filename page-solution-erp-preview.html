@@ -76,6 +76,8 @@
     --grad:linear-gradient(90deg,#e2483d,#b5a3d6,#e2483d,#b5a3d6,#e2483d);
     --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  /* transition croisée entre les pages /solutions/ (View Transitions API) */
+  @view-transition{navigation:auto}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:100px}
   body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6}
