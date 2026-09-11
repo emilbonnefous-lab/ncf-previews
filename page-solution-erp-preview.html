@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow"><!-- preview interne : retirer noindex à la mise en ligne réelle -->
+<title>ERP sur mesure : un logiciel de gestion construit sur vos process | Nocode Factory</title>
+<meta name="description" content="Développement d'ERP sur mesure pour PME et ETI : audit de vos process, premier module en production en 6 à 10 semaines, code documenté qui vous appartient. Comparatif honnête ERP éditeur, open-source, SaaS et sur-mesure.">
+<!--
+  ============================================================================
+  TEMPLATE — Page SOLUTION Nocode Factory (famille /solutions/) — v4
+  Cadrage : réunion Valentin 11/09 + retours Slack 12h25-12h57
+  (cr/2026-09-11_retours-valentin-template-solutions.md)
+
+  DOCTRINE : page solution = TRAME SEO qui répond à l'intention de recherche
+  (réf. eleven-labs.com/dev-sur-mesure/erp/ et goons.fr, qui rankent), TON
+  accompagnement d'agence (réf. galadrim.fr/offres/creation-logiciels-metier),
+  DESIGN charte NCF. Constituée de BLOCS réutilisables pour monter chaque
+  page /solutions/ : chercher les commentaires "BLOC:" ci-dessous.
+
+  ── BIBLIOTHÈQUE DE BLOCS (ordre de la trame) ──────────────────────────────
+  BLOC:hero-intent     H1 = requête exacte + promesse ; chiffres ; flux presta
+  BLOC:sommaire        pills ancrées (sitelinks Google)
+  BLOC:definition      H2 « Qu'est-ce que X ? » + équation + citation E-E-A-T
+  BLOC:benefices       « Pourquoi X ? » 6 cartes icônes
+  BLOC:adapte          « X est-il adapté à votre besoin ? » colonnes ✓ / ✕
+  BLOC:comparatif      les options du marché, cartes à jauges + reco honnête
+  BLOC:secteurs        longue traîne « X + secteur », 8 cartes
+  BLOC:methode         timeline accompagnement (l'anti « produit tout prêt »)
+  BLOC:accompagnement  ce que couvre la prestation, 6 cartes services
+  BLOC:stack           marquee outils maîtrisés
+  BLOC:preuve          section sombre : cas RÉELS publiés + disclaimer honnête
+  BLOC:cout            « Combien coûte X ? » réponse courte + amortissement
+  BLOC:faq             questions-requêtes + JSON-LD FAQPage synchronisé
+  BLOC:maillage        solutions liées + articles (jus SEO interne)
+  BLOC:cta-final       aurora, audit 30 min (commun à toutes les instances)
+  ───────────────────────────────────────────────────────────────────────────
+
+  Instance : ERP sur mesure. Copy reprise de page-erp-sur-mesure-preview.html
+  (matrice validée Vincent 19/20) et resserrée sur la trame ci-dessus.
+
+  Règles NCF encodées (NE PAS RETIRER) :
+    - AUCUN prix NCF chiffré publié ; on explique COMMENT on chiffre
+    - Cas clients : uniquement les cas réels publiés sur nocodefactory.fr
+      (Tekabois, Brut, The Host, Trophée des Champions) ; le disclaimer
+      « pas encore d'ERP complet publié » reste tant que c'est vrai
+    - Citation « avis NCF » : slot à faire VALIDER par Valentin avant publi
+    - Conversion = audit/appel 30 min ; pas de capture email
+    - Zéro tiret cadratin dans la copy (marqueur IA)
+  ============================================================================
+-->
+<style>
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
+  :root{
+    --beige:#f9f8f6; --ncf-beige:#fff8f0; --white:#fff;
+    --ink:#060110; --black:#1e1a28; --grey:#606060; --smoke:#a7a7a7;
+    --lightgrey:#ddd9d9; --hair:#e9e6e1; --dark-card:#2d273e;
+    --pink:#f99bfb; --pink-vif:#ff5777; --yellow:#ffca64; --green:#38ef7d;
+    --green-deep:#027a48; --green-pill:#47c247;
+    --blue:#5ac0ff; --blue-link:#1faaff; --purple:#906cf8; --purple-soft:#a8a0f0; --purple-pale:#f3f1fd;
+    --pastel-yellow:#fef1e6; --pastel-pink:#f9eef1; --pastel-blue:#eafafc; --pastel-green:#f1fbed;
+    --red:#b42318; --red-light:#fef3f2;
+    --sans:"Fff Acidgrotesk",Arial,sans-serif;
+    --r-lg:1.5rem; --r-md:1rem; --r-sm:.75rem;
+    --grad:linear-gradient(90deg,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:100px}
+  body{font-family:var(--sans);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.6}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  img{max-width:100%}
+  a{color:inherit}
+  b,strong{font-weight:500;color:var(--ink)}
+
+  .grad{background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  @media(prefers-reduced-motion:no-preference){.grad{animation:rainbowText 14s linear infinite}}
+  @keyframes rainbowText{0%{background-position:0% 50%}100%{background-position:400% 50%}}
+
+  .rainbow{height:5px;background:linear-gradient(90deg,#fa2217,#ff9323 14%,#cf7dc1 28%,#906cf8 41%,#19b5c0 57%,#198cc6 71%,#ffd361 85%,#fa2217);transition:height .3s;cursor:pointer}
+  .rainbow:hover{height:20px}
+
+  .nav{background:var(--beige);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:60;border-bottom:1px solid transparent}
+  .nav.scrolled{background:color-mix(in srgb,var(--beige) 92%,transparent);backdrop-filter:blur(10px);border-bottom-color:var(--hair)}
+  .brand{display:flex;align-items:center;gap:9px;font-size:20px;letter-spacing:-.3px;text-decoration:none;color:var(--ink)}
+  .brand .mk{width:26px;height:26px;border-radius:7px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .brand b{font-weight:700;font-style:italic}
+  .nav .links{display:flex;gap:28px;font-size:15px;color:var(--ink)}
+  .nav .links a{text-decoration:none;position:relative;padding-bottom:3px}
+  .nav .links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--black);transition:width .3s}
+  .nav .links a:hover::after{width:100%}
+  @media(max-width:860px){.nav .links{display:none}}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;white-space:nowrap;text-decoration:none;border-radius:3000px;padding:.65rem 1.4rem;border:1px solid var(--black);transition:.375s cubic-bezier(.23,1,.32,1);cursor:pointer}
+  @media(max-width:480px){.nav .btn{padding:.45rem .9rem;font-size:13px}.nav .btn .circ{width:22px;height:22px;font-size:12px}.brand{font-size:17px}}
+  .btn .circ{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ncf-beige);color:var(--black);font-size:13px;flex:0 0 auto;transition:transform .375s cubic-bezier(.23,1,.32,1)}
+  .btn:hover .circ{transform:translateX(4px)}
+  .btn-dark{background:var(--black);color:var(--ncf-beige)}
+  .btn-dark:hover{background:transparent;color:var(--ink);transform:scale(1.02)}
+  .btn-dark:hover .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white{background:var(--white);color:var(--black);border-color:var(--white)}
+  .btn-white .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white:hover{background:transparent;color:var(--ncf-beige);transform:scale(1.02)}
+  .btn-white:hover .circ{background:var(--white);color:var(--black)}
+
+  .tlink{display:inline-block;font-size:15px;font-weight:500;text-decoration:none;position:relative;padding-bottom:3px}
+  .tlink::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:currentColor;transition:width .3s}
+  .tlink:hover::after{width:100%}
+  .inl{color:var(--blue-link);text-decoration:underline;text-underline-offset:2px}
+  .inl:hover{color:var(--purple)}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+  .narrow{max-width:840px;margin:0 auto}
+
+  .sec{padding:clamp(30px,4vw,52px) 0}
+  .sec-head{max-width:780px;margin:0 auto clamp(18px,2.5vw,28px);text-align:center}
+  .kick{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-style:italic;font-weight:500;color:var(--grey);margin-bottom:14px}
+  h2{font-weight:500;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;letter-spacing:-1px;text-wrap:balance}
+  .sec-head p{font-size:15.5px;color:var(--grey);margin-top:14px}
+  h3{font-weight:500;font-size:19px}
+  .cta-mid{text-align:center;margin-top:clamp(20px,3vw,28px)}
+
+  /* ===== BLOC:hero-intent ===== */
+  .hero{padding:clamp(30px,4.5vw,52px) 0 clamp(22px,3vw,34px);text-align:center}
+  .laurels{display:inline-flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:var(--grey);border:1px solid var(--hair);background:var(--white);border-radius:3000px;padding:7px 16px;margin-bottom:22px}
+  .laurels .st{color:var(--yellow);letter-spacing:2px}
+  h1{font-weight:500;font-size:clamp(2rem,4.2vw,3rem);line-height:1.12;letter-spacing:-1px;text-wrap:balance;max-width:24ch;margin:0 auto}
+  .hero .sub{font-size:16.5px;color:var(--grey);max-width:64ch;margin:16px auto 0}
+  .hero .ctas{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px}
+  .keyfigs{display:flex;justify-content:center;gap:clamp(20px,4vw,56px);flex-wrap:wrap;margin-top:clamp(22px,3vw,32px)}
+  .keyfigs .kf{text-align:center}
+  .keyfigs .v{font-weight:500;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1}
+  .keyfigs .l{font-size:12.5px;color:var(--grey);margin-top:6px;max-width:20ch}
+
+  /* flux presta : l'accompagnement qui tourne, en boucle */
+  .flow{position:relative;display:flex;align-items:stretch;justify-content:center;max-width:860px;margin:clamp(24px,3.5vw,40px) auto 0;padding-top:14px}
+  .fnode{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:20px 18px 16px;width:min(240px,31%);text-align:center;transition:all .45s cubic-bezier(.23,1,.32,1);box-shadow:0 14px 34px -24px rgba(30,26,40,.3)}
+  .fnode .ic{font-size:30px;display:block;margin-bottom:8px;line-height:1}
+  .fnode b{display:block;font-size:15px;line-height:1.3}
+  .fnode small{display:block;font-size:12.5px;color:var(--grey);margin-top:4px}
+  .fnode.on{background:var(--black);border-color:var(--black);transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(30,26,40,.55)}
+  .fnode.on b{color:var(--ncf-beige)}
+  .fnode.on small{color:var(--smoke)}
+  .flink{flex:1;max-width:88px;height:3px;align-self:center;background:var(--lightgrey);border-radius:3px;position:relative;overflow:hidden;margin:0 6px}
+  .flink::after{content:"";position:absolute;inset:0;background-image:var(--grad);background-size:400% 100%;transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.23,1,.32,1)}
+  .flink.on::after{transform:scaleX(1)}
+  @media(prefers-reduced-motion:no-preference){.flink.on::after{animation:rainbowText 14s linear infinite}}
+  @media(max-width:680px){
+    .flow{flex-direction:column;align-items:center;gap:0}
+    .fnode{width:min(320px,92%)}
+    .flink{flex:none;width:3px;height:26px;max-width:none;align-self:center;margin:4px 0}
+    .flink::after{transform:scaleY(0);transform-origin:top}
+    .flink.on::after{transform:scaleY(1)}
+  }
+  .chip{position:absolute;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;box-shadow:0 8px 24px -10px rgba(30,26,40,.35);white-space:nowrap;z-index:2}
+  .chip-a{top:-6px;right:clamp(2px,4vw,40px);background:var(--pastel-green);color:var(--green-deep);border:1px solid #bfe8c5}
+  .chip-b{top:-14px;left:clamp(2px,4vw,40px);background:var(--white);color:var(--ink);border:1px solid var(--hair)}
+  @media(prefers-reduced-motion:no-preference){
+    .chip-a{animation:levitation 5s ease-in-out infinite}
+    .chip-b{animation:levitation 6s ease-in-out infinite reverse}
+  }
+  @keyframes levitation{0%{transform:translateY(2px)}50%{transform:translateY(-8px)}100%{transform:translateY(2px)}}
+
+  /* ===== BLOC:sommaire ===== */
+  .anchors{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:900px;margin:clamp(22px,3vw,32px) auto 0}
+  .anchors a{font-size:13px;font-weight:500;text-decoration:none;color:var(--grey);background:var(--white);border:1px solid var(--hair);border-radius:3000px;padding:7px 15px;transition:all .25s}
+  .anchors a:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+
+  /* ===== BLOC:definition ===== */
+  .short{position:relative;background:var(--white);border:1.5px solid var(--black);border-radius:var(--r-md);padding:22px 26px;margin:0 auto clamp(18px,2.5vw,26px);max-width:840px;font-size:15.5px}
+  .short .tag{position:absolute;top:-13px;left:22px;background:var(--yellow);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--black)}
+  .equation{background:var(--purple-pale);border:1px solid var(--purple-soft);border-radius:var(--r-sm);padding:14px 20px;text-align:center;font-size:14.5px;font-weight:500;max-width:720px;margin:0 auto clamp(18px,2.5vw,26px)}
+  .founder{display:flex;gap:18px;align-items:flex-start;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:clamp(20px,2.5vw,26px);max-width:840px;margin:0 auto}
+  .founder .av{flex:0 0 54px;height:54px;border-radius:50%;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-weight:700;font-size:16px}
+  .founder .q{font-size:15px;color:var(--grey);font-style:italic;line-height:1.6}
+  .founder .who{margin-top:10px;font-size:13.5px;font-style:normal}
+  .founder .who b{display:block}
+  .founder .who small{color:var(--grey)}
+
+  /* ===== BLOC:benefices (+ accompagnement, même grille) ===== */
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:900px){.feats{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.feats{grid-template-columns:1fr}}
+  .feat{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:18px;display:flex;gap:12px;align-items:flex-start;transition:all .25s}
+  .feat:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .feat .ic{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px}
+  .feat b{display:block;font-size:14.5px;margin-bottom:3px}
+  .feat p{font-size:13px;color:var(--grey);line-height:1.5}
+
+  /* ===== BLOC:adapte ===== */
+  .fitcols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:860px){.fitcols{grid-template-columns:1fr}}
+  .fit{border-radius:var(--r-lg);padding:clamp(20px,2.5vw,28px)}
+  .fit.yes{background:var(--pastel-green)}
+  .fit.no{background:var(--pastel-pink)}
+  .fit h3{margin-bottom:14px}
+  .fit ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .fit li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--grey);background:var(--white);border-radius:var(--r-sm);padding:11px 14px}
+  .fit .ck{flex:0 0 20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;margin-top:2px}
+  .fit.yes .ck{background:var(--green);color:var(--black)}
+  .fit.no .ck{background:var(--red-light);color:var(--red)}
+  .fit .note{font-size:13.5px;color:var(--grey);margin-top:14px;font-style:italic}
+
+  /* ===== BLOC:comparatif — cartes à jauges ===== */
+  .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1020px){.opts{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.opts{grid-template-columns:1fr}}
+  .opt{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:20px 18px;display:flex;flex-direction:column;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .opt:hover{transform:translateY(-4px);box-shadow:0 18px 44px -24px rgba(30,26,40,.35)}
+  .opt.reco{border:1.5px solid var(--black);position:relative}
+  .opt.reco .rib{position:absolute;top:-13px;left:16px;background:var(--pink);color:var(--ink);border:2px solid var(--ink);font-weight:700;font-style:italic;font-size:12.5px;padding:3px 10px;transform:rotate(-3deg)}
+  .opt h3{font-size:16px;margin-bottom:4px}
+  .opt .sub{font-size:12.5px;color:var(--grey);margin-bottom:14px}
+  .gauge{margin-bottom:10px}
+  .gauge .gl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--grey);margin-bottom:4px}
+  .gauge .bar{height:6px;border-radius:6px;background:var(--beige);border:1px solid var(--hair);overflow:hidden}
+  .gauge .fill{height:100%;border-radius:6px}
+  .opt .when{font-size:13px;color:var(--grey);border-top:1px solid var(--hair);padding-top:12px;margin-top:auto}
+  .opt .when b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-style:italic;display:block;margin-bottom:4px}
+
+  /* ===== BLOC:secteurs ===== */
+  .sects{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:1020px){.sects{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.sects{grid-template-columns:1fr}}
+  .sect{display:block;text-decoration:none;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:16px 17px;transition:all .25s}
+  .sect:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .sect b{display:block;font-size:14.5px;margin-bottom:4px}
+  .sect p{font-size:12.5px;color:var(--grey);line-height:1.5}
+
+  /* ===== BLOC:methode ===== */
+  .tlwrap{max-width:720px;margin:0 auto}
+  .tl{position:relative;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:6px;top:10px;bottom:26px;width:2px;background:var(--lightgrey)}
+  .tl-item{position:relative;padding-bottom:24px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-29px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--dot,var(--purple));border:3px solid var(--beige)}
+  .tl-item:nth-child(1){--dot:#1faaff}.tl-item:nth-child(2){--dot:#906cf8}.tl-item:nth-child(3){--dot:#f99bfb}.tl-item:nth-child(4){--dot:#38ef7d}
+  .tl-item .d{display:inline-block;font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-style:italic;background:var(--white);border:1px solid var(--lightgrey);border-radius:3000px;padding:3px 11px;margin-bottom:8px;color:var(--grey)}
+  .tl-item h3{margin:0 0 5px;font-size:18px;line-height:1.35}
+  .tl-item p{font-size:14.5px;color:var(--grey)}
+
+  /* callouts */
+  .warn{position:relative;background:#fff8ec;border:1px solid var(--yellow);border-radius:var(--r-sm);padding:24px 24px 20px;margin:26px auto 0;max-width:840px;font-size:15px;color:var(--grey)}
+  .warn .sticker{position:absolute;top:-14px;left:18px;background:var(--yellow);color:var(--ink);font-weight:500;font-size:15px;padding:3px 12px;border-radius:4px;transform:rotate(-4deg)}
+  .warn b{color:var(--ink)}
+  .genius{position:relative;background:var(--purple-pale);border:1px solid var(--purple-soft);border-radius:var(--r-sm);padding:24px 24px 20px;margin:26px auto 0;max-width:840px;font-size:15px;color:var(--grey)}
+  .genius .sticker{position:absolute;top:-14px;left:18px;background:var(--purple-soft);color:var(--ink);font-weight:500;font-size:15px;padding:3px 12px;border-radius:4px;transform:rotate(-4deg)}
+  .genius b{color:var(--ink)}
+
+  /* ===== BLOC:stack ===== */
+  .mq{overflow:hidden;position:relative;border-block:1px solid var(--hair);padding:16px 0;background:var(--white)}
+  .mq .track{display:flex;gap:44px;width:max-content}
+  @media(prefers-reduced-motion:no-preference){.mq .track{animation:marquee 32s linear infinite}.mq:hover .track{animation-play-state:paused}}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .mq .it{font-weight:500;font-size:15px;color:var(--grey);display:flex;align-items:center;gap:9px;white-space:nowrap}
+  .mq .it .d{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .mqcap{font-size:12.5px;color:var(--smoke);text-align:center;margin-top:12px}
+
+  /* ===== BLOC:preuve ===== */
+  .dark{background:var(--black);color:var(--ncf-beige);padding:clamp(36px,4.5vw,60px) 0;margin:clamp(8px,1.5vw,18px) 0 clamp(20px,3vw,36px)}
+  .dark .kick{color:var(--blue)}
+  .dark h2{color:var(--ncf-beige)}
+  .dark .sec-head p{color:var(--smoke)}
+  .tstm{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .tcard{background:var(--dark-card);border-radius:var(--r-md);padding:22px 20px;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .tcard:hover{transform:scale(1.03) rotate(-1.2deg);box-shadow:0 0 40px rgba(144,108,248,.4)}
+  .tcard .num{font-weight:500;font-size:clamp(1.7rem,3vw,2.2rem);line-height:1}
+  .tcard .cl{font-size:12.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-style:italic;color:var(--blue);margin:8px 0 6px}
+  .tcard p{font-size:13.5px;color:var(--smoke);line-height:1.55}
+  .dark .honest{max-width:760px;margin:clamp(20px,3vw,28px) auto 0;text-align:center;font-size:13.5px;color:var(--smoke);font-style:italic}
+  .dark .more{text-align:center;margin-top:22px}
+  .dark .tlink{color:var(--ncf-beige)}
+
+  /* ===== BLOC:cout ===== */
+  .costgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:980px;margin:0 auto}
+  @media(max-width:860px){.costgrid{grid-template-columns:1fr}}
+  .costcard{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:clamp(20px,2.5vw,26px)}
+  .costcard h3{margin-bottom:10px}
+  .costcard p{font-size:14.5px;color:var(--grey);line-height:1.6;margin-bottom:10px}
+  .costcard p:last-child{margin-bottom:0}
+  .costcard ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin:10px 0}
+  .costcard li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--grey)}
+  .costcard .d{flex:0 0 8px;height:8px;border-radius:50%;margin-top:7px}
+
+  /* ===== BLOC:faq ===== */
+  .faqwrap{max-width:780px;margin:0 auto}
+  .faq details{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden;transition:border-color .25s}
+  .faq details:hover{border-color:var(--lightgrey)}
+  .faq details[open]{border-color:var(--black)}
+  .faq summary{list-style:none;cursor:pointer;padding:16px 52px 16px 20px;font-weight:500;font-size:15px;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:20px;top:50%;translate:0 -50%;font-size:22px;font-weight:300;color:var(--pink-vif);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{padding:0 20px 18px;color:var(--grey);font-size:14.5px}
+
+  /* ===== BLOC:maillage ===== */
+  .linked{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1020px){.linked{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.linked{grid-template-columns:1fr}}
+  .lcard{display:block;text-decoration:none;border-radius:var(--r-md);padding:20px;border:1px solid transparent;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .lcard.p-blue{background:var(--pastel-blue)}
+  .lcard.p-pink{background:var(--pastel-pink)}
+  .lcard.p-yellow{background:var(--pastel-yellow)}
+  .lcard.p-green{background:var(--pastel-green)}
+  .lcard.p-blue:hover{background:var(--white);box-shadow:0 0 34px rgba(90,192,255,.45)}
+  .lcard.p-pink:hover{background:var(--white);box-shadow:0 0 34px rgba(249,155,251,.5)}
+  .lcard.p-yellow:hover{background:var(--white);box-shadow:0 0 34px rgba(255,202,100,.5)}
+  .lcard.p-green:hover{background:var(--white);box-shadow:0 0 34px rgba(56,239,125,.4)}
+  .lcard h3{font-size:15.5px;margin-bottom:6px}
+  .lcard p{font-size:13px;color:var(--grey)}
+  .lcard .go{display:inline-block;font-size:13px;font-weight:500;margin-top:10px;color:var(--ink)}
+
+  /* ===== BLOC:cta-final ===== */
+  .final{position:relative;overflow:hidden;padding:clamp(52px,7vw,90px) 0;margin-top:clamp(28px,4vw,44px)}
+  .final .aurora{position:absolute;inset:-20% -10%;pointer-events:none;filter:blur(80px);opacity:.55;background:
+    radial-gradient(40% 55% at 15% 40%,#ffd361 0%,transparent 70%),
+    radial-gradient(45% 60% at 50% 70%,#f99bfb 0%,transparent 72%),
+    radial-gradient(38% 52% at 85% 35%,#5ac0ff 0%,transparent 70%),
+    radial-gradient(30% 45% at 70% 80%,#ff6161 0%,transparent 70%)}
+  .final .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+  @media(max-width:860px){.final .grid{grid-template-columns:1fr}}
+  .final h2{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08}
+  .final h2 .it{font-style:italic}
+  .final .card{background:var(--white);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.3);padding:clamp(24px,3vw,36px)}
+  .final .card .t{font-weight:500;font-size:19px;margin-bottom:14px}
+  .final .card ul{list-style:none;margin-bottom:20px}
+  .final .card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--grey);padding:7px 0}
+  .final .card .ck{width:20px;height:20px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto;margin-top:2px}
+  .final .card .after{display:block;font-size:12.5px;color:var(--smoke);margin-top:12px}
+
+  footer{background:var(--black);color:var(--smoke);padding:clamp(36px,5vw,56px) 0}
+  footer .cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer .flabel{font-size:12.5px;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  footer a{color:var(--ncf-beige);text-decoration:none;font-size:14px}
+  footer a:hover{color:var(--white)}
+  footer ul{list-style:none}
+  footer li{margin-bottom:9px}
+  footer .fbrand{font-size:16px;color:var(--ncf-beige)}
+  footer .note{margin-top:28px;font-size:12.5px;color:var(--grey)}
+
+  @media(prefers-reduced-motion:no-preference){
+    .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
+    .rv.in{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow" title="🌈"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="https://www.nocodefactory.fr/"><span class="mk">▣</span>Nocode<b>Factory</b></a>
+  <div class="links">
+    <a href="https://www.nocodefactory.fr/">Services</a>
+    <a href="https://www.nocodefactory.fr/nos-realisations">Cas clients</a>
+    <a href="https://www.nocodefactory.fr/notre-aventure">L'agence</a>
+    <a href="https://www.nocodefactory.fr/le-blog">Ressources</a>
+  </div>
+  <a class="btn btn-dark" href="#cta">Réserver un audit <span class="circ">→</span></a>
+</nav>
+
+<!-- ============ BLOC:hero-intent ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="laurels rv in"><span class="st">★★★★★</span> Logiciel métier · PME &amp; ETI</span>
+    <h1 class="rv in">ERP sur mesure&nbsp;: un logiciel qui <span class="grad">épouse vos process</span>, pas l'inverse</h1>
+    <p class="sub rv in">On audite votre gestion, on construit l'outil module après module, et vos équipes l'adoptent parce qu'il suit vos règles. Le code vous appartient.</p>
+    <div class="ctas rv in">
+      <a class="btn btn-dark" href="#cta">Réserver un audit (30 min) <span class="circ">→</span></a>
+      <a class="tlink" href="#methode">Voir comment on travaille ↓</a>
+    </div>
+
+    <!-- flux presta : l'accompagnement, pas un produit sur étagère -->
+    <div class="flow rv in" id="flow">
+      <span class="chip chip-b">🧭 On part de vos process réels</span>
+      <span class="chip chip-a">✓ Premier module en 6-10 semaines</span>
+      <div class="fnode" data-f="0"><span class="ic">🔍</span><b>Audit de vos process</b><small>vos règles, vos outils, vos priorités</small></div>
+      <div class="flink" data-f="1"></div>
+      <div class="fnode" data-f="2"><span class="ic">🧱</span><b>Construction par modules</b><small>d'abord le point le plus douloureux</small></div>
+      <div class="flink" data-f="3"></div>
+      <div class="fnode" data-f="4"><span class="ic">🚀</span><b>Adoption &amp; run</b><small>formation, maintenance, évolutions</small></div>
+    </div>
+
+    <div class="keyfigs rv">
+      <div class="kf"><div class="v grad">+350</div><div class="l">projets réalisés</div></div>
+      <div class="kf"><div class="v grad">6-10 sem.</div><div class="l">premier module en production</div></div>
+      <div class="kf"><div class="v grad">100 %</div><div class="l">code documenté, à vous</div></div>
+    </div>
+
+    <!-- BLOC:sommaire — ancres (sitelinks) -->
+    <nav class="anchors rv">
+      <a href="#definition">Définition</a>
+      <a href="#pourquoi">Pourquoi sur mesure</a>
+      <a href="#adapte">Pour vous&nbsp;?</a>
+      <a href="#options">Les 4 options</a>
+      <a href="#secteurs">Par secteur</a>
+      <a href="#methode">Méthode</a>
+      <a href="#accompagnement">Accompagnement</a>
+      <a href="#preuve">Réalisations</a>
+      <a href="#cout">Coût</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ BLOC:definition ============ -->
+<section class="sec" id="definition">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">📖 Définition</span>
+      <h2>Qu'est-ce qu'un ERP sur mesure&nbsp;?</h2>
+    </div>
+    <div class="short rv"><span class="tag">La réponse courte</span>Un ERP (Enterprise Resource Planning, ou PGI, progiciel de gestion intégré) est le logiciel central qui fait tenir ensemble vos ventes, achats, stocks, production et gestion dans une seule base de données&nbsp;: l'information saisie une fois circule dans tous les services, en temps réel. Un <b>ERP sur mesure</b> applique cette logique à vos process réels, au lieu de vous imposer le modèle d'un éditeur. La différence tient en une phrase&nbsp;: c'est l'outil qui s'adapte à vous, pas vous qui rentrez dans ses cases.</div>
+    <div class="equation rv">Une base unique × vos process × tous vos services = <span class="grad">une donnée saisie une fois, visible partout</span></div>
+    <!-- citation E-E-A-T ; ⚠️ verbatim + byline à faire valider par Valentin -->
+    <div class="founder rv">
+      <span class="av">VB</span>
+      <span>
+        <span class="q">«&nbsp;L'ERP est le logiciel le plus structurant d'une PME, et le plus souvent subi. Chez les dirigeants qui nous consultent, on retrouve presque toujours un ERP du marché contourné à coups d'Excel, ou une constellation d'outils reliés à la main. Ça tient, jusqu'au jour où ça ne tient plus. Notre conviction&nbsp;: arrêter de tordre vos process, construire l'outil qui les suit.&nbsp;»</span>
+        <span class="who"><b>Valentin Bert</b><small>Fondateur, Nocode Factory · byline à valider</small></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:benefices ============ -->
+<section class="sec" id="pourquoi" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">💡 Les bénéfices</span>
+      <h2>Pourquoi choisir un ERP sur mesure&nbsp;?</h2>
+    </div>
+    <div class="feats">
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">📜</span><span><b>Le code vous appartient</b><p>Propriété totale, documentation, réversibilité écrites au contrat. Vous n'êtes jamais captifs d'un éditeur.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-yellow)">🪑</span><span><b>Pas de licence par siège</b><p>Ajoutez les ventes, les achats, la production&nbsp;: le coût ne dépend pas du nombre d'utilisateurs.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-pink)">🧬</span><span><b>Vos process, pas ceux d'un éditeur</b><p>Vos règles de tarification, vos cycles, vos statuts&nbsp;: l'outil épouse votre organisation.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-green)">🎯</span><span><b>Vous ne payez que l'utile</b><p>Les modules dont vous avez besoin, dans l'ordre de vos priorités. Zéro fonction payée jamais ouverte.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--purple-pale)">🧩</span><span><b>En production module après module</b><p>On démarre par le point le plus douloureux, en production vite, puis on étend. Pas de bascule «&nbsp;big bang&nbsp;».</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">🔌</span><span><b>Connecté à l'existant</b><p>Compta, banque, e-commerce, ancien ERP conservé le temps de la bascule&nbsp;: on se branche sur ce qui tourne.</p></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:adapte ============ -->
+<section class="sec" id="adapte" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🎯 L'arbitrage honnête</span>
+      <h2>Un ERP sur mesure est-il adapté à votre besoin&nbsp;?</h2>
+    </div>
+    <div class="fitcols">
+      <div class="fit yes rv">
+        <h3>✓&nbsp; Faites du sur-mesure si…</h3>
+        <ul>
+          <li><span class="ck">✓</span>Vous jonglez entre plusieurs logiciels et des Excel qui font le lien entre eux.</li>
+          <li><span class="ck">✓</span>Vous ressaisissez la même information dans deux ou trois outils.</li>
+          <li><span class="ck">✓</span>Aucun ERP du marché ne colle&nbsp;: vous devez tordre vos process pour rentrer dedans.</li>
+          <li><span class="ck">✓</span>Vos règles métier spécifiques sont votre avantage, pas un détail à standardiser.</li>
+          <li><span class="ck">✓</span>Vos licences par utilisateur explosent à mesure que l'équipe grandit.</li>
+          <li><span class="ck">✓</span>Un ERP standard a déjà été tenté puis abandonné&nbsp;: trop lourd, jamais adopté.</li>
+        </ul>
+      </div>
+      <div class="fit no rv">
+        <h3>✕&nbsp; Les seuls cas où on vous dira «&nbsp;pas de sur-mesure&nbsp;»</h3>
+        <ul>
+          <li><span class="ck">✕</span>Vos process sont standards (négoce classique, gestion simple)&nbsp;: un ERP du marché fait le travail.</li>
+          <li><span class="ck">✕</span>Vous voulez un outil éprouvé avec des intégrateurs partout&nbsp;: un open-source comme Odoo peut suffire.</li>
+          <li><span class="ck">✕</span>Vous démarrez et un SaaS tout-en-un couvre vos besoins pour deux ou trois ans.</li>
+          <li><span class="ck">✕</span>Vous n'avez aucune règle métier vraiment spécifique à préserver.</li>
+        </ul>
+        <p class="note">Vous vous reconnaissez à droite&nbsp;? Un ERP du marché bien choisi est le bon départ, et on vous le dira. Parlons-en 30 minutes, revenez le jour où il craque.</p>
+      </div>
+    </div>
+    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Réserver un audit (30 min) <span class="circ">→</span></a></div>
+  </div>
+</section>
+
+<!-- ============ BLOC:comparatif ============ -->
+<section class="sec" id="options">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">⚖️ Le comparatif</span>
+      <h2>ERP éditeur, open-source, SaaS ou sur mesure&nbsp;?</h2>
+      <p>Les 4 options pour équiper votre gestion, comparées honnêtement. Le vrai critère n'est pas le prix&nbsp;: c'est qui s'adapte à qui.</p>
+    </div>
+    <div class="opts">
+      <div class="opt rv">
+        <h3>ERP éditeur généraliste</h3>
+        <p class="sub">SAP, Sage, Cegid…</p>
+        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:30%;background:var(--blue)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:90%;background:var(--pink-vif)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:20%;background:var(--yellow)"></div></div></div>
+        <p class="when"><b>Bon choix quand…</b>Grosse PME/ETI, budget SI, process standardisables. Licence par utilisateur, intégrateur pour toute évolution.</p>
+      </div>
+      <div class="opt rv">
+        <h3>ERP open-source</h3>
+        <p class="sub">Odoo, Dolibarr…</p>
+        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:50%;background:var(--blue)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:55%;background:var(--pink-vif)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:50%;background:var(--yellow)"></div></div></div>
+        <p class="when"><b>Bon choix quand…</b>Process proches du standard, équipe technique dispo. L'adaptation à vos règles se paie en jours d'intégrateur.</p>
+      </div>
+      <div class="opt rv">
+        <h3>Assemblage de SaaS</h3>
+        <p class="sub">CRM + facturation + stock + Zapier…</p>
+        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:40%;background:var(--blue)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:70%;background:var(--pink-vif)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:85%;background:var(--yellow)"></div></div></div>
+        <p class="when"><b>Bon choix quand…</b>Démarrage, besoins simples, peu de volume. Ressaisie et synchronisations à maintenir entre les outils.</p>
+      </div>
+      <div class="opt reco rv">
+        <span class="rib">Notre métier</span>
+        <h3>Application sur mesure</h3>
+        <p class="sub">Construite sur vos process</p>
+        <div class="gauge"><div class="gl"><span>Collé à vos process</span></div><div class="bar"><div class="fill" style="width:100%;background:var(--blue)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Coût récurrent</span></div><div class="bar"><div class="fill" style="width:25%;background:var(--pink-vif)"></div></div></div>
+        <div class="gauge"><div class="gl"><span>Vitesse de mise en route</span></div><div class="bar"><div class="fill" style="width:75%;background:var(--yellow)"></div></div></div>
+        <p class="when"><b>Bon choix quand…</b>Règles métier spécifiques, plusieurs outils à unifier. Premier module en 6-10 semaines, run mensuel sans licence par siège.</p>
+      </div>
+    </div>
+    <div class="genius rv">
+      <span class="sticker">Le vrai critère</span>
+      Une seule colonne répond «&nbsp;oui&nbsp;» sur toute la ligne «&nbsp;qui s'adapte à qui&nbsp;»&nbsp;: l'application construite sur vos process. Les trois autres vous ramènent tôt ou tard <b>aux Excel bricolés autour de l'outil payé</b>.
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:secteurs ============ -->
+<section class="sec" id="secteurs" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🏭 Par métier</span>
+      <h2>Un ERP sur mesure pour chaque secteur d'activité</h2>
+      <p>Le socle est le même (une base unique, vos règles), les modules changent avec votre métier.</p>
+    </div>
+    <div class="sects">
+      <a class="sect rv" href="#"><b>🏗 ERP bâtiment &amp; BTP</b><p>Chantiers, devis, sous-traitants, situations de travaux, pointage terrain.</p></a>
+      <a class="sect rv" href="#"><b>🏭 ERP industrie &amp; production</b><p>Ordres de fabrication, nomenclatures, traçabilité, maintenance.</p></a>
+      <a class="sect rv" href="#"><b>📦 ERP négoce &amp; commerce</b><p>Catalogue, tarifs clients, stock multi-dépôts, achats fournisseurs.</p></a>
+      <a class="sect rv" href="#"><b>🚚 ERP logistique &amp; transport</b><p>Tournées, expéditions, entrepôts, suivi temps réel.</p></a>
+      <a class="sect rv" href="#"><b>💼 ERP services &amp; PME</b><p>Devis, projets, temps passés, facturation récurrente.</p></a>
+      <a class="sect rv" href="#"><b>🏠 ERP immobilier</b><p>Lots, baux, gestion locative, syndic, états comptables.</p></a>
+      <a class="sect rv" href="#"><b>🩺 ERP santé &amp; médical</b><p>Dossiers, plannings, conformité, facturation spécifique.</p></a>
+      <a class="sect rv" href="#"><b>🎓 ERP formation &amp; éducation</b><p>Sessions, inscriptions, financements, émargement.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:methode ============ -->
+<section class="sec" id="methode">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🧭 La méthode</span>
+      <h2>Comment on construit votre ERP sur mesure</h2>
+      <p>Pas de tunnel de deux ans&nbsp;: un accompagnement par étapes, avec de la valeur en production dès les premières semaines.</p>
+    </div>
+    <div class="tlwrap rv">
+      <div class="tl">
+        <div class="tl-item">
+          <span class="d">2-3 jours · Cadrage</span>
+          <h3>On audite vos process réels</h3>
+          <p>Vos règles, vos outils actuels, vos priorités de modules. On cartographie comment vous travaillez vraiment, et vous repartez avec un chiffrage ferme. Pas un modèle imposé&nbsp;: l'outil se calera sur ce qu'on aura vu.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">6-10 semaines · Premier module</span>
+          <h3>Le point le plus douloureux passe en production</h3>
+          <p>Ventes, stock, production, facturation&nbsp;: on livre d'abord ce qui vous fait le plus mal, testé sur vos données réelles, utilisé par vos équipes. Un module adopté à 80&nbsp;% en deux mois vaut mieux qu'un ERP parfait dans deux ans.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">Par lots · Extension</span>
+          <h3>Les modules suivants s'ajoutent sur la même base</h3>
+          <p>Chaque service rejoint l'outil à son tour, avec ses droits et ses écrans. Vos outils actuels restent en place le temps de la bascule&nbsp;: pas de «&nbsp;big bang&nbsp;» qui met l'entreprise à l'arrêt.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">Mensuel, résiliable · Run</span>
+          <h3>Formation, maintenance, évolutions</h3>
+          <p>On forme vos équipes, on maintient, on fait évoluer. Le code est documenté et standard&nbsp;: vous pouvez aussi reprendre la main, vous n'êtes jamais captifs d'un prestataire unique.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:accompagnement ============ -->
+<section class="sec" id="accompagnement" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🤝 L'accompagnement</span>
+      <h2>Ce que couvre l'accompagnement, de l'audit au run</h2>
+      <p>Vous n'achetez pas un logiciel sur étagère&nbsp;: vous travaillez avec une équipe qui construit avec vous, à chaque étape.</p>
+    </div>
+    <div class="feats">
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">🔍</span><span><b>Audit &amp; cadrage de vos process</b><p>Cartographie de votre gestion réelle, règles métier, priorités. Le contrat fonctionnel du projet.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-yellow)">✏️</span><span><b>Co-conception des écrans</b><p>Maquettes validées avec vos équipes, sur vos données d'exemple, avant toute ligne de code.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-pink)">🧱</span><span><b>Développement modulaire</b><p>Base unique, modules livrés dans l'ordre de vos priorités, testés sur vos cas réels.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-green)">🔌</span><span><b>Intégration à l'existant</b><p>Compta, banque, e-commerce, ancien ERP&nbsp;: on branche, on migre l'historique, sans rupture.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--purple-pale)">🤖</span><span><b>IA là où elle sert</b><p>Recherche en langage naturel, détection d'anomalies, aide à la saisie. Le socle reste déterministe et vérifiable.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">🎓</span><span><b>Formation &amp; conduite du changement</b><p>Vos équipes formées service par service&nbsp;: un outil adopté, pas un outil imposé.</p></span></div>
+    </div>
+  </div>
+  <!-- BLOC:stack -->
+  <div class="mq rv" style="margin-top:clamp(24px,3vw,36px)">
+    <div class="track">
+      <span class="it"><span class="d" style="background:#38ef7d"></span>Supabase</span>
+      <span class="it"><span class="d" style="background:#5ac0ff"></span>React</span>
+      <span class="it"><span class="d" style="background:#ffca64"></span>Airtable</span>
+      <span class="it"><span class="d" style="background:#906cf8"></span>Xano</span>
+      <span class="it"><span class="d" style="background:#ff5777"></span>Bubble</span>
+      <span class="it"><span class="d" style="background:#f99bfb"></span>n8n</span>
+      <span class="it"><span class="d" style="background:#1faaff"></span>Make</span>
+      <span class="it"><span class="d" style="background:#ffd361"></span>PostgreSQL</span>
+      <span class="it"><span class="d" style="background:#38ef7d"></span>Supabase</span>
+      <span class="it"><span class="d" style="background:#5ac0ff"></span>React</span>
+      <span class="it"><span class="d" style="background:#ffca64"></span>Airtable</span>
+      <span class="it"><span class="d" style="background:#906cf8"></span>Xano</span>
+      <span class="it"><span class="d" style="background:#ff5777"></span>Bubble</span>
+      <span class="it"><span class="d" style="background:#f99bfb"></span>n8n</span>
+      <span class="it"><span class="d" style="background:#1faaff"></span>Make</span>
+      <span class="it"><span class="d" style="background:#ffd361"></span>PostgreSQL</span>
+    </div>
+  </div>
+  <p class="mqcap">No-code, low-code ou code&nbsp;: on choisit la stack d'après votre besoin, votre volume et votre budget, pas d'après une religion technique.</p>
+</section>
+
+<!-- ============ BLOC:preuve ============
+     Cas RÉELS publiés sur nocodefactory.fr (Tekabois, Brut, The Host,
+     Trophée des Champions) + disclaimer honnête. Ne pas inventer de cas. -->
+<section class="dark" id="preuve">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🏆 La preuve, pas la promesse</span>
+      <h2>Les briques d'un ERP tournent déjà chez nos clients</h2>
+      <p>+350 projets réalisés. Chaque brique d'un ERP (devis, process de gestion, multi-rôles) est déjà en production quelque part, publiée dans nos cas clients.</p>
+    </div>
+    <div class="tstm">
+      <div class="tcard rv">
+        <div class="num grad">100&nbsp;%</div>
+        <div class="cl">Tekabois</div>
+        <p>d'autonomie de l'équipe commerciale sur devis et SAV&nbsp;: simulateur de devis et automatisations sur mesure, livrés en 6 semaines.</p>
+      </div>
+      <div class="tcard rv">
+        <div class="num grad">100&nbsp;%</div>
+        <div class="cl">Brut</div>
+        <p>du process publicitaire digitalisé&nbsp;: la chaîne complète de création et de gestion de campagnes dans un seul outil.</p>
+      </div>
+      <div class="tcard rv">
+        <div class="num grad">100&nbsp;%</div>
+        <div class="cl">The Host</div>
+        <p>d'autonomie des équipes internes sur leur plateforme de gestion, construite sur leurs règles à eux.</p>
+      </div>
+      <div class="tcard rv">
+        <div class="num grad">10&nbsp;j</div>
+        <div class="cl">Trophée des Champions</div>
+        <p>pour livrer une WebApp de gestion multi-rôles&nbsp;: chaque service voit ce qui le concerne, comme dans un ERP.</p>
+      </div>
+    </div>
+    <p class="honest rv">Pas encore d'ERP complet publié en cas client&nbsp;: le premier sortira chiffré, quand il sera en production. Ces projets réels couvrent déjà, un par un, les modules qui composent le vôtre.</p>
+    <div class="more rv"><a class="tlink" href="https://www.nocodefactory.fr/nos-realisations">Voir tous nos cas clients →</a></div>
+  </div>
+</section>
+
+<!-- ============ BLOC:cout ============ -->
+<section class="sec" id="cout" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">💶 Le budget</span>
+      <h2>Combien coûte un ERP sur mesure&nbsp;?</h2>
+    </div>
+    <div class="short rv"><span class="tag">La réponse courte</span><b>Il n'y a pas de prix affichable sans avoir vu vos process.</b> Un ERP sur mesure se chiffre par périmètre&nbsp;: le nombre de modules, vos règles, vos connexions à l'existant. Quiconque annonce un montant sans avoir cartographié votre organisation invente. Le cadrage de 2-3 jours vous donne un chiffrage ferme.</div>
+    <div class="costgrid">
+      <div class="costcard rv">
+        <h3>Ce que coûtent les solutions du marché</h3>
+        <ul>
+          <li><span class="d" style="background:var(--blue)"></span><span><b>ERP éditeur</b>&nbsp;: licences par utilisateur + intégration, devis obligatoire, très variable selon l'éditeur et le périmètre.</span></li>
+          <li><span class="d" style="background:var(--purple)"></span><span><b>ERP open-source</b>&nbsp;: entrée basse, mais l'adaptation à vos règles se paie en jours d'intégrateur.</span></li>
+          <li><span class="d" style="background:var(--pink-vif)"></span><span><b>Assemblage SaaS</b>&nbsp;: somme d'abonnements par outil et par siège, qui grimpe avec l'équipe.</span></li>
+          <li><span class="d" style="background:var(--green-pill)"></span><span><b>Sur mesure</b>&nbsp;: un investissement de construction, puis un run mensuel sans licence par utilisateur.</span></li>
+        </ul>
+      </div>
+      <div class="costcard rv">
+        <h3>Le calcul d'amortissement à faire</h3>
+        <p>Des abonnements par utilisateur se paient tous les mois, pour toujours, sur des outils qui n'épousent pas vos règles, et le ticket grossit à chaque embauche.</p>
+        <p>Un sur-mesure s'amortit&nbsp;: vous investissez une fois, l'outil est à vous, le coût ne suit pas la taille de l'équipe. <b>Comparez les deux sur 3 ans, devis en main</b>&nbsp;: c'est exactement ce que le cadrage vous donne.</p>
+      </div>
+    </div>
+    <div class="warn rv">
+      <span class="sticker">⚠️ Méfiez-vous du «&nbsp;gratuit&nbsp;»</span>
+      On rencontre régulièrement des dirigeants séduits par le «&nbsp;développement gratuit contre abonnement&nbsp;» chez un indépendant… devenu injoignable six mois plus tard, code inaccessible, outil à l'abandon. <b>Gratuit à l'entrée = captif à la sortie.</b> Exigez toujours&nbsp;: propriété du code, documentation, réversibilité.
+    </div>
+    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Estimer mon projet <span class="circ">→</span></a></div>
+  </div>
+</section>
+
+<!-- ============ BLOC:faq ============ + JSON-LD synchronisé -->
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">❓ FAQ</span>
+      <h2>Questions fréquentes sur l'ERP sur mesure</h2>
+    </div>
+    <div class="faqwrap faq rv">
+      <details><summary>ERP, PGI, CRM : quelle différence ?</summary><p>ERP (Enterprise Resource Planning) et PGI (progiciel de gestion intégré) désignent la même chose&nbsp;: le logiciel central qui unifie ventes, achats, stocks, production et gestion dans une seule base. Le CRM (gestion de la relation client) n'en couvre qu'une partie&nbsp;: la vente et le suivi commercial. Un CRM peut être un module de l'ERP, ou un outil à part qu'on y connecte.</p></details>
+      <details><summary>Combien coûte un ERP sur mesure ?</summary><p>Il n'y a pas de prix affichable sans avoir vu vos process. Un ERP sur mesure se chiffre par périmètre&nbsp;: le nombre de modules, vos règles, vos connexions à l'existant. Quiconque annonce un montant sans avoir cartographié votre organisation invente. Le cadrage de 2-3 jours débouche sur un chiffrage ferme, et le calcul d'amortissement se fait face à vos licences actuelles, devis en main.</p></details>
+      <details><summary>En combien de temps a-t-on un premier module en production ?</summary><p>6 à 10 semaines pour un premier module utilisable sur un périmètre réduit. C'est un choix délibéré&nbsp;: un module utilisé à 80&nbsp;% en deux mois vaut mieux qu'un ERP complet parfait dans deux ans.</p></details>
+      <details><summary>Quelle alternative à SAP pour une PME ?</summary><p>SAP est rarement le bon outil pour une PME&nbsp;: trop lourd, trop cher, trop long. Les vraies alternatives sont un ERP open-source comme Odoo si vos process sont proches du standard, ou une application sur mesure si vos règles sont spécifiques. Le tri se fait sur une question&nbsp;: devez-vous vous adapter à l'outil, ou l'inverse&nbsp;?</p></details>
+      <details><summary>Odoo ou Dolibarr, c'est déjà du sur-mesure, non ?</summary><p>Ce sont des ERP open-source&nbsp;: un socle riche que l'on adapte, dans les limites de son modèle. Tant que vos besoins ressemblent au standard, c'est souvent le bon choix, et on vous le dira. Le sur-mesure devient pertinent quand l'adaptation de ce socle coûte plus cher que la valeur qu'elle rend, ou quand vos règles sortent franchement du cadre prévu.</p></details>
+      <details><summary>Faut-il tout remplacer d'un coup ?</summary><p>Non, et c'est même déconseillé. On démarre par le module le plus douloureux, en production en quelques semaines, puis on étend par lots. Vos outils actuels restent en place le temps de la bascule&nbsp;: pas de «&nbsp;big bang&nbsp;» qui met l'entreprise à l'arrêt.</p></details>
+      <details><summary>Qui maintient l'ERP ensuite ?</summary><p>Nous, via un contrat de run mensuel résiliable, ou vous&nbsp;: le code est documenté, standard, et récupérable par n'importe quel développeur. Vous n'êtes jamais captifs d'un prestataire unique.</p></details>
+      <details><summary>Notre prestataire actuel ne répond plus. Vous reprenez l'existant ?</summary><p>Oui, c'est même fréquent. On commence par un audit de reprise&nbsp;: accès, sauvegarde, état des lieux, puis décision reprise ou reconstruction selon l'état du code.</p></details>
+      <details><summary>Et la sécurité de nos données, la reprise de l'historique ?</summary><p>Hébergement européen, données chiffrées, accès par rôles, sauvegardes quotidiennes. On reprend votre historique depuis vos exports existants&nbsp;; vos données ne transitent par aucun service tiers non contractualisé.</p></details>
+      <details><summary>L'IA a-t-elle sa place dans un ERP sur mesure ?</summary><p>Oui, autour du cœur de gestion&nbsp;: recherche en langage naturel dans vos données, détection d'anomalies, aide à la saisie, résumé automatique. Le socle reste déterministe et vérifiable&nbsp;; l'IA accélère l'usage sans remplacer les règles de gestion.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:maillage ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🧩 Solutions liées</span>
+      <h2>Le même socle, d'autres besoins</h2>
+    </div>
+    <div class="linked">
+      <a class="lcard p-blue rv" href="#"><h3>🤝 CRM sur mesure</h3><p>La relation client sur vos règles de vente, connectée au reste de votre gestion.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-yellow rv" href="#"><h3>🧾 Facturation automatisée</h3><p>Devis, factures, relances&nbsp;: générés et envoyés depuis la même base.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-pink rv" href="#"><h3>📦 Gestion de stock</h3><p>Multi-dépôts, seuils, inventaires&nbsp;: le stock juste, en temps réel.</p><span class="go tlink">Découvrir →</span></a>
+      <a class="lcard p-green rv" href="#"><h3>🔑 Portail client</h3><p>Un espace où vos clients suivent commandes et documents en autonomie.</p><span class="go tlink">Découvrir →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOC:cta-final ============ -->
+<section class="final" id="cta">
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="grid">
+      <div class="rv">
+        <p class="kick">💎 Contactez NocodeFactory</p>
+        <h2>Assez parlé,<br><span class="it grad">on regarde vos process&nbsp;?</span></h2>
+      </div>
+      <div class="card rv">
+        <div class="t">🥳 Audit ERP gratuit de 30 minutes</div>
+        <ul>
+          <li><span class="ck">✓</span>Vous décrivez votre gestion, vos outils, vos points de douleur</li>
+          <li><span class="ck">✓</span>On vous dit honnêtement laquelle des 4 options est la vôtre</li>
+          <li><span class="ck">✓</span>Si c'est le sur-mesure&nbsp;: le périmètre du premier module et la suite</li>
+        </ul>
+        <a class="btn btn-dark" href="#">Réserver un audit (30 min) <span class="circ">→</span></a>
+        <span class="after">Gratuit, sans engagement. Y compris si la bonne réponse est «&nbsp;gardez un ERP standard&nbsp;».</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Nocode<b style="font-style:italic">Factory</b></div>
+        <p style="font-size:13px;margin-top:8px;max-width:28ch">Sites &amp; outils sur mesure, en no-code, low-code et code.</p>
+      </div>
+      <div>
+        <div class="flabel">Cette solution</div>
+        <ul>
+          <li><a href="#definition">Qu'est-ce qu'un ERP sur mesure</a></li>
+          <li><a href="#methode">Notre méthode</a></li>
+          <li><a href="#cout">Combien ça coûte</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="flabel">C'est ça que tu cherches ?</div>
+        <ul>
+          <li><a href="https://www.nocodefactory.fr/nos-realisations">Nos réalisations</a></li>
+          <li><a href="https://www.nocodefactory.fr/notre-aventure">Notre aventure</a></li>
+          <li><a href="https://www.nocodefactory.fr/le-blog">Le blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Page de démonstration interne. Dernière mise à jour&nbsp;: septembre 2026.</p>
+  </div>
+</footer>
+
+<!-- SLOT:jsonld — Service + FAQPage synchronisée avec la FAQ visible -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Service",
+      "name":"Développement d'ERP sur mesure",
+      "description":"Conception et développement d'ERP sur mesure pour PME et ETI : audit des process, premier module en production en 6 à 10 semaines, extension par lots, code documenté appartenant au client, run mensuel résiliable.",
+      "serviceType":"Développement de logiciel de gestion sur mesure",
+      "provider":{"@type":"Organization","name":"Nocode Factory","url":"https://www.nocodefactory.fr"},
+      "areaServed":"FR",
+      "inLanguage":"fr"
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Quelle est la différence entre ERP, PGI et CRM ?","acceptedAnswer":{"@type":"Answer","text":"ERP et PGI désignent la même chose : le logiciel central qui unifie ventes, achats, stocks, production et gestion dans une seule base. Le CRM n'en couvre qu'une partie, la vente et le suivi commercial, et peut être un module de l'ERP ou un outil connecté."}},
+        {"@type":"Question","name":"Combien coûte un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Il n'y a pas de prix affichable sans avoir vu les process : un ERP sur mesure se chiffre par périmètre (nombre de modules, règles métier, connexions à l'existant). Un cadrage de 2 à 3 jours débouche sur un chiffrage ferme, à comparer aux licences actuelles sur 3 ans."}},
+        {"@type":"Question","name":"En combien de temps un premier module d'ERP sur mesure est-il en production ?","acceptedAnswer":{"@type":"Answer","text":"6 à 10 semaines pour un premier module utilisable sur un périmètre réduit, puis extension par lots sur la même base, sans bascule big bang."}},
+        {"@type":"Question","name":"Quelle alternative à SAP pour une PME ?","acceptedAnswer":{"@type":"Answer","text":"SAP est rarement adapté à une PME. Les alternatives sont un ERP open-source comme Odoo si les process sont proches du standard, ou une application sur mesure si les règles métier sont spécifiques. Le critère de tri : devez-vous vous adapter à l'outil, ou l'inverse ?"}},
+        {"@type":"Question","name":"Odoo ou Dolibarr sont-ils du sur-mesure ?","acceptedAnswer":{"@type":"Answer","text":"Non : ce sont des ERP open-source, un socle riche que l'on adapte dans les limites de son modèle. Le sur-mesure devient pertinent quand l'adaptation de ce socle coûte plus cher que la valeur rendue, ou quand les règles métier sortent du cadre prévu."}},
+        {"@type":"Question","name":"Faut-il remplacer tous ses outils d'un coup pour passer à un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Non : on démarre par le module le plus douloureux, en production en quelques semaines, puis on étend par lots. Les outils existants restent en place le temps de la bascule."}},
+        {"@type":"Question","name":"Qui maintient un ERP sur mesure après la livraison ?","acceptedAnswer":{"@type":"Answer","text":"L'agence via un contrat de run mensuel résiliable, ou le client lui-même : le code est documenté, standard et récupérable par n'importe quel développeur. Aucune captivité vis-à-vis d'un prestataire unique."}},
+        {"@type":"Question","name":"Une agence peut-elle reprendre un logiciel développé par un prestataire injoignable ?","acceptedAnswer":{"@type":"Answer","text":"Oui, c'est fréquent : audit de reprise (accès, sauvegarde, état des lieux), puis décision de reprise ou de reconstruction selon l'état du code."}},
+        {"@type":"Question","name":"L'IA a-t-elle sa place dans un ERP sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Oui, autour du cœur de gestion : recherche en langage naturel, détection d'anomalies, aide à la saisie, résumés automatiques. Le socle de gestion reste déterministe et vérifiable."}}
+      ]
+    }
+  ]
+}
+</script>
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  // flux hero : allumage en séquence, en boucle
+  const fparts=[...document.querySelectorAll('#flow [data-f]')];
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    fparts.forEach(el=>el.classList.add('on'));
+  }else{
+    let fi=0;
+    setInterval(()=>{
+      if(fi<fparts.length){fparts[fi].classList.add('on');fi++;}
+      else if(fi<fparts.length+2){fi++;}
+      else{fparts.forEach(el=>el.classList.remove('on'));fi=0;}
+    },850);
+  }
+</script>
+</body>
+</html>
