@@ -20,13 +20,14 @@
   comparatif cols3) · cout (tableaux + coûts cachés) · lancement (costcards
   + timeline) · preuve · stack · faq · maillage · cta-final
 
-  ⚠️ GARDE PRIX — À ARBITRER AVEC VALENTIN AVANT PUBLICATION : le contenu
-  fourni contient des fourchettes de budget (5 000 à 80 000 €) dans « En
-  bref » et « Quel budget prévoir ». La règle NCF en vigueur est « aucun
-  prix NCF publié ». Ces fourchettes sont présentées comme des prix de
-  marché, mais NCF vendant exactement cette prestation, elles s'en
-  approchent. Intégrées fidèlement au texte fourni ; masquer les colonnes
-  budget si l'arbitrage tranche contre.
+  v2 (11/09 soir, recadrage Emilien) : logique « consultation médecin ».
+  La page problème = « pourquoi j'ai mal » ; la page solution = le
+  traitement : diagnostic qui pointe la douleur, fonctionnalités = effets
+  du médicament, et l'envie de réserver l'appel avec le praticien.
+  RETIRÉ sur décision Emilien : bloc « En bref » (tableau profils/budgets)
+  et tous les prix chiffrés (arbitrage prix tranché : aucun prix publié,
+  la section budget explique COMMENT on chiffre). Retirées aussi : les
+  2 chips flottantes du hero. CTA unifiés « Réserver un appel (30 min) ».
 
   Règles NCF encodées (NE PAS RETIRER) :
     - Cas clients : uniquement les cas réels publiés sur nocodefactory.fr ;
@@ -359,7 +360,7 @@
     <a href="https://www.nocodefactory.fr/notre-aventure">L'agence</a>
     <a href="https://www.nocodefactory.fr/le-blog">Ressources</a>
   </div>
-  <a class="btn btn-dark" href="#cta">Décrire mon projet <span class="circ">→</span></a>
+  <a class="btn btn-dark" href="#cta">Réserver un appel <span class="circ">→</span></a>
 </nav>
 
 <!-- ============ BLOC:hero-intent ============ -->
@@ -369,13 +370,11 @@
     <h1 class="rv in">Votre CRM ne colle pas à vos process&nbsp;?</h1>
     <p class="sub rv in">Voici comment choisir un CRM vraiment sur mesure&nbsp;: le diagnostic, les fonctionnalités à prévoir, le budget, et comment évaluer un prestataire sans vous tromper.</p>
     <div class="ctas rv in">
-      <a class="btn btn-dark" href="#cta">Décrire mon projet <span class="circ">→</span></a>
+      <a class="btn btn-dark" href="#cta">Réserver un appel (30 min) <span class="circ">→</span></a>
       <a class="tlink" href="#diagnostic">Faire le diagnostic ↓</a>
     </div>
 
     <div class="flow rv in" id="flow">
-      <span class="chip chip-b">[ on part de vos process réels ]</span>
-      <span class="chip chip-a">[ V1 utilisable rapidement ]</span>
       <div class="fnode" data-f="0"><span class="ic">🧭</span><b>Cadrage de votre cycle de vente</b><small>vos étapes · vos règles · vos outils</small></div>
       <div class="flink" data-f="1"></div>
       <div class="fnode" data-f="2"><span class="ic">🧱</span><b>V1 livrée et adoptée</b><small>périmètre restreint · utilisable vite</small></div>
@@ -392,7 +391,6 @@
 
   <!-- BLOC:sommaire -->
   <nav class="anchors rv in">
-    <a href="#enbref">En bref</a>
     <a href="#diagnostic">Diagnostic</a>
     <a href="#choisir">Standard ou sur mesure</a>
     <a href="#fonctionnalites">Fonctionnalités</a>
@@ -403,49 +401,13 @@
   </nav>
 </div>
 
-<!-- ============ BLOC:enbref ============
-     ⚠️ GARDE PRIX : colonne « Budget estimé » à arbitrer avec Valentin
-     (règle « aucun prix NCF publié »). Masquer la colonne si tranché contre. -->
-<section class="sec" id="enbref">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="kick">En bref</span>
-      <h2>Pas le temps de tout lire&nbsp;? L'essentiel selon votre situation</h2>
-    </div>
-    <div class="cmpscroll rv">
-      <div class="cmp cols4">
-        <div class="head"><b>Profil</b></div>
-        <div class="head"><b>Problème principal</b></div>
-        <div class="head"><b>Solution recommandée</b></div>
-        <div class="head"><b>Budget estimé</b></div>
-
-        <div class="crit">PME avec cycle de vente simple</div>
-        <div>CRM trop complexe, peu utilisé</div>
-        <div>CRM SaaS bien configuré (HubSpot Free, Pipedrive)</div>
-        <div>0 à 500&nbsp;€/mois</div>
-
-        <div class="crit">PME avec règles commerciales spécifiques</div>
-        <div>Commissions, devis complexes, étapes non standards</div>
-        <div><span class="ok"><i></i>CRM sur mesure no-code</span></div>
-        <div>5&nbsp;000 à 20&nbsp;000&nbsp;€</div>
-
-        <div class="crit">ETI avec plusieurs entités ou métiers</div>
-        <div>Intégrations ERP, portail client, reporting avancé</div>
-        <div><span class="ok"><i></i>CRM sur mesure développé</span></div>
-        <div>20&nbsp;000 à 80&nbsp;000&nbsp;€</div>
-
-        <div class="crit last">Entreprise avec ERP existant</div>
-        <div class="last">Silos de données, double saisie</div>
-        <div class="last"><span class="ok"><i></i>CRM-ERP hybride ou connecteur sur mesure</span></div>
-        <div class="last">15&nbsp;000 à 60&nbsp;000&nbsp;€</div>
-      </div>
-      <p class="cmpcap">Faites défiler horizontalement pour tout voir</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BLOC:diagnostic ============ -->
-<section class="sec" id="diagnostic" style="padding-top:0">
+<!-- ============ BLOC:diagnostic ============
+     Logique « consultation » (recadrage Emilien 11/09 soir) : la page
+     solution fonctionne comme une visite chez le médecin. On pointe où ça
+     fait mal (les 5 signes), on explique le traitement et ses effets
+     (fonctionnalités), on donne envie de réserver l'appel. AUCUN prix :
+     le bloc « En bref » chiffré a été retiré sur décision Emilien. -->
+<section class="sec" id="diagnostic">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le diagnostic</span>
@@ -519,17 +481,17 @@
 
     <div class="fitcols" style="margin-top:clamp(24px,3vw,36px)">
       <div class="fit no rv">
-        <h3>Le standard suffit si…</h3>
+        <h3>Si vous vous reconnaissez ici, un standard bien configuré suffit</h3>
         <ul>
           <li><span class="ck">○</span>Votre cycle de vente comporte 4 à 6 étapes simples et stables.</li>
           <li><span class="ck">○</span>Votre équipe commerciale est petite (moins de 5 personnes) et homogène.</li>
-          <li><span class="ck">○</span>Vous n'avez pas de règles de commission complexes ni de devis configurables.</li>
-          <li><span class="ck">○</span>Vous n'avez pas besoin de connecter l'outil à un ERP ou à un système de facturation spécifique.</li>
+          <li><span class="ck">○</span>Vos commissions sont simples, vos devis ne se configurent pas.</li>
+          <li><span class="ck">○</span>Rien à connecter&nbsp;: ni ERP, ni facturation spécifique.</li>
         </ul>
-        <p class="note">Dans ces cas, le standard vous fera gagner du temps immédiatement, sans investissement lourd. On vous le dira.</p>
+        <p class="note">Dans ce cas, un HubSpot Free ou un Pipedrive bien configuré vous fera gagner du temps immédiatement, sans investissement lourd. Si c'est votre situation, on vous le dira à l'appel, et vous repartirez avec ce conseil.</p>
       </div>
       <div class="fit yes rv">
-        <h3>✓&nbsp; Le sur-mesure s'impose dès que…</h3>
+        <h3>✓&nbsp; Ces symptômes-là appellent du sur mesure</h3>
         <ul>
           <li><span class="ck">✓</span><b>Cycle de vente long et multi-interlocuteurs</b>&nbsp;: appels d'offres, comités de validation, renouvellements.</li>
           <li><span class="ck">✓</span><b>Catalogue produit complexe</b>&nbsp;: configurations, options, tarifs par segment ou par volume.</li>
@@ -537,8 +499,10 @@
           <li><span class="ck">✓</span><b>Réglementation métier</b>&nbsp;: assurance, immobilier, santé, où certaines données ont des contraintes légales.</li>
           <li><span class="ck">✓</span><b>Intégration forte avec l'existant</b>&nbsp;: ERP, facturation ou planning doivent parler au CRM en temps réel.</li>
         </ul>
+        <p class="note">Vous cochez une de ces lignes&nbsp;? L'appel de 30 minutes sert exactement à ça&nbsp;: poser le diagnostic précis et définir le premier périmètre.</p>
       </div>
     </div>
+    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Réserver un appel (30 min) <span class="circ">→</span></a></div>
   </div>
 </section>
 
@@ -665,55 +629,37 @@
 </section>
 
 <!-- ============ BLOC:cout ============
-     ⚠️ GARDE PRIX : fourchettes du contenu fourni, à arbitrer avec Valentin. -->
+     AUCUN prix (décision Emilien 11/09 soir, règle « aucun prix NCF ») :
+     on explique COMMENT on chiffre, pas combien. -->
 <section class="sec" id="budget" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le budget</span>
       <h2>Quel budget prévoir pour un CRM sur mesure&nbsp;?</h2>
     </div>
-    <div class="cmpscroll rv">
-      <div class="cmp cols4">
-        <div class="head"><b>Scénario</b></div>
-        <div class="head"><b>Budget estimé</b></div>
-        <div class="head"><b>Idéal pour</b></div>
-        <div class="head"><b>Délai</b></div>
-
-        <div class="crit">CRM no-code simple</div>
-        <div>5&nbsp;000 à 12&nbsp;000&nbsp;€</div>
-        <div>PME ≤ 10 commerciaux, process clairs</div>
-        <div>4 à 8 semaines</div>
-
-        <div class="crit">CRM no-code avancé</div>
-        <div>12&nbsp;000 à 25&nbsp;000&nbsp;€</div>
-        <div>PME avec CPQ, commissions, portail client</div>
-        <div>8 à 16 semaines</div>
-
-        <div class="crit">Développement custom</div>
-        <div>25&nbsp;000 à 80&nbsp;000&nbsp;€</div>
-        <div>ETI, multi-entités, volumétrie élevée</div>
-        <div>3 à 9 mois</div>
-
-        <div class="crit last">CRM-ERP hybride</div>
-        <div class="last">15&nbsp;000 à 60&nbsp;000&nbsp;€</div>
-        <div class="last">PME avec ERP existant à connecter</div>
-        <div class="last">2 à 6 mois</div>
+    <div class="short rv"><span class="tag">La réponse honnête</span><b>Il n'y a pas de prix sérieux sans avoir vu votre cycle de vente.</b> Un CRM sur mesure se chiffre par périmètre&nbsp;: vos objets métier, vos règles commerciales, vos intégrations, votre volumétrie. Quiconque annonce un montant sans avoir cartographié votre organisation invente. Le cadrage débouche sur un chiffrage ferme, avant tout engagement.</div>
+    <div class="costgrid">
+      <div class="costcard rv">
+        <h3>Ce qui fait varier le budget</h3>
+        <ul>
+          <li><span class="d" style="background:var(--lilac-deep)"></span><span><b>Le périmètre de la V1</b>&nbsp;: pipeline et contacts seuls, ou déjà les devis et les relances&nbsp;?</span></li>
+          <li><span class="d" style="background:var(--coral)"></span><span><b>Les modules avancés</b>&nbsp;: CPQ, commissions, reporting métier, portail client.</span></li>
+          <li><span class="d" style="background:var(--ocre)"></span><span><b>Les intégrations</b>&nbsp;: chaque connexion (ERP, facturation, email, téléphonie) s'ajoute au périmètre.</span></li>
+          <li><span class="d" style="background:var(--green-ok)"></span><span><b>La volumétrie et les entités</b>&nbsp;: une équipe de 5 ou trois marques consolidées, ce n'est pas le même outil.</span></li>
+        </ul>
       </div>
-      <p class="cmpcap">Faites défiler horizontalement pour tout voir</p>
+      <div class="costcard rv">
+        <h3>Ce qu'il faut prévoir au-delà du développement</h3>
+        <ul>
+          <li><span class="d" style="background:var(--coral)"></span><span><b>Maintenance corrective</b>&nbsp;: corrections, mises à jour de sécurité.</span></li>
+          <li><span class="d" style="background:var(--lilac-deep)"></span><span><b>Évolutions fonctionnelles</b>&nbsp;: votre CRM va grandir avec vous, budgétez une enveloppe annuelle.</span></li>
+          <li><span class="d" style="background:var(--ocre)"></span><span><b>Formation et adoption</b>&nbsp;: même le meilleur outil échoue sans accompagnement au changement.</span></li>
+          <li><span class="d" style="background:var(--lilac)"></span><span><b>Hébergement et abonnements des plateformes</b>&nbsp;: selon la stack et la volumétrie retenues.</span></li>
+        </ul>
+        <p>Un devis sérieux détaille ces lignes noir sur blanc. C'est un des critères pour évaluer votre prestataire, quel qu'il soit.</p>
+      </div>
     </div>
-    <p class="tabnote rv">Ces fourchettes incluent la conception, le développement et une phase de recette. Elles n'incluent ni la maintenance annuelle ni les évolutions futures.</p>
-
-    <div class="costcard rv" style="max-width:840px;margin:clamp(20px,3vw,28px) auto 0">
-      <h3>Les coûts cachés à anticiper</h3>
-      <p>Le budget de développement n'est que la première ligne. Prévoyez aussi&nbsp;:</p>
-      <ul>
-        <li><span class="d" style="background:var(--coral)"></span><span><b>Maintenance corrective</b>&nbsp;: corrections de bugs, mises à jour de sécurité. Comptez 10 à 15&nbsp;% du coût initial par an.</span></li>
-        <li><span class="d" style="background:var(--lilac-deep)"></span><span><b>Évolutions fonctionnelles</b>&nbsp;: votre CRM va grandir avec vous. Budgétez une enveloppe annuelle.</span></li>
-        <li><span class="d" style="background:var(--ocre)"></span><span><b>Formation et adoption</b>&nbsp;: même le meilleur outil échoue sans accompagnement au changement.</span></li>
-        <li><span class="d" style="background:var(--green-ok)"></span><span><b>Intégrations tierces</b>&nbsp;: chaque connexion (ERP, facturation, email) a un coût de développement et parfois un coût d'API.</span></li>
-        <li><span class="d" style="background:var(--lilac)"></span><span><b>Hébergement et infrastructure</b>&nbsp;: sur serveur dédié, prévoyez entre 50 et 300&nbsp;€/mois selon la volumétrie.</span></li>
-      </ul>
-    </div>
+    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Obtenir un chiffrage après cadrage <span class="circ">→</span></a></div>
   </div>
 </section>
 
@@ -862,14 +808,14 @@
         <h2>On regarde votre situation<br><span class="it">ensemble&nbsp;?</span></h2>
       </div>
       <div class="card rv">
-        <div class="t">Décrivez-nous votre projet CRM</div>
+        <div class="t">Appel de 30 minutes, verdict honnête</div>
         <ul>
-          <li><span class="ck">✓</span>On part de vos process réels, pas d'un template</li>
-          <li><span class="ck">✓</span>Une V1 utilisable rapidement, qui évolue ensuite avec vous</li>
+          <li><span class="ck">✓</span>Vous décrivez votre cycle de vente et là où votre CRM bloque</li>
+          <li><span class="ck">✓</span>On pose le diagnostic&nbsp;: standard bien configuré, ou sur mesure, et par quel périmètre commencer</li>
           <li><span class="ck">✓</span>Pas de stack propriétaire, pas de promesses irréalistes, un interlocuteur dédié du cadrage à la livraison</li>
         </ul>
-        <a class="btn btn-dark" href="#">Décrire mon projet <span class="circ">→</span></a>
-        <span class="after">On vous répond avec une première analyse, sans engagement.</span>
+        <a class="btn btn-dark" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
+        <span class="after">Gratuit, sans engagement. Y compris si la bonne réponse est «&nbsp;un HubSpot bien configuré vous suffit&nbsp;».</span>
       </div>
     </div>
   </section>
