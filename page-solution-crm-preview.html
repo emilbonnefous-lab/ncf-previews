@@ -111,6 +111,24 @@
   @keyframes artdrift{to{transform:scale(1.12) rotate(4deg)}}
   @keyframes artpan{to{transform:translateX(-5%)}}
 
+  /* ===== fonds de sections teintés (recadrage Emilien : moins de blanc) =====
+     Chaque grande partie de la page a sa teinte + stries soyeuses + grain ;
+     les cartes papier se posent dessus. Alternance rose → lilas → pêche. */
+  .tint{position:relative;isolation:isolate}
+  .tint::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:repeating-linear-gradient(125deg,rgba(255,255,255,.30) 0 3px,rgba(255,255,255,0) 3px 12px,rgba(255,255,255,.18) 12px 16px,rgba(255,255,255,0) 16px 30px)}
+  .tint::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--grain);opacity:.08;mix-blend-mode:multiply}
+  .tint>*{position:relative;z-index:1}
+  .tint-rose{background:linear-gradient(180deg,#f6dfe5,#f9efe9)}
+  .tint-lilac{background:linear-gradient(180deg,#ece4f6,#f5f0ec)}
+  .tint-peach{background:linear-gradient(180deg,#f7e5d2,#f8efe6)}
+
+  /* blobs décoratifs flous, posés en coin de section */
+  .blob{position:absolute;z-index:-1;pointer-events:none;width:clamp(260px,30vw,420px);aspect-ratio:1;border-radius:50%;filter:blur(70px);opacity:.5}
+  .blob-coral{background:radial-gradient(circle,#e8927f 0%,rgba(232,146,127,0) 70%)}
+  .blob-lilac{background:radial-gradient(circle,#b5a3d6 0%,rgba(181,163,214,0) 70%)}
+  .blob-peach{background:radial-gradient(circle,#ecc08e 0%,rgba(236,192,142,0) 70%)}
+
   /* ===== illustrations isométriques en fil pointillé (section sombre) ===== */
   .iso{display:block;margin:0 auto 16px;width:104px;height:104px}
   .iso polygon,.iso path{fill:none;stroke:rgba(250,246,240,.72);stroke-width:1.2;stroke-dasharray:3 4;stroke-linejoin:round}
@@ -446,7 +464,7 @@
      fait mal (les 5 signes), on explique le traitement et ses effets
      (fonctionnalités), on donne envie de réserver l'appel. AUCUN prix :
      le bloc « En bref » chiffré a été retiré sur décision Emilien. -->
-<section class="sec" id="diagnostic">
+<section class="sec tint tint-rose" id="diagnostic">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le diagnostic</span>
@@ -478,7 +496,7 @@
 </section>
 
 <!-- ============ BLOC:comparatif + BLOC:adapte ============ -->
-<section class="sec" id="choisir">
+<section class="sec tint tint-lilac" id="choisir">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le choix</span>
@@ -546,7 +564,7 @@
 </section>
 
 <!-- ============ BLOC:fonctionnalites ============ -->
-<section class="sec" id="fonctionnalites" style="padding-top:0">
+<section class="sec tint tint-peach" id="fonctionnalites">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le périmètre</span>
@@ -605,7 +623,9 @@
 </section>
 
 <!-- ============ BLOC:prestataire ============ -->
-<section class="sec" id="prestataire">
+<section class="sec" id="prestataire" style="position:relative;overflow:hidden;isolation:isolate">
+  <span class="blob blob-coral" style="top:-80px;right:-100px"></span>
+  <span class="blob blob-lilac" style="bottom:40px;left:-140px"></span>
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le prestataire</span>
@@ -674,7 +694,7 @@
 <!-- ============ BLOC:cout ============
      AUCUN prix (décision Emilien 11/09 soir, règle « aucun prix NCF ») :
      on explique COMMENT on chiffre, pas combien. -->
-<section class="sec" id="budget" style="padding-top:0">
+<section class="sec tint tint-rose" id="budget">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le budget</span>
@@ -707,7 +727,7 @@
 </section>
 
 <!-- ============ BLOC:lancement ============ -->
-<section class="sec" id="lancer">
+<section class="sec tint tint-lilac" id="lancer">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">Le lancement</span>
@@ -840,7 +860,8 @@
 <p class="mqcap">Pas de stack propriétaire&nbsp;: des outils standards, documentés, que vous pouvez reprendre.</p>
 
 <!-- ============ BLOC:faq ============ + JSON-LD synchronisé -->
-<section class="sec" id="faq">
+<section class="sec" id="faq" style="position:relative;overflow:hidden;isolation:isolate">
+  <span class="blob blob-peach" style="top:-60px;left:-120px"></span>
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kick">FAQ</span>
