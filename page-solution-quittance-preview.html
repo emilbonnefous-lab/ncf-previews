@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générer et envoyer vos quittances de loyer automatiquement | Nocode Factory</title>
+<meta name="description" content="Vous générez et envoyez vos quittances manuellement chaque mois ? On construit l'outil qui les produit et les envoie automatiquement dès que le paiement du loyer est enregistré : génération, diffusion, historique, corrections.">
+<!--
+  ============================================================================
+  TEMPLATE — Page de SERVICE Nocode Factory (famille /solutions/)
+  Cadrage : réunion Valentin + Emilien 11/09/2026
+  (cr/2026-09-11_reunion-pages-solutions-valentin.md)
+
+  PRINCIPE : page de vente maquillée en page solution. On cible UNE intention
+  de recherche formulée dans le langage de la cible, et la page démontre
+  qu'on sait la traiter (workflow), puis vend le sur-mesure et NCF.
+  Ce n'est PAS un article de blog : pas de breadcrumb article, pas de byline,
+  pas de sommaire sticky, pas de barre de partage.
+
+  Instance d'habillage : quittances de loyer automatiques (requête sans
+  concurrence interne, décision CR 11/09). ⚠️ COPY NON FINALISÉE : maquette
+  de mise en page, le contenu éditorial sera écrit dans une passe dédiée.
+
+  Pour instancier une autre page /solutions/ : chercher les commentaires
+  "SLOT:" et remplacer leur contenu. La structure et le CSS ne bougent pas.
+
+  Sections (ordre figé par le CR) :
+    1. SLOT:hero        — H1 = intention de recherche, verbatim douleur, CTA
+    2. SLOT:workflow    — le besoin traité étape par étape (densité SEO ici)
+    3. SLOT:lies        — besoins liés (intentions adjacentes, maillage)
+    4. SLOT:pourquoi    — bénéfices du sur-mesure (tableau ✓/✕, zéro prix)
+    5. SLOT:preuve      — cas clients + témoignages (section sombre)
+    6. SLOT:expertise   — features réalisables + marquee outils maîtrisés
+    7. SLOT:methode     — process projet NCF (timeline)
+    8. SLOT:faq         — long-tail de l'intention (+ JSON-LD FAQPage)
+    9. CTA final aurora — commun à toutes les instances
+
+  Règles NCF encodées (NE PAS RETIRER) :
+    - AUCUN prix NCF chiffré publié ; aucune durée chiffrée inventée
+    - JAMAIS de faux client nommé : les témoignages ci-dessous sont des
+      GABARITS ANONYMES d'habillage ; remplacer par des verbatims réels
+      validés avant toute publication, sinon masquer la section
+    - "+350 projets réalisés" = claim affiché sur nocodefactory.fr (10/09/2026)
+    - Conversion = appel 30 min ; pas de capture email
+    - Zéro tiret cadratin dans la copy (marqueur IA)
+  ============================================================================
+-->
+<style>
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:300;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699a823bbdcee701e3c_FFF-AcidGrotesk-Light-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:400;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669900f9dc6c3cbdc9e0_FFF-AcidGrotesk-Normal-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:500;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a4669989a8cf768546dcdd_FFF-AcidGrotesk-Medium-TRIAL.woff2") format("woff2")}
+  @font-face{font-family:"Fff Acidgrotesk";font-weight:700;font-display:swap;src:url("https://cdn.prod.website-files.com/66eaebf7f23c6ba827f8cde2/68a46699277ec66f5b9dbc0c_FFF-AcidGrotesk-Bold-TRIAL.woff2") format("woff2")}
+  :root{
+    /* tokens réels nocodefactory.fr (charte-ncf-articles.md) */
+    --beige:#f9f8f6; --ncf-beige:#fff8f0; --white:#fff;
+    --ink:#060110; --black:#1e1a28; --grey:#606060; --smoke:#a7a7a7;
+    --lightgrey:#ddd9d9; --hair:#e9e6e1; --dark-card:#2d273e;
+    --pink:#f99bfb; --pink-vif:#ff5777; --yellow:#ffca64; --green:#38ef7d;
+    --green-deep:#027a48; --green-pill:#47c247;
+    --blue:#5ac0ff; --blue-link:#1faaff; --purple:#906cf8; --purple-soft:#a8a0f0; --purple-pale:#f3f1fd;
+    --pastel-yellow:#fef1e6; --pastel-pink:#f9eef1; --pastel-blue:#eafafc; --pastel-green:#f1fbed;
+    --red:#b42318; --red-light:#fef3f2;
+    --sans:"Fff Acidgrotesk",Arial,sans-serif;
+    --r-lg:1.5rem; --r-md:1rem; --r-sm:.75rem;
+    --grad:linear-gradient(90deg,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff,#ffd361,#ff6161,#b75bf2,#1faaff);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:100px}
+  body{font-family:var(--sans);background:var(--beige);color:var(--ink);font-size:16px;line-height:1.6}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  img{max-width:100%}
+  a{color:inherit}
+  b,strong{font-weight:500;color:var(--ink)}
+
+  .grad{background-image:var(--grad);background-size:400% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  @media(prefers-reduced-motion:no-preference){.grad{animation:rainbowText 14s linear infinite}}
+  @keyframes rainbowText{0%{background-position:0% 50%}100%{background-position:400% 50%}}
+
+  .rainbow{height:5px;background:linear-gradient(90deg,#fa2217,#ff9323 14%,#cf7dc1 28%,#906cf8 41%,#19b5c0 57%,#198cc6 71%,#ffd361 85%,#fa2217);transition:height .3s;cursor:pointer}
+  .rainbow:hover{height:20px}
+
+  /* ===== nav ===== */
+  .nav{background:var(--beige);padding:14px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:60;border-bottom:1px solid transparent}
+  .nav.scrolled{background:color-mix(in srgb,var(--beige) 92%,transparent);backdrop-filter:blur(10px);border-bottom-color:var(--hair)}
+  .brand{display:flex;align-items:center;gap:9px;font-size:20px;letter-spacing:-.3px;text-decoration:none;color:var(--ink)}
+  .brand .mk{width:26px;height:26px;border-radius:7px;background:var(--black);color:var(--yellow);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .brand b{font-weight:700;font-style:italic}
+  .nav .links{display:flex;gap:28px;font-size:15px;color:var(--ink)}
+  .nav .links a{text-decoration:none;position:relative;padding-bottom:3px}
+  .nav .links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--black);transition:width .3s}
+  .nav .links a:hover::after{width:100%}
+  @media(max-width:860px){.nav .links{display:none}}
+
+  /* ===== boutons ===== */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px;white-space:nowrap;text-decoration:none;border-radius:3000px;padding:.65rem 1.4rem;border:1px solid var(--black);transition:.375s cubic-bezier(.23,1,.32,1);cursor:pointer}
+  @media(max-width:480px){.nav .btn{padding:.45rem .9rem;font-size:13px}.nav .btn .circ{width:22px;height:22px;font-size:12px}.brand{font-size:17px}}
+  .btn .circ{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ncf-beige);color:var(--black);font-size:13px;flex:0 0 auto;transition:transform .375s cubic-bezier(.23,1,.32,1)}
+  .btn:hover .circ{transform:translateX(4px)}
+  .btn-dark{background:var(--black);color:var(--ncf-beige)}
+  .btn-dark:hover{background:transparent;color:var(--ink);transform:scale(1.02)}
+  .btn-dark:hover .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white{background:var(--white);color:var(--black);border-color:var(--white)}
+  .btn-white .circ{background:var(--black);color:var(--ncf-beige)}
+  .btn-white:hover{background:transparent;color:var(--ncf-beige);transform:scale(1.02)}
+  .btn-white:hover .circ{background:var(--white);color:var(--black)}
+
+  .tlink{display:inline-block;font-size:15px;font-weight:500;text-decoration:none;position:relative;padding-bottom:3px}
+  .tlink::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:currentColor;transition:width .3s}
+  .tlink:hover::after{width:100%}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+
+  /* ===== sections service ===== */
+  .sec{padding:clamp(44px,6vw,84px) 0}
+  .sec-head{max-width:720px;margin:0 auto clamp(28px,4vw,44px);text-align:center}
+  .kick{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-style:italic;font-weight:500;color:var(--grey);margin-bottom:14px}
+  h2{font-weight:500;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;letter-spacing:-1px;text-wrap:balance}
+  .sec-head p{font-size:15.5px;color:var(--grey);margin-top:14px}
+  h3{font-weight:500;font-size:19px}
+
+  /* ===== hero (composant landing, charte §5) ===== */
+  .hero{padding:clamp(40px,6vw,72px) 0 clamp(30px,4vw,48px);text-align:center}
+  .laurels{display:inline-flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:var(--grey);border:1px solid var(--hair);background:var(--white);border-radius:3000px;padding:7px 16px;margin-bottom:22px}
+  .laurels .st{color:var(--yellow);letter-spacing:2px}
+  h1{font-weight:500;font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.12;letter-spacing:-1px;text-wrap:balance;max-width:20ch;margin:0 auto}
+  .hero .sub{font-size:16.5px;color:var(--grey);max-width:62ch;margin:20px auto 0}
+  .hero .ctas{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:28px}
+
+  /* verbatim douleur (langage de la cible, cadrage CR 11/09) */
+  .quote{position:relative;max-width:640px;margin:clamp(26px,4vw,40px) auto 0;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:22px 26px 20px;text-align:left;font-size:15.5px;color:var(--grey);font-style:italic}
+  .quote .tag{position:absolute;top:-13px;left:22px;background:var(--yellow);font-size:11px;font-style:normal;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--black);color:var(--ink)}
+  .quote b{font-style:normal}
+
+  /* mockup navigateur + chips (charte §5) */
+  .cover{position:relative;max-width:820px;margin:clamp(26px,4vw,44px) auto 0}
+  .browser{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.35);overflow:hidden;text-align:left}
+  .browser .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--hair)}
+  .browser .dot{width:10px;height:10px;border-radius:50%}
+  .browser .url{margin:0 auto;font-size:11.5px;color:var(--grey);background:var(--beige);border:1px solid var(--hair);border-radius:3000px;padding:3px 14px}
+  .bill{padding:18px;background:var(--beige)}
+  .bill .head{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+  .bill .rows{background:var(--white);border:1px solid var(--hair);border-radius:10px;overflow:hidden;font-size:13px}
+  .bill .r{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--hair);align-items:center}
+  .bill .r:first-child{border-top:none}
+  .bill .r .lbl{color:var(--grey)}
+  .bill .r .lbl small{display:block;font-size:10.5px;color:var(--smoke)}
+  .bill .r .amt{font-weight:500;white-space:nowrap;color:var(--ink)}
+  .pillok{display:inline-block;background:var(--pastel-green);color:var(--green-deep);font-size:11.5px;font-weight:500;border-radius:3000px;padding:3px 10px}
+  .pillwait{display:inline-block;background:var(--pastel-yellow);color:#8a5a00;font-size:11.5px;font-weight:500;border-radius:3000px;padding:3px 10px}
+  .browser .cap{font-size:11.5px;color:var(--smoke);text-align:center;padding:9px 12px;border-top:1px solid var(--hair);background:var(--white)}
+  .chip{position:absolute;font-size:12.5px;font-weight:500;border-radius:3000px;padding:7px 14px;box-shadow:0 8px 24px -10px rgba(30,26,40,.35);white-space:nowrap;z-index:2}
+  .chip-a{top:-14px;right:clamp(-6px,1vw,-30px);background:var(--pastel-green);color:var(--green-deep);border:1px solid #bfe8c5}
+  .chip-b{bottom:32px;left:clamp(-6px,1vw,-36px);background:var(--white);color:var(--ink);border:1px solid var(--hair)}
+  @media(prefers-reduced-motion:no-preference){
+    .chip-a{animation:levitation 5s ease-in-out infinite}
+    .chip-b{animation:levitation 6s ease-in-out infinite reverse}
+  }
+  @keyframes levitation{0%{transform:translateY(2px)}50%{transform:translateY(-8px)}100%{transform:translateY(2px)}}
+
+  /* ===== workflow : le besoin traité étape par étape ===== */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;counter-reset:step}
+  .step{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px 22px 20px;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .step:hover{transform:translateY(-4px);box-shadow:0 18px 44px -24px rgba(30,26,40,.35)}
+  .step .n{counter-increment:step;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:14px}
+  .step .n::before{content:counter(step)}
+  .step:nth-child(1) .n{background:var(--pastel-blue)}
+  .step:nth-child(2) .n{background:var(--pastel-yellow)}
+  .step:nth-child(3) .n{background:var(--pastel-pink)}
+  .step:nth-child(4) .n{background:var(--pastel-green)}
+  .step:nth-child(5) .n{background:var(--purple-pale)}
+  .step h3{margin-bottom:8px}
+  .step p{font-size:14.5px;color:var(--grey);line-height:1.6}
+  .step .mini{margin-top:16px;background:var(--beige);border:1px solid var(--hair);border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--grey);display:flex;flex-direction:column;gap:7px}
+  .step .mini .l{display:flex;justify-content:space-between;gap:8px;align-items:center}
+  .step .mini .l b{font-size:12.5px}
+
+  /* ===== besoins liés ===== */
+  .linked{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .lcard{display:block;text-decoration:none;border-radius:var(--r-md);padding:22px;border:1px solid transparent;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .lcard.p-blue{background:var(--pastel-blue)}
+  .lcard.p-pink{background:var(--pastel-pink)}
+  .lcard.p-yellow{background:var(--pastel-yellow)}
+  .lcard.p-blue:hover{background:var(--white);box-shadow:0 0 34px rgba(90,192,255,.45)}
+  .lcard.p-pink:hover{background:var(--white);box-shadow:0 0 34px rgba(249,155,251,.5)}
+  .lcard.p-yellow:hover{background:var(--white);box-shadow:0 0 34px rgba(255,202,100,.5)}
+  .lcard h3{margin-bottom:6px}
+  .lcard p{font-size:14px;color:var(--grey)}
+  .lcard .go{display:inline-block;font-size:13.5px;font-weight:500;margin-top:12px;color:var(--ink)}
+
+  /* ===== tableau comparatif ✓/✕ (zéro prix) ===== */
+  .tco{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 8px;background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);overflow:hidden}
+  .tco th{background:var(--black);color:var(--ncf-beige);font-weight:500;text-align:left;padding:11px 14px;font-size:13px}
+  .tco td{padding:11px 14px;border-top:1px solid var(--hair);color:var(--grey);vertical-align:top}
+  .tco td:first-child{color:var(--ink);font-weight:500}
+  .tco tr:nth-child(even) td{background:var(--beige)}
+  .tco .ok{color:var(--green-deep);font-weight:500}
+  .tco .ko{color:var(--red)}
+  .tco .so{color:var(--grey)}
+  .tabcap{font-size:12.5px;color:var(--smoke);margin-top:10px;text-align:center}
+  @media(max-width:600px){.tco{display:block;overflow-x:auto}}
+
+  /* ===== section sombre : preuve sociale ===== */
+  .dark{background:var(--black);color:var(--ncf-beige);padding:clamp(48px,6vw,88px) 0;margin:clamp(24px,4vw,48px) 0}
+  .dark .kick{color:var(--blue)}
+  .dark h2{color:var(--ncf-beige)}
+  .dark .sec-head p{color:var(--smoke)}
+  .stats{display:flex;justify-content:center;gap:clamp(24px,5vw,72px);flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px)}
+  .stat{text-align:center}
+  .stat .v{font-weight:500;font-size:clamp(2rem,4vw,2.8rem);line-height:1}
+  .stat .l{font-size:13.5px;color:var(--smoke);margin-top:8px}
+  .tstm{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .tcard{background:var(--dark-card);border-radius:var(--r-md);padding:24px 22px;transition:all .3s cubic-bezier(.23,1,.32,1)}
+  .tcard:hover{transform:scale(1.03) rotate(-1.2deg);box-shadow:0 0 40px rgba(144,108,248,.4)}
+  .tcard .q{font-size:14.5px;color:var(--ncf-beige);line-height:1.6;font-style:italic}
+  .tcard .who{display:flex;gap:11px;align-items:center;margin-top:16px}
+  .tcard .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--ink);flex:0 0 auto}
+  .tcard .who b{display:block;font-size:14px;color:var(--ncf-beige)}
+  .tcard .who small{color:var(--smoke);font-size:12px}
+  .dark .more{text-align:center;margin-top:30px}
+  .dark .tlink{color:var(--ncf-beige)}
+
+  /* ===== expertise : features + marquee outils ===== */
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:clamp(30px,4vw,44px)}
+  .feat{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-md);padding:18px;display:flex;gap:12px;align-items:flex-start;transition:all .25s}
+  .feat:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .feat .ic{flex:0 0 34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px}
+  .feat b{display:block;font-size:14.5px;margin-bottom:3px}
+  .feat p{font-size:13px;color:var(--grey);line-height:1.5}
+  .mq{overflow:hidden;position:relative;border-block:1px solid var(--hair);padding:16px 0;background:var(--white)}
+  .mq .track{display:flex;gap:44px;width:max-content}
+  @media(prefers-reduced-motion:no-preference){.mq .track{animation:marquee 32s linear infinite}.mq:hover .track{animation-play-state:paused}}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .mq .it{font-weight:500;font-size:15px;color:var(--grey);display:flex;align-items:center;gap:9px;white-space:nowrap}
+  .mq .it .d{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .mqcap{font-size:12.5px;color:var(--smoke);text-align:center;margin-top:12px}
+
+  /* ===== méthode : timeline (charte §5) ===== */
+  .tlwrap{max-width:680px;margin:0 auto}
+  .tl{position:relative;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:6px;top:10px;bottom:26px;width:2px;background:var(--lightgrey)}
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-29px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--dot,var(--purple));border:3px solid var(--beige)}
+  .tl-item:nth-child(1){--dot:#1faaff}.tl-item:nth-child(2){--dot:#906cf8}.tl-item:nth-child(3){--dot:#f99bfb}.tl-item:nth-child(4){--dot:#38ef7d}
+  .tl-item .d{display:inline-block;font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-style:italic;background:var(--white);border:1px solid var(--lightgrey);border-radius:3000px;padding:3px 11px;margin-bottom:8px;color:var(--grey)}
+  .tl-item h3{margin:0 0 5px;font-size:18px;line-height:1.35}
+  .tl-item p{font-size:14.5px;color:var(--grey)}
+
+  /* ===== FAQ (charte §4) ===== */
+  .faqwrap{max-width:720px;margin:0 auto}
+  .faq details{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden;transition:border-color .25s}
+  .faq details:hover{border-color:var(--lightgrey)}
+  .faq details[open]{border-color:var(--black)}
+  .faq summary{list-style:none;cursor:pointer;padding:16px 52px 16px 20px;font-weight:500;font-size:15px;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:20px;top:50%;translate:0 -50%;font-size:22px;font-weight:300;color:var(--pink-vif);transition:transform .3s cubic-bezier(.23,1,.32,1)}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{padding:0 20px 18px;color:var(--grey);font-size:14.5px}
+
+  /* ===== CTA final aurora (charte §5) ===== */
+  .final{position:relative;overflow:hidden;padding:clamp(52px,7vw,90px) 0;margin-top:clamp(36px,5vw,60px)}
+  .final .aurora{position:absolute;inset:-20% -10%;pointer-events:none;filter:blur(80px);opacity:.55;background:
+    radial-gradient(40% 55% at 15% 40%,#ffd361 0%,transparent 70%),
+    radial-gradient(45% 60% at 50% 70%,#f99bfb 0%,transparent 72%),
+    radial-gradient(38% 52% at 85% 35%,#5ac0ff 0%,transparent 70%),
+    radial-gradient(30% 45% at 70% 80%,#ff6161 0%,transparent 70%)}
+  .final .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+  @media(max-width:860px){.final .grid{grid-template-columns:1fr}}
+  .final h2{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08}
+  .final h2 .it{font-style:italic}
+  .final .card{background:var(--white);border-radius:var(--r-md);box-shadow:0 30px 70px -30px rgba(30,26,40,.3);padding:clamp(24px,3vw,36px)}
+  .final .card .t{font-weight:500;font-size:19px;margin-bottom:14px}
+  .final .card ul{list-style:none;margin-bottom:20px}
+  .final .card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--grey);padding:7px 0}
+  .final .card .ck{width:20px;height:20px;border-radius:50%;background:var(--green);color:var(--black);display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto;margin-top:2px}
+  .final .card .after{display:block;font-size:12.5px;color:var(--smoke);margin-top:12px}
+
+  /* ===== footer ===== */
+  footer{background:var(--black);color:var(--smoke);padding:clamp(36px,5vw,56px) 0}
+  footer .cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer .flabel{font-size:12.5px;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  footer a{color:var(--ncf-beige);text-decoration:none;font-size:14px}
+  footer a:hover{color:var(--white)}
+  footer ul{list-style:none}
+  footer li{margin-bottom:9px}
+  footer .fbrand{font-size:16px;color:var(--ncf-beige)}
+  footer .note{margin-top:28px;font-size:12.5px;color:var(--grey)}
+
+  /* reveal on scroll */
+  @media(prefers-reduced-motion:no-preference){
+    .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
+    .rv.in{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow" title="🌈"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="https://www.nocodefactory.fr/"><span class="mk">▣</span>Nocode<b>Factory</b></a>
+  <div class="links">
+    <a href="https://www.nocodefactory.fr/">Services</a>
+    <a href="https://www.nocodefactory.fr/nos-realisations">Cas clients</a>
+    <a href="https://www.nocodefactory.fr/notre-aventure">L'agence</a>
+    <a href="https://www.nocodefactory.fr/le-blog">Ressources</a>
+  </div>
+  <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="circ">→</span></a>
+</nav>
+
+<!-- ============ SLOT:hero ============
+     H1 = l'intention de recherche exacte, dans le langage de la cible.
+     .quote = le verbatim douleur tel que la cible le formule. -->
+<header class="hero">
+  <div class="wrap">
+    <span class="laurels rv in"><span class="st">★★★★★</span> Solution sur-mesure · Gestion locative</span>
+    <h1 class="rv in">Vos quittances de loyer <span class="grad">générées et envoyées toutes seules</span>, dès que le paiement arrive</h1>
+    <p class="sub rv in">Le loyer est enregistré, la quittance part. Générée au bon format, envoyée au locataire, archivée dans l'historique. Vous n'y touchez plus, sauf quand vous décidez d'y toucher.</p>
+    <div class="ctas rv in">
+      <a class="btn btn-dark" href="#cta">Estimer mon projet <span class="circ">→</span></a>
+      <a class="tlink" href="#workflow">Voir comment ça marche ↓</a>
+    </div>
+
+    <div class="quote rv">
+      <span class="tag">Ça vous parle ?</span>
+      «&nbsp;Nous générons et envoyons les quittances manuellement pour chaque mois. Nous voulons les produire <b>automatiquement dès que le paiement est enregistré</b>.&nbsp;»
+    </div>
+
+    <!-- mockup navigateur : l'outil en situation -->
+    <div class="cover rv">
+      <span class="chip chip-a">✓ Quittance envoyée · 0 min de saisie</span>
+      <span class="chip chip-b">📥 Paiement détecté à 09:12</span>
+      <div class="browser">
+        <div class="bar">
+          <span class="dot" style="background:#e5484d"></span><span class="dot" style="background:#ffd23f"></span><span class="dot" style="background:#46a758"></span>
+          <span class="url">votre-outil.fr/quittances · mars 2027</span>
+        </div>
+        <div class="bill">
+          <div class="head">Quittances · mars 2027</div>
+          <div class="rows">
+            <div class="r"><span class="lbl">Apt 12, rue des Carmes<small>Paiement reçu le 03/03 · 745,00 €</small></span><span class="amt"><span class="pillok">✓ Envoyée</span></span></div>
+            <div class="r"><span class="lbl">Local commercial, av. Foch<small>Paiement reçu le 05/03 · 1 280,00 €</small></span><span class="amt"><span class="pillok">✓ Envoyée</span></span></div>
+            <div class="r"><span class="lbl">Apt 3, bd Gambetta<small>Paiement partiel · 400,00 € / 620,00 €</small></span><span class="amt"><span class="pillwait">⏸ Reçu partiel</span></span></div>
+          </div>
+        </div>
+        <div class="cap">Aperçu illustratif d'un outil livré. Chaque interface est construite sur vos règles de gestion.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SLOT:workflow ============
+     Le besoin traité étape par étape. C'est ICI que vit la densité SEO :
+     chaque étape décrit un sous-besoin avec les mots de la cible. -->
+<section class="sec" id="workflow">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">⚙️ Ce que l'outil fait pour vous</span>
+      <h2>Du paiement encaissé à la quittance archivée, sans intervention</h2>
+      <p>Cinq maillons, tous automatiques, tous ajustés à vos règles de gestion. Vous gardez la main sur chacun.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <span class="n"></span>
+        <h3>Le paiement déclenche tout</h3>
+        <p>Virement détecté sur le compte, encaissement saisi dans votre logiciel ou paiement en ligne du locataire : dès que le loyer est enregistré, la génération se lance. Loyer partiel, trop-perçu ou paiement groupé suivent chacun la règle que vous avez définie.</p>
+        <div class="mini"><div class="l"><b>Virement reçu</b><span class="pillok">détecté</span></div><div class="l"><span>745,00 € · réf. LOYER-MARS</span><span>09:12</span></div></div>
+      </div>
+      <div class="step rv">
+        <span class="n"></span>
+        <h3>La quittance se génère</h3>
+        <p>PDF à votre en-tête, mentions conformes, périodes et montants remplis depuis le bail : loyer, charges, prorata d'entrée ou de sortie. Une quittance partielle devient un reçu, automatiquement.</p>
+        <div class="mini"><div class="l"><b>Quittance_2027-03_Apt12.pdf</b><span class="pillok">générée</span></div><div class="l"><span>Loyer 620,00 € + charges 125,00 €</span><span>09:12</span></div></div>
+      </div>
+      <div class="step rv">
+        <span class="n"></span>
+        <h3>Elle part au bon endroit</h3>
+        <p>Email au locataire, dépôt dans son espace, copie au propriétaire ou au comptable : la diffusion suit votre circuit. Chaque envoi est tracé, avec accusé de réception si vous le souhaitez.</p>
+        <div class="mini"><div class="l"><b>Envoyée à m.diaz@…</b><span class="pillok">remise</span></div><div class="l"><span>Copie : proprietaire@…</span><span>09:13</span></div></div>
+      </div>
+      <div class="step rv">
+        <span class="n"></span>
+        <h3>Tout reste dans l'historique</h3>
+        <p>Chaque quittance archivée par lot, par locataire et par période. Un locataire réclame les douze derniers mois ? Export en un clic. Votre comptable veut le trimestre ? Pareil.</p>
+        <div class="mini"><div class="l"><b>Apt 12 · 2026-2027</b><span>14 documents</span></div><div class="l"><span>Exports PDF, CSV, envoi groupé</span><span>↓</span></div></div>
+      </div>
+      <div class="step rv">
+        <span class="n"></span>
+        <h3>Les corrections restent possibles</h3>
+        <p>Montant révisé, erreur de saisie, régularisation de charges : vous corrigez, l'outil régénère la quittance, renvoie la bonne version et conserve la trace de l'ancienne. L'automatique n'enlève jamais le contrôle.</p>
+        <div class="mini"><div class="l"><b>Quittance corrigée v2</b><span class="pillok">renvoyée</span></div><div class="l"><span>v1 conservée dans l'historique</span><span>🗂</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLOT:lies ============
+     Besoins liés = intentions de recherche adjacentes. Chaque carte pointera
+     vers sa page /solutions/ quand elle existera (maillage interne). -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🧩 Et autour de la quittance</span>
+      <h2>Le même outil traite ce qui vient avant et après</h2>
+      <p>La quittance automatique arrive rarement seule. Ces briques se construisent dans le même outil, ensemble ou plus tard.</p>
+    </div>
+    <div class="linked">
+      <a class="lcard p-blue rv" href="#">
+        <h3>🔑 Portail locataire</h3>
+        <p>Un espace où chaque locataire retrouve ses quittances, son bail et ses documents, sans vous écrire pour les demander.</p>
+        <span class="go tlink">Découvrir →</span>
+      </a>
+      <a class="lcard p-yellow rv" href="#">
+        <h3>💳 Paiement du loyer en ligne</h3>
+        <p>Le locataire paie en ligne, le paiement s'enregistre tout seul, et la quittance part dans la foulée. La boucle complète.</p>
+        <span class="go tlink">Découvrir →</span>
+      </a>
+      <a class="lcard p-pink rv" href="#">
+        <h3>🔔 Relances d'impayés</h3>
+        <p>Pas de paiement à la date prévue ? Rappel au locataire, puis relance formelle, selon l'échéancier que vous fixez.</p>
+        <span class="go tlink">Découvrir →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLOT:pourquoi ============
+     Bénéfices du sur-mesure. Tableau ✓/✕ sans aucun prix.
+     Chaque ligne conclut vers le custom (règle : vendre, pas conseiller). -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🎯 Pourquoi du sur-mesure</span>
+      <h2>Vos règles de gestion ne rentrent pas dans les cases d'un logiciel tout fait</h2>
+      <p>Les logiciels de gestion locative génèrent des quittances. Ce qu'ils ne font pas, c'est suivre vos règles à vous : vos baux atypiques, votre circuit de validation, votre comptable, vos exceptions.</p>
+    </div>
+    <div class="rv">
+      <table class="tco">
+        <thead><tr><th>Ce qui compte pour vous</th><th>Rester au manuel</th><th>Logiciel générique</th><th>Outil sur-mesure</th></tr></thead>
+        <tbody>
+          <tr><td>Quittance liée au paiement réel (partiel, groupé, trop-perçu)</td><td class="ko">✕ ressaisie chaque mois</td><td class="so">~ cas standards seulement</td><td class="ok">✓ vos règles, tous les cas</td></tr>
+          <tr><td>Votre modèle de document, vos mentions</td><td class="ok">✓ mais à la main</td><td class="so">~ gabarits imposés</td><td class="ok">✓ votre gabarit exact</td></tr>
+          <tr><td>Circuit de diffusion (locataire, propriétaire, comptable)</td><td class="ko">✕ emails un par un</td><td class="so">~ envoi simple uniquement</td><td class="ok">✓ votre circuit complet</td></tr>
+          <tr><td>Connexion à vos outils existants (compta, banque, tableur)</td><td class="ko">✕ tout est ressaisi</td><td class="so">~ selon leur catalogue</td><td class="ok">✓ construit pour votre stack</td></tr>
+          <tr><td>Évolutions futures (portail, paiement, relances)</td><td class="ko">✕ toujours plus de manuel</td><td class="so">~ selon leur roadmap</td><td class="ok">✓ selon vos priorités</td></tr>
+          <tr><td>Propriété de l'outil et des données</td><td class="ok">✓ vos fichiers</td><td class="ko">✕ abonnement, données chez eux</td><td class="ok">✓ l'outil vous appartient</td></tr>
+        </tbody>
+      </table>
+      <p class="tabcap">Comparaison fonctionnelle. Le bon choix dépend de votre volume et de vos règles : on vous le dit honnêtement pendant l'appel, y compris si un logiciel du marché vous suffit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLOT:preuve ============
+     Section sombre : stats + témoignages.
+     ⚠️ GABARITS ANONYMES d'habillage : remplacer par des verbatims réels
+     validés avant publication, ou masquer la section (jamais de faux client
+     nommé). Stats : SEUL le claim +350 projets est sourcé (affiché sur
+     nocodefactory.fr, 10/09/2026) ; « 5/5 » et « 6 ans » sont des exemples
+     de mise en page, à remplacer par des chiffres réels validés. -->
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🤝 Ils nous ont confié leurs outils</span>
+      <h2>Des outils métier livrés, utilisés, maintenus</h2>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><div class="v grad">+350</div><div class="l">projets réalisés</div></div>
+      <div class="stat"><div class="v grad">⭐ 5/5</div><div class="l">note moyenne clients</div></div>
+      <div class="stat"><div class="v grad">6 ans</div><div class="l">d'outils en production</div></div>
+    </div>
+    <div class="tstm">
+      <div class="tcard rv">
+        <p class="q">«&nbsp;On passait deux jours par mois sur les quittances et les relances. Aujourd'hui l'outil s'en charge, on ne vérifie plus que les cas particuliers.&nbsp;»</p>
+        <div class="who"><span class="av" style="background:var(--pastel-blue)">GL</span><span><b>[Témoin à valider]</b><small>Gestionnaire locatif · ~240 lots</small></span></div>
+      </div>
+      <div class="tcard rv">
+        <p class="q">«&nbsp;Le logiciel du marché ne gérait ni nos baux commerciaux ni notre circuit comptable. L'outil sur-mesure suit nos règles, pas l'inverse.&nbsp;»</p>
+        <div class="who"><span class="av" style="background:var(--pastel-pink)">AI</span><span><b>[Témoin à valider]</b><small>Administrateur de biens · cabinet familial</small></span></div>
+      </div>
+      <div class="tcard rv">
+        <p class="q">«&nbsp;Ce qui m'a décidé : tout est documenté, les accès nous appartiennent, et l'équipe répond. On n'est pas dépendants d'un freelance injoignable.&nbsp;»</p>
+        <div class="who"><span class="av" style="background:var(--pastel-yellow)">SC</span><span><b>[Témoin à valider]</b><small>SCI patrimoniale · gestion en direct</small></span></div>
+      </div>
+    </div>
+    <div class="more rv"><a class="tlink" href="https://www.nocodefactory.fr/nos-realisations">Voir nos réalisations →</a></div>
+  </div>
+</section>
+
+<!-- ============ SLOT:expertise ============
+     Features réalisables autour de l'intention + marquee outils maîtrisés. -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🛠 Ce qu'on sait construire autour</span>
+      <h2>Chaque brique s'ajoute quand vous en avez besoin</h2>
+    </div>
+    <div class="feats">
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">🏦</span><span><b>Rapprochement bancaire</b><p>Détection des virements entrants et association automatique au bon bail.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-pink)">🧾</span><span><b>Documents conformes</b><p>Quittances, reçus, appels de loyer : vos gabarits, vos mentions, votre charte.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-yellow)">📤</span><span><b>Envoi multicanal</b><p>Email, espace locataire, courrier via prestataire : chaque envoi tracé.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-green)">📊</span><span><b>Exports comptables</b><p>Écritures et justificatifs au format attendu par votre comptable.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--purple-pale)">🔐</span><span><b>Accès par rôle</b><p>Gestionnaire, propriétaire, comptable, locataire : chacun voit ce qui le concerne.</p></span></div>
+      <div class="feat rv"><span class="ic" style="background:var(--pastel-blue)">🔁</span><span><b>Révisions et indexation</b><p>Révision IRL, régularisation de charges : calculées et appliquées à date.</p></span></div>
+    </div>
+  </div>
+  <div class="mq rv">
+    <div class="track">
+      <span class="it"><span class="d" style="background:#ffca64"></span>Airtable</span>
+      <span class="it"><span class="d" style="background:#906cf8"></span>Make</span>
+      <span class="it"><span class="d" style="background:#5ac0ff"></span>Xano</span>
+      <span class="it"><span class="d" style="background:#38ef7d"></span>Supabase</span>
+      <span class="it"><span class="d" style="background:#ff5777"></span>Bubble</span>
+      <span class="it"><span class="d" style="background:#f99bfb"></span>n8n</span>
+      <span class="it"><span class="d" style="background:#1faaff"></span>Webflow</span>
+      <span class="it"><span class="d" style="background:#ffd361"></span>Sanity</span>
+      <span class="it"><span class="d" style="background:#ffca64"></span>Airtable</span>
+      <span class="it"><span class="d" style="background:#906cf8"></span>Make</span>
+      <span class="it"><span class="d" style="background:#5ac0ff"></span>Xano</span>
+      <span class="it"><span class="d" style="background:#38ef7d"></span>Supabase</span>
+      <span class="it"><span class="d" style="background:#ff5777"></span>Bubble</span>
+      <span class="it"><span class="d" style="background:#f99bfb"></span>n8n</span>
+      <span class="it"><span class="d" style="background:#1faaff"></span>Webflow</span>
+      <span class="it"><span class="d" style="background:#ffd361"></span>Sanity</span>
+    </div>
+  </div>
+  <p class="mqcap">No-code, low-code ou code : on choisit l'outil d'après votre besoin, votre volume et votre budget.</p>
+</section>
+
+<!-- ============ SLOT:methode ============
+     Process projet NCF. Pas de durées chiffrées (aucune durée inventée). -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">🧭 Comment on travaille</span>
+      <h2>De votre process réel à l'outil en production</h2>
+    </div>
+    <div class="tlwrap rv">
+      <div class="tl">
+        <div class="tl-item">
+          <span class="d">Étape 1 · Cadrage</span>
+          <h3>On part de votre gestion, pas d'un logiciel</h3>
+          <p>Un atelier pour poser vos règles réelles : types de baux, cas particuliers, circuit de validation, outils déjà en place. C'est ce document qui sert de contrat fonctionnel.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">Étape 2 · Maquette</span>
+          <h3>Vous validez sur du concret</h3>
+          <p>Une maquette cliquable de l'outil, avec vos données d'exemple. On ajuste avant de construire, pas après.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">Étape 3 · Construction</span>
+          <h3>Livraison par briques utilisables</h3>
+          <p>La génération de quittances d'abord, puis la diffusion, puis l'historique : chaque brique livrée est testée sur vos cas réels et utilisable tout de suite.</p>
+        </div>
+        <div class="tl-item">
+          <span class="d">Étape 4 · Run</span>
+          <h3>L'outil vit, on reste là</h3>
+          <p>Documentation, formation de vos équipes, accès qui vous appartiennent, maintenance. Une équipe structurée répond, pas un prestataire qui disparaît.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLOT:faq ============
+     Long-tail de l'intention (PAA). Mettre à jour le JSON-LD en même temps. -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kick">❓ Les questions qu'on nous pose</span>
+      <h2>Quittances automatiques : ce que vous vous demandez</h2>
+    </div>
+    <div class="faqwrap faq rv">
+      <details><summary>Comment la quittance peut-elle partir automatiquement dès le paiement ?</summary><p>Tout dépend de l'endroit où le paiement apparaît chez vous : compte bancaire, logiciel de caisse, paiement en ligne ou saisie manuelle. L'outil surveille cette source, associe le paiement au bail concerné, puis déclenche la génération et l'envoi selon vos règles. Vous définissez ce qui se passe pour un paiement partiel, en retard ou groupé.</p></details>
+      <details><summary>Et si le locataire paie en plusieurs fois ?</summary><p>Un paiement partiel donne lieu à un reçu, et la quittance complète part quand le solde est atteint. C'est votre règle de gestion qui décide, l'outil l'applique.</p></details>
+      <details><summary>Peut-on garder notre modèle de quittance actuel ?</summary><p>Oui, c'est même le principe : l'outil reproduit votre gabarit, vos mentions et votre charte. Les quittances générées sont identiques à celles que vous faisiez à la main, en mieux horodatées et archivées.</p></details>
+      <details><summary>On utilise déjà un logiciel de gestion : est-ce compatible ?</summary><p>Dans la plupart des cas, oui. L'outil peut lire les paiements enregistrés dans votre logiciel actuel et ne gérer que la partie quittances, ou reprendre l'ensemble si vous voulez en sortir. On regarde votre stack pendant l'appel.</p></details>
+      <details><summary>Qui peut corriger une quittance déjà envoyée ?</summary><p>Les personnes que vous autorisez. Chaque correction régénère le document, renvoie la nouvelle version et conserve l'ancienne dans l'historique, avec la trace de qui a fait quoi.</p></details>
+      <details><summary>Combien coûte un outil comme celui-là ?</summary><p>Ça dépend du périmètre : nombre de lots, sources de paiement, circuit de diffusion, briques annexes. Un chiffrage sérieux se fait après avoir vu votre gestion, pas avant. L'appel de 30 minutes sert exactement à ça, et il ne vous engage à rien.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL (commun à toutes les instances) ============ -->
+<section class="final" id="cta">
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="grid">
+      <div class="rv">
+        <p class="kick">💎 Contactez NocodeFactory</p>
+        <h2>Assez parlé,<br><span class="it grad">on regarde votre gestion&nbsp;?</span></h2>
+      </div>
+      <div class="card rv">
+        <div class="t">🥳 Appel gratuit de 30 minutes</div>
+        <ul>
+          <li><span class="ck">✓</span>Vous décrivez votre circuit actuel, du paiement à la quittance</li>
+          <li><span class="ck">✓</span>On vous dit ce qui s'automatise, et avec quoi</li>
+          <li><span class="ck">✓</span>Vous repartez avec un périmètre clair, chiffrable, sans jargon</li>
+        </ul>
+        <a class="btn btn-dark" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
+        <span class="after">Gratuit, sans engagement. Y compris si un logiciel du marché suffit à votre cas.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Nocode<b style="font-style:italic">Factory</b></div>
+        <p style="font-size:13px;margin-top:8px;max-width:28ch">Sites &amp; outils sur mesure, en no-code, low-code et code.</p>
+      </div>
+      <div>
+        <div class="flabel">Cette solution</div>
+        <ul>
+          <li><a href="#workflow">Comment ça marche</a></li>
+          <li><a href="#">Portail locataire</a></li>
+          <li><a href="#">Paiement du loyer en ligne</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="flabel">C'est ça que tu cherches ?</div>
+        <ul>
+          <li><a href="https://www.nocodefactory.fr/nos-realisations">Nos réalisations</a></li>
+          <li><a href="https://www.nocodefactory.fr/notre-aventure">Notre aventure</a></li>
+          <li><a href="https://www.nocodefactory.fr/le-blog">Le blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Page de démonstration interne. Dernière mise à jour&nbsp;: septembre 2026.</p>
+  </div>
+</footer>
+
+<!-- SLOT:jsonld — adapter Service + FAQPage à chaque instance -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Service",
+      "name":"Génération et envoi automatiques de quittances de loyer",
+      "description":"Outil sur-mesure qui génère, envoie et archive les quittances de loyer automatiquement dès que le paiement est enregistré : détection du paiement, génération du document conforme, diffusion tracée, historique et corrections.",
+      "serviceType":"Développement d'outil de gestion locative sur mesure",
+      "provider":{"@type":"Organization","name":"Nocode Factory","url":"https://www.nocodefactory.fr"},
+      "areaServed":"FR",
+      "inLanguage":"fr"
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Comment envoyer une quittance de loyer automatiquement dès le paiement ?","acceptedAnswer":{"@type":"Answer","text":"Un outil connecté à la source du paiement (compte bancaire, logiciel de gestion, paiement en ligne) associe chaque paiement au bail concerné, génère la quittance au format du bailleur et l'envoie au locataire selon les règles définies : paiement complet, partiel, en retard ou groupé."}},
+        {"@type":"Question","name":"Que se passe-t-il si le locataire paie son loyer en plusieurs fois ?","acceptedAnswer":{"@type":"Answer","text":"Un paiement partiel donne lieu à un reçu, et la quittance complète est émise quand le solde du loyer est atteint. La règle de gestion est définie par le bailleur et appliquée automatiquement par l'outil."}},
+        {"@type":"Question","name":"Peut-on conserver son modèle de quittance avec un outil automatique ?","acceptedAnswer":{"@type":"Answer","text":"Oui : l'outil sur-mesure reproduit le gabarit, les mentions et la charte du bailleur. Les quittances générées sont identiques aux quittances manuelles, avec en plus l'horodatage et l'archivage automatiques."}},
+        {"@type":"Question","name":"Un outil de quittances automatiques est-il compatible avec un logiciel de gestion existant ?","acceptedAnswer":{"@type":"Answer","text":"Dans la plupart des cas oui : l'outil peut lire les paiements enregistrés dans le logiciel en place et ne traiter que les quittances, ou reprendre l'ensemble du circuit si le bailleur souhaite en sortir."}},
+        {"@type":"Question","name":"Peut-on corriger une quittance déjà envoyée ?","acceptedAnswer":{"@type":"Answer","text":"Oui, par les personnes autorisées : chaque correction régénère le document, renvoie la nouvelle version au locataire et conserve l'ancienne dans l'historique avec la trace des modifications."}},
+        {"@type":"Question","name":"Combien coûte un outil de génération automatique de quittances ?","acceptedAnswer":{"@type":"Answer","text":"Le coût dépend du périmètre : nombre de lots, sources de paiement, circuit de diffusion, briques annexes comme le portail locataire ou les relances. Un chiffrage sérieux se fait après examen de la gestion existante."}}
+      ]
+    }
+  ]
+}
+</script>
+<script>
+  // nav : fond au scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
