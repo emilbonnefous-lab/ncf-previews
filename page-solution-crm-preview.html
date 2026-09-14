@@ -224,7 +224,12 @@
 
   .flow{position:relative;display:flex;align-items:stretch;justify-content:center;max-width:860px;margin:clamp(24px,3.5vw,38px) auto 0;padding-top:14px}
   .fnode{background:var(--paper);border:1px solid rgba(33,28,38,.12);border-radius:var(--r-md);padding:20px 18px 16px;width:min(240px,31%);text-align:center;color:var(--ink);transition:all .45s cubic-bezier(.23,1,.32,1);box-shadow:0 14px 34px -20px rgba(60,20,20,.45)}
-  .fnode .ic{font-size:30px;display:block;margin-bottom:8px;line-height:1}
+  .fnode .ic{display:block;margin-bottom:8px;line-height:1}
+  /* emoji de marque : le switch NCF s'allume quand l'étape s'active (bleu → violet → vert ON) */
+  .sw{height:36px;width:auto;aspect-ratio:27/43;display:inline-block;vertical-align:middle}
+  .fnode .sw{--sw-key:#b8b2c3}
+  .fnode.on .sw{--sw-key:var(--swc,#1faaff)}
+  .sw-inline{height:20px;vertical-align:-4px;margin-right:7px}
   .fnode b{display:block;font-size:15px;line-height:1.3}
   .fnode small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--grey);margin-top:6px}
   .fnode.on{background:var(--ink);border-color:var(--ink);transform:translateY(-6px);box-shadow:0 24px 48px -18px rgba(20,8,8,.6)}
@@ -419,6 +424,12 @@
   .final .card li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--grey);padding:7px 0}
   .final .card .ck{width:20px;height:20px;border-radius:50%;background:var(--green-ok);color:var(--white);display:grid;place-items:center;font-size:10px;font-weight:700;flex:0 0 auto;margin-top:2px}
   .final .card .after{display:block;font-size:12.5px;color:var(--smoke);margin-top:12px}
+  /* avatars équipe (kit Figma NCF : cercle dégradé + badge switch) — E-E-A-T, de vrais humains */
+  .final .card .team{display:flex;align-items:center;gap:12px;margin:18px 0 16px}
+  .final .card .faces{display:flex}
+  .final .card .faces img{width:52px;height:52px;border-radius:50%;border:2.5px solid var(--paper);margin-left:-13px;box-shadow:0 6px 16px -8px rgba(33,28,38,.4)}
+  .final .card .faces img:first-child{margin-left:0}
+  .final .card .who{font-size:13.5px;color:var(--grey);max-width:20ch;line-height:1.35}
 
   footer{background:var(--ink);color:var(--smoke);padding:clamp(36px,5vw,56px) 0}
   footer .cols{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
@@ -437,6 +448,18 @@
 </style>
 </head>
 <body>
+
+<!-- Glyphe switch NCF (paths officiels du kit Figma, Vector.svg) — fills pilotés
+     par variables : ##sw-key = touche O (bleu/violet/vert/éteint), ##sw-w = faces,
+     ##sw-k = encre. Sert d'« emoji de marque » partout où on mettait un Unicode. -->
+<svg style="display:none" aria-hidden="true"><symbol id="ncfsw" viewBox="0 0 27 43">
+  <path d="M23.4932 35.7846H7.19941C6.5148 35.7846 5.93828 35.3637 5.77974 34.7679L2.29182 21.1172C2.22696 20.8517 2.29903 20.5732 2.4864 20.3595C2.68097 20.1458 2.96202 20.0228 3.26469 20.0228H19.5513C20.2359 20.0228 20.8196 20.4437 20.9709 21.0394L24.4588 34.6902C24.5309 34.9557 24.4588 35.2342 24.2715 35.4479C24.0841 35.6616 23.7958 35.7846 23.4932 35.7846Z" fill="var(--sw-w,#fff)"/>
+  <path style="transition:fill .45s" d="M7.19941 35.7846H23.4932C23.7958 35.7846 24.0841 35.6616 24.2715 35.4479C24.4588 35.2342 24.5309 34.9557 24.4588 34.6902L20.9709 21.0394C20.8196 20.4437 20.2359 20.0228 19.5513 20.0228H3.26469C2.96202 20.0228 2.68097 20.1458 2.4864 20.3595C2.29903 20.5732 2.22696 20.8517 2.29182 21.1172L5.77974 34.7679C5.93828 35.3637 6.5148 35.7846 7.19941 35.7846ZM19.472 27.9231C19.6377 29.3413 19.1621 30.6429 18.146 31.5884C17.2236 32.4432 15.9408 32.9159 14.5212 32.9159C14.377 32.9159 14.2401 32.9094 14.1104 32.9029C10.9756 32.7087 8.15787 30.2673 7.84078 27.4569C7.67503 26.0387 8.15066 24.7371 9.16677 23.7916C10.0964 22.9239 11.3647 22.4641 12.7844 22.4641C12.9213 22.4641 13.0583 22.4706 13.2024 22.4771C16.3372 22.6713 19.1477 25.1191 19.472 27.9231Z" fill="var(--sw-key,#1faaff)"/>
+  <path style="transition:fill .45s" d="M12.7912 23.9925C11.84 23.9925 10.9824 24.2969 10.3843 24.8602C9.7213 25.4754 9.41142 26.3432 9.52672 27.3081C9.77174 29.4127 11.876 31.2453 14.2253 31.3877C14.3262 31.3942 14.4199 31.3942 14.5208 31.3942C15.472 31.3942 16.3224 31.0899 16.9205 30.533C17.5835 29.9178 17.8862 29.05 17.7781 28.0851C17.5331 25.9805 15.4288 24.1479 13.0795 24.0055C12.9714 23.999 12.8777 23.9925 12.7912 23.9925Z" fill="var(--sw-key,#1faaff)"/>
+  <path d="M20.5452 17.1866V2.9271C20.5452 2.20829 19.8894 1.619 19.0895 1.619H3.25697C2.45706 1.619 1.80127 2.20829 1.80127 2.9271V17.1866C1.80127 17.9054 2.45706 18.4947 3.25697 18.4947H19.0895C19.8894 18.4947 20.5452 17.9054 20.5452 17.1866ZM12.2506 9.94027C12.2578 10.672 12.2434 11.4038 12.2074 12.1096C12.1713 12.9774 12.1137 13.6444 12.02 14.279C11.9768 14.5834 11.6669 14.8035 11.321 14.7647C11.0399 14.7323 10.8165 14.5315 10.7805 14.279C10.694 13.6314 10.6364 12.945 10.5931 12.1096C10.5643 11.4426 10.5499 10.7303 10.5499 9.94027C10.5571 9.10491 10.5715 8.41201 10.6003 7.77092C10.6292 7.12982 10.6796 6.37216 10.7733 5.60156C10.8093 5.31662 11.0832 5.10293 11.393 5.10293C11.4147 5.10293 11.4363 5.10293 11.4579 5.1094C11.7534 5.14178 11.9768 5.34253 12.0056 5.60156C12.1065 6.39807 12.1497 7.18163 12.1785 7.77092C12.2362 8.54152 12.2434 9.29918 12.2506 9.94027Z" fill="var(--sw-w,#fff)"/>
+  <path d="M10.6653 14.3089C10.7014 14.5873 10.9464 14.8205 11.2707 14.8528C11.6526 14.8917 11.9985 14.6521 12.049 14.3089C12.1499 13.5836 12.2003 12.8583 12.2363 12.133C12.2724 11.4078 12.2868 10.6825 12.2796 9.9572C12.2724 9.23193 12.2652 8.50665 12.2291 7.78137C12.1931 7.05609 12.1427 6.33082 12.0562 5.60554C12.0201 5.32708 11.7751 5.08748 11.4436 5.0551C11.0617 5.01625 10.7158 5.26233 10.6725 5.60554C10.5861 6.33082 10.5356 7.05609 10.4996 7.78137C10.4636 8.50665 10.4491 9.23193 10.4491 9.9572C10.4491 10.6825 10.4564 11.4078 10.4924 12.133C10.514 12.8583 10.5644 13.5836 10.6653 14.3089Z" fill="var(--sw-k,#16121c)"/>
+  <path d="M0.0216206 41.8006C0.0288271 41.833 0.0360327 41.8589 0.0432391 41.8913C0.0504455 41.9172 0.0576515 41.9366 0.0720644 41.956C0.0864773 41.9819 0.0936838 42.0079 0.108097 42.0338C0.12251 42.0597 0.129716 42.0791 0.144129 42.0985C0.158542 42.1244 0.180162 42.1438 0.194575 42.1697C0.216194 42.1892 0.230606 42.2086 0.252225 42.228C0.273845 42.2475 0.295464 42.2669 0.32429 42.2863C0.338703 42.2993 0.353116 42.3122 0.360322 42.3187C0.367529 42.3252 0.381943 42.3316 0.38915 42.3381C0.410769 42.3511 0.425181 42.3575 0.4468 42.3705C0.475626 42.3899 0.511657 42.4029 0.540483 42.4158C0.554896 42.4223 0.576516 42.4288 0.590929 42.4352C0.626961 42.4482 0.6702 42.4611 0.706233 42.4676C0.720646 42.4741 0.735059 42.4741 0.749472 42.4806C0.807123 42.4935 0.864774 42.5 0.922426 42.5H21.3671C21.3815 42.5 21.4031 42.4935 21.4175 42.4935C21.4608 42.4935 21.5112 42.4871 21.5617 42.4806C21.5833 42.4741 21.6049 42.4676 21.6265 42.4612C21.6698 42.4482 21.7058 42.4417 21.7418 42.4223C21.7707 42.4158 21.7851 42.4029 21.8139 42.3899C21.8499 42.3705 21.8788 42.3575 21.9148 42.3316C21.9364 42.3187 21.958 42.2993 21.9797 42.2863C22.0085 42.2604 22.0373 42.2345 22.0661 42.2086C22.0805 42.1956 22.0877 42.1892 22.1022 42.1762L26.5197 37.028C26.5269 37.0216 26.5269 37.0151 26.5341 37.0021C26.5557 36.9762 26.5702 36.9503 26.5846 36.9244C26.599 36.905 26.6134 36.8921 26.6206 36.8726C26.6206 36.8661 26.6278 36.8597 26.6278 36.8532C26.6422 36.8273 26.6494 36.8079 26.6566 36.782C26.6638 36.7561 26.6783 36.7302 26.6855 36.7043C26.6855 36.6978 26.6927 36.6913 26.6927 36.6848C26.6999 36.6654 26.6999 36.646 26.6999 36.6265C26.7071 36.5942 26.7071 36.5683 26.7143 36.5359C26.7143 36.5229 26.7143 36.5165 26.7143 36.51C26.7143 36.5035 26.7143 36.497 26.7143 36.4906C26.7143 36.4776 26.7143 36.4711 26.7071 36.4646C26.7071 36.4387 26.6999 36.4064 26.6999 36.374C26.6999 36.361 26.6927 36.3481 26.6927 36.3351V36.3287L23.4065 23.455C22.6715 20.5862 22.3039 17.6463 22.3039 14.7063V0.828885C22.3039 0.802982 22.3111 0.770608 22.3111 0.744705C22.3111 0.323785 21.9508 0 21.4752 0H0.922426C0.410769 0 0 0.36911 0 0.828885V41.6646C0 41.6841 0.00720688 41.7035 0.00720688 41.7229C0.0144133 41.7553 0.0144142 41.7812 0.0216206 41.8006ZM20.8843 21.0331L24.3722 34.6838C24.5091 35.2019 24.0623 35.7005 23.4714 35.7005H7.17762C6.52904 35.7005 5.97414 35.299 5.83001 34.7356L2.34209 21.0849C2.21238 20.5668 2.65197 20.0682 3.2429 20.0682H19.5367C20.178 20.0682 20.7401 20.4697 20.8843 21.0331ZM1.85206 2.90759C1.85206 2.22117 2.47181 1.66425 3.23569 1.66425H19.0682C19.8321 1.66425 20.4519 2.22117 20.4519 2.90759V17.1671C20.4519 17.8535 19.8321 18.4104 19.0682 18.4104H3.23569C2.47181 18.4104 1.85206 17.8535 1.85206 17.1671V2.90759Z" fill="var(--sw-k,#16121c)"/>
+</symbol></svg>
 
 <div class="rainbow" title="🌈"></div>
 
@@ -463,11 +486,11 @@
     </div>
 
     <div class="flow rv in" id="flow">
-      <div class="fnode" data-f="0"><span class="ic">🧭</span><b>Cadrage de votre cycle de vente</b><small>vos étapes · vos règles · vos outils</small></div>
+      <div class="fnode" data-f="0" style="--swc:#1faaff"><span class="ic"><svg class="sw" viewBox="0 0 27 43"><use href="#ncfsw"/></svg></span><b>Cadrage de votre cycle de vente</b><small>vos étapes · vos règles · vos outils</small></div>
       <div class="flink" data-f="1"></div>
-      <div class="fnode" data-f="2"><span class="ic">🧱</span><b>V1 livrée et adoptée</b><small>périmètre restreint · utilisable vite</small></div>
+      <div class="fnode" data-f="2" style="--swc:#906cf8"><span class="ic"><svg class="sw" viewBox="0 0 27 43"><use href="#ncfsw"/></svg></span><b>V1 livrée et adoptée</b><small>périmètre restreint · utilisable vite</small></div>
       <div class="flink" data-f="3"></div>
-      <div class="fnode" data-f="4"><span class="ic">📈</span><b>Extensions avec vous</b><small>commissions · CPQ · portail client</small></div>
+      <div class="fnode" data-f="4" style="--swc:#47c247"><span class="ic"><svg class="sw" viewBox="0 0 27 43"><use href="#ncfsw"/></svg></span><b>Extensions avec vous</b><small>commissions · CPQ · portail client</small></div>
     </div>
 
     <div class="keyfigs rv in">
@@ -638,7 +661,7 @@
     </div>
 
     <div class="costcard rv" style="max-width:840px;margin:18px auto 0">
-      <h3>🔌 Les intégrations à anticiper</h3>
+      <h3><svg class="sw sw-inline" viewBox="0 0 27 43"><use href="#ncfsw"/></svg>Les intégrations à anticiper</h3>
       <p>Souvent sous-estimées en début de projet. Posez-vous ces questions avant de démarrer&nbsp;:</p>
       <ul>
         <li><span class="d" style="background:var(--lilac-deep)"></span><span><b>ERP</b>&nbsp;: votre CRM doit-il lire les stocks, les prix, les encours clients en temps réel&nbsp;?</span></li>
@@ -911,6 +934,14 @@
           <li><span class="ck">✓</span>On pose le diagnostic&nbsp;: standard bien configuré, ou sur mesure, et par quel périmètre commencer</li>
           <li><span class="ck">✓</span>Pas de stack propriétaire, pas de promesses irréalistes, un interlocuteur dédié du cadrage à la livraison</li>
         </ul>
+        <div class="team">
+          <span class="faces">
+            <img src="assets/ncf-equipe-1.png" alt="Membre de l'équipe Nocode Factory" width="52" height="52" loading="lazy">
+            <img src="assets/ncf-equipe-2.png" alt="Membre de l'équipe Nocode Factory" width="52" height="52" loading="lazy">
+            <img src="assets/ncf-equipe-3.png" alt="Membre de l'équipe Nocode Factory" width="52" height="52" loading="lazy">
+          </span>
+          <span class="who">L'équipe qui prend votre appel</span>
+        </div>
         <a class="btn btn-dark" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
         <span class="after">Gratuit, sans engagement. Y compris si la bonne réponse est «&nbsp;un HubSpot bien configuré vous suffit&nbsp;».</span>
       </div>
