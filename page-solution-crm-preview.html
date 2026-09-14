@@ -408,6 +408,16 @@
   .modbody p:last-of-type{margin-bottom:0}
   .modbody .ghost{position:absolute;right:2px;bottom:-14px;z-index:0;font-weight:700;font-size:clamp(3.2rem,7vw,5.6rem);color:var(--ink);opacity:.055;letter-spacing:-.03em;line-height:1;pointer-events:none}
 
+  /* Frise méthode (diagnostic / traitement / suivi) */
+  .method{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:920px;margin:clamp(22px,3vw,32px) auto 0;counter-reset:none}
+  @media(max-width:680px){.method{grid-template-columns:1fr}}
+  .method .mstep{position:relative;background:var(--paper);border:1px solid var(--hair);padding:22px 20px;display:flex;flex-direction:column;gap:5px}
+  .method .mstep:not(:last-child)::after{content:"→";position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--smoke);font-size:18px;z-index:2}
+  @media(max-width:680px){.method .mstep:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-16px;transform:translateX(-50%)}}
+  .method .mn{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-weight:600;font-size:14px;margin-bottom:6px}
+  .method .mstep b{font-size:16px}
+  .method .mstep small{font-size:13px;color:var(--grey);line-height:1.5}
+
   .faqwrap{max-width:780px;margin:0 auto}
   .faq details{background:var(--paper);border:1px solid var(--hair);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden;transition:border-color .25s}
   .faq details:hover{border-color:var(--lightgrey)}
@@ -511,7 +521,7 @@
     <h1 class="rv in">Votre CRM ne colle pas à vos process&nbsp;?</h1>
     <p class="sub rv in">Voici comment choisir un CRM vraiment sur mesure&nbsp;: le diagnostic, les fonctionnalités à prévoir, le budget, et comment évaluer un prestataire sans vous tromper.</p>
     <div class="ctas rv in">
-      <a class="btn btn-dark" href="#cta">Réserver un appel (30 min) <span class="circ">→</span></a>
+      <a class="btn btn-dark" href="#cta">Réserver un appel <span class="circ">→</span></a>
       <a class="tlink" href="#diagnostic">Faire le diagnostic ↓</a>
     </div>
 
@@ -525,7 +535,7 @@
 
     <div class="keyfigs rv in">
       <div class="kf"><div class="v">+350</div><div class="l">projets réalisés</div></div>
-      <div class="kf"><div class="v">4-8 sem.</div><div class="l">une V1 no-code opérationnelle</div></div>
+      <div class="kf"><div class="v">Sur mesure</div><div class="l">des délais adaptés à vos contraintes</div></div>
       <div class="kf"><div class="v">0</div><div class="l">stack propriétaire</div></div>
     </div>
   </header>
@@ -535,7 +545,7 @@
     <a href="#diagnostic">Diagnostic</a>
     <a href="#choisir">Standard ou sur mesure</a>
     <a href="#fonctionnalites">Fonctionnalités</a>
-    <a href="#prestataire">Prestataire</a>
+    <a href="#prestataire">Notre approche</a>
     <a href="#budget">Budget</a>
     <a href="#lancer">Lancer le projet</a>
     <a href="#faq">FAQ</a>
@@ -573,7 +583,7 @@
 
     <div class="feats rv" style="margin-top:26px">
       <div class="feat"><span class="art art-sq art-p9"></span><span><b>Le modèle de données est le vôtre</b><p>Vos objets métier (affaires, chantiers, contrats, abonnements) sont modélisés comme vous les pensez, pas comme l'éditeur les a imaginés.</p></span></div>
-      <div class="feat"><span class="art art-sq art-p10"></span><span><b>Les règles de gestion sont codées, pas contournées</b><p>Une remise conditionnelle, un workflow d'approbation, une alerte sur un seuil&nbsp;: tout ça devient natif.</p></span></div>
+      <div class="feat"><span class="art art-sq art-p10"></span><span><b>Les règles de gestion sont codées</b><p>Une remise conditionnelle, un workflow d'approbation, une alerte sur un seuil&nbsp;: tout ça devient natif.</p></span></div>
       <div class="feat"><span class="art art-sq art-p11"></span><span><b>L'interface s'adapte aux utilisateurs</b><p>Un commercial terrain n'a pas besoin des mêmes vues qu'un directeur commercial ou qu'un ADV.</p></span></div>
     </div>
   </div>
@@ -628,7 +638,6 @@
           <li><span class="ck">○</span>Vos commissions sont simples, vos devis ne se configurent pas.</li>
           <li><span class="ck">○</span>Rien à connecter&nbsp;: ni ERP, ni facturation spécifique.</li>
         </ul>
-        <p class="note">Dans ce cas, un HubSpot Free ou un Pipedrive bien configuré vous fera gagner du temps immédiatement, sans investissement lourd. Si c'est votre situation, on vous le dira à l'appel, et vous repartirez avec ce conseil.</p>
       </div>
       <div class="fit yes rv">
         <h3>✓&nbsp; Ces symptômes-là appellent du sur mesure</h3>
@@ -639,10 +648,9 @@
           <li><span class="ck">✓</span><b>Réglementation métier</b>&nbsp;: assurance, immobilier, santé, où certaines données ont des contraintes légales.</li>
           <li><span class="ck">✓</span><b>Intégration forte avec l'existant</b>&nbsp;: ERP, facturation ou planning doivent parler au CRM en temps réel.</li>
         </ul>
-        <p class="note">Vous cochez une de ces lignes&nbsp;? L'appel de 30 minutes sert exactement à ça&nbsp;: poser le diagnostic précis et définir le premier périmètre.</p>
       </div>
     </div>
-    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Réserver un appel (30 min) <span class="circ">→</span></a></div>
+    <div class="cta-mid rv"><a class="btn btn-dark" href="#cta">Demandez-nous <span class="circ">→</span></a></div>
   </div>
 </section>
 
@@ -652,7 +660,6 @@
     <div class="sec-head rv">
       <span class="kick">Le périmètre</span>
       <h2>Quelles fonctionnalités prévoir dans un CRM sur mesure B2B&nbsp;?</h2>
-      <p>Le socle d'abord, les modules ensuite. Ce socle doit être utilisable sans formation longue&nbsp;: si vos commerciaux ont besoin d'une demi-journée pour créer une fiche, le CRM est déjà trop complexe.</p>
     </div>
 
     <div class="feats f4 rv">
@@ -731,35 +738,16 @@
   <span class="blob blob-lilac" style="bottom:40px;left:-140px"></span>
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="kick">Le prestataire</span>
-      <h2>Comment évaluer un prestataire CRM sur mesure&nbsp;?</h2>
-      <p>Ne vous contentez pas d'un devis et d'une belle présentation.</p>
+      <span class="kick">Notre approche</span>
+      <h2>On travaille comme un médecin&nbsp;: diagnostic, traitement, suivi</h2>
+      <p>On commence par un diagnostic&nbsp;: on ausculte vos process, on écoute vos équipes et on comprend votre besoin métier réel — là où ça bloque vraiment. Vient le traitement&nbsp;: on construit votre CRM et on vous livre le code rapidement. Puis le suivi&nbsp;: on vous accompagne jusqu'au déploiement et bien au-delà, pour faire évoluer l'outil et lui ajouter les fonctionnalités dont vous aurez besoin au fil de votre croissance.</p>
     </div>
-    <div class="recipe rv">
-      <div class="rt">Les 5 questions à poser avant de signer</div>
-      <ol>
-        <li><span><b>Avez-vous déjà réalisé un CRM dans mon secteur&nbsp;?</b> Demandez un cas client concret, pas une liste de logos.</span></li>
-        <li><span><b>Qui sera mon interlocuteur au quotidien&nbsp;?</b> Un chef de projet dédié ou une boîte mail générique&nbsp;?</span></li>
-        <li><span><b>Comment gérez-vous les évolutions après la livraison&nbsp;?</b> Le CRM va évoluer. Quel est le coût d'une modification mineure&nbsp;?</span></li>
-        <li><span><b>Quelle est votre stack technique&nbsp;?</b> Propriétaire ou standard&nbsp;? (Notre réponse est juste en dessous.)</span></li>
-        <li><span><b>Que se passe-t-il si vous disparaissez&nbsp;?</b> Avez-vous accès au code source&nbsp;? Pouvez-vous changer de prestataire&nbsp;?</span></li>
-      </ol>
+    <div class="method rv">
+      <span class="mstep"><span class="mn">1</span><b>Diagnostic</b><small>on ausculte vos process et votre besoin métier</small></span>
+      <span class="mstep"><span class="mn">2</span><b>Traitement</b><small>on construit et on vous livre le code, rapidement</small></span>
+      <span class="mstep"><span class="mn">3</span><b>Suivi</b><small>déploiement, évolutions et nouvelles fonctionnalités</small></span>
     </div>
-
-    <h3 class="rv" style="text-align:center;margin:clamp(26px,3.5vw,38px) 0 18px">Les red flags à éviter</h3>
-    <ul class="errs rv">
-      <li><span class="x">✕</span><span><b>«&nbsp;On peut tout faire&nbsp;»</b> sans poser de questions sur vos process&nbsp;: un bon prestataire challenge votre brief avant de le valider.</span></li>
-      <li><span class="x">✕</span><span><b>Un devis en 24&nbsp;h pour un projet complexe</b>&nbsp;: un CRM sur mesure nécessite un cadrage sérieux avant chiffrage.</span></li>
-      <li><span class="x">✕</span><span><b>Une stack 100&nbsp;% propriétaire</b>&nbsp;: si le prestataire développe sur un framework que lui seul maîtrise, vous êtes captif à vie.</span></li>
-      <li><span class="x">✕</span><span><b>Pas de phase de recette</b>&nbsp;: la livraison sans tests utilisateurs est une promesse de bugs en production.</span></li>
-      <li class="full"><span class="x">✕</span><span><b>Des délais irréalistes</b>&nbsp;: un CRM fonctionnel en 2 semaines pour une PME avec des règles complexes, c'est soit un template, soit un mensonge.</span></li>
-    </ul>
-
-    <div class="sec-head rv" style="margin-top:clamp(26px,3.5vw,38px)">
-      <h3 style="font-size:clamp(1.2rem,2vw,1.5rem)">Notre approche&nbsp;: la rigueur du développement from scratch, la vitesse du low-code</h3>
-      <p>Le low-code traîne une réputation qu'il faut corriger&nbsp;: celle d'outils jetables qui vous rendraient captifs d'une plateforme. Ce n'est pas notre façon de travailler. Nous construisons votre CRM comme une équipe de développeurs construit un logiciel. Le low-code est notre accélérateur, pas un raccourci.</p>
-    </div>
-    <div class="feats rv" style="grid-template-columns:repeat(2,1fr);max-width:920px;margin:0 auto">
+    <div class="feats rv" style="grid-template-columns:repeat(2,1fr);max-width:920px;margin:clamp(22px,3vw,32px) auto 0">
       <div class="feat"><span class="art art-sq art-p1"></span><span><b>Le code vous appartient</b><p>À la livraison, vous repartez avec votre application et son code. Vous la faites évoluer avec nous, en interne ou avec un autre prestataire&nbsp;: c'est vous qui choisissez.</p></span></div>
       <div class="feat"><span class="art art-sq art-p2"></span><span><b>Les mêmes exigences qu'une équipe de dev</b><p>Cadrage écrit, environnements de test séparés, recette avec vos équipes avant la mise en production, documentation livrée.</p></span></div>
       <div class="feat"><span class="art art-sq art-p3"></span><span><b>Aucune dépendance imposée</b><p>Stack standard et documentée, pas de framework propriétaire que nous serions les seuls à maîtriser. Exactement ce que vous devez exiger de n'importe quel prestataire.</p></span></div>
@@ -784,7 +772,7 @@
         <ul>
           <li><span class="d" style="background:var(--lilac-deep)"></span><span><b>Le périmètre de la V1</b>&nbsp;: pipeline et contacts seuls, ou déjà les devis et les relances&nbsp;?</span></li>
           <li><span class="d" style="background:var(--coral)"></span><span><b>Les modules avancés</b>&nbsp;: CPQ, commissions, reporting métier, portail client.</span></li>
-          <li><span class="d" style="background:var(--ocre)"></span><span><b>Les intégrations</b>&nbsp;: chaque connexion (ERP, facturation, email, téléphonie) s'ajoute au périmètre.</span></li>
+          <li><span class="d" style="background:var(--ocre)"></span><span><b>Les intégrations</b>&nbsp;: chaque connexion (ERP, facturation, email, téléphonie) s'ajoute au périmètre, au cas par cas selon que votre outil actuel expose une API ou non.</span></li>
           <li><span class="d" style="background:var(--green-ok)"></span><span><b>La volumétrie et les entités</b>&nbsp;: une équipe de 5 ou trois marques consolidées, ce n'est pas le même outil.</span></li>
         </ul>
       </div>
@@ -809,7 +797,6 @@
       <span class="kick">Lancement</span>
       <h2>Comment lancer votre projet CRM sans vous tromper&nbsp;?</h2>
     </div>
-    <p class="rv" style="text-align:center;max-width:60ch;margin:0 auto clamp(20px,2.5vw,28px);color:var(--grey)">Trois erreurs suffisent à faire dérailler un projet CRM. Les éviter compte autant que le choix de l'outil.</p>
     <div class="feats rv">
       <div class="feat"><span class="ic" style="background:var(--pastel-rose)">1</span><span><b>Ne pas impliquer les utilisateurs finaux</b><p>Ce sont les commerciaux terrain, pas seulement la direction, qui savent où le CRM actuel bloque. Sans eux au cadrage, l'adoption cale.</p></span></div>
       <div class="feat"><span class="ic" style="background:var(--pastel-lilac)">2</span><span><b>Vouloir tout livrer dès la V1</b><p>Les projets qui réussissent démarrent sur un périmètre restreint, le font adopter, puis l'étendent. Tout modéliser d'emblée livre un outil que personne n'utilise.</p></span></div>
@@ -977,7 +964,7 @@
         <h2>On regarde votre situation<br><span class="it">ensemble&nbsp;?</span></h2>
       </div>
       <div class="card rv">
-        <div class="t">Appel de 30 minutes, verdict honnête</div>
+        <div class="t">Un appel, un verdict honnête</div>
         <ul>
           <li><span class="ck">✓</span>Vous décrivez votre cycle de vente et là où votre CRM bloque</li>
           <li><span class="ck">✓</span>On pose le diagnostic&nbsp;: standard bien configuré, ou sur mesure, et par quel périmètre commencer</li>
@@ -991,7 +978,7 @@
           </span>
           <span class="who">L'équipe qui prend votre appel</span>
         </div>
-        <a class="btn btn-dark" href="#">Réserver un appel (30 min) <span class="circ">→</span></a>
+        <a class="btn btn-dark" href="#">Réserver un appel <span class="circ">→</span></a>
         <span class="after">Gratuit, sans engagement. Y compris si la bonne réponse est «&nbsp;un HubSpot bien configuré vous suffit&nbsp;».</span>
       </div>
     </div>
