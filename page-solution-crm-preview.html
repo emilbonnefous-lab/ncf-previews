@@ -468,6 +468,13 @@
     .rv{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
     .rv.in{opacity:1;transform:none}
   }
+
+  /* ===== Forme = sens : angles DROITS sur le contenu factuel ;
+     angles ARRONDIS réservés à la voix NCF (.short = verdict/réponse honnête,
+     .genius = la différence, .final .card = verdict honnête). ===== */
+  .fnode,.feat,.errs li,.fit,.fit li,.recipe,.tcard,.costcard,
+  .modbar,.modtab,.modpanel,.faq details,.lcard,.art,
+  .cmp .reco.head,.cmp .reco.last{border-radius:0}
 </style>
 </head>
 <body>
